@@ -1,0 +1,32 @@
+PODS:
+  - Nimble (7.0.1)
+  - PinLayout (1.5.1)
+  - Quick (1.1.0)
+  - Reveal-SDK (10)
+  - StackLayout (1.5.1):
+    - PinLayout
+  - SwiftLint (0.22.0)
+
+DEPENDENCIES:
+  - Nimble
+  - PinLayout
+  - Quick
+  - Reveal-SDK (~> 10)
+  - StackLayout (from `./`)
+  - SwiftLint
+
+EXTERNAL SOURCES:
+  StackLayout:
+    :path: ./
+
+SPEC CHECKSUMS:
+  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
+  PinLayout: 0838d31bf175263d1bf297ea2465a1e5cb2a40b0
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
+  Reveal-SDK: 7869ddf1f902cabbb07a1f0dd06bd25861a126f7
+  StackLayout: c55dddc75e28e6d2d9607f028d4a9ee3d3e43b67
+  SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
+
+PODFILE CHECKSUM: 58b6919508b64d7b6dfc9c19048a6d9d4bca59f2
+
+COCOAPODS: 1.3.1
