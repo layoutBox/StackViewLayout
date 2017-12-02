@@ -26,11 +26,11 @@ class StackItemImpl: StackItem {
     internal let view: UIView
     
     internal var width: Value?
-//    internal var minWidth: CGFloat?
-//    internal var maxWidth: CGFloat?
+    internal var minWidth: Value?
+    internal var maxWidth: Value?
     internal var height: Value?
-//    internal var minHeight: CGFloat?
-//    internal var maxHeight: CGFloat?
+    internal var minHeight: Value?
+    internal var maxHeight: Value?
     
     internal var marginTop: Value?
     internal var marginLeft: Value?
@@ -43,6 +43,81 @@ class StackItemImpl: StackItem {
     
     init(view: UIView) {
         self.view = view
+    }
+    
+    //
+    // width, height
+    //
+    @discardableResult
+    func width(_ value: CGFloat) -> StackItem {
+        width = Value(value)
+        return self
+    }
+    
+    @discardableResult
+    func width(_ percent: Percent) -> StackItem {
+        width = Value(percent)
+        return self
+    }
+    
+    @discardableResult
+    func minWidth(_ value: CGFloat) -> StackItem {
+        minWidth = Value(value)
+        return self
+    }
+    
+    @discardableResult
+    func minWidth(_ percent: Percent) -> StackItem {
+        minWidth = Value(percent)
+        return self
+    }
+    
+    @discardableResult
+    func maxWidth(_ value: CGFloat) -> StackItem {
+        maxWidth = Value(value)
+        return self
+    }
+    
+    @discardableResult
+    func maxWidth(_ percent: Percent) -> StackItem {
+        maxWidth = Value(percent)
+        return self
+    }
+    
+    @discardableResult
+    func height(_ value: CGFloat) -> StackItem {
+        height = Value(value)
+        return self
+    }
+    
+    @discardableResult
+    func height(_ percent: Percent) -> StackItem {
+        height = Value(percent)
+        return self
+    }
+    
+    @discardableResult
+    func minHeight(_ value: CGFloat) -> StackItem {
+        minWidth = Value(value)
+        return self
+    }
+    
+    @discardableResult
+    func minHeight(_ percent: Percent) -> StackItem {
+        minHeight = Value(percent)
+        return self
+    }
+    
+    @discardableResult
+    func maxHeight(_ value: CGFloat) -> StackItem {
+        maxHeight = Value(value)
+        return self
+    }
+    
+    @discardableResult
+    func maxHeight(_ percent: Percent) -> StackItem {
+        maxHeight = Value(percent)
+        return self
     }
     
     /**

@@ -30,6 +30,72 @@ public protocol StackItem {
 //
 //    view.item.alignSelf(.start)
 
+    //
+    // MARK: Width, height and size
+    //
+    /**
+     The value specifies the view's width in pixels. The value must be non-negative.
+     */
+    @discardableResult func width(_ width: CGFloat) -> StackItem
+    
+    /**
+     The value specifies the view's width in percentage of its container width. The value must be non-negative.
+     Example: view.flex.width(20%)
+     */
+    @discardableResult func width(_ percent: Percent) -> StackItem
+    
+    /**
+     The value specifies the view's minimum width in pixels. The value must be non-negative.
+     */
+    @discardableResult func minWidth(_ width: CGFloat) -> StackItem
+    
+    /**
+     The value specifies the view's minimum width in percentage of its container width. The value must be non-negative.
+     */
+    @discardableResult func minWidth(_ percent: Percent) -> StackItem
+    
+    /**
+     The value specifies the view's maximum width in pixels. The value must be non-negative.
+     */
+    @discardableResult func maxWidth(_ width: CGFloat) -> StackItem
+    
+    /**
+     The value specifies the view's maximum width in percentage of its container width. The value must be non-negative.
+     */
+    @discardableResult func maxWidth(_ percent: Percent) -> StackItem
+    
+    /**
+     The value specifies the view's height in pixels. The value must be non-negative.
+     */
+    @discardableResult func height(_ height: CGFloat) -> StackItem
+    
+    /**
+     The value specifies the view's height in percentage of its container height. The value must be non-negative.
+     Example: view.flex.height(40%)
+     */
+    @discardableResult func height(_ percent: Percent) -> StackItem
+    
+    /**
+     The value specifies the view's minimum height in pixels. The value must be non-negative.
+     */
+    @discardableResult func minHeight(_ height: CGFloat) -> StackItem
+    
+    /**
+     The value specifies the view's minimum height in percentage of its container height. The value must be non-negative.
+     */
+    @discardableResult func minHeight(_ percent: Percent) -> StackItem
+    
+    /**
+     The value specifies the view's maximum height in pixels. The value must be non-negative.
+     */
+    @discardableResult func maxHeight(_ height: CGFloat) -> StackItem
+    
+    /**
+     The value specifies the view's maximum height in percentage of its container height. The value must be non-negative.
+     */
+    @discardableResult func maxHeight(_ percent: Percent) -> StackItem
+    
+    
     /**
      The value specifies view's width and the height in pixels. Values must be non-negative.
      */

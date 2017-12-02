@@ -19,7 +19,7 @@
 
 import Foundation
 
-private var stackLayoutAssociatedObjectHandle = 72_399_923
+private var stackLayoutAssociatedObjectHandle = 72_399_888
 
 public extension UIView {
     public var item: StackItem {

@@ -18,6 +18,7 @@
 //  THE SOFTWARE.
 
 import UIKit
+import PinLayout
 
 class BasicView: UIView {
     fileprivate let label = UILabel()

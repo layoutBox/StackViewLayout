@@ -23,85 +23,107 @@ import PinLayout
 
 class IntroView: BaseView {
 
-    fileprivate let stackLayoutView = StackLayoutView()
     fileprivate let logo = UIImageView(image: UIImage(named: "PinLayout-logo"))
-//    fileprivate let segmented = UISegmentedControl(items: ["Intro", "1", "2"])
     fileprivate let textLabel = UILabel()
     fileprivate let separatorView = UIView()
     
-//    fileprivate let columnView = UIView()
-    fileprivate let label1 = UILabel()
-    fileprivate let label2 = UILabel()
-    fileprivate let label3 = UILabel()
-
+    var stackLayoutView: StackLayoutView!
+    //        let logo = UIImageView(image: UIImage(named: "PinLayout-logo"))
+    //        let textLabel = UILabel()
+    //        let separatorView = UIView()
+    
+    var label1: UILabel!
+    var label2: UILabel!
+    var label3: UILabel!
     override init() {
         super.init()
         
+        stackLayoutView = StackLayoutView()
+        stackLayoutView.layer.borderColor = UIColor.black.cgColor
+        stackLayoutView.layer.borderWidth = 1
         addSubview(stackLayoutView)
-
-        logo.contentMode = .scaleAspectFit
-        logo.item.size(40)
-        stackLayoutView.addItem(logo)
         
-//        segmented.selectedSegmentIndex = 0
-//        segmented.tintColor = .stackLayoutColor
-//        stackLayoutView.addSubview(segmented)
-        
-        textLabel.text = "Swift manual views layouting without auto layout, no magic, pure code, full control. Concise syntax, readable & chainable.\n\nSwift manual views layouting without auto layout, no magic, pure code, full control. Concise syntax, readable & chainable."
-        textLabel.font = .systemFont(ofSize: 14)
-        textLabel.numberOfLines = 0
-        textLabel.lineBreakMode = .byWordWrapping
-        stackLayoutView.addItem(textLabel)
-        
-//        separatorView.pin.height(1)
-//        separatorView.backgroundColor = .stackLayoutColor
-//        stackLayoutView.addSubview(separatorView)
+        testAlignItems()
+//        logo.contentMode = .scaleAspectFit
 //
-//        columnView.backgroundColor = .gray
-//        stackLayoutView.addSubview(columnView)
+//        textLabel.text = "Swift manual views layouting without auto layout, no magic, pure code, full control. Concise syntax, readable & chainable.\n\nSwift manual views layouting without auto layout, no magic, pure code, full control. Concise syntax, readable & chainable."
+//        textLabel.font = .systemFont(ofSize: 14)
+//        textLabel.numberOfLines = 0
+//        textLabel.lineBreakMode = .byWordWrapping
+//
+//        separatorView.backgroundColor = .stackLayoutColor
+//
+//        label1.backgroundColor = .red
+//        label1.text = "Label 1"
+//
+//        label2.backgroundColor = .green
+//        label2.text = "Label 2"
+//
+//        label3.backgroundColor = .blue
+//        label3.text = "Label 3"
         
-        label1.backgroundColor = .red
-        label1.text = "Label 1"
-        label1.item.marginTop(10)
-        label1.item.marginBottom(10)
-        stackLayoutView.addItem(label1)
-
-        label2.backgroundColor = .green
-        label2.text = "Label 2"
-        stackLayoutView.addItem(label2)
-
-        label3.backgroundColor = .blue
-        label3.text = "Label 3"
-        stackLayoutView.addItem(label3)
+        // configure the StackView
+//        logo.item.size(60)
+//        stackLayoutView.addItem(logo)
+//        
+//        textLabel.item.maxWidth(50%)
+//        stackLayoutView.addItem(textLabel)
+//        
+//        separatorView.item.height(4)
+//        stackLayoutView.addItem(separatorView)
+//        
+//        label1.item.marginTop(10).marginBottom(10)
+//        stackLayoutView.addItem(label1)
+//        
+//        stackLayoutView.addItem(label2)
+//        stackLayoutView.addItem(label3)
+//
+//        stackLayoutView.direction(.column)  // Default
+//        stackLayoutView.justifyContent(.start)
+//        stackLayoutView.alignItems(.stretch)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
+    func testAlignItems() {
+        logo.contentMode = .scaleAspectFit
+        
+        label1 = UILabel()
+        label1.backgroundColor = .red
+        label1.text = "Label 1"
+        
+        label2 = UILabel()
+        label2.backgroundColor = .green
+        label2.text = "Label 2"
+        
+        label3 = UILabel()
+        label3.backgroundColor = .blue
+        label3.text = "Label 3"
+        
+        stackLayoutView.addItem(label1)
+        stackLayoutView.addItem(label2)
+        stackLayoutView.addItem(label3)
+        
+        stackLayoutView.direction(.column)
+        stackLayoutView.justifyContent(.end)
+        stackLayoutView.alignItems(.end)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         // Layout the stackLayoutView using the view's safeArea with at least of 10 pixels all around.
-        let containerInsets = safeArea.minInsets(UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10))
+//        let containerInsets = safeArea.minInsets(UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10))
+        stackLayoutView.frame = CGRect(x: 0, y: 80, width: 400, height: 600)
         
-        stackLayoutView.pin.all().margin(containerInsets)
-        
-//        logo.pin.top().left().width(100).aspectRatio().marginTop(10)
-//        segmented.pin.after(of: logo, aligned: .top).right().marginLeft(10)
-//        textLabel.pin.below(of: segmented, aligned: .left).width(of: segmented).pinEdges().marginTop(10).sizeToFit(.width)
-//        separatorView.pin.below(of: [logo, textLabel], aligned: .left).right(to: segmented.edge.right).marginTop(10)
-        
-//        columnView.pin.top().left().right().layoutColumn(column, padding: UIEdgeInsets) {
-//            column.layout(childView1).width(100%).height(200)           // Should apply columnView padding
-//            column.layout(child2).hCenter().width(100).marginBottom(20)
-//        }
-//        
-//        let padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//        columnView.pin.top().left().right().layoutColumn(padding: padding) { (column) in
-//            column.layout(label1).width(100%).height(40).marginTop(10)
-//            column.layout(label2).left(0).right(0).height(40).marginTop(10).marginLeft(10).marginRight(10)
-//            column.layout(label3).width(100%).height(40).marginTop(10).marginBottom(10)
-//        }
+        printViewFrame(label1, name: "label1")
+        printViewFrame(label2, name: "label2")
+        printViewFrame(label3, name: "label3")
+    }
+    
+    fileprivate func printViewFrame(_ view: UIView, name: String) {
+        print("expect(\(name).frame).to(beCloseTo(CGRect(x: \(view.frame.origin.x), y: \(view.frame.origin.y), width: \(view.frame.size.width), height: \(view.frame.size.height)), within: 0.5))")
     }
 }

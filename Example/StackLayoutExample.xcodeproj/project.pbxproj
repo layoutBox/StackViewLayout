@@ -24,6 +24,30 @@
 		FC19F3AB71E0416A5DF3C997 /* Pods_StackLayoutExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BC1DFC5AD1ACBF99B5F0F2 /* Pods_StackLayoutExample.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		24EC06B31FD2550300459C62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24EC06AD1FD2550300459C62 /* StackLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 249EFE7A1E64FB4C00165E39;
+			remoteInfo = StackLayout;
+		};
+		24EC06B51FD2550300459C62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24EC06AD1FD2550300459C62 /* StackLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 249EFE831E64FB4C00165E39;
+			remoteInfo = StackLayoutTests;
+		};
+		24EC06B71FD2550300459C62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24EC06AD1FD2550300459C62 /* StackLayout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 244DF2F81EF46C500090508B;
+			remoteInfo = StackLayoutTVOS;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		2468130D1F8D013600462E53 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -72,6 +96,7 @@
 		24D18D1B1F3DED0D008129EF /* IntroRTLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroRTLView.swift; sourceTree = "<group>"; };
 		24D18D1C1F3DED0D008129EF /* IntroRTLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroRTLViewController.swift; sourceTree = "<group>"; };
 		24DA374A1EF7F90600D1AB2F /* BaseFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFormView.swift; sourceTree = "<group>"; };
+		24EC06AD1FD2550300459C62 /* StackLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = StackLayout.xcodeproj; path = ../StackLayout.xcodeproj; sourceTree = "<group>"; };
 		24F2460D1FA8D4D100B6332E /* CollectionViewExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewExampleView.swift; sourceTree = "<group>"; };
 		24F2460E1FA8D4D100B6332E /* CollectionViewExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewExampleViewController.swift; sourceTree = "<group>"; };
 		24F2460F1FA8D4D100B6332E /* HouseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseCell.swift; sourceTree = "<group>"; };
@@ -206,10 +231,11 @@
 		249EFE361E64FAFE00165E39 = {
 			isa = PBXGroup;
 			children = (
-				160FB83905049FCEDD18DC8A /* Frameworks */,
 				249EFE411E64FAFE00165E39 /* StackLayoutExample */,
+				160FB83905049FCEDD18DC8A /* Frameworks */,
 				F143180314A617EFD07C5709 /* Pods */,
 				249EFE401E64FAFE00165E39 /* Products */,
+				24EC06AD1FD2550300459C62 /* StackLayout.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -275,6 +301,16 @@
 				24D18D1C1F3DED0D008129EF /* IntroRTLViewController.swift */,
 			);
 			path = IntroRTL;
+			sourceTree = "<group>";
+		};
+		24EC06AE1FD2550300459C62 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24EC06B41FD2550300459C62 /* StackLayout.framework */,
+				24EC06B61FD2550300459C62 /* StackLayoutTests.xctest */,
+				24EC06B81FD2550300459C62 /* StackLayoutTVOS.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		24F2460C1FA8D4D100B6332E /* CollectionViewExample */ = {
@@ -368,12 +404,42 @@
 			mainGroup = 249EFE361E64FAFE00165E39;
 			productRefGroup = 249EFE401E64FAFE00165E39 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 24EC06AE1FD2550300459C62 /* Products */;
+					ProjectRef = 24EC06AD1FD2550300459C62 /* StackLayout.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				249EFE3E1E64FAFE00165E39 /* StackLayoutExample */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		24EC06B41FD2550300459C62 /* StackLayout.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = StackLayout.framework;
+			remoteRef = 24EC06B31FD2550300459C62 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24EC06B61FD2550300459C62 /* StackLayoutTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = StackLayoutTests.xctest;
+			remoteRef = 24EC06B51FD2550300459C62 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24EC06B81FD2550300459C62 /* StackLayoutTVOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = StackLayoutTVOS.framework;
+			remoteRef = 24EC06B71FD2550300459C62 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		249EFE3D1E64FAFE00165E39 /* Resources */ = {
