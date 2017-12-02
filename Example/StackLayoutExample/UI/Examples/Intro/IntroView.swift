@@ -107,8 +107,8 @@ class IntroView: BaseView {
         stackLayoutView.addItem(label3)
         
         stackLayoutView.direction(.column)
-        stackLayoutView.justifyContent(.end)
-        stackLayoutView.alignItems(.end)
+        stackLayoutView.justifyContent(.center)
+        stackLayoutView.alignItems(.center)
     }
     
     override func layoutSubviews() {
