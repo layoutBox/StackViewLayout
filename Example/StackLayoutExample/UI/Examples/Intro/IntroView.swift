@@ -92,22 +92,25 @@ class IntroView: BaseView {
         
         label1 = UILabel()
         label1.backgroundColor = .red
+        label1.font = UIFont.systemFont(ofSize: 17)
         label1.text = "Label 1"
         
         label2 = UILabel()
+        label2.font = UIFont.systemFont(ofSize: 17)
         label2.backgroundColor = .green
-        label2.text = "Label 2"
+        label2.text = "Label a little longuer"
         
         label3 = UILabel()
+        label3.font = UIFont.systemFont(ofSize: 17)
         label3.backgroundColor = .blue
-        label3.text = "Label 3"
+        label3.text = "Label very very very much longuer"
         
         stackLayoutView.addItem(label1)
         stackLayoutView.addItem(label2)
         stackLayoutView.addItem(label3)
         
         stackLayoutView.direction(.column)
-        stackLayoutView.justifyContent(.center)
+        stackLayoutView.justifyContent(.spaceEvenly)
         stackLayoutView.alignItems(.center)
     }
     

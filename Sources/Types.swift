@@ -41,10 +41,12 @@ public enum SJustifyContent {
     case center
     /// Items are positioned at the end of the container
     case end
-    /// Items are positioned with space between the lines
+    /// Items are positioned with space between items
     case spaceBetween
-    /// Items are positioned with space before, between, and after the lines
+    /// Items are positioned with space before, between, and after items
     case spaceAround
+    /// Items are positioned with space before, between, and after items
+    case spaceEvenly
 }
 
 /**
