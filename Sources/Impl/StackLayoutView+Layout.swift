@@ -36,6 +36,7 @@ class Container {
     
 class ItemInfo {
     var view: UIView
+    var stackItem: StackItemImpl
     var x: CGFloat = 0
     var y: CGFloat = 0
     var width: CGFloat?
@@ -48,8 +49,9 @@ class ItemInfo {
     
 //    var parent: ParentInfo?
     
-    init(_ view: UIView, container: Container) {
-        self.view = view
+    init(_ stackItem: StackItemImpl, container: Container) {
+        self.stackItem = stackItem
+        self.view = stackItem.view
 //        self.parent = parent
         
         if let stackItem = view.item as? StackItemImpl {
@@ -131,9 +133,9 @@ extension StackLayoutView {
             var width = item.width!
             
             if let containerWidth = container.width {
-                switch alignItems {
+                switch resolveStackItemAlign(item) {
                 case .stretch: width = containerWidth
-                case .start:   break
+                case .start:   /* nop */ break
                 case .center:  x = (containerWidth - item.width!) / 2
                 case .end:     x = containerWidth - item.width!
                 }
@@ -161,11 +163,12 @@ extension StackLayoutView {
     }
     
     private func measuresItems(container: Container) {
-        subviews.forEach{ (view) in
+        stackItems.forEach{ (stackItem) in
+            let view = stackItem.view
             guard !view.isHidden else { return }
             guard let stackItem = view.item as? StackItemImpl else { return }
             
-            let item = ItemInfo(view, container: container)
+            let item = ItemInfo(stackItem, container: container)
             
             if self.direction == .column {
                 if let containerWidth = container.width {
@@ -201,6 +204,24 @@ extension StackLayoutView {
                 container.items.append(item)
             }
         }
+    }
+    
+    func resolveStackItemAlign(_ item: ItemInfo) -> SAlignItems {
+        let align: SAlignItems
+        
+        if let selfAlign = item.stackItem.alignSelf {
+            switch selfAlign {
+            case .auto:    align = alignItems
+            case .stretch: align = .stretch
+            case .start:   align = .start
+            case .center:  align = .center
+            case .end:     align = .end
+            }
+        } else {
+            align = alignItems
+        }
+        
+        return align
     }
 }
     

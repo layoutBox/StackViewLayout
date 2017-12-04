@@ -22,8 +22,9 @@ import Foundation
 #if os(iOS) || os(tvOS)
 import UIKit
 
-class StackItemImpl: StackItem {
+class StackItemImpl: NSObject, StackItem {
     internal let view: UIView
+    var parent: StackLayoutView?
     
     internal var width: Value?
     internal var minWidth: Value?
@@ -39,7 +40,7 @@ class StackItemImpl: StackItem {
     internal var marginRight: Value?
     internal var marginEnd: Value?
     
-    internal var alignSelf: SAlignSelf?
+    var alignSelf: SAlignSelf?
     
     init(view: UIView) {
         self.view = view

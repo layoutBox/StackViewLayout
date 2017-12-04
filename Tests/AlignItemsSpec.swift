@@ -74,11 +74,11 @@ class AlignItemsSpec: QuickSpec {
             
             label2 = UILabel()
             label2.backgroundColor = .green
-            label2.text = "Label 2"
+            label2.text = "Label a little longuer"
             
             label3 = UILabel()
             label3.backgroundColor = .blue
-            label3.text = "Label 3"
+            label3.text = "Label very very very much longuer"
             
             stackLayoutView.addItem(label1)
             stackLayoutView.addItem(label2)
@@ -90,7 +90,7 @@ class AlignItemsSpec: QuickSpec {
         }
         
         //
-        // pinEdges warnings
+        // align()
         //
         describe("StackLayout align()") {
             it("align(.stretch)") {
@@ -109,8 +109,8 @@ class AlignItemsSpec: QuickSpec {
                 stackLayoutView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.3333333333333, width: 56.0, height: 20.3333333333333), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 40.6666666666667, width: 56.3333333333333, height: 20.3333333333333), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.3333333333333, width: 154.3333333333333, height: 20.3333333333333), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 40.6666666666667, width: 262.6666666666667, height: 20.3333333333333), within: 0.5))
             }
             
             it("align(.center)") {
@@ -119,8 +119,8 @@ class AlignItemsSpec: QuickSpec {
                 stackLayoutView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 173.166666666667, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 172.0, y: 20.3333333333333, width: 56.0, height: 20.3333333333333), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 171.833333333333, y: 40.6666666666667, width: 56.3333333333333, height: 20.3333333333333), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 122.833333333333, y: 20.3333333333333, width: 154.3333333333333, height: 20.3333333333333), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.6666666666667, y: 40.6666666666667, width: 262.6666666666667, height: 20.3333333333333), within: 0.5))
             }
             
             it("align(.end)") {
@@ -129,8 +129,65 @@ class AlignItemsSpec: QuickSpec {
                 stackLayoutView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 346.333333333333, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 344.0, y: 20.3333333333333, width: 56.0, height: 20.3333333333333), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 343.666666666667, y: 40.6666666666667, width: 56.3333333333333, height: 20.3333333333333), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 245.666666666667, y: 20.3333333333333, width: 154.3333333333333, height: 20.3333333333333), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 137.333333333333, y: 40.6666666666667, width: 262.6666666666667, height: 20.3333333333333), within: 0.5))
+            }
+        }
+        
+        //
+        // alignSelf()
+        //
+        describe("StackLayout alignSelf()") {
+            it("alignSelf(.auto)") {
+                stackLayoutView.direction(.column)
+                stackLayoutView.justifyContent(.start)
+                stackLayoutView.alignItems(.center)
+                label2.item.alignSelf(.auto)
+                
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.166666666667, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 122.833333333333, y: 20.3333333333333, width: 154.333333333333, height: 20.3333333333333), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.6666666666667, y: 40.6666666666667, width: 262.666666666667, height: 20.3333333333333), within: 0.5))
+            }
+            
+            it("alignSelf(.start)") {
+                stackLayoutView.direction(.column)
+                stackLayoutView.justifyContent(.start)
+                stackLayoutView.alignItems(.center)
+                label2.item.alignSelf(.start)
+                
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.166666666667, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.3333333333333, width: 154.333333333333, height: 20.3333333333333), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.6666666666667, y: 40.6666666666667, width: 262.666666666667, height: 20.3333333333333), within: 0.5))
+            }
+            
+            it("alignSelf(.center)") {
+                stackLayoutView.direction(.column)
+                stackLayoutView.justifyContent(.start)
+                stackLayoutView.alignItems(.start)
+                label2.item.alignSelf(.center)
+                
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 122.833333333333, y: 20.3333333333333, width: 154.333333333333, height: 20.3333333333333), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 40.6666666666667, width: 262.666666666667, height: 20.3333333333333), within: 0.5))
+            }
+            
+            it("alignSelf(.end)") {
+                stackLayoutView.direction(.column)
+                stackLayoutView.justifyContent(.start)
+                stackLayoutView.alignItems(.center)
+                label2.item.alignSelf(.end)
+                
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.166666666667, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 245.666666666667, y: 20.3333333333333, width: 154.333333333333, height: 20.3333333333333), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.6666666666667, y: 40.6666666666667, width: 262.666666666667, height: 20.3333333333333), within: 0.5))
             }
         }
     }

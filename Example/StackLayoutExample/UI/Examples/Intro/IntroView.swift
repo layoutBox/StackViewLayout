@@ -27,6 +27,10 @@ class IntroView: BaseView {
     fileprivate let textLabel = UILabel()
     fileprivate let separatorView = UIView()
     
+    fileprivate let toggleButton = UIButton(type: .custom)
+    fileprivate let removeButton = UIButton(type: .custom)
+    fileprivate let insertButton = UIButton(type: .custom)
+    
     var stackLayoutView: StackLayoutView!
     //        let logo = UIImageView(image: UIImage(named: "PinLayout-logo"))
     //        let textLabel = UILabel()
@@ -38,12 +42,33 @@ class IntroView: BaseView {
     override init() {
         super.init()
         
+        
+        toggleButton.backgroundColor = .gray
+        toggleButton.setTitle("Toggle", for: .normal)
+        toggleButton.addTarget(self, action: #selector(didTapToggle), for: .touchUpInside)
+        toggleButton.sizeToFit()
+        addSubview(toggleButton)
+        
+        removeButton.backgroundColor = .gray
+        removeButton.setTitle("Remove", for: .normal)
+        removeButton.addTarget(self, action: #selector(didTapRemove), for: .touchUpInside)
+        removeButton.sizeToFit()
+        addSubview(removeButton)
+        
+        insertButton.backgroundColor = .gray
+        insertButton.setTitle("Insert", for: .normal)
+        insertButton.addTarget(self, action: #selector(didTapInsert), for: .touchUpInside)
+        insertButton.sizeToFit()
+        addSubview(insertButton)
+        
         stackLayoutView = StackLayoutView()
         stackLayoutView.layer.borderColor = UIColor.black.cgColor
         stackLayoutView.layer.borderWidth = 1
         addSubview(stackLayoutView)
         
         testAlignItems()
+
+        
 //        logo.contentMode = .scaleAspectFit
 //
 //        textLabel.text = "Swift manual views layouting without auto layout, no magic, pure code, full control. Concise syntax, readable & chainable.\n\nSwift manual views layouting without auto layout, no magic, pure code, full control. Concise syntax, readable & chainable."
@@ -110,8 +135,10 @@ class IntroView: BaseView {
         stackLayoutView.addItem(label3)
         
         stackLayoutView.direction(.column)
-        stackLayoutView.justifyContent(.spaceEvenly)
+        stackLayoutView.justifyContent(.start)
         stackLayoutView.alignItems(.center)
+        
+        label2.item.alignSelf(.end)
     }
     
     override func layoutSubviews() {
@@ -121,6 +148,10 @@ class IntroView: BaseView {
 //        let containerInsets = safeArea.minInsets(UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10))
         stackLayoutView.frame = CGRect(x: 0, y: 80, width: 400, height: 600)
         
+        toggleButton.pin.below(of: stackLayoutView, aligned: .left)
+        removeButton.pin.after(of: toggleButton, aligned: .center).marginLeft(10)
+        insertButton.pin.after(of: removeButton, aligned: .center).marginLeft(10)
+        
         printViewFrame(label1, name: "label1")
         printViewFrame(label2, name: "label2")
         printViewFrame(label3, name: "label3")
@@ -128,5 +159,21 @@ class IntroView: BaseView {
     
     fileprivate func printViewFrame(_ view: UIView, name: String) {
         print("expect(\(name).frame).to(beCloseTo(CGRect(x: \(view.frame.origin.x), y: \(view.frame.origin.y), width: \(view.frame.size.width), height: \(view.frame.size.height)), within: 0.5))")
+    }
+    
+    internal func didTapToggle() {
+        if label2.isHidden {
+            stackLayoutView.showItem(label2, animate: true)
+        } else {
+            stackLayoutView.hideItem(label2, animate: true)
+        }
+    }
+    
+    internal func didTapRemove() {
+        label2.removeFromSuperview()
+    }
+    
+    internal func didTapInsert() {
+        stackLayoutView.insertItem(label2, at: 1)
     }
 }
