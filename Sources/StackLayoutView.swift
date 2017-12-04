@@ -27,7 +27,6 @@ public class StackLayoutView: UIView, StackLayout {
     internal var direction = SDirection.column
     internal var justifyContent = SJustifyContent.start
     internal var alignItems = SAlignItems.stretch
-    internal var alignContent = SAlignContent.start
     
     public func addItem(_ view: UIView) {
         guard let stackItemImpl = view.item as? StackItemImpl else { return }
@@ -95,12 +94,6 @@ public class StackLayoutView: UIView, StackLayout {
     @discardableResult
     public func alignItems(_ value: SAlignItems) -> StackLayout {
         alignItems = value
-        return self
-    }
-    
-    @discardableResult
-    public func alignContent(_ value: SAlignContent) -> StackLayout {
-        alignContent = value
         return self
     }
     

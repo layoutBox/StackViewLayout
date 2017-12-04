@@ -54,13 +54,4 @@ public protocol StackLayout {
      */
     @discardableResult
     func alignItems(_ value: SAlignItems) -> StackLayout
-    
-    /**
-     The align-content property aligns a flex container’s lines within the flex container when there is extra space
-     in the cross-axis, similar to how justifyContent aligns individual items within the main-axis.
-     
-     - Parameter value: Default value is .start
-     */
-    @discardableResult
-    func alignContent(_ value: SAlignContent) -> StackLayout
 }

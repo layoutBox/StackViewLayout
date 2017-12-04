@@ -51,23 +51,6 @@ public enum SJustifyContent {
 
 /**
  */
-public enum SAlignContent {
-    /// Default value. Lines stretch to take up the remaining space
-    case stretch
-    /// Lines are packed toward the start of the flex container
-    case start
-    /// Lines are packed toward the center of the flex container
-    case center
-    /// Lines are packed toward the end of the flex container
-    case end
-    /// Lines are evenly distributed in the flex container
-    case spaceBetween
-    /// Lines are evenly distributed in the flex container, with half-size spaces on either end    Play it »
-    case spaceAround
-}
-
-/**
- */
 public enum SAlignItems {
     /// Default. Items are stretched to fit the container
     case stretch
