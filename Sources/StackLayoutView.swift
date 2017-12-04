@@ -82,19 +82,34 @@ public class StackLayoutView: UIView, StackLayout {
     @discardableResult
     public func direction(_ value: SDirection) -> StackLayout {
         direction = value
+        setNeedsLayout()
         return self
+    }
+    
+    public func getDirection() -> SDirection {
+        return direction
     }
     
     @discardableResult
     public func justifyContent(_ value: SJustifyContent) -> StackLayout {
         justifyContent = value
+        setNeedsLayout()
         return self
+    }
+    
+    public func getJustifyContent() -> SJustifyContent {
+        return justifyContent
     }
     
     @discardableResult
     public func alignItems(_ value: SAlignItems) -> StackLayout {
         alignItems = value
+        setNeedsLayout()
         return self
+    }
+    
+    public func getAlignItems() -> SAlignItems {
+        return alignItems
     }
     
     public func hideItem(_ view: UIView, animate: Bool) {
@@ -113,7 +128,7 @@ public class StackLayoutView: UIView, StackLayout {
         
         if animate {
             if isVisible {
-                view.frame.size = CGSize(width: view.frame.width, height: 0)
+                view.frame.size = direction == .column ? CGSize(width: view.frame.width, height: 0) : CGSize(width: 0, height: view.frame.height)
                 view.isHidden = false
                 
                 UIView.animate(withDuration: duration, delay: 0, options: [.beginFromCurrentState], animations: {
@@ -126,7 +141,7 @@ public class StackLayoutView: UIView, StackLayout {
                 view.isHidden = true
                 
                 UIView.animate(withDuration: duration, delay: 0, options: [.beginFromCurrentState], animations: {
-                    itemSnapshot.frame.size = CGSize(width: itemSnapshot.frame.width, height: 0)
+                    itemSnapshot.frame.size = self.direction == .column ? CGSize(width: itemSnapshot.frame.width, height: 0) : CGSize(width: 0, height: itemSnapshot.frame.height)
                     self.forceLayoutNow()
                 }, completion: { (completed) in
                     itemSnapshot.removeFromSuperview()

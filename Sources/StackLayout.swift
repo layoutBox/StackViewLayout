@@ -34,6 +34,7 @@ public protocol StackLayout {
      */
     @discardableResult
     func direction(_ value: SDirection) -> StackLayout
+    func getDirection() -> SDirection
     
     /**
      The `justifyContent` property defines the alignment along the main-axis of the current line of the flex container.

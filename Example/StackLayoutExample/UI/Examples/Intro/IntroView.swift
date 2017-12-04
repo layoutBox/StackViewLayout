@@ -27,7 +27,10 @@ class IntroView: BaseView {
     fileprivate let textLabel = UILabel()
     fileprivate let separatorView = UIView()
     
-    fileprivate let toggleButton = UIButton(type: .custom)
+    fileprivate let buttonsStackView = StackLayoutView()
+    fileprivate let toggleDirectionButton = UIButton(type: .custom)
+    fileprivate let toggleJustifyButton = UIButton(type: .custom)
+    fileprivate let toggleVisibilityButton = UIButton(type: .custom)
     fileprivate let removeButton = UIButton(type: .custom)
     fileprivate let insertButton = UIButton(type: .custom)
     
@@ -39,34 +42,56 @@ class IntroView: BaseView {
     var label1: UILabel!
     var label2: UILabel!
     var label3: UILabel!
+    
     override init() {
         super.init()
-        
-        
-        toggleButton.backgroundColor = .gray
-        toggleButton.setTitle("Toggle", for: .normal)
-        toggleButton.addTarget(self, action: #selector(didTapToggle), for: .touchUpInside)
-        toggleButton.sizeToFit()
-        addSubview(toggleButton)
-        
-        removeButton.backgroundColor = .gray
-        removeButton.setTitle("Remove", for: .normal)
-        removeButton.addTarget(self, action: #selector(didTapRemove), for: .touchUpInside)
-        removeButton.sizeToFit()
-        addSubview(removeButton)
-        
-        insertButton.backgroundColor = .gray
-        insertButton.setTitle("Insert", for: .normal)
-        insertButton.addTarget(self, action: #selector(didTapInsert), for: .touchUpInside)
-        insertButton.sizeToFit()
-        addSubview(insertButton)
-        
+    
         stackLayoutView = StackLayoutView()
         stackLayoutView.layer.borderColor = UIColor.black.cgColor
         stackLayoutView.layer.borderWidth = 1
         addSubview(stackLayoutView)
         
-        testAlignItems()
+        toggleDirectionButton.backgroundColor = .gray
+        toggleDirectionButton.setTitle("Dir", for: .normal)
+        toggleDirectionButton.addTarget(self, action: #selector(didTapToggleDirection), for: .touchUpInside)
+        toggleDirectionButton.sizeToFit()
+        buttonsStackView.addItem(toggleDirectionButton)
+        //        addSubview(toggleDirectionButton)
+        
+        toggleJustifyButton.backgroundColor = .gray
+        toggleJustifyButton.setTitle("Just", for: .normal)
+        toggleJustifyButton.addTarget(self, action: #selector(didTapToggleJustify), for: .touchUpInside)
+        toggleJustifyButton.sizeToFit()
+        buttonsStackView.addItem(toggleJustifyButton)
+        //        addSubview(toggleJustifyButton)
+        
+        toggleVisibilityButton.backgroundColor = .gray
+        toggleVisibilityButton.setTitle("Visible", for: .normal)
+        toggleVisibilityButton.addTarget(self, action: #selector(didTapToggleVisibility), for: .touchUpInside)
+        toggleVisibilityButton.sizeToFit()
+        buttonsStackView.addItem(toggleVisibilityButton)
+        //        addSubview(toggleVisibilityButton)
+        
+        removeButton.backgroundColor = .gray
+        removeButton.setTitle("Remove", for: .normal)
+        removeButton.addTarget(self, action: #selector(didTapRemove), for: .touchUpInside)
+        removeButton.sizeToFit()
+        buttonsStackView.addItem(removeButton)
+        //        addSubview(removeButton)
+        
+        insertButton.backgroundColor = .gray
+        insertButton.setTitle("Insert", for: .normal)
+        insertButton.addTarget(self, action: #selector(didTapInsert), for: .touchUpInside)
+        insertButton.sizeToFit()
+        buttonsStackView.addItem(insertButton)
+        
+        buttonsStackView.direction(.row)
+        buttonsStackView.justifyContent(.spaceBetween)
+        buttonsStackView.layer.borderWidth = 1
+        addSubview(buttonsStackView)
+        
+//        testAlignItems()
+        testRowDirection()
 
         
 //        logo.contentMode = .scaleAspectFit
@@ -141,16 +166,46 @@ class IntroView: BaseView {
         label2.item.alignSelf(.end)
     }
     
+    func testRowDirection() {
+        logo.contentMode = .scaleAspectFit
+        
+        label1 = UILabel()
+        label1.backgroundColor = .red
+        label1.font = UIFont.systemFont(ofSize: 17)
+        label1.text = "Label 1"
+        
+        label2 = UILabel()
+        label2.font = UIFont.systemFont(ofSize: 17)
+        label2.backgroundColor = .green
+        label2.text = "Label longuer"
+        
+        label3 = UILabel()
+        label3.font = UIFont.systemFont(ofSize: 17)
+        label3.backgroundColor = .blue
+        label3.text = "Label much longuer"
+        
+        stackLayoutView.addItem(label1)
+        stackLayoutView.addItem(label2)
+        stackLayoutView.addItem(label3)
+        
+        stackLayoutView.direction(.row)
+        stackLayoutView.justifyContent(.spaceBetween)
+        stackLayoutView.alignItems(.stretch)
+
+//        label2.item.alignSelf(.end)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         // Layout the stackLayoutView using the view's safeArea with at least of 10 pixels all around.
 //        let containerInsets = safeArea.minInsets(UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10))
         stackLayoutView.frame = CGRect(x: 0, y: 80, width: 400, height: 600)
-        
-        toggleButton.pin.below(of: stackLayoutView, aligned: .left)
-        removeButton.pin.after(of: toggleButton, aligned: .center).marginLeft(10)
-        insertButton.pin.after(of: removeButton, aligned: .center).marginLeft(10)
+        buttonsStackView.pin.below(of: stackLayoutView).width(100%).sizeToFit(.width)
+//        toggleDirectionButton.pin.below(of: stackLayoutView, aligned: .left)
+//        toggleVisibilityButton.pin.after(of: toggleDirectionButton, aligned: .center).marginLeft(10)
+//        removeButton.pin.after(of: toggleVisibilityButton, aligned: .center).marginLeft(10)
+//        insertButton.pin.after(of: removeButton, aligned: .center).marginLeft(10)
         
         printViewFrame(label1, name: "label1")
         printViewFrame(label2, name: "label2")
@@ -161,7 +216,26 @@ class IntroView: BaseView {
         print("expect(\(name).frame).to(beCloseTo(CGRect(x: \(view.frame.origin.x), y: \(view.frame.origin.y), width: \(view.frame.size.width), height: \(view.frame.size.height)), within: 0.5))")
     }
     
-    internal func didTapToggle() {
+    internal func didTapToggleDirection() {
+        if stackLayoutView.getDirection() == .column {
+            stackLayoutView.direction(.row)
+        } else {
+            stackLayoutView.direction(.column)
+        }
+    }
+    
+    internal func didTapToggleJustify() {
+        switch stackLayoutView.getJustifyContent() {
+        case .start:        stackLayoutView.justifyContent(.center)
+        case .center:       stackLayoutView.justifyContent(.end)
+        case .end:          stackLayoutView.justifyContent(.spaceBetween)
+        case .spaceBetween: stackLayoutView.justifyContent(.spaceAround)
+        case .spaceAround:  stackLayoutView.justifyContent(.spaceEvenly)
+        case .spaceEvenly:  stackLayoutView.justifyContent(.start)
+        }
+    }
+    
+    internal func didTapToggleVisibility() {
         if label2.isHidden {
             stackLayoutView.showItem(label2, animate: true)
         } else {

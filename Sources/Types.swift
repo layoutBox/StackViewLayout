@@ -25,11 +25,11 @@ public enum SDirection {
     /// Default value. The flexible items are displayed vertically, as a column.
     case column
     /// Same as column, but in reverse order
-    case columnReverse
+//    case columnReverse
     /// The flexible items are displayed horizontally, as a row.
     case row
     /// Same as row, but in reverse order
-    case rowReverse
+//    case rowReverse
 }
 
 /**
