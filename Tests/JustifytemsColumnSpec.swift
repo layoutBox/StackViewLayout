@@ -22,7 +22,7 @@ import Nimble
 import StackLayout
 import PinLayout
 
-class JustifytemsSpec: QuickSpec {
+class JustifytemsColumnSpec: QuickSpec {
     override func spec() {
         var viewController: UIViewController!
         
@@ -72,7 +72,7 @@ class JustifytemsSpec: QuickSpec {
         //
         // justifyContent()
         //
-        describe("StackLayout align()") {
+        describe("StackLayout justifyContent()") {
             it("justify(.start)") {
                 stackLayoutView.justifyContent(.start)
                 stackLayoutView.alignItems(.start)
