@@ -116,50 +116,33 @@ override func layoutSubviews() {
 
 ## StackLayout principles and philosophy <a name="introduction"></a>
 
-* TODO
+TO BE DOCUMENTED
 
 <br>
 
 # StackLayout's Performance <a name="performance"></a>
 
-TODO
+TO BE DOCUMENTED
 
 <br/>
 	
 ### StackLayout default properties
-	| Property     | StackLayout default value | CSS default value | React Native default value |
-	|--------------|--------------------------|-------------------|----------------------------|
-	| **`direction`** | column | row | column |
-	| **`justifyContent`** | start | start | start |
-	| **`alignItems`** | stretch | stretch | stretch |
-	| **`alignSelf`** | auto | auto | auto |
-	| **`alignContent`** | start | stretch | start |
-	| **`grow`** | 0 | 0 | 0 |
-	| **`shrink`** | 0 | 1 | 0 |
-	| **`basis`** | 0 | auto | 0 |
-	| **`wrap`** | noWrap | nowrap | noWrap |
+
+| Property     | StackLayout default value |
+|--------------|--------------------------|
+| **`direction`** | column |
+| **`justifyContent`** | start |
+| **`alignItems`** | stretch |
+| **`alignSelf`** | auto |
+| **`grow`** | 0 |
+| **`shrink`** | 0 |
+| **`basis`** | 0 |
 
 <br>
 
 # Documentation <a name="documentation"></a>
 
-Flexbox is pretty easy and straightforward to use. The defining aspect of the flexbox is the ability to alter its items, width, height to best fill the available space on any display device. A flex container expands its items to fill the available free space or shrinks them to prevent overflow.
-
-The flex layout is constituted of parent container referred as **flex container** and its immediate children which are called **flex items**. A flex item can also be a flex container, i.e. it is possible to add other flex items to it.
-
-| Flexbox term        | Definition |
-|---------------------|------------|
-| **`main-axis`** | The main axis of a flex container is the primary axis along which flex items are laid out. The main-axis direction is set using the `direction()` property. |
-| **`cross-axis`** | The axis perpendicular to the main axis is called the cross axis. Its direction depends on the main axis direction |
-	
-In the following sections we will see:
-
-1. How to create, modify and defines flex containers and items.
-2. Flexbox container's properties
-3. Flexbox item's properties
-
-
-:pushpin: This document is a guide that explains how to use StackLayout. You can also checks the [**StackLayout's API documentation**](https://lucdion.github.io/StackLayout/1.1/Classes/Flex.html).
+TO BE DOCUMENTED
 
 <br>
 
@@ -218,6 +201,7 @@ The `justifyContent` property defines the alignment along the main-axis of the c
 | **center** 	| <img src="docs_markdown/images/flexlayout-justify-column-center.png" width="140"/>| <img src="docs_markdown/images/flexlayout-justify-row-center.png" width="160"/>| items are centered along the main-axis. |
 | **spaceBetween** 	| <img src="docs_markdown/images/flexlayout-justify-column-spacebetween.png" width="140"/>| <img src="docs_markdown/images/flexlayout-justify-row-spacebetween.png" width="160"/> | Items are evenly distributed in the main-axis; first item is at the beginning, last item at the end. |
 | **spaceAround** 	| <img src="docs_markdown/images/flexlayout-justify-column-spacearound.png" width="140"/> | <img src="docs_markdown/images/flexlayout-justify-row-spacearound.png" width="160"/> | Items are evenly distributed in the main-axis with equal space around them. |
+| **evenly** 	| <img src="docs_markdown/images/flexlayout-justify-column-evenly.png" width="140"/> | <img src="docs_markdown/images/flexlayout-justify-row-evenly.png" width="160"/> |  |
 
 ###### Usage examples:
 ```swift
@@ -246,7 +230,7 @@ The `alignItems` property defines how flex items are laid out along the cross ax
 <br/>
 
 ## 3. StackLayoutView items property <a name="containers_properties"></a>
-This section describes all flex container's properties.
+This section describes all StackLayoutView's items properties.
 
 ### alignSelf()
 - Values: `auto` / `stretch` / `start` / `end` / `center`
@@ -257,7 +241,7 @@ This section describes all flex container's properties.
 * **`alignSelf(_: AlignSelf)`**  
 The `alignSelf` property controls how a child aligns in the cross direction, overriding the `alignItems` of the parent. For example, if children are flowing vertically, `alignSelf` will control how the flex item will align horizontally. 
 
-The `auto` value means use the flex container `alignItems` property. See `alignItems` for documentation of the other values.
+The `auto` value means use the stack view `alignItems` property. See `alignItems` for documentation of the other values.
 
 <br/>
 
@@ -357,8 +341,8 @@ NOT IMPLEMENTED
 
 <br>
 
-## FlexLayout API Documentation <a name="api_documentation"></a>
-The [**complete FlexLayout API is available here**](https://lucdion.github.io/FlexLayout/1.1/Classes/Flex.html). 
+## StackLayout API Documentation <a name="api_documentation"></a>
+The [**complete StackLayout API is available here**](https://lucdion.github.io/FlexLayout/1.1/Classes/Flex.html). 
 
 <br>
 
