@@ -19,20 +19,20 @@
 
 import UIKit
 
-public struct Percent {
+public struct SPercent {
     let value: CGFloat
 }
 
 postfix operator %
-public postfix func % (v: CGFloat) -> Percent {
-    return Percent(value: v)
+public postfix func % (v: CGFloat) -> SPercent {
+    return SPercent(value: v)
 }
 
-public postfix func % (v: Int) -> Percent {
-    return Percent(value: CGFloat(v))
+public postfix func % (v: Int) -> SPercent {
+    return SPercent(value: CGFloat(v))
 }
 
 prefix operator -
-public prefix func - (p: Percent) -> Percent {
-    return Percent(value: -p.value)
+public prefix func - (p: SPercent) -> SPercent {
+    return SPercent(value: -p.value)
 }

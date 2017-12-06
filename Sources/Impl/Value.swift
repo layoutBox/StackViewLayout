@@ -34,9 +34,24 @@ struct Value {
         self.unit = .point
     }
     
-    init?(_ percent: Percent?) {
+    init?(_ percent: SPercent?) {
         guard let percent = percent else { return nil }
         self.value = percent.value
         self.unit = .percent
+    }
+    
+    func resolveWidth(container: Container) -> CGFloat? {
+        return resolve(usingContainerDimension: container.width)
+    }
+    
+    func resolveHeight(container: Container) -> CGFloat? {
+        return resolve(usingContainerDimension: container.height)
+   }
+    
+    func resolve(usingContainerDimension dimension: CGFloat?) -> CGFloat? {
+        switch self.unit {
+        case .point:   return self.value
+        case .percent: return dimension != nil ? (dimension! * self.value / 100) : nil
+        }
     }
 }

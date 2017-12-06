@@ -28,6 +28,11 @@ public class StackLayoutView: UIView, StackLayout {
     internal var justifyContent = SJustifyContent.start
     internal var alignItems = SAlignItems.stretch
     
+    public func layout() {
+        setNeedsLayout()
+        layoutIfNeeded()
+    }
+    
     public func addItem(_ view: UIView) {
         guard let stackItemImpl = view.item as? StackItemImpl else { return }
         stackItemImpl.parent = self

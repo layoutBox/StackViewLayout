@@ -56,7 +56,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func width(_ percent: Percent) -> StackItem {
+    func width(_ percent: SPercent) -> StackItem {
         width = Value(percent)
         return self
     }
@@ -68,7 +68,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func minWidth(_ percent: Percent) -> StackItem {
+    func minWidth(_ percent: SPercent) -> StackItem {
         minWidth = Value(percent)
         return self
     }
@@ -80,7 +80,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func maxWidth(_ percent: Percent) -> StackItem {
+    func maxWidth(_ percent: SPercent) -> StackItem {
         maxWidth = Value(percent)
         return self
     }
@@ -92,7 +92,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func height(_ percent: Percent) -> StackItem {
+    func height(_ percent: SPercent) -> StackItem {
         height = Value(percent)
         return self
     }
@@ -104,7 +104,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func minHeight(_ percent: Percent) -> StackItem {
+    func minHeight(_ percent: SPercent) -> StackItem {
         minHeight = Value(percent)
         return self
     }
@@ -116,7 +116,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func maxHeight(_ percent: Percent) -> StackItem {
+    func maxHeight(_ percent: SPercent) -> StackItem {
         maxHeight = Value(percent)
         return self
     }
@@ -142,7 +142,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func size(_ percent: Percent) -> StackItem{
+    func size(_ percent: SPercent) -> StackItem{
         width = Value(percent)
         height = Value(percent)
         return self
@@ -171,7 +171,19 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
+    public func marginTop(_ value: SPercent) -> StackItem {
+        marginTop = Value(value)
+        return self
+    }
+    
+    @discardableResult
     public func marginLeft(_ value: CGFloat) -> StackItem {
+        marginLeft = Value(value)
+        return self
+    }
+    
+    @discardableResult
+    public func marginLeft(_ value: SPercent) -> StackItem {
         marginLeft = Value(value)
         return self
     }
@@ -183,7 +195,19 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
+    public func marginBottom(_ value: SPercent) -> StackItem {
+        marginBottom = Value(value)
+        return self
+    }
+    
+    @discardableResult
     public func marginRight(_ value: CGFloat) -> StackItem {
+        marginRight = Value(value)
+        return self
+    }
+    
+    @discardableResult
+    public func marginRight(_ value: SPercent) -> StackItem {
         marginRight = Value(value)
         return self
     }
@@ -195,7 +219,19 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
+    public func marginStart(_ value: SPercent) -> StackItem {
+        marginStart = Value(value)
+        return self
+    }
+    
+    @discardableResult
     public func marginEnd(_ value: CGFloat) -> StackItem {
+        marginEnd = Value(value)
+        return self
+    }
+    
+    @discardableResult
+    public func marginEnd(_ value: SPercent) -> StackItem {
         marginEnd = Value(value)
         return self
     }
@@ -257,6 +293,112 @@ class StackItemImpl: NSObject, StackItem {
         marginBottom = Value(bottom)
         marginRight = Value(right)
         return self
+    }
+}
+    
+extension StackItemImpl {
+    func adjustContainerWidth(_ width: CGFloat) -> CGFloat {
+        var result = width
+        
+        if let marginLeftPixels = marginLeft?.resolve(usingContainerDimension: width) {
+            result -= marginLeftPixels
+        }
+        
+        if let marginRightPixels = marginRight?.resolve(usingContainerDimension: width) {
+            result -= marginRightPixels
+        }
+        
+        if let marginStartPixels = marginStart?.resolve(usingContainerDimension: width) {
+            result -= marginStartPixels
+        }
+        
+        if let marginEndPixels = marginEnd?.resolve(usingContainerDimension: width) {
+            result -= marginEndPixels
+        }
+        
+        return result
+    }
+    
+    func adjustContainerHeight(_ height: CGFloat) -> CGFloat {
+        var result = height
+        
+        if let marginTopPixels = marginTop?.resolve(usingContainerDimension: height) {
+            result -= marginTopPixels
+        }
+        
+        if let marginBottomPixels = marginBottom?.resolve(usingContainerDimension: height) {
+            result -= marginBottomPixels
+        }
+        
+        return result
+    }
+    
+    func resolveStackItemAlign(stackAlignItems: SAlignItems) -> SAlignItems {
+        var align = stackAlignItems
+        
+        if let alignSelf = alignSelf {
+            switch alignSelf {
+            case .auto:    align = stackAlignItems
+            case .stretch: align = .stretch
+            case .start:   align = .start
+            case .center:  align = .center
+            case .end:     align = .end
+            }
+        } 
+        
+        return align
+    }
+    
+    func resolveStartMargin(container: Container) -> CGFloat {
+        if container.direction == .column {
+            return resolveMarginTop(container: container)
+        } else {
+            return resolveMarginLeft(container: container)
+        }
+    }
+    
+    func resolveEndMargin(container: Container) -> CGFloat {
+        if container.direction == .column {
+            return resolveMarginBottom(container: container)
+        } else {
+            return resolveMarginRight(container: container)
+        }
+    }
+            
+    func resolveMarginTop(container: Container) -> CGFloat {
+        if let marginTopPixels = marginTop?.resolve(usingContainerDimension: container.height) {
+            return marginTopPixels
+        } else {
+            return 0
+        }
+    }
+    
+    func resolveMarginBottom(container: Container) -> CGFloat {
+        if let marginBottomPixels = marginBottom?.resolve(usingContainerDimension: container.height) {
+            return marginBottomPixels
+        } else {
+            return 0
+        }
+    }
+    
+    func resolveMarginLeft(container: Container) -> CGFloat {
+        if let marginLeftPixels = marginLeft?.resolve(usingContainerDimension: container.width) {
+            return marginLeftPixels
+        } else if let marginStartPixels = marginStart?.resolve(usingContainerDimension: container.width) {
+            return marginStartPixels
+        } else {
+            return 0
+        }
+    }
+    
+    func resolveMarginRight(container: Container) -> CGFloat {
+        if let marginRightPixels = marginRight?.resolve(usingContainerDimension: container.width) {
+            return marginRightPixels
+        } else if let marginEndPixels = marginEnd?.resolve(usingContainerDimension: container.width) {
+            return marginEndPixels
+        } else {
+            return 0
+        }
     }
 }
 

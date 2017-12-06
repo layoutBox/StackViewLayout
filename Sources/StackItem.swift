@@ -42,7 +42,7 @@ public protocol StackItem {
      The value specifies the view's width in percentage of its container width. The value must be non-negative.
      Example: view.flex.width(20%)
      */
-    @discardableResult func width(_ percent: Percent) -> StackItem
+    @discardableResult func width(_ percent: SPercent) -> StackItem
     
     /**
      The value specifies the view's minimum width in pixels. The value must be non-negative.
@@ -52,7 +52,7 @@ public protocol StackItem {
     /**
      The value specifies the view's minimum width in percentage of its container width. The value must be non-negative.
      */
-    @discardableResult func minWidth(_ percent: Percent) -> StackItem
+    @discardableResult func minWidth(_ percent: SPercent) -> StackItem
     
     /**
      The value specifies the view's maximum width in pixels. The value must be non-negative.
@@ -62,7 +62,7 @@ public protocol StackItem {
     /**
      The value specifies the view's maximum width in percentage of its container width. The value must be non-negative.
      */
-    @discardableResult func maxWidth(_ percent: Percent) -> StackItem
+    @discardableResult func maxWidth(_ percent: SPercent) -> StackItem
     
     /**
      The value specifies the view's height in pixels. The value must be non-negative.
@@ -73,7 +73,7 @@ public protocol StackItem {
      The value specifies the view's height in percentage of its container height. The value must be non-negative.
      Example: view.flex.height(40%)
      */
-    @discardableResult func height(_ percent: Percent) -> StackItem
+    @discardableResult func height(_ percent: SPercent) -> StackItem
     
     /**
      The value specifies the view's minimum height in pixels. The value must be non-negative.
@@ -83,7 +83,7 @@ public protocol StackItem {
     /**
      The value specifies the view's minimum height in percentage of its container height. The value must be non-negative.
      */
-    @discardableResult func minHeight(_ percent: Percent) -> StackItem
+    @discardableResult func minHeight(_ percent: SPercent) -> StackItem
     
     /**
      The value specifies the view's maximum height in pixels. The value must be non-negative.
@@ -93,7 +93,7 @@ public protocol StackItem {
     /**
      The value specifies the view's maximum height in percentage of its container height. The value must be non-negative.
      */
-    @discardableResult func maxHeight(_ percent: Percent) -> StackItem
+    @discardableResult func maxHeight(_ percent: SPercent) -> StackItem
     
     
     /**
@@ -109,7 +109,7 @@ public protocol StackItem {
     func size(_ sideLength: CGFloat?) -> StackItem
     
     @discardableResult
-    func size(_ percent: Percent) -> StackItem
+    func size(_ percent: SPercent) -> StackItem
     
     /**
      The `alignSelf` property controls how a child aligns in the cross direction, overriding the `alignItems`
@@ -131,11 +131,17 @@ public protocol StackItem {
     @discardableResult
     func marginTop(_ value: CGFloat) -> StackItem
     
+    @discardableResult
+    func marginTop(_ value: SPercent) -> StackItem
+    
     /**
      Set the left margin. Left margin specify the offset the left edge of the item should have from from it’s closest sibling (item) or parent (container).
      */
     @discardableResult
     func marginLeft(_ value: CGFloat) -> StackItem
+    
+    @discardableResult
+    func marginLeft(_ value: SPercent) -> StackItem
     
     /**
      Set the bottom margin. Bottom margin specify the offset the bottom edge of the item should have from from it’s closest sibling (item) or parent (container).
@@ -143,11 +149,17 @@ public protocol StackItem {
     @discardableResult
     func marginBottom(_ value: CGFloat) -> StackItem
     
+    @discardableResult
+    func marginBottom(_ value: SPercent) -> StackItem
+    
     /**
      Set the right margin. Right margin specify the offset the right edge of the item should have from from it’s closest sibling (item) or parent (container).
      */
     @discardableResult
     func marginRight(_ value: CGFloat) -> StackItem
+    
+    @discardableResult
+    func marginRight(_ value: SPercent) -> StackItem
     
     /**
      Set the start margin.
@@ -159,6 +171,9 @@ public protocol StackItem {
     @discardableResult
     func marginStart(_ value: CGFloat) -> StackItem
     
+    @discardableResult
+    func marginStart(_ value: SPercent) -> StackItem
+    
     /**
      Set the end margin.
      
@@ -168,6 +183,9 @@ public protocol StackItem {
      */
     @discardableResult
     func marginEnd(_ value: CGFloat) -> StackItem
+    
+    @discardableResult
+    func marginEnd(_ value: SPercent) -> StackItem
     
     /**
      Set the left, right, start and end margins to the specified value.

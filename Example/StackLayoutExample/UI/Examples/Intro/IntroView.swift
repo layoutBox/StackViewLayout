@@ -42,6 +42,7 @@ class IntroView: BaseView {
     var label1: UILabel!
     var label2: UILabel!
     var label3: UILabel!
+    let view1 = BasicView(text: "View 1", color: UIColor.red)
     
     override init() {
         super.init()
@@ -78,12 +79,14 @@ class IntroView: BaseView {
         
         buttonsStackView.direction(.row)
         buttonsStackView.justifyContent(.spaceBetween)
-        addSubview(buttonsStackView)
+//        addSubview(buttonsStackView)
         
-        testAlignItems()
+        view1.sizeThatFitsExpectedArea = 400 * 20
+        
+//        testAlignItems()
 //        testRowDirection()
+        testMargins()
 
-        
 //        logo.contentMode = .scaleAspectFit
 //
 //        textLabel.text = "Swift manual views layouting without auto layout, no magic, pure code, full control. Concise syntax, readable & chainable.\n\nSwift manual views layouting without auto layout, no magic, pure code, full control. Concise syntax, readable & chainable."
@@ -185,6 +188,53 @@ class IntroView: BaseView {
         label2.item.alignSelf(.auto)
     }
     
+    func testMargins() {
+        label1 = UILabel()
+        label1.backgroundColor = .red
+        label1.font = UIFont.systemFont(ofSize: 17)
+        label1.text = "Label 1"
+        
+        label2 = UILabel()
+        label2.font = UIFont.systemFont(ofSize: 17)
+        label2.backgroundColor = .green
+        label2.text = "Label longuer"
+        
+        label3 = UILabel()
+        label3.font = UIFont.systemFont(ofSize: 17)
+        label3.backgroundColor = .blue
+        label3.text = "Label much longuer"
+        
+        stackLayoutView.addItem(label1)
+        stackLayoutView.addItem(label2)
+        stackLayoutView.addItem(label3)
+
+        view1.item.height(40)
+        stackLayoutView.addItem(view1)
+
+        stackLayoutView.direction(.column)
+        stackLayoutView.justifyContent(.start)
+        stackLayoutView.alignItems(.stretch)
+
+        label1.item.marginTop(10).marginBottom(20)
+        label2.item.marginTop(10).marginBottom(20)
+        label3.item.marginTop(30)
+        view1.item.marginTop(2).marginBottom(40)
+        
+//        label1.item.marginLeft(10).marginRight(200)
+//        view1.item.marginLeft(10).marginRight(200)
+        
+//        label1.item.marginLeft(10).marginRight(200)
+////        label1.item.marginEnd(10)
+////        label2.item.marginEnd(25%)
+//        view1.item.marginLeft(10).marginRight(200)
+//        label1.item.marginRight(10)
+//        label2.item.marginRight(25%)
+//        view1.item.marginLeft(200).marginRight(40)
+//        label3.item.marginLeft(25%)
+//        label1.item.marginLeft(10).marginRight(20)
+//        label1.item.marginRight(50%)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -192,11 +242,12 @@ class IntroView: BaseView {
 //        let containerInsets = safeArea.minInsets(UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10))
         stackLayoutView.pin.top(80).left().width(400).height(600)
 
-        buttonsStackView.pin.below(of: stackLayoutView).left().right().margin(8).sizeToFit(.width)
+//        buttonsStackView.pin.below(of: stackLayoutView).left().right().margin(8).sizeToFit(.width)
 
         printViewFrame(label1, name: "label1")
         printViewFrame(label2, name: "label2")
         printViewFrame(label3, name: "label3")
+        printViewFrame(view1, name: "view1")
     }
     
     fileprivate func printViewFrame(_ view: UIView, name: String) {

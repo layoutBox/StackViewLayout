@@ -20,6 +20,8 @@
 import Foundation
 
 public protocol StackLayout {
+    func layout()
+    
     /**
      The `direction` property establishes the main-axis, thus defining the direction flex items are placed in the flex container.
      
