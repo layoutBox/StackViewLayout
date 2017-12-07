@@ -1,8 +1,7 @@
 <p align="center">
-  <a href="https://github.com/lucdion/FlexLayout"><img src="docs_markdown/images/stacklayout_logo.png" width="200"/></a>
+  <a href="https://github.com/lucdion/FlexLayout"><img src="docs_markdown/images/stacklayout_logo_text.png" width="200"/></a>
 </p>
 
-<h1 align="center" style="color: #376db6; font-family: Arial Black, Gadget, sans-serif; font-size: 2.8em">StackLayout</h1>
  
 <p align="center">
   <a href=""><img src="https://img.shields.io/cocoapods/p/FlexLayout.svg?style=flat" /></a>
