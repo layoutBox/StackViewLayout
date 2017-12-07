@@ -231,7 +231,6 @@ class IntroView: BaseView {
         label2.item.marginLeft(10).marginRight(20)
         view1.item.marginLeft(30).marginRight(40)
         
-        
 //        label2.item.marginLeft(20)
 //        view1.item.marginLeft(30)
 
