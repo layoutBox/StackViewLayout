@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/lucdion/FlexLayout"><img src="docs_markdown/images/stacklayout_logo_text.png" width="200"/></a>
+  <a href="https://github.com/lucdion/FlexLayout"><img src="docs_markdown/images/stacklayout_logo_text.png" width="260"/></a>
 </p>
 
  
