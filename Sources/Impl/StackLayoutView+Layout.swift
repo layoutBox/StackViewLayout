@@ -37,28 +37,20 @@ class Container {
     }
     
     var mainAxisTotalItemsLength: CGFloat {
-        let itemCount = items.count
         var length: CGFloat = 0
         
-        for (index, item) in items.enumerated() {
-            // Add item's size
+        items.forEach({ (item) in
+            length += item.mainAxisStartMargin ?? 0
+            
             if direction == .column {
                 length += (item.height != nil ? item.height! : 0)
             } else {
                 length += (item.width != nil ? item.width! : 0)
             }
             
-            // Add item's margins
-            if index == 0 {
-                length += item.mainAxisStartMargin ?? 0
-            } else if index == itemCount - 1 {
-                // Last item => Add top and bottom margins
-                length += item.mainAxisStartMargin ?? 0
-                length += item.mainAxisEndMargin ?? 0
-            } else {
-                length += item.mainAxisStartMargin ?? 0
-            }
-        }
+            length += item.mainAxisEndMargin ?? 0
+        })
+
         return length
     }
     
@@ -174,13 +166,11 @@ extension StackLayoutView {
                     itemCrossAxisLength = stackItem.applyMargins(toCrossAxisLength: containerCrossAxisLength, container: container)
                 case .start:
                     crossAxisPos = stackItem.crossAxisStartMargin(container: container)
-//                    itemCrossAxisLength = stackItem.applyMargins(toCrossAxisLength: crossAxisLength, container: container)
                 case .center:
-                    // We must takes into account margins before centering the item.
+                    // Takes margins into account when centering items (compatible with flexbox).
                     let itemCrossAxisForCentering = itemCrossAxisLength -
                                                     stackItem.crossAxisStartMargin(container: container) +
                                                     stackItem.crossAxisEndMargin(container: container)
-//                    itemCrossAxisLength = stackItem.applyMargins(toCrossAxisLength: itemCrossAxisLength, container: container)
                     crossAxisPos = (containerCrossAxisLength - itemCrossAxisForCentering) / 2
                 case .end:
                     let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
@@ -191,18 +181,6 @@ extension StackLayoutView {
                 if crossAxisPos < crossAxisStartMargin {
                     crossAxisPos = crossAxisStartMargin
                 }
-                
-//                let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
-//                if itemCrossAxisLength + crossAxisPos + crossAxisEndMargin > containerCrossAxisLength {
-//                    itemCrossAxisLength = containerCrossAxisLength - crossAxisPos - crossAxisEndMargin
-//                }
-                
-//                itemCrossAxisLength = stackItem.applyMargins(toCrossAxisLength: crossAxisLength, container: container)
-                
-//                let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
-//                if crossAxisLength - crossAxisPos - itemCrossAxisLength < crossAxisEndMargin {
-//                    crossAxisPos = crossAxisLength - crossAxisEndMargin - itemCrossAxisLength
-//                }
             }
             
             let viewFrame  = direction == .column ? CGRect(x: crossAxisPos, y: mainAxisOffset, width: itemCrossAxisLength, height: item.height!) :
@@ -210,18 +188,14 @@ extension StackLayoutView {
             item.view.frame = viewFrame.adjustToDisplayScale()
             
             mainAxisOffset = direction == .column ? item.view.frame.maxY :  item.view.frame.maxX
+            mainAxisOffset += (item.mainAxisEndMargin ?? 0)
             
-            maxX = max(item.view.frame.maxX, maxX)
-            maxY = max(item.view.frame.maxY, maxY)
-        }
-
-        // Apply the last item end margin OR the startEndSpacing to maxX/maxY.
-        if let lastItem = container.items.last {
-            let lastItemEndMargin = max(lastItem.mainAxisEndMargin ?? 0, startEndSpacing)
             if direction == .column {
-                maxY += lastItemEndMargin
+                maxX = max(item.view.frame.maxX, maxX)
+                maxY = mainAxisOffset
             } else {
-                maxX += lastItemEndMargin
+                maxX = mainAxisOffset
+                maxY = max(item.view.frame.maxY, maxY)
             }
         }
 
@@ -229,8 +203,6 @@ extension StackLayoutView {
     }
     
     private func measuresItemsAndMargins(container: Container) {
-        var prevItemInfo: ItemInfo?
-        
         stackItems.forEach{ (stackItem) in
             let view = stackItem.view
             guard !view.isHidden else { return }
@@ -243,14 +215,6 @@ extension StackLayoutView {
             var fitWidth: CGFloat?
             var fitHeight: CGFloat?
 
-//            if let containerHeight = container.height, item.height !=  nil {
-//                fitHeight = containerHeight
-//            }
-            
-//            if let containerWidth = container.width, item.width != nil {
-//                fitWidth = containerWidth
-//            }
-            
             if direction == .column {
                 if let itemWidth = item.width {
                     fitWidth = itemWidth
@@ -287,36 +251,17 @@ extension StackLayoutView {
                     item.height = min(newSize.height, adjustedFitHeight)
                 }
             }
+            assert(item.height != nil && item.width != nil, "should not occurred")
             
-            if item.height == nil || item.width == nil {
-                print("should not occurred")
-            }
-            
-//            if let fitWidth = fitWidth, item.height == nil {
-//                let adjustedFitWidth = stackItem.adjustContainerWidth(fitWidth)
-//                let newSize = view.sizeThatFits(CGSize(width: adjustedFitWidth, height: .greatestFiniteMagnitude))
-//                item.width = newSize.width
-//                item.height = newSize.height
-//            } else if let fitHeight = fitHeight, item.width == nil/*, item.height == nil*/ {
-//                let adjustedFitHeight = stackItem.adjustContainerHeight(fitHeight)
-//                let newSize = view.sizeThatFits(CGSize(width: .greatestFiniteMagnitude, height: adjustedFitHeight))
-//                item.width = newSize.width
-//                item.height = newSize.height
-//            }
-//
             item.width = applyWidthMinMax(item)
             item.height = applyHeightMinMax(item)
             
             //
             // Compute item main-axis margins.
-            // Start margin is merged with the previous item's bottom margin
-            let prevItemEndMargin = prevItemInfo?.mainAxisEndMargin ?? 0
-            let itemStartMargin  = stackItem.mainAxisStartMargin(container: container)
-            item.mainAxisStartMargin = max(prevItemEndMargin, itemStartMargin)
+            item.mainAxisStartMargin = stackItem.mainAxisStartMargin(container: container)
             item.mainAxisEndMargin = stackItem.mainAxisEndMargin(container: container)
             
             container.items.append(item)
-            prevItemInfo = item
         }
     }
 }

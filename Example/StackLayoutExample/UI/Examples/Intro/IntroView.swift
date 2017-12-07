@@ -224,7 +224,7 @@ class IntroView: BaseView {
 //        view1.item.marginLeft(10).marginRight(200)
         
         stackLayoutView.direction(.row)
-        stackLayoutView.justifyContent(.start)
+        stackLayoutView.justifyContent(.center)
         stackLayoutView.alignItems(.stretch)
         
         label1.item.marginLeft(10).marginRight(20)
