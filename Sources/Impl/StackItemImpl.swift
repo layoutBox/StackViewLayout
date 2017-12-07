@@ -297,7 +297,7 @@ class StackItemImpl: NSObject, StackItem {
 }
     
 extension StackItemImpl {
-    func adjustContainerWidth(_ width: CGFloat) -> CGFloat {
+    func applyMargins(toWidth width: CGFloat) -> CGFloat {
         var result = width
         
         if let marginLeftPixels = marginLeft?.resolve(usingContainerDimension: width) {
@@ -319,7 +319,7 @@ extension StackItemImpl {
         return result
     }
     
-    func adjustContainerHeight(_ height: CGFloat) -> CGFloat {
+    func applyMargins(toHeight height: CGFloat) -> CGFloat {
         var result = height
         
         if let marginTopPixels = marginTop?.resolve(usingContainerDimension: height) {
@@ -349,7 +349,27 @@ extension StackItemImpl {
         return align
     }
     
-    func resolveStartMargin(container: Container) -> CGFloat {
+    func applyMargins(toCrossAxisLength length: CGFloat, container: Container) -> CGFloat {
+        var itemCrossAxisLength: CGFloat = 0
+        
+        switch container.direction {
+        case .column: itemCrossAxisLength = applyMargins(toWidth: length)
+        case .row:    itemCrossAxisLength = applyMargins(toHeight: length)
+        }
+        
+        if let containerCrossAxisLength = container.crossAxisLength {
+            let crossAxisStartMargin = self.crossAxisStartMargin(container: container)
+            let crossAxisEndMargin = self.crossAxisEndMargin(container: container)
+            if crossAxisStartMargin + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisLength {
+                // The computed itemCrossAxisLength is too long, we must respect margins!
+                itemCrossAxisLength = containerCrossAxisLength - crossAxisStartMargin - crossAxisEndMargin
+            }
+        }
+        
+        return itemCrossAxisLength
+    }
+    
+    func mainAxisStartMargin(container: Container) -> CGFloat {
         if container.direction == .column {
             return resolveMarginTop(container: container)
         } else {
@@ -357,14 +377,30 @@ extension StackItemImpl {
         }
     }
     
-    func resolveEndMargin(container: Container) -> CGFloat {
+    func mainAxisEndMargin(container: Container) -> CGFloat {
         if container.direction == .column {
             return resolveMarginBottom(container: container)
         } else {
             return resolveMarginRight(container: container)
         }
     }
-            
+    
+    func crossAxisStartMargin(container: Container) -> CGFloat {
+        if container.direction == .column {
+            return resolveMarginLeft(container: container)
+        } else {
+            return resolveMarginTop(container: container)
+        }
+    }
+    
+    func crossAxisEndMargin(container: Container) -> CGFloat {
+        if container.direction == .column {
+            return resolveMarginRight(container: container)
+        } else {
+            return resolveMarginBottom(container: container)
+        }
+    }
+    
     func resolveMarginTop(container: Container) -> CGFloat {
         if let marginTopPixels = marginTop?.resolve(usingContainerDimension: container.height) {
             return marginTopPixels

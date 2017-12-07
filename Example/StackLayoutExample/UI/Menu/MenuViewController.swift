@@ -21,6 +21,7 @@ import UIKit
 
 enum PageType: Int {
     case intro
+    case docExamples
 //    case adjustToContainer
 //    case tableView
 //    case collectionView
@@ -35,6 +36,7 @@ enum PageType: Int {
     var text: String {
         switch self {
         case .intro:                      return "StackLayout's Intro"
+        case .docExamples:                return "Doc Examples"
 //        case .adjustToContainer:          return "Adjust to container size"
 //        case .tableView:                  return "UITableView with variable cell's height"
 //        case .collectionView:             return "UICollectionView Example"
@@ -50,6 +52,7 @@ enum PageType: Int {
     var viewController: UIViewController {
         switch self {
         case .intro:                      return IntroViewController(pageType: self)
+        case .docExamples:                return DocExamplesViewController(pageType: self)
 //        case .adjustToContainer:          return AdjustToContainerViewController(pageType: self)
 //        case .tableView:                  return TableViewExampleViewController(pageType: self)
 //        case .collectionView:             return CollectionViewExampleViewController(pageType: self)

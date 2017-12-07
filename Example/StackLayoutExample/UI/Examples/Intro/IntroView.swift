@@ -166,17 +166,20 @@ class IntroView: BaseView {
         label1.backgroundColor = .red
         label1.font = UIFont.systemFont(ofSize: 17)
         label1.text = "Label 1"
+        label1.numberOfLines = 0
         
         label2 = UILabel()
         label2.font = UIFont.systemFont(ofSize: 17)
         label2.backgroundColor = .green
         label2.text = "Label longuer"
-        
+        label2.numberOfLines = 0
+
         label3 = UILabel()
         label3.font = UIFont.systemFont(ofSize: 17)
         label3.backgroundColor = .blue
         label3.text = "Label much longuer"
-        
+        label3.numberOfLines = 0
+
         stackLayoutView.addItem(label1)
         stackLayoutView.addItem(label2)
         stackLayoutView.addItem(label3)
@@ -193,6 +196,7 @@ class IntroView: BaseView {
         label1.backgroundColor = .red
         label1.font = UIFont.systemFont(ofSize: 17)
         label1.text = "Label 1"
+//        label1.text = "Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1"
         
         label2 = UILabel()
         label2.font = UIFont.systemFont(ofSize: 17)
@@ -206,19 +210,42 @@ class IntroView: BaseView {
         
         stackLayoutView.addItem(label1)
         stackLayoutView.addItem(label2)
-        stackLayoutView.addItem(label3)
+//        stackLayoutView.addItem(label3)
 
-        view1.item.height(40)
+//        view1.item.height(40)
         stackLayoutView.addItem(view1)
 
-        stackLayoutView.direction(.column)
+//        stackLayoutView.direction(.column)
+//        stackLayoutView.justifyContent(.start)
+//        stackLayoutView.alignItems(.start)
+//
+//        label1.item.marginLeft(10).marginRight(340)
+//        label2.item.marginLeft(10%).marginRight(75%)
+//        view1.item.marginLeft(10).marginRight(200)
+        
+        stackLayoutView.direction(.row)
         stackLayoutView.justifyContent(.start)
         stackLayoutView.alignItems(.stretch)
+        
+        label1.item.marginLeft(10).marginRight(20)
+        label2.item.marginLeft(10).marginRight(20)
+        view1.item.marginLeft(30).marginRight(40)
+        
+        
+//        label2.item.marginLeft(20)
+//        view1.item.marginLeft(30)
 
-        label1.item.marginTop(10).marginBottom(20)
-        label2.item.marginTop(10).marginBottom(20)
-        label3.item.marginTop(30)
-        view1.item.marginTop(2).marginBottom(40)
+//        label1.item.marginLeft(340)
+//        label2.item.marginLeft(80%)
+//        view1.item.marginLeft(220)
+        
+//        stackLayoutView.direction(.row)
+//        stackLayoutView.justifyContent(.start)
+//        stackLayoutView.alignItems(.stretch)
+        
+//        label1.item.marginTop(10).marginBottom(20)
+//        label2.item.marginTop(10).marginBottom(20)
+//        view1.item.marginTop(30).marginBottom(40)
         
 //        label1.item.marginLeft(10).marginRight(200)
 //        view1.item.marginLeft(10).marginRight(200)
@@ -241,17 +268,26 @@ class IntroView: BaseView {
         // Layout the stackLayoutView using the view's safeArea with at least of 10 pixels all around.
 //        let containerInsets = safeArea.minInsets(UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10))
         stackLayoutView.pin.top(80).left().width(400).height(600)
-
+        stackLayoutView.layout()
 //        buttonsStackView.pin.below(of: stackLayoutView).left().right().margin(8).sizeToFit(.width)
 
         printViewFrame(label1, name: "label1")
         printViewFrame(label2, name: "label2")
-        printViewFrame(label3, name: "label3")
+//        printViewFrame(label3, name: "label3")
         printViewFrame(view1, name: "view1")
     }
     
     fileprivate func printViewFrame(_ view: UIView, name: String) {
-        print("expect(\(name).frame).to(beCloseTo(CGRect(x: \(view.frame.origin.x), y: \(view.frame.origin.y), width: \(view.frame.size.width), height: \(view.frame.size.height)), within: 0.5))")
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.decimalSeparator = "."
+        
+        let x = numberFormatter.string(from: NSNumber(value: Float(view.frame.origin.x)))!
+        let y = numberFormatter.string(from: NSNumber(value: Float(view.frame.origin.y)))!
+        let width = numberFormatter.string(from: NSNumber(value: Float(view.frame.size.width)))!
+        let height = numberFormatter.string(from: NSNumber(value: Float(view.frame.size.height)))!
+
+        print("expect(\(name).frame).to(beCloseTo(CGRect(x: \(x), y: \(y), width: \(width), height: \(height)), within: 0.5))")
     }
     
     internal func didTapToggleDirection() {

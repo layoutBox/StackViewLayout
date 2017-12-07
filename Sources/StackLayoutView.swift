@@ -33,6 +33,10 @@ public class StackLayoutView: UIView, StackLayout {
         layoutIfNeeded()
     }
     
+    public func define(_ closure: (_ stackView: StackLayoutView) -> Void) {
+        closure(self)
+    }
+    
     public func addItem(_ view: UIView) {
         guard let stackItemImpl = view.item as? StackItemImpl else { return }
         stackItemImpl.parent = self

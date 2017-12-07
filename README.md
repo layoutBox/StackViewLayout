@@ -341,6 +341,18 @@ NOT IMPLEMENTED
 
 <br>
 
+## 8. Differences with flexbox
+
+* Top and bottom margins using percentages  
+	* StackLayout resolve percentages in margin-top and margin-bottom against the **height of the container**.
+	* FlexLayout/flexbox resolve percentages in margin-top and margin-bottom against the **width of the container**.
+
+* Row direction
+	* StackLayout use the **container's height** to adjust the item's size if the item's width or haven't been specified.
+	* FlexLayout/flexbox use the **container's width** to adjust the item's size if the item's width or haven't been specified.
+
+<br>
+
 ## StackLayout API Documentation <a name="api_documentation"></a>
 The [**complete StackLayout API is available here**](https://lucdion.github.io/FlexLayout/1.1/Classes/Flex.html). 
 

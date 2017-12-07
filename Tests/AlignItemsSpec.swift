@@ -98,9 +98,9 @@ class AlignItemsSpec: QuickSpec {
                 stackLayoutView.alignItems(.stretch)
                 stackLayoutView.layout()
 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 400.0, height: 20.3333333333333), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.3333333333333, width: 400.0, height: 20.3333333333333), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 40.6666666666667, width: 400.0, height: 20.3333333333333), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 400.0, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.33, width: 400.0, height: 20.33), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 40.66, width: 400.0, height: 20.33), within: 0.5))
             }
             
             it("align(.start)") {
@@ -108,9 +108,9 @@ class AlignItemsSpec: QuickSpec {
                 stackLayoutView.alignItems(.start)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.3333333333333, width: 154.3333333333333, height: 20.3333333333333), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 40.6666666666667, width: 262.6666666666667, height: 20.3333333333333), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
             }
             
             it("align(.center)") {
@@ -118,9 +118,9 @@ class AlignItemsSpec: QuickSpec {
                 stackLayoutView.alignItems(.center)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 173.166666666667, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 122.833333333333, y: 20.3333333333333, width: 154.3333333333333, height: 20.3333333333333), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 68.6666666666667, y: 40.6666666666667, width: 262.6666666666667, height: 20.3333333333333), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
             }
             
             it("align(.end)") {
@@ -128,9 +128,9 @@ class AlignItemsSpec: QuickSpec {
                 stackLayoutView.alignItems(.end)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 346.333333333333, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 245.666666666667, y: 20.3333333333333, width: 154.3333333333333, height: 20.3333333333333), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 137.333333333333, y: 40.6666666666667, width: 262.6666666666667, height: 20.3333333333333), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 346.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 245.66, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 137.33, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
             }
         }
         
@@ -146,9 +146,9 @@ class AlignItemsSpec: QuickSpec {
                 
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 173.166666666667, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 122.833333333333, y: 20.3333333333333, width: 154.333333333333, height: 20.3333333333333), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 68.6666666666667, y: 40.6666666666667, width: 262.666666666667, height: 20.3333333333333), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
             }
             
             it("alignSelf(.start)") {
@@ -159,9 +159,9 @@ class AlignItemsSpec: QuickSpec {
                 
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 173.166666666667, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.3333333333333, width: 154.333333333333, height: 20.3333333333333), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 68.6666666666667, y: 40.6666666666667, width: 262.666666666667, height: 20.3333333333333), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
             }
             
             it("alignSelf(.center)") {
@@ -172,9 +172,9 @@ class AlignItemsSpec: QuickSpec {
                 
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 122.833333333333, y: 20.3333333333333, width: 154.333333333333, height: 20.3333333333333), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 40.6666666666667, width: 262.666666666667, height: 20.3333333333333), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
             }
             
             it("alignSelf(.end)") {
@@ -185,9 +185,9 @@ class AlignItemsSpec: QuickSpec {
                 
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 173.166666666667, y: 0.0, width: 53.6666666666667, height: 20.3333333333333), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 245.666666666667, y: 20.3333333333333, width: 154.333333333333, height: 20.3333333333333), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 68.6666666666667, y: 40.6666666666667, width: 262.666666666667, height: 20.3333333333333), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 245.66, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
             }
         }
     }

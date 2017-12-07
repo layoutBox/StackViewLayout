@@ -1174,7 +1174,7 @@ class UnitTestsView: UIView {
 
 //        aView.pin.top(20).left(20).bottom(180).right(180).marginLeft(10).marginRight(10).marginTop(10).sizeToFit().align(.center)
 //        aView.pin.top(20).bottom(180).width(180).marginTop(10).sizeToFit().align(.center)
-//        expect(aView.frame).to(equal(CGRect(x: 40.0, y: 120.666666666667, width: 180.0, height: 9.0)))
+//        expect(aView.frame).to(equal(CGRect(x: 40.0, y: 120.66, width: 180.0, height: 9.0)))
 
 //            expect(aView.frame).to(equal(CGRect(x: 30.0, y: 30.0, width: 180.0, height: 9)))
 //        }

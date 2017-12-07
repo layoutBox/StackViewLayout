@@ -20,6 +20,8 @@
 		249EFE4A1E64FAFE00165E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249EFE491E64FAFE00165E39 /* Assets.xcassets */; };
 		249EFE4D1E64FAFE00165E39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249EFE4B1E64FAFE00165E39 /* LaunchScreen.storyboard */; };
 		24DA374B1EF7F90600D1AB2F /* BaseFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DA374A1EF7F90600D1AB2F /* BaseFormView.swift */; };
+		24EC06EE1FD87DD300459C62 /* DocExamplesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06E91FD87DD300459C62 /* DocExamplesView.swift */; };
+		24EC06EF1FD87DD300459C62 /* DocExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06EA1FD87DD300459C62 /* DocExamplesViewController.swift */; };
 		24F246141FA8D57100B6332E /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F246131FA8D57100B6332E /* UIImageView+Download.swift */; };
 		FC19F3AB71E0416A5DF3C997 /* Pods_StackLayoutExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BC1DFC5AD1ACBF99B5F0F2 /* Pods_StackLayoutExample.framework */; };
 /* End PBXBuildFile section */
@@ -97,6 +99,8 @@
 		24D18D1C1F3DED0D008129EF /* IntroRTLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroRTLViewController.swift; sourceTree = "<group>"; };
 		24DA374A1EF7F90600D1AB2F /* BaseFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFormView.swift; sourceTree = "<group>"; };
 		24EC06AD1FD2550300459C62 /* StackLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = StackLayout.xcodeproj; path = ../StackLayout.xcodeproj; sourceTree = "<group>"; };
+		24EC06E91FD87DD300459C62 /* DocExamplesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocExamplesView.swift; sourceTree = "<group>"; };
+		24EC06EA1FD87DD300459C62 /* DocExamplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocExamplesViewController.swift; sourceTree = "<group>"; };
 		24F2460D1FA8D4D100B6332E /* CollectionViewExampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewExampleView.swift; sourceTree = "<group>"; };
 		24F2460E1FA8D4D100B6332E /* CollectionViewExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewExampleViewController.swift; sourceTree = "<group>"; };
 		24F2460F1FA8D4D100B6332E /* HouseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseCell.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 				24CB99991F290591004EA7FB /* AdjustToContainer */,
 				DF66F9D61E8493D400ADB8D5 /* AutoAdjustingSizeView */,
 				24F2460C1FA8D4D100B6332E /* CollectionViewExample */,
+				24EC06E81FD87DD300459C62 /* DocExamples */,
 				2497CFEA1EF40B8100DFD13B /* Form */,
 				24F75B581EE5642C008DB567 /* Intro */,
 				24D18D181F3DECD6008129EF /* IntroRTL */,
@@ -311,6 +316,15 @@
 				24EC06B81FD2550300459C62 /* StackLayoutTVOS.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		24EC06E81FD87DD300459C62 /* DocExamples */ = {
+			isa = PBXGroup;
+			children = (
+				24EC06E91FD87DD300459C62 /* DocExamplesView.swift */,
+				24EC06EA1FD87DD300459C62 /* DocExamplesViewController.swift */,
+			);
+			path = DocExamples;
 			sourceTree = "<group>";
 		};
 		24F2460C1FA8D4D100B6332E /* CollectionViewExample */ = {
@@ -530,10 +544,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24EC06EF1FD87DD300459C62 /* DocExamplesViewController.swift in Sources */,
 				24F246141FA8D57100B6332E /* UIImageView+Download.swift in Sources */,
 				24DA374B1EF7F90600D1AB2F /* BaseFormView.swift in Sources */,
 				247157941F87BD680003424F /* UIEdgeInsets+PinLayout.swift in Sources */,
 				2423C79F1FD0B00B00C794AE /* IntroViewController.swift in Sources */,
+				24EC06EE1FD87DD300459C62 /* DocExamplesView.swift in Sources */,
 				2439CC351E665BF6003326FB /* MenuView.swift in Sources */,
 				2493268C1EEEEFF100BCB814 /* BaseViewController.swift in Sources */,
 				2439CC4B1E665C6B003326FB /* BasicView.swift in Sources */,

@@ -23,6 +23,16 @@ public protocol StackLayout {
     func layout()
     
     /**
+     This method is used to structure your code so that it matches the stack view structure. The method has a closure parameter with a
+     single parameter called `flex`. This parameter is in fact, the view's flex interface, it can be used to adds other flex items
+     and containers.
+     
+     - Parameter closure:
+     - Returns: Flex interface
+     */
+    func define(_ closure: (_ stackView: StackLayoutView) -> Void)
+    
+    /**
      The `direction` property establishes the main-axis, thus defining the direction flex items are placed in the flex container.
      
      The `direction` property specifies how flex items are laid out in the flex container, by setting the direction of the flex

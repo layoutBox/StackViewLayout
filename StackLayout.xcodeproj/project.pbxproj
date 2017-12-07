@@ -19,7 +19,6 @@
 		2423C7A71FD0B64600C794AE /* UIView+StackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A61FD0B64600C794AE /* UIView+StackItem.swift */; };
 		2423C7A91FD0BBE700C794AE /* StackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A81FD0BBE700C794AE /* StackLayout.swift */; };
 		243B12BC1FC393580072A9C3 /* Percent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243C620E1FC3834B0082C327 /* Percent.swift */; };
-		243C62091FC37F6C0082C327 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2475B6D21FC37CD40054CADD /* Coordinates.swift */; };
 		243C620A1FC37F6C0082C327 /* TypesImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2475B6CE1FC37C570054CADD /* TypesImpl.swift */; };
 		243C620B1FC37F6C0082C327 /* UIView+LTR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2475B6D01FC37C8C0054CADD /* UIView+LTR.swift */; };
 		243C620C1FC37FA30082C327 /* StackLayoutTVOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 2475B6D71FC37D4D0054CADD /* StackLayoutTVOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,7 +27,6 @@
 		2469C5041E75DB7600073BEE /* RectNimbleMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469C5031E75DB7600073BEE /* RectNimbleMatcher.swift */; };
 		2475B6CF1FC37C570054CADD /* TypesImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2475B6CE1FC37C570054CADD /* TypesImpl.swift */; };
 		2475B6D11FC37C8C0054CADD /* UIView+LTR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2475B6D01FC37C8C0054CADD /* UIView+LTR.swift */; };
-		2475B6D31FC37CD40054CADD /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2475B6D21FC37CD40054CADD /* Coordinates.swift */; };
 		2475B6DB1FC37D4D0054CADD /* StackLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2475B6D91FC37D4D0054CADD /* StackLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		248E4C771F7A88D200C0E7F7 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */; };
 		249EFE841E64FB4C00165E39 /* StackLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249EFE7A1E64FB4C00165E39 /* StackLayout.framework */; };
@@ -37,6 +35,7 @@
 		24EC06AC1FD254F700459C62 /* JustifytemsColumnSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2464A8721FD253DC007A92A8 /* JustifytemsColumnSpec.swift */; };
 		24EC06DA1FD6345400459C62 /* JustifytemsRowSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06D81FD633F500459C62 /* JustifytemsRowSpec.swift */; };
 		24EC06E71FD7186E00459C62 /* MarginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06E51FD7186700459C62 /* MarginsSpec.swift */; };
+		24EC06F31FD97E1400459C62 /* CGRect+DisplayScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06F21FD97E1400459C62 /* CGRect+DisplayScale.swift */; };
 		3B86EED5331AA27C418C2AF5 /* Pods_StackLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2409E90E6CFDA14D9CF84D98 /* Pods_StackLayout.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +81,6 @@
 		2469C5031E75DB7600073BEE /* RectNimbleMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectNimbleMatcher.swift; sourceTree = "<group>"; };
 		2475B6CE1FC37C570054CADD /* TypesImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypesImpl.swift; path = Impl/TypesImpl.swift; sourceTree = "<group>"; };
 		2475B6D01FC37C8C0054CADD /* UIView+LTR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+LTR.swift"; path = "Impl/UIView+LTR.swift"; sourceTree = "<group>"; };
-		2475B6D21FC37CD40054CADD /* Coordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coordinates.swift; path = Impl/Coordinates.swift; sourceTree = "<group>"; };
 		2475B6D61FC37D4D0054CADD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2475B6D71FC37D4D0054CADD /* StackLayoutTVOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackLayoutTVOS.h; sourceTree = "<group>"; };
 		2475B6D81FC37D4D0054CADD /* InfoTVOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoTVOS.plist; sourceTree = "<group>"; };
@@ -94,6 +92,7 @@
 		24BBE6341F50FA1D0091D5E9 /* UnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnitTests.swift; path = Impl/UnitTests.swift; sourceTree = "<group>"; };
 		24EC06D81FD633F500459C62 /* JustifytemsRowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustifytemsRowSpec.swift; sourceTree = "<group>"; };
 		24EC06E51FD7186700459C62 /* MarginsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarginsSpec.swift; sourceTree = "<group>"; };
+		24EC06F21FD97E1400459C62 /* CGRect+DisplayScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CGRect+DisplayScale.swift"; path = "Impl/CGRect+DisplayScale.swift"; sourceTree = "<group>"; };
 		412B4051A772AA0C17EBCD82 /* Pods-StackLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayoutTests/Pods-StackLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
 		45CE7ABE76F48416DE57DF55 /* Pods_PinLayoutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinLayoutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		561BC8B0591ACB691B563927 /* Pods-PinLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinLayoutTests/Pods-PinLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -209,10 +208,10 @@
 				2423C7A21FD0B36900C794AE /* StackLayoutView+Layout.swift */,
 				2423C7A41FD0B39900C794AE /* StackLayout+UIView.swift */,
 				2423C7851FD0AA8000C794AE /* Value.swift */,
-				2475B6D21FC37CD40054CADD /* Coordinates.swift */,
 				243C620E1FC3834B0082C327 /* Percent.swift */,
 				2475B6CE1FC37C570054CADD /* TypesImpl.swift */,
 				24BBE6341F50FA1D0091D5E9 /* UnitTests.swift */,
+				24EC06F21FD97E1400459C62 /* CGRect+DisplayScale.swift */,
 				2475B6D01FC37C8C0054CADD /* UIView+LTR.swift */,
 			);
 			name = Impl;
@@ -473,7 +472,6 @@
 			files = (
 				243B12BC1FC393580072A9C3 /* Percent.swift in Sources */,
 				243C620B1FC37F6C0082C327 /* UIView+LTR.swift in Sources */,
-				243C62091FC37F6C0082C327 /* Coordinates.swift in Sources */,
 				24BBE6381F52EC380091D5E9 /* UnitTests.swift in Sources */,
 				243C620A1FC37F6C0082C327 /* TypesImpl.swift in Sources */,
 			);
@@ -485,6 +483,7 @@
 			files = (
 				243C620F1FC3834B0082C327 /* Percent.swift in Sources */,
 				2423C77E1FD08B1500C794AE /* StackItemImpl.swift in Sources */,
+				24EC06F31FD97E1400459C62 /* CGRect+DisplayScale.swift in Sources */,
 				2423C7A91FD0BBE700C794AE /* StackLayout.swift in Sources */,
 				2475B6CF1FC37C570054CADD /* TypesImpl.swift in Sources */,
 				2423C7881FD0AD6700C794AE /* Types.swift in Sources */,
@@ -493,7 +492,6 @@
 				2423C77A1FD08A5B00C794AE /* StackLayoutView.swift in Sources */,
 				2423C7A71FD0B64600C794AE /* UIView+StackItem.swift in Sources */,
 				2423C7861FD0AA8000C794AE /* Value.swift in Sources */,
-				2475B6D31FC37CD40054CADD /* Coordinates.swift in Sources */,
 				24BBE6351F50FA1D0091D5E9 /* UnitTests.swift in Sources */,
 				2423C77C1FD08AD600C794AE /* StackItem.swift in Sources */,
 				2423C7A51FD0B39900C794AE /* StackLayout+UIView.swift in Sources */,
