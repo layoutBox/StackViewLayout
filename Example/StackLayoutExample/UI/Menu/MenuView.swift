@@ -18,7 +18,7 @@
 //  THE SOFTWARE.
 
 import UIKit
-import StackLayout
+import StackLayoutView
 import PinLayout
 
 protocol MenuViewDelegate: class {

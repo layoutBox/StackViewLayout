@@ -193,11 +193,17 @@ public protocol StackItem {
     @discardableResult
     func marginHorizontal(_ value: CGFloat) -> StackItem
     
+    @discardableResult
+    func marginHorizontal(_ value: SPercent) -> StackItem
+    
     /**
      Set the top and bottom margins to the specified value.
      */
     @discardableResult
     func marginVertical(_ value: CGFloat) -> StackItem
+    
+    @discardableResult
+    func marginVertical(_ value: SPercent) -> StackItem
     
     /**
      Set all margins using UIEdgeInsets.
@@ -221,6 +227,9 @@ public protocol StackItem {
      */
     @discardableResult
     func margin(_ value: CGFloat) -> StackItem
+    
+    @discardableResult
+    func margin(_ value: SPercent) -> StackItem
     
     /**
      Set the individually vertical margins (top, bottom) and horizontal margins (left, right, start, end).

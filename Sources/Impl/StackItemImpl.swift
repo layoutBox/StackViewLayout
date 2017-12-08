@@ -244,7 +244,21 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
+    func marginHorizontal(_ value: SPercent) -> StackItem {
+        marginLeft = Value(value)
+        marginRight = Value(value)
+        return self
+    }
+    
+    @discardableResult
     public func marginVertical(_ value: CGFloat) -> StackItem {
+        marginTop = Value(value)
+        marginBottom = Value(value)
+        return self
+    }
+    
+    @discardableResult
+    func marginVertical(_ value: SPercent) -> StackItem {
         marginTop = Value(value)
         marginBottom = Value(value)
         return self
@@ -272,6 +286,15 @@ class StackItemImpl: NSObject, StackItem {
     @discardableResult
     public func margin(_ value: CGFloat) -> StackItem {
         return margin(value, value, value, value)
+    }
+    
+    @discardableResult
+    func margin(_ value: SPercent) -> StackItem {
+        marginTop = Value(value)
+        marginLeft = Value(value)
+        marginRight = Value(value)
+        marginBottom = Value(value)
+        return self
     }
     
     @discardableResult func margin(_ vertical: CGFloat, _ horizontal: CGFloat) -> StackItem {

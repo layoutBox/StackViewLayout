@@ -18,7 +18,7 @@
 //  THE SOFTWARE.
 
 import UIKit
-import StackLayout
+import StackLayoutView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

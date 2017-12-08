@@ -18,8 +18,8 @@
 //  THE SOFTWARE.
 
 import UIKit
-import StackLayout
 import PinLayout
+import StackLayoutView
 
 class IntroView: BaseView {
 
@@ -224,12 +224,12 @@ class IntroView: BaseView {
 //        view1.item.marginLeft(10).marginRight(200)
         
         stackLayoutView.direction(.row)
-        stackLayoutView.justifyContent(.center)
+        stackLayoutView.justifyContent(.start)
         stackLayoutView.alignItems(.stretch)
         
-        label1.item.marginLeft(10).marginRight(20)
-        label2.item.marginLeft(10).marginRight(20)
-        view1.item.marginLeft(30).marginRight(40)
+        label1.item.margin(10)
+        label2.item.margin(20)
+        view1.item.margin(10%)
         
 //        label2.item.marginLeft(20)
 //        view1.item.marginLeft(30)

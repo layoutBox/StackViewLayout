@@ -21,7 +21,7 @@ target 'StackLayoutExample' do
   platform :ios, "8.0"
   project 'Example/StackLayoutExample.xcodeproj'
 
-  pod 'StackLayout', :path => './'
+  pod 'StackLayoutView', :path => './'
   pod 'PinLayout'
 
   # Debug only
