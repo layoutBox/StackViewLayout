@@ -950,6 +950,36 @@ class MarginsSpec: QuickSpec {
                 expect(label2.frame).to(beCloseTo(CGRect(x: 93.667, y: 20, width: 104, height: 560), within: 0.5))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 257.667, y: 60, width: 16.667, height: 480), within: 0.5))
             }
+            
+            it("margin(UIEdgeInsets) + margin(NSDirectionalInsets") {
+                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch)
+                
+                label1.item.margin(UIEdgeInsets(top: 10, left: 20, bottom: 30, right: 40))
+                if #available(iOS 11.0, *) {
+                    label2.item.margin(NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 30, trailing: 40))
+                } else {
+                    label2.item.marginTop(10).marginStart(20).marginBottom(30).marginEnd(40)
+                }
+                
+                stackLayoutView.layout()
+                
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 10, width: 340, height: 20.333), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 70.333, width: 340, height: 20.333), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 120.667, width: 400, height: 20), within: 0.5))
+            }
+            
+            it("margin(UIEdgeInsets) + margin(NSDirectionalInsets") {
+                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch)
+                
+                label1.item.margin(10, 20)
+                label2.item.margin(10, 20, 30)
+                
+                stackLayoutView.layout()
+                
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 10, width: 360, height: 20.333), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 50.333, width: 360, height: 20.333), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 100.667, width: 400, height: 20), within: 0.5))
+            }
         }
     }
 }
