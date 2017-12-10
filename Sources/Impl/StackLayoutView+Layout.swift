@@ -97,19 +97,19 @@ extension StackLayoutView {
         let container = Container(direction: direction)
         container.width = frame.size.width
         container.height = frame.size.height
-        layoutItems(container: container, measure: false)
+        layoutItems(container: container)
     }
     
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
         let container = Container(direction: direction)
         container.width = size.width == CGFloat.greatestFiniteMagnitude ? nil : size.width
         container.height = size.height == CGFloat.greatestFiniteMagnitude ? nil : size.height
-        let size = layoutItems(container: container, measure: true)
+        let size = layoutItems(container: container)
         return size
     }
     
     @discardableResult
-    private func layoutItems(container: Container, measure: Bool) -> CGSize {
+    internal func layoutItems(container: Container) -> CGSize {
         var mainAxisOffset: CGFloat = 0
         let containerMainAxisLength = container.mainAxisLength
         let containerCrossAxisLength = container.crossAxisLength
@@ -122,7 +122,7 @@ extension StackLayoutView {
 
         // Measures stack's items and add them in the Container.items array.
         measuresItemsAndMargins(container: container)
-    
+        
         let mainAxisTotalItemsLength = container.mainAxisTotalItemsLength
         
         if let mainAxisLength = containerMainAxisLength {
@@ -222,6 +222,8 @@ extension StackLayoutView {
                     fitHeight = itemHeight
                 } else if let containerWidth = container.width {
                     fitWidth = containerWidth
+                } else if let containerHeight = container.height {
+                    fitHeight = containerHeight
                 }
             } else {
                 if let itemHeight = item.height {
@@ -230,7 +232,9 @@ extension StackLayoutView {
                     fitWidth = itemWidth
                 } else if let containerHeight = container.height {
                     fitHeight = containerHeight
-                }
+                } else if let containerWidth = container.width {
+                    fitWidth = containerWidth
+                } 
             }
 
             // Measure the view using sizeThatFits(:CGSize)

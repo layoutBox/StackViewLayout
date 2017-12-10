@@ -17,7 +17,7 @@
 		2423C7A31FD0B36900C794AE /* StackLayoutView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A21FD0B36900C794AE /* StackLayoutView+Layout.swift */; };
 		2423C7A51FD0B39900C794AE /* StackLayout+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A41FD0B39900C794AE /* StackLayout+UIView.swift */; };
 		2423C7A71FD0B64600C794AE /* UIView+StackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A61FD0B64600C794AE /* UIView+StackItem.swift */; };
-		2423C7A91FD0BBE700C794AE /* StackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A81FD0BBE700C794AE /* StackLayout.swift */; };
+		2439036C1FDD67C70064F034 /* SizeThatFitsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2439036A1FDD67530064F034 /* SizeThatFitsSpec.swift */; };
 		243B12BC1FC393580072A9C3 /* Percent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243C620E1FC3834B0082C327 /* Percent.swift */; };
 		243C620A1FC37F6C0082C327 /* TypesImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2475B6CE1FC37C570054CADD /* TypesImpl.swift */; };
 		243C620B1FC37F6C0082C327 /* UIView+LTR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2475B6D01FC37C8C0054CADD /* UIView+LTR.swift */; };
@@ -73,7 +73,7 @@
 		2423C7A21FD0B36900C794AE /* StackLayoutView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StackLayoutView+Layout.swift"; path = "Impl/StackLayoutView+Layout.swift"; sourceTree = "<group>"; };
 		2423C7A41FD0B39900C794AE /* StackLayout+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StackLayout+UIView.swift"; path = "Impl/StackLayout+UIView.swift"; sourceTree = "<group>"; };
 		2423C7A61FD0B64600C794AE /* UIView+StackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+StackItem.swift"; sourceTree = "<group>"; };
-		2423C7A81FD0BBE700C794AE /* StackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackLayout.swift; sourceTree = "<group>"; };
+		2439036A1FDD67530064F034 /* SizeThatFitsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeThatFitsSpec.swift; sourceTree = "<group>"; };
 		243C620E1FC3834B0082C327 /* Percent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Percent.swift; path = Impl/Percent.swift; sourceTree = "<group>"; };
 		244DF2F81EF46C500090508B /* StackLayoutTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackLayoutTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2464A8721FD253DC007A92A8 /* JustifytemsColumnSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustifytemsColumnSpec.swift; sourceTree = "<group>"; };
@@ -175,7 +175,6 @@
 		249EFE7C1E64FB4C00165E39 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2423C7A81FD0BBE700C794AE /* StackLayout.swift */,
 				2423C7791FD08A5B00C794AE /* StackLayoutView.swift */,
 				2423C77B1FD08AD600C794AE /* StackItem.swift */,
 				2423C7871FD0AD6700C794AE /* Types.swift */,
@@ -196,6 +195,7 @@
 				2464A8721FD253DC007A92A8 /* JustifytemsColumnSpec.swift */,
 				24EC06D81FD633F500459C62 /* JustifytemsRowSpec.swift */,
 				24EC06E51FD7186700459C62 /* MarginsSpec.swift */,
+				2439036A1FDD67530064F034 /* SizeThatFitsSpec.swift */,
 				248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */,
 			);
 			path = Tests;
@@ -484,7 +484,6 @@
 				243C620F1FC3834B0082C327 /* Percent.swift in Sources */,
 				2423C77E1FD08B1500C794AE /* StackItemImpl.swift in Sources */,
 				24EC06F31FD97E1400459C62 /* CGRect+DisplayScale.swift in Sources */,
-				2423C7A91FD0BBE700C794AE /* StackLayout.swift in Sources */,
 				2475B6CF1FC37C570054CADD /* TypesImpl.swift in Sources */,
 				2423C7881FD0AD6700C794AE /* Types.swift in Sources */,
 				2475B6D11FC37C8C0054CADD /* UIView+LTR.swift in Sources */,
@@ -508,6 +507,7 @@
 				2469C5021E75D88500073BEE /* BasicView.swift in Sources */,
 				24EC06AC1FD254F700459C62 /* JustifytemsColumnSpec.swift in Sources */,
 				248E4C771F7A88D200C0E7F7 /* UIImage+Color.swift in Sources */,
+				2439036C1FDD67C70064F034 /* SizeThatFitsSpec.swift in Sources */,
 				24EC06DA1FD6345400459C62 /* JustifytemsRowSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

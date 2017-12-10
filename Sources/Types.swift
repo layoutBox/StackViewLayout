@@ -76,3 +76,15 @@ public enum SAlignSelf {
     /// The element is positioned at the baseline of the container
     //        case baseline
 }
+
+/**
+ Defines how the `layout(mode:)` method layout its flex items.
+ */
+public enum SLayoutMode {
+    /// This is the default mode when no parameter is specified. Children are layouted **inside** the container's size (width and height).
+    case fitContainer
+    /// In this mode, children are layouted **using only the container's width**. The container's height will be adjusted to fit the flexbox's children
+    case adjustHeight
+    /// In this mode, children are layouted **using only the container's height**. The container's width will be adjusted to fit the flexbox's children
+    case adjustWidth
+}

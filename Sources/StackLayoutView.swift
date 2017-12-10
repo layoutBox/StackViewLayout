@@ -22,17 +22,20 @@ import Foundation
 #if os(iOS) || os(tvOS)
 import UIKit
  
-public class StackLayoutView: UIView, StackLayout {
+public class StackLayoutView: UIView {
     internal var stackItems: [StackItemImpl] = []
     internal var direction = SDirection.column
     internal var justifyContent = SJustifyContent.start
     internal var alignItems = SAlignItems.stretch
     
-    public func layout() {
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
-    
+    /**
+     This method is used to structure your code so that it matches the stack view structure. The method has a closure parameter with a
+     single parameter called `flex`. This parameter is in fact, the view's flex interface, it can be used to adds other flex items
+     and containers.
+     
+     - Parameter closure:
+     - Returns: Flex interface
+     */
     public func define(_ closure: (_ stackView: StackLayoutView) -> Void) {
         closure(self)
     }
@@ -88,8 +91,20 @@ public class StackLayoutView: UIView, StackLayout {
         stackItems.remove(at: itemIndex)
     }
     
+    /**
+     The `direction` property establishes the main-axis, thus defining the direction flex items are placed in the flex container.
+     
+     The `direction` property specifies how flex items are laid out in the flex container, by setting the direction of the flex
+     container’s main axis. They can be laid out in two main directions,  like columns vertically or like rows horizontally.
+     
+     Note that row and row-reverse are affected by the layout direction (see `layoutDirection` property) of the flex container.
+     If its text direction is LTR (left to right), row represents the horizontal axis oriented from left to right, and row-reverse
+     from right to left; if the direction is rtl, it's the opposite.
+     
+     - Parameter value: Default value is .column
+     */
     @discardableResult
-    public func direction(_ value: SDirection) -> StackLayout {
+    public func direction(_ value: SDirection) -> StackLayoutView {
         direction = value
         setNeedsLayout()
         return self
@@ -100,18 +115,32 @@ public class StackLayoutView: UIView, StackLayout {
     }
     
     @discardableResult
-    public func justifyContent(_ value: SJustifyContent) -> StackLayout {
+    public func justifyContent(_ value: SJustifyContent) -> StackLayoutView {
         justifyContent = value
         setNeedsLayout()
         return self
     }
     
+    /**
+     The `justifyContent` property defines the alignment along the main-axis of the current line of the flex container.
+     It helps distribute extra free space leftover when either all the flex items on a line have reached their maximum
+     size. For example, if children are flowing vertically, `justifyContent` controls how they align vertically.
+     
+     - Parameter value: Default value is .start
+     */
     public func getJustifyContent() -> SJustifyContent {
         return justifyContent
     }
     
+    /**
+     The `alignItems` property defines how flex items are laid out along the cross axis on the current line.
+     Similar to `justifyContent` but for the cross-axis (perpendicular to the main-axis). For example, if
+     children are flowing vertically, `alignItems` controls how they align horizontally.
+     
+     - Parameter value: Default value is .stretch
+     */
     @discardableResult
-    public func alignItems(_ value: SAlignItems) -> StackLayout {
+    public func alignItems(_ value: SAlignItems) -> StackLayoutView {
         alignItems = value
         setNeedsLayout()
         return self
@@ -121,6 +150,37 @@ public class StackLayoutView: UIView, StackLayout {
         return alignItems
     }
     
+    //
+    // Layout view
+    //
+
+    /**
+     The method layout the flex container's children
+     
+     - Parameter mode: specify the layout mod (LayoutMode).
+     */
+    public func layout(mode: SLayoutMode = .fitContainer) {
+        let container = Container(direction: direction)
+        
+        switch mode {
+        case .fitContainer:
+            container.width = frame.width
+            container.height = frame.height
+            layoutItems(container: container)
+        case .adjustWidth:
+            container.width = frame.width
+            container.height = nil
+            layoutItems(container: container)
+        case .adjustHeight:
+            container.width = nil
+            container.height = frame.height
+            layoutItems(container: container)
+        }
+    }
+    
+    //
+    // Show/hide items
+    //
     public func hideItem(_ view: UIView, animate: Bool) {
         updateItemVisibility(view: view, isVisible: false, animate: animate)
     }
