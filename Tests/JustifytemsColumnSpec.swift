@@ -32,7 +32,7 @@ class JustifytemsColumnSpec: QuickSpec {
         var label3: UILabel!
         
         beforeSuite {
-            _setUnitTest(displayScale: 2)
+            _setUnitTest(displayScale: 3)
         }
 
         beforeEach {
@@ -171,7 +171,7 @@ class JustifytemsColumnSpec: QuickSpec {
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 173.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 290, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 579.66, width: 262.66, height: 20.33), within: 0.8))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 579.66, width: 262.66, height: 20.33), within: 0.5))
             }
             
             it("justifyContent(.spaceAround)") {

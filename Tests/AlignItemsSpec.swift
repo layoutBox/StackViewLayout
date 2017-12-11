@@ -45,7 +45,7 @@ class AlignItemsSpec: QuickSpec {
         */
         
         beforeSuite {
-            _setUnitTest(displayScale: 2)
+            _setUnitTest(displayScale: 3)
         }
 
         beforeEach {
