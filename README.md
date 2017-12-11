@@ -6,7 +6,8 @@
 <p align="center">
   <a href=""><img src="https://img.shields.io/cocoapods/p/StackLayout.svg?style=flat" /></a>
   <a href="https://travis-ci.org/layoutBox/StackLayout"><img src="https://travis-ci.org/layoutBox/StackLayout.svg?branch=dev" /></a>
- <a href='https://coveralls.io/github/layoutBox/StackLayout?branch=dev'><img src='https://coveralls.io/repos/github/layoutBox/StackLayout/badge.svg?branch=dev' alt='Coverage Status' /></a>
+
+  <a href="https://codecov.io/gh/layoutBox/StackLayout"><img src="https://codecov.io/gh/layoutBox/StackLayout/branch/dev/graph/badge.svg"/></a>
   <a href='https://img.shields.io/cocoapods/v/StackLayout.svg'><img src="https://img.shields.io/cocoapods/v/StackLayout.svg" /></a>
   <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" /></a>
   <a href="https://raw.githubusercontent.com/layoutBox/StackLayout/master/LICENSE"><img src="https://img.shields.io/badge/license-New%20BSD-blue.svg?style=flat" /></a>
