@@ -107,8 +107,8 @@ class JustifytemsRowSpec: QuickSpec {
                 stackLayoutView.layout()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 15.33, y: 0.0, width: 53.66, height: 600.0), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 0.0, width: 104.0, height: 600.0), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 233.5, y: 0.0, width: 151.33, height: 600.0), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 0.0, width: 104.0, height: 600.0), within: 0.85))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 233.5, y: 0.0, width: 151.33, height: 600.0), within: 1))
             }
             
             it("justify(.spaceBetween)") {
@@ -127,8 +127,8 @@ class JustifytemsRowSpec: QuickSpec {
                 stackLayoutView.layout()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 22.75, y: 0.0, width: 53.66, height: 600.0), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 0.0, width: 104.0, height: 600.0), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 225.66, y: 0.0, width: 151.33, height: 600.0), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 0.0, width: 104.0, height: 600.0), within: 0.85))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 225.66, y: 0.0, width: 151.33, height: 600.0), within: 0.7))
             }
         }
         
@@ -169,8 +169,8 @@ class JustifytemsRowSpec: QuickSpec {
                 stackLayoutView.layout()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 15.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 0.0, width: 104.0, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 233.5, y: 0.0, width: 151.33, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 0.0, width: 104.0, height: 20.33), within: 0.85))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 233.5, y: 0.0, width: 151.33, height: 20.33), within: 1))
             }
             
             it("justify(.spaceBetween)") {
@@ -189,8 +189,8 @@ class JustifytemsRowSpec: QuickSpec {
                 stackLayoutView.layout()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 22.75, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 0.0, width: 104.0, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 225.66, y: 0.0, width: 151.33, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 0.0, width: 104.0, height: 20.33), within: 0.85))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 225.66, y: 0.0, width: 151.33, height: 20.33), within: 0.8))
             }
         }
         
@@ -231,8 +231,8 @@ class JustifytemsRowSpec: QuickSpec {
                 stackLayoutView.layout()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 15.33, y: 290, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 290, width: 104.0, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 233.5, y: 290, width: 151.33, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 290, width: 104.0, height: 20.33), within: 0.85))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 233.5, y: 290, width: 151.33, height: 20.33), within: 1.0))
             }
             
             it("justify(.spaceBetween)") {
@@ -251,8 +251,8 @@ class JustifytemsRowSpec: QuickSpec {
                 stackLayoutView.layout()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 22.75, y: 290, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 290, width: 104.0, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 225.66, y: 290, width: 151.33, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 290, width: 104.0, height: 20.33), within: 0.85))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 225.66, y: 290, width: 151.33, height: 20.33), within: 0.8))
             }
         }
         
@@ -293,8 +293,8 @@ class JustifytemsRowSpec: QuickSpec {
                 stackLayoutView.layout()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 15.33, y: 579.66, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 579.66, width: 104.0, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 233.5, y: 579.66, width: 151.33, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 579.66, width: 104.0, height: 20.33), within: 0.85))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 233.5, y: 579.66, width: 151.33, height: 20.33), within: 1.0))
             }
             
             it("justify(.spaceBetween)") {
@@ -313,8 +313,8 @@ class JustifytemsRowSpec: QuickSpec {
                 stackLayoutView.layout()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 22.75, y: 579.66, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 579.66, width: 104.0, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 225.66, y: 579.66, width: 151.33, height: 20.33), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 99.33, y: 579.66, width: 104.0, height: 20.33), within: 0.85))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 225.66, y: 579.66, width: 151.33, height: 20.33), within: 0.85))
             }
         }
         

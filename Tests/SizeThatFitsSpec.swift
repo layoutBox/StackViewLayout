@@ -495,7 +495,7 @@ class SizeThatFitsSpec: QuickSpec {
                 expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 80, width: 400, height: 20.333), within: 0.5))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 20.333), within: 0.5))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 20.333), within: 0.5))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 393.667, height: 20.333), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 393.667, height: 20.333), within: 4))
             }
         }
     }

@@ -59,7 +59,8 @@ platform :ios do
 
   lane :tests do
     scan(scheme: "StackLayout", 
-         workspace: "StackLayout.xcworkspace")
+         workspace: "StackLayout.xcworkspace",
+         devices: ["iPhone 8", "iPhone 7 Plus"])
   end
 
   lane :doc do 
