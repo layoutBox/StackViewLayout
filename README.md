@@ -1,15 +1,15 @@
 <p align="center">
-  <a href="https://github.com/lucdion/StackLayout"><img src="docs_markdown/images/stacklayout_logo_text.png" width="260"/></a>
+  <a href="https://github.com/layoutBox/StackLayout"><img src="docs_markdown/images/stacklayout_logo_text.png" width="260"/></a>
 </p>
 
  
 <p align="center">
   <a href=""><img src="https://img.shields.io/cocoapods/p/StackLayout.svg?style=flat" /></a>
-  <a href="https://travis-ci.org/lucdion/StackLayout"><img src="https://travis-ci.org/lucdion/StackLayout.svg?branch=master" /></a>
- <a href='https://coveralls.io/github/lucdion/StackLayout?branch=master'><img src='https://coveralls.io/repos/github/lucdion/StackLayout/badge.svg?branch=master' alt='Coverage Status' /></a>
+  <a href="https://travis-ci.org/layoutBox/StackLayout"><img src="https://travis-ci.org/layoutBox/StackLayout.svg?branch=dev" /></a>
+ <a href='https://coveralls.io/github/layoutBox/StackLayout?branch=dev'><img src='https://coveralls.io/repos/github/layoutBox/StackLayout/badge.svg?branch=dev' alt='Coverage Status' /></a>
   <a href='https://img.shields.io/cocoapods/v/StackLayout.svg'><img src="https://img.shields.io/cocoapods/v/StackLayout.svg" /></a>
   <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" /></a>
-  <a href="https://raw.githubusercontent.com/lucdion/StackLayout/master/LICENSE"><img src="https://img.shields.io/badge/license-New%20BSD-blue.svg?style=flat" /></a>
+  <a href="https://raw.githubusercontent.com/layoutBox/StackLayout/master/LICENSE"><img src="https://img.shields.io/badge/license-New%20BSD-blue.svg?style=flat" /></a>
 </p>
 
 <br>
@@ -53,7 +53,7 @@ StackLayout is a UIStackView replacement.
 
 ### StackLayout + PinLayout + FlexLayout
 
-<a href="https://github.com/mirego/PinLayout"><img src="docs_markdown/images/flexlayout_plus_pinlayout_small.png" alt="FlexLayout" width="250"/></a>
+<a href="https://github.com/mirego/PinLayout"><img src="docs_markdown/images/flexlayout_plus_pinlayout_small.png" width="250"/></a>
 
 **FlexLayout** is a companion of **[PinLayout](https://github.com/mirego/PinLayout)**. They share a similar syntax and method names. PinLayout is a layout framework greatly inspired by CSS absolute positioning, it is particularly useful for greater fine control and animations. It gives you full control by layouting one view at a time (simple to code and debug).
 
@@ -108,7 +108,7 @@ override func layoutSubviews() {
 }
 ``` 
 
-:pushpin: This example is available in the [Examples App](#examples_app). See complete [source code](https://github.com/lucdion/StackLayout/blob/master/Example/StackLayoutSample/UI/Examples/Intro/IntroView.swift)
+:pushpin: This example is available in the [Examples App](#examples_app). See complete [source code](https://github.com/layoutBox/StackLayout/blob/master/Example/StackLayoutSample/UI/Examples/Intro/IntroView.swift)
 
 </br>
 
@@ -353,7 +353,7 @@ NOT IMPLEMENTED
 <br>
 
 ## StackLayout API Documentation <a name="api_documentation"></a>
-The [**complete StackLayout API is available here**](https://lucdion.github.io/FlexLayout/1.1/Classes/Flex.html). 
+The [**complete StackLayout API is available here**](https://layoutBox.github.io/FlexLayout/1.1/Classes/Flex.html). 
 
 <br>
 
@@ -371,11 +371,11 @@ NOT IMPLEMENTED
 <br/>
 
 ## Contributing, comments, ideas, suggestions, issues, .... <a name="comments"></a>
-For any **comments**, **ideas**, **suggestions**, simply open an [issue](https://github.com/lucdion/FlexLayout/issues). 
+For any **comments**, **ideas**, **suggestions**, simply open an [issue](https://github.com/layoutBox/StackLayout/issues). 
 
-For **issues**, please have a look at [Yoga's issues](https://github.com/facebook/yoga/issues). Your issue may have been already reported. If not, it may be a FlexLayout issue. In this case open an issue and we'll let you know if the issue is related to Yoga's implementation. 
+For **issues**, please have a look at [Yoga's issues](https://github.com/facebook/yoga/issues). Your issue may have been already reported. If not, it may be a StackLayout issue. In this case open an issue and we'll let you know if the issue is related to Yoga's implementation. 
 
-If you find FlexLayout interesting, thanks to **Star** it. You'll be able to retrieve it easily later.
+If you find StackLayout interesting, thanks to **Star** it. You'll be able to retrieve it easily later.
 
 If you'd like to contribute, you're welcome!
 
