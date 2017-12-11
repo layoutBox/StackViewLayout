@@ -155,9 +155,11 @@ public class StackLayoutView: UIView {
     //
 
     /**
-     The method layout the flex container's children
+     The method layout the stack's items using the current frame's size
+     or by automatically adjusting the width or the height to match
+     its items.
      
-     - Parameter mode: specify the layout mod (LayoutMode).
+     - Parameter mode: specify the layout mode (LayoutMode).
      */
     public func layout(mode: SLayoutMode = .fitContainer) {
         let container = Container(direction: direction)
@@ -166,16 +168,15 @@ public class StackLayoutView: UIView {
         case .fitContainer:
             container.width = frame.width
             container.height = frame.height
-            layoutItems(container: container)
         case .adjustWidth:
-            container.width = frame.width
-            container.height = nil
-            layoutItems(container: container)
-        case .adjustHeight:
             container.width = nil
             container.height = frame.height
-            layoutItems(container: container)
+        case .adjustHeight:
+            container.width = frame.width
+            container.height = nil
         }
+        
+        layoutItems(container: container)
     }
     
     //
