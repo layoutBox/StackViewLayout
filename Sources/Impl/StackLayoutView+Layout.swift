@@ -36,26 +36,26 @@ class Container {
         return direction == .column ? width : height
     }
     
-    var mainAxisTotalItemsLength: CGFloat {
-        var length: CGFloat = 0
-        
-        items.forEach({ (item) in
-            length += item.mainAxisStartMargin ?? 0
-            
-            if direction == .column {
-                length += (item.height != nil ? item.height! : 0)
-            } else {
-                length += (item.width != nil ? item.width! : 0)
-            }
-            
-            length += item.mainAxisEndMargin ?? 0
-        })
-
-        return length
-    }
+    var mainAxisTotalItemsLength: CGFloat = 0
     
     init(direction: SDirection) {
         self.direction = direction
+    }
+    
+    func updateMainAxisTotalLength() {
+        mainAxisTotalItemsLength = 0
+        
+        items.forEach({ (item) in
+            mainAxisTotalItemsLength += item.mainAxisStartMargin ?? 0
+            
+            if direction == .column {
+                mainAxisTotalItemsLength += (item.height != nil ? item.height! : 0)
+            } else {
+                mainAxisTotalItemsLength += (item.width != nil ? item.width! : 0)
+            }
+            
+            mainAxisTotalItemsLength += item.mainAxisEndMargin ?? 0
+        })
     }
 }
     
@@ -71,12 +71,37 @@ class ItemInfo {
     var minHeight: CGFloat?
     var maxHeight: CGFloat?
     
+    var mainAxisLength: CGFloat? {
+        get {
+            return direction == .column ? height : width
+        }
+        set {
+            if direction == .column {
+                height = newValue
+            } else {
+                width = newValue
+            }
+        }
+    }
+    
+    var mainAxisMaxLength: CGFloat? {
+        return direction == .column ? maxHeight : maxWidth
+    }
+
+    var crossAxisLength: CGFloat {
+        assert(width != nil || height != nil)
+        return direction == .column ? width! : height!
+    }
+    
     var mainAxisStartMargin: CGFloat?
     var mainAxisEndMargin: CGFloat?
+    
+    private let direction: SDirection
     
     init(_ stackItem: StackItemImpl, container: Container) {
         self.stackItem = stackItem
         self.view = stackItem.view
+        self.direction = container.direction
         
         if let stackItem = view.item as? StackItemImpl {
             self.width = stackItem.width?.resolveWidth(container: container)
@@ -86,6 +111,18 @@ class ItemInfo {
             self.height = stackItem.height?.resolveHeight(container: container)
             self.minHeight = stackItem.minHeight?.resolveHeight(container: container)
             self.maxHeight = stackItem.maxHeight?.resolveHeight(container: container)
+        }
+    }
+    
+    func growFactor() -> CGFloat {
+        guard let mainAxisLength = mainAxisLength else { return 0 }
+        
+        if let mainAxisMaxLength = mainAxisMaxLength, mainAxisLength >= mainAxisMaxLength {
+            return 0
+        } else if let growFactor = stackItem.grow {
+            return growFactor
+        } else {
+            return 0
         }
     }
 }
@@ -123,6 +160,8 @@ extension StackLayoutView {
         // Measures stack's items and add them in the Container.items array.
         measuresItemsAndMargins(container: container)
         
+        adjustItemsSizeToContainer(container: container)
+        
         let mainAxisTotalItemsLength = container.mainAxisTotalItemsLength
         
         if let mainAxisLength = containerMainAxisLength {
@@ -157,7 +196,7 @@ extension StackLayoutView {
             //
             // Handle cross-axis position
             var crossAxisPos: CGFloat = 0
-            var itemCrossAxisLength = direction == .column ? item.width! : item.height!
+            var itemCrossAxisLength = item.crossAxisLength
             
             if let containerCrossAxisLength = containerCrossAxisLength {
                 switch stackItem.resolveStackItemAlign(stackAlignItems: alignItems) {
@@ -266,6 +305,48 @@ extension StackLayoutView {
             item.mainAxisEndMargin = stackItem.mainAxisEndMargin(container: container)
             
             container.items.append(item)
+        }
+        
+        container.updateMainAxisTotalLength()
+    }
+    
+    private func adjustItemsSizeToContainer(container: Container) {
+        guard let containerMainAxisLength = container.mainAxisLength else { return }
+        
+        if container.mainAxisTotalItemsLength < containerMainAxisLength {
+            // Grow
+            var growFactorTotal: CGFloat = 0
+            var lenghtToDistribute = containerMainAxisLength - container.mainAxisTotalItemsLength
+            
+            repeat {
+                growFactorTotal = container.items.reduce(0, { (result, itemInfo) -> CGFloat in
+                    return result + itemInfo.growFactor()
+                })
+                
+                print("growFactorTotal: \(growFactorTotal)")
+                if growFactorTotal > 0 {
+                    let factorLength = lenghtToDistribute / growFactorTotal
+                    
+                    for item in container.items {
+                        guard let itemMainAxisLength = item.mainAxisLength else { continue }
+                        let growFactor = item.growFactor()
+                        if growFactor > 0 {
+                            let addLength = growFactor * factorLength
+                            item.mainAxisLength = itemMainAxisLength + addLength
+                        }
+                    }
+                }
+                
+                container.updateMainAxisTotalLength()
+                
+            } while growFactorTotal > 0 && container.mainAxisTotalItemsLength < containerMainAxisLength
+            
+        } else if container.mainAxisTotalItemsLength > containerMainAxisLength {
+            // Shrink
+//            var shrinkFactorTotal = container.items.reduce(0, { (result, itemInfo) -> CGFloat in
+//                return result + (itemInfo.stackItem.shrink ?? 0)
+//            })
+//            print("shrinkFactorTotal: \(shrinkFactorTotal)")
         }
     }
 }

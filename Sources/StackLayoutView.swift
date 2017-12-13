@@ -42,7 +42,7 @@ public class StackLayoutView: UIView {
     
     public func addItem(_ view: UIView) {
         guard let stackItemImpl = view.item as? StackItemImpl else { return }
-        stackItemImpl.parent = self
+//        stackItemImpl.parent = self
         stackItems.append(stackItemImpl)
         
         super.addSubview(view)
@@ -50,7 +50,7 @@ public class StackLayoutView: UIView {
     
     public func insertItem(_ view: UIView, at index: Int) {
         guard let stackItemImpl = view.item as? StackItemImpl else { return }
-        stackItemImpl.parent = self
+//        stackItemImpl.parent = self
         stackItems.insert(stackItemImpl, at: index)
         
         self.insertSubview(view, at: index)
@@ -59,7 +59,7 @@ public class StackLayoutView: UIView {
     public func insertItem(_ view: UIView, before refView: UIView) {
         guard let stackItemImpl = view.item as? StackItemImpl else { return }
         guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return }
-        stackItemImpl.parent = self
+//        stackItemImpl.parent = self
         stackItems.insert(stackItemImpl, at: itemIndex)
         
         super.insertSubview(view, aboveSubview: refView)
@@ -68,7 +68,7 @@ public class StackLayoutView: UIView {
     public func insertItem(_ view: UIView, after refView: UIView) {
         guard let stackItemImpl = view.item as? StackItemImpl else { return }
         guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return }
-        stackItemImpl.parent = self
+//        stackItemImpl.parent = self
         stackItems.insert(stackItemImpl, at: itemIndex + 1)
 
         super.insertSubview(view, belowSubview: refView)
@@ -87,7 +87,7 @@ public class StackLayoutView: UIView {
     private func removStackItem(_ view: UIView) {
         guard let stackItemImpl = view.item as? StackItemImpl else { return }
         guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this StackLayoutView!"); return }
-        stackItemImpl.parent = nil
+//        stackItemImpl.parent = nil
         stackItems.remove(at: itemIndex)
     }
     
@@ -183,17 +183,18 @@ public class StackLayoutView: UIView {
     // Show/hide items
     //
     public func hideItem(_ view: UIView, animate: Bool) {
-        updateItemVisibility(view: view, isVisible: false, animate: animate)
+        guard let stackItemImpl = view.item as? StackItemImpl else { return }
+        stackItemImpl.isHidden = true
+//        updateItemVisibility(view: view, isVisible: false, animate: animate)
     }
     
     public func showItem(_ view: UIView, animate: Bool) {
-        updateItemVisibility(view: view, isVisible: true, animate: animate)
+//        updateItemVisibility(view: view, isVisible: true, animate: animate)
     }
     
     internal func updateItemVisibility(view: UIView, isVisible: Bool, animate: Bool) {
         guard let stackItemImpl = view.item as? StackItemImpl else { return }
         guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this StackLayoutView!"); return }
-        guard view.isHidden == isVisible else { return }
         let duration = 0.3
         
         if animate {

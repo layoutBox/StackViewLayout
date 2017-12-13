@@ -18,7 +18,8 @@
 //  THE SOFTWARE.
 import UIKit
 
-public func _setUnitTest(displayScale: CGFloat) {
+public func _setUnitTestDisplayScale(_ scale: CGFloat) {
+    displayScale = scale
 //    Coordinates.displayScale = displayScale
 }
 

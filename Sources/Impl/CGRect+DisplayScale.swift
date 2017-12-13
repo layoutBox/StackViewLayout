@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal let displayScale: CGFloat = UIScreen.main.scale
+internal var displayScale: CGFloat = UIScreen.main.scale
 
 extension CGRect {
     func adjustToDisplayScale() -> CGRect {

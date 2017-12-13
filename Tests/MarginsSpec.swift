@@ -32,7 +32,7 @@ class MarginsSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTest(displayScale: 3)
+            _setUnitTestDisplayScale(3)
         }
 
         beforeEach {

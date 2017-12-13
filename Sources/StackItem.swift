@@ -31,6 +31,33 @@ public protocol StackItem {
 //    view.item.alignSelf(.start)
 
     //
+    // MARK: grow / shrink
+    //
+    
+    /**
+     The `grow` property defines the ability for a flex item to grow if necessary. It accepts a unitless value
+     that serves as a proportion. It dictates what amount of the available space inside the flex container the
+     item should take up.
+     
+     - Parameter value: Default value is 0
+     */
+    @discardableResult func grow(_ value: CGFloat) -> StackItem
+    
+    /**
+     It specifies the "flex shrink factor", which determines how much the flex item will shrink relative to the
+     rest of the flex items in the flex container when there isn't enough space on the main-axis.
+     
+     When omitted, it is set to 0 and the flex shrink factor is multiplied by the flex `basis` when distributing
+     negative space.
+     
+     A shrink value of 0 keeps the view's size in the main-axis direction. Note that this may cause the view to
+     overflow its flex container.
+     
+     - Parameter value: Default value is 1
+     */
+    @discardableResult func shrink(_ value: CGFloat) -> StackItem
+
+    //
     // MARK: Width, height and size
     //
     /**

@@ -32,7 +32,7 @@ class JustifytemsColumnSpec: QuickSpec {
         var label3: UILabel!
         
         beforeSuite {
-            _setUnitTest(displayScale: 3)
+            _setUnitTestDisplayScale(3)
         }
 
         beforeEach {

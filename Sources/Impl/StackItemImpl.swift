@@ -24,7 +24,7 @@ import UIKit
 
 class StackItemImpl: NSObject, StackItem {
     internal let view: UIView
-    var parent: StackLayoutView?
+//    var parent: StackLayoutView?
     
     internal var width: Value?
     internal var minWidth: Value?
@@ -40,11 +40,31 @@ class StackItemImpl: NSObject, StackItem {
     internal var marginRight: Value?
     internal var marginEnd: Value?
     
+    internal var grow: CGFloat?
+    internal var shrink: CGFloat?
+    
     var alignSelf: SAlignSelf?
+    var isHidden = false
     
     init(view: UIView) {
         self.view = view
     }
+    
+    //
+    // MARK: grow / shrink
+    //
+    @discardableResult
+    public func grow(_ value: CGFloat) -> StackItem {
+        grow = value
+        return self
+    }
+    
+    @discardableResult
+    public func shrink(_ value: CGFloat) -> StackItem {
+        shrink = value
+        return self
+    }
+
     
     //
     // width, height

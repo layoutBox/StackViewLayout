@@ -30,6 +30,7 @@
 		2475B6DB1FC37D4D0054CADD /* StackLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2475B6D91FC37D4D0054CADD /* StackLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		248E4C771F7A88D200C0E7F7 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */; };
 		249EFE841E64FB4C00165E39 /* StackLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249EFE7A1E64FB4C00165E39 /* StackLayout.framework */; };
+		24B3F7CE1FE1544100AC174B /* GrowSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3F7C91FE0165F00AC174B /* GrowSpec.swift */; };
 		24BBE6351F50FA1D0091D5E9 /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BBE6341F50FA1D0091D5E9 /* UnitTests.swift */; };
 		24BBE6381F52EC380091D5E9 /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BBE6341F50FA1D0091D5E9 /* UnitTests.swift */; };
 		24EC06AC1FD254F700459C62 /* JustifytemsColumnSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2464A8721FD253DC007A92A8 /* JustifytemsColumnSpec.swift */; };
@@ -89,6 +90,7 @@
 		249EFE7A1E64FB4C00165E39 /* StackLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		249EFE831E64FB4C00165E39 /* StackLayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StackLayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		249EFE8A1E64FB4C00165E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24B3F7C91FE0165F00AC174B /* GrowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrowSpec.swift; sourceTree = "<group>"; };
 		24BBE6341F50FA1D0091D5E9 /* UnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnitTests.swift; path = Impl/UnitTests.swift; sourceTree = "<group>"; };
 		24EC06D81FD633F500459C62 /* JustifytemsRowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustifytemsRowSpec.swift; sourceTree = "<group>"; };
 		24EC06E51FD7186700459C62 /* MarginsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarginsSpec.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				24EC06D81FD633F500459C62 /* JustifytemsRowSpec.swift */,
 				24EC06E51FD7186700459C62 /* MarginsSpec.swift */,
 				2439036A1FDD67530064F034 /* SizeThatFitsSpec.swift */,
+				24B3F7C91FE0165F00AC174B /* GrowSpec.swift */,
 				248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */,
 			);
 			path = Tests;
@@ -507,6 +510,7 @@
 				2469C5021E75D88500073BEE /* BasicView.swift in Sources */,
 				24EC06AC1FD254F700459C62 /* JustifytemsColumnSpec.swift in Sources */,
 				248E4C771F7A88D200C0E7F7 /* UIImage+Color.swift in Sources */,
+				24B3F7CE1FE1544100AC174B /* GrowSpec.swift in Sources */,
 				2439036C1FDD67C70064F034 /* SizeThatFitsSpec.swift in Sources */,
 				24EC06DA1FD6345400459C62 /* JustifytemsRowSpec.swift in Sources */,
 			);
