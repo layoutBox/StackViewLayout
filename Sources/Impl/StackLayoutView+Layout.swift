@@ -63,11 +63,19 @@ class ItemInfo {
     var view: UIView
     var stackItem: StackItemImpl
     
-    var width: CGFloat?
+    var width: CGFloat? {
+        didSet {
+            applyWidthMinMax()
+        }
+    }
     var minWidth: CGFloat?
     var maxWidth: CGFloat?
 
-    var height: CGFloat?
+    var height: CGFloat? {
+        didSet {
+            applyHeightMinMax()
+        }
+    }
     var minHeight: CGFloat?
     var maxHeight: CGFloat?
     
@@ -125,6 +133,58 @@ class ItemInfo {
             return 0
         }
     }
+    
+    private func applyWidthMinMax() {
+        if let minWidth = minWidth, minWidth > (width ?? 0) {
+            width = minWidth
+        }
+        
+        if let maxWidth = maxWidth, maxWidth < (width ?? CGFloat.greatestFiniteMagnitude) {
+            width = maxWidth
+        }
+    }
+    
+    private func applyHeightMinMax() {
+        if let minHeight = minHeight, minHeight > (height ?? 0) {
+            height = minHeight
+        }
+        
+        if let maxHeight = maxHeight, maxHeight < (height ?? CGFloat.greatestFiniteMagnitude) {
+            height = maxHeight
+        }
+    }
+    
+//    private func applyWidthMinMax(_ item: ItemInfo) -> CGFloat? {
+//        var result = item.width
+//
+//        // Handle minWidth
+//        if let minWidth = item.minWidth, minWidth > (result ?? 0) {
+//            result = minWidth
+//        }
+//
+//        // Handle maxWidth
+//        if let maxWidth = item.maxWidth, maxWidth < (result ?? CGFloat.greatestFiniteMagnitude) {
+//            result = maxWidth
+//        }
+//
+//        return result
+//    }
+//
+//    private func applyHeightMinMax(_ item: ItemInfo) -> CGFloat? {
+//        var result = item.height
+//
+//        // Handle minHeight
+//        if let minHeight = item.minHeight, minHeight > (result ?? 0) {
+//            result = minHeight
+//        }
+//
+//        // Handle maxHeight
+//        if let maxHeight = item.maxHeight, maxHeight < (result ?? CGFloat.greatestFiniteMagnitude) {
+//            result = maxHeight
+//        }
+//
+//        return result
+//    }
 }
     
 extension StackLayoutView {
@@ -296,8 +356,8 @@ extension StackLayoutView {
             }
             assert(item.height != nil && item.width != nil, "should not occurred")
             
-            item.width = applyWidthMinMax(item)
-            item.height = applyHeightMinMax(item)
+//            item.width = applyWidthMinMax(item)
+//            item.height = applyHeightMinMax(item)
             
             //
             // Compute item main-axis margins.
@@ -330,6 +390,7 @@ extension StackLayoutView {
                     for item in container.items {
                         guard let itemMainAxisLength = item.mainAxisLength else { continue }
                         let growFactor = item.growFactor()
+                        
                         if growFactor > 0 {
                             let addLength = growFactor * factorLength
                             item.mainAxisLength = itemMainAxisLength + addLength
@@ -350,38 +411,7 @@ extension StackLayoutView {
         }
     }
 }
-    
-private func applyWidthMinMax(_ item: ItemInfo) -> CGFloat? {
-    var result = item.width
-    
-    // Handle minWidth
-    if let minWidth = item.minWidth, minWidth > (result ?? 0) {
-        result = minWidth
-    }
-    
-    // Handle maxWidth
-    if let maxWidth = item.maxWidth, maxWidth < (result ?? CGFloat.greatestFiniteMagnitude) {
-        result = maxWidth
-    }
-    
-    return result
-}
-    
-private func applyHeightMinMax(_ item: ItemInfo) -> CGFloat? {
-    var result = item.height
 
-    // Handle minHeight
-    if let minHeight = item.minHeight, minHeight > (result ?? 0) {
-        result = minHeight
-    }
-    
-    // Handle maxHeight
-    if let maxHeight = item.maxHeight, maxHeight < (result ?? CGFloat.greatestFiniteMagnitude) {
-        result = maxHeight
-    }
-    
-    return result
-}
     
 private func minValue(_ value1: CGFloat, _ value2: CGFloat?) -> CGFloat {
     return min(value1, value2 ?? .greatestFiniteMagnitude)

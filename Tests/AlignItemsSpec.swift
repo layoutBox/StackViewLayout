@@ -27,23 +27,10 @@ class AlignItemsSpec: QuickSpec {
         var viewController: UIViewController!
         
         var stackLayoutView: StackLayoutView!
-//        let logo = UIImageView(image: UIImage(named: "PinLayout-logo"))
-//        let textLabel = UILabel()
-//        let separatorView = UIView()
-        
         var label1: UILabel!
         var label2: UILabel!
         var label3: UILabel!
-//
-//        var rootView: BasicView!
-//        var aView: BasicView!
-        
-        /*
-          root
-           |
-            - aView
-        */
-        
+
         beforeSuite {
             _setUnitTestDisplayScale(3)
         }
@@ -52,20 +39,9 @@ class AlignItemsSpec: QuickSpec {
             Pin.lastWarningText = nil
             
             viewController = UIViewController()
-            
-            
-//            logo.contentMode = .scaleAspectFit
 
-//            textLabel.text = "Swift manual views layouting without auto layout, no magic, pure code, full control. Concise syntax, readable & chainable.\n\nSwift manual views layouting without auto layout, no magic, pure code, full control. Concise syntax, readable & chainable."
-//            textLabel.font = .systemFont(ofSize: 14)
-//            textLabel.numberOfLines = 0
-//            textLabel.lineBreakMode = .byWordWrapping
-//
-//            separatorView.backgroundColor = .blue
-            
             stackLayoutView = StackLayoutView()
-            stackLayoutView.frame = CGRect(x: 0, y: 80, width: 400, height: 600)
-            stackLayoutView.setNeedsLayout()
+            stackLayoutView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
             viewController.view.addSubview(stackLayoutView)
 
             label1 = UILabel()

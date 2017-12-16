@@ -208,72 +208,82 @@ class IntroView: BaseView {
         label3.backgroundColor = .blue
         label3.text = "Label much longuer"
         
-        stackLayoutView.addItem(label1)
-        stackLayoutView.addItem(label2)
-//        stackLayoutView.addItem(label3)
-
-//        view1.item.height(40)
-        stackLayoutView.addItem(view1)
-
-//        stackLayoutView.direction(.column)
-//        stackLayoutView.justifyContent(.start)
-//        stackLayoutView.alignItems(.start)
+        view1.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
+        
+//        stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+//            label1.item.grow(1).maxHeight(100)
+//            label2.item.grow(10).maxHeight(120)
+//            view1.item.grow(1).maxHeight(140)
 //
-//        label1.item.marginLeft(10).marginRight(340)
-//        label2.item.marginLeft(10%).marginRight(75%)
-//        view1.item.marginLeft(10).marginRight(200)
+//            stack.addItem(label1)
+//            stack.addItem(label2)
+//            stack.addItem(view1)
+//        }
         
-        stackLayoutView.direction(.row)
-        stackLayoutView.justifyContent(.start)
-        stackLayoutView.alignItems(.stretch)
+        stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+            label1.item.grow(1)
+            label2.item.grow(10)
+            view1.item.grow(1)
+            
+            stack.addItem(label1)
+            stack.addItem(label2)
+            stack.addItem(view1)
+        }
         
-        label1.item.margin(10)
-        label2.item.margin(20)
-        view1.item.margin(10%)
         
-//        label2.item.marginLeft(20)
-//        view1.item.marginLeft(30)
-
-//        label1.item.marginLeft(340)
-//        label2.item.marginLeft(80%)
-//        view1.item.marginLeft(220)
+        layout()
         
-//        stackLayoutView.direction(.row)
-//        stackLayoutView.justifyContent(.start)
-//        stackLayoutView.alignItems(.stretch)
+        printViewFrame(stackLayoutView, name: "stackLayoutView")
+        printViewFrame(label1, name: "label1")
+        printViewFrame(label2, name: "label2")
+        //        printViewFrame(label3, name: "label3")
+        printViewFrame(view1, name: "view1")
         
-//        label1.item.marginTop(10).marginBottom(20)
-//        label2.item.marginTop(10).marginBottom(20)
-//        view1.item.marginTop(30).marginBottom(40)
+//        UIView.animate(withDuration: 1, delay: 6, options: [], animations: {
+//
+//        }) { (_) in
+//
+//        }
+    }
+    
+    func didTapView() {
+        if label1.isHidden {
+            stackLayoutView.showItem(label1, animate: true)
+        } else {
+            stackLayoutView.hideItem(label1, animate: true)
+        }
+        print("asdfa")
+    }
+    
+    private func layout() {
+//        stackLayoutView.pin.top(64).left().width(400).height(600)
         
-//        label1.item.marginLeft(10).marginRight(200)
-//        view1.item.marginLeft(10).marginRight(200)
+        stackLayoutView.pin.top(64).left().width(400).sizeToFit(.width)
         
-//        label1.item.marginLeft(10).marginRight(200)
-////        label1.item.marginEnd(10)
-////        label2.item.marginEnd(25%)
-//        view1.item.marginLeft(10).marginRight(200)
-//        label1.item.marginRight(10)
-//        label2.item.marginRight(25%)
-//        view1.item.marginLeft(200).marginRight(40)
-//        label3.item.marginLeft(25%)
-//        label1.item.marginLeft(10).marginRight(20)
-//        label1.item.marginRight(50%)
+//        stackLayoutView.pin.top(80).left().height(400).sizeToFit(.height)
+//        stackLayoutView.pin.top(80).left().width(400).sizeToFit(.width)
+//        stackLayoutView.layout()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        layout()
         
         // Layout the stackLayoutView using the view's safeArea with at least of 10 pixels all around.
-//        let containerInsets = safeArea.minInsets(UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10))
-        stackLayoutView.pin.top(80).left().width(400).height(600)
-        stackLayoutView.layout()
+//        stackLayoutView.pin.top(80).left().width(400).height(600)
+//        stackLayoutView.layout()
+        
+//        stackLayoutView.pin.top(80).left().width(400).sizeToFit(.width)
+//        stackLayoutView.pin.top(80).left().height(400).sizeToFit(.height)
+//        stackLayoutView.layout()
+        
 //        buttonsStackView.pin.below(of: stackLayoutView).left().right().margin(8).sizeToFit(.width)
 
-        printViewFrame(label1, name: "label1")
-        printViewFrame(label2, name: "label2")
-//        printViewFrame(label3, name: "label3")
-        printViewFrame(view1, name: "view1")
+//        printViewFrame(stackLayoutView, name: "stackLayoutView")
+//        printViewFrame(label1, name: "label1")
+//        printViewFrame(label2, name: "label2")
+////        printViewFrame(label3, name: "label3")
+//        printViewFrame(view1, name: "view1")
     }
     
     fileprivate func printViewFrame(_ view: UIView, name: String) {

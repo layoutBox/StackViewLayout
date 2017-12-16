@@ -7,9 +7,15 @@
   <a href=""><img src="https://img.shields.io/cocoapods/p/StackLayout.svg?style=flat" /></a>
   <a href="https://travis-ci.org/layoutBox/StackLayout"><img src="https://travis-ci.org/layoutBox/StackLayout.svg?branch=dev" /></a>
   <a href="https://codecov.io/gh/layoutBox/StackLayout"><img src="https://codecov.io/gh/layoutBox/StackLayout/branch/dev/graph/badge.svg"/></a>
-  <a href='https://img.shields.io/cocoapods/v/StackLayout.svg'><img src="https://img.shields.io/cocoapods/v/StackLayout.svg" /></a>
-  <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" /></a>
-  <a href="https://raw.githubusercontent.com/layoutBox/StackLayout/master/LICENSE"><img src="https://img.shields.io/badge/license-New%20BSD-blue.svg?style=flat" /></a>
+  <a href='https://cocoapods.org/pods/StackLayoutView'><img src="https://img.shields.io/cocoapods/v/StackLayout.svg" /></a>
+  <!--a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" /></a-->
+  <a href="https://github.com/layoutBox/StackLayout/issues"><img src="https://img.shields.io/github/issues/layoutBox/StackLayout.svg?style=flat" /></a>
+</p>
+</p>
+<p align="center">
+  <a href='https://cocoapods.org/pods/StackLayoutView'><img src="https://img.shields.io/cocoapods/v/StackLayoutView.svg" /></a>
+  <a href='https://cocoapods.org/pods/StackLayoutView'><img src="https://img.shields.io/cocoapods/dm/StackLayoutView.svg" /></a>
+  <a href='https://cocoapods.org/pods/StackLayoutView'><img src="https://img.shields.io/cocoapods/dt/StackLayoutView.svg" /></a>
 </p>
 
 <br>

@@ -41,7 +41,7 @@ class MarginsSpec: QuickSpec {
             viewController = UIViewController()
             
             stackLayoutView = StackLayoutView()
-            stackLayoutView.frame = CGRect(x: 0, y: 80, width: 400, height: 600)
+            stackLayoutView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
             stackLayoutView.setNeedsLayout()
             viewController.view.addSubview(stackLayoutView)
 
