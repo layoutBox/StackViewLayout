@@ -210,17 +210,7 @@ class IntroView: BaseView {
         
         view1.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
         
-//        stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
-//            label1.item.grow(1).maxHeight(100)
-//            label2.item.grow(10).maxHeight(120)
-//            view1.item.grow(1).maxHeight(140)
-//
-//            stack.addItem(label1)
-//            stack.addItem(label2)
-//            stack.addItem(view1)
-//        }
-        
-        stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+        stackLayoutView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
             label1.item.grow(1)
             label2.item.grow(10)
             view1.item.grow(1)
@@ -229,7 +219,6 @@ class IntroView: BaseView {
             stack.addItem(label2)
             stack.addItem(view1)
         }
-        
         
         layout()
         
@@ -257,33 +246,16 @@ class IntroView: BaseView {
     
     private func layout() {
 //        stackLayoutView.pin.top(64).left().width(400).height(600)
-        
-        stackLayoutView.pin.top(64).left().width(400).sizeToFit(.width)
+        stackLayoutView.pin.top(64).height(200).sizeToFit(.height)
         
 //        stackLayoutView.pin.top(80).left().height(400).sizeToFit(.height)
 //        stackLayoutView.pin.top(80).left().width(400).sizeToFit(.width)
-//        stackLayoutView.layout()
+        stackLayoutView.layout()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         layout()
-        
-        // Layout the stackLayoutView using the view's safeArea with at least of 10 pixels all around.
-//        stackLayoutView.pin.top(80).left().width(400).height(600)
-//        stackLayoutView.layout()
-        
-//        stackLayoutView.pin.top(80).left().width(400).sizeToFit(.width)
-//        stackLayoutView.pin.top(80).left().height(400).sizeToFit(.height)
-//        stackLayoutView.layout()
-        
-//        buttonsStackView.pin.below(of: stackLayoutView).left().right().margin(8).sizeToFit(.width)
-
-//        printViewFrame(stackLayoutView, name: "stackLayoutView")
-//        printViewFrame(label1, name: "label1")
-//        printViewFrame(label2, name: "label2")
-////        printViewFrame(label3, name: "label3")
-//        printViewFrame(view1, name: "view1")
     }
     
     fileprivate func printViewFrame(_ view: UIView, name: String) {

@@ -356,9 +356,6 @@ extension StackLayoutView {
             }
             assert(item.height != nil && item.width != nil, "should not occurred")
             
-//            item.width = applyWidthMinMax(item)
-//            item.height = applyHeightMinMax(item)
-            
             //
             // Compute item main-axis margins.
             item.mainAxisStartMargin = stackItem.mainAxisStartMargin(container: container)
@@ -376,9 +373,10 @@ extension StackLayoutView {
         if container.mainAxisTotalItemsLength < containerMainAxisLength {
             // Grow
             var growFactorTotal: CGFloat = 0
-            var lenghtToDistribute = containerMainAxisLength - container.mainAxisTotalItemsLength
             
             repeat {
+                let lenghtToDistribute = containerMainAxisLength - container.mainAxisTotalItemsLength
+                
                 growFactorTotal = container.items.reduce(0, { (result, itemInfo) -> CGFloat in
                     return result + itemInfo.growFactor()
                 })

@@ -119,7 +119,7 @@ class StackItemImpl: NSObject, StackItem {
     
     @discardableResult
     func minHeight(_ value: CGFloat) -> StackItem {
-        minWidth = Value(value)
+        minHeight = Value(value)
         return self
     }
     

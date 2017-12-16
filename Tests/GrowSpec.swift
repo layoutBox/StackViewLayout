@@ -151,7 +151,7 @@ class GrowSpec: QuickSpec {
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 535.333, width: 400, height: 65), within: 0.5))
             }
             
-            it("maxHeight") {
+            it("grow + maxHeight") {
                 stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.grow(1).maxHeight(100)
                     label2.item.grow(10).maxHeight(120)
@@ -168,6 +168,86 @@ class GrowSpec: QuickSpec {
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 100), within: 0.5))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 100, width: 400, height: 120), within: 0.5))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 220, width: 400, height: 140), within: 0.5))
+            }
+            
+            it("The label1 should grow to takes the extra space.") {
+                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1)
+                    label2.item.grow(10).maxHeight(120)
+                    view1.item.grow(1).maxHeight(140)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 340), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 340, width: 400, height: 120), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 460, width: 400, height: 140), within: 0.5))
+            }
+            
+            it("grow + minHeight") {
+                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1).minHeight(200)
+                    label2.item.grow(2)
+                    view1.item.grow(1).minHeight(220)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 240), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 240, width: 400, height: 100.333), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 340.333, width: 400, height: 260), within: 0.5))
+            }
+            
+            it("grow + minHeight + overflow") {
+                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1).minHeight(300)
+                    label2.item.grow(2)
+                    view1.item.grow(1).minHeight(320)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 300), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 300, width: 400, height: 20.333), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 320.333, width: 400, height: 320), within: 0.5))
+            }
+            
+            it("grow + minHeight") {
+                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1)
+                    label2.item.grow(2)
+                    view1.item.grow(1).minHeight(220)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 105.333), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 105.333, width: 400, height: 190), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 295.333, width: 400, height: 305), within: 0.5))
             }
             
             it("should not apply grow since the stack will adjust its height") {
@@ -187,6 +267,203 @@ class GrowSpec: QuickSpec {
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: 0.5))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20.333), within: 0.5))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 400, height: 20), within: 0.5))
+            }
+        }
+        
+        //
+        // ROW: Adjust the width based on a fixed height
+        //
+        describe("ROW: Grow") {
+            it("1 item with grow") {
+                stackLayoutView.direction(.row).define { (stack) in
+                    label1.item.grow(1)
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 282.667, height: 600), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 282.667, y: 0, width: 104, height: 600), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 386.667, y: 0, width: 13.333, height: 600), within: 0.5))
+            }
+            
+            it("1 item with grow") {
+                stackLayoutView.direction(.row).define { (stack) in
+                    label2.item.grow(1)
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 600), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 333, height: 600), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 386.667, y: 0, width: 13.333, height: 600), within: 0.5))
+            }
+            
+            it("2 items with grow") {
+                stackLayoutView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1)
+                    label2.item.grow(1)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 168.333, height: 600), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 168.333, y: 0, width: 218.667, height: 600), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 387, y: 0, width: 13.333, height: 600), within: 0.5))
+            }
+            
+            it("3 items with grow") {
+                stackLayoutView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1)
+                    label2.item.grow(1)
+                    view1.item.grow(1)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 130, height: 600), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 130, y: 0, width: 180.333, height: 600), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 310.333, y: 0, width: 89.667, height: 600), within: 0.5))
+            }
+            
+            it("3 items with grow") {
+                stackLayoutView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1)
+                    label2.item.grow(10)
+                    view1.item.grow(1)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 73, height: 600), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 73, y: 0, width: 295, height: 600), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 368, y: 0, width: 32.667, height: 600), within: 0.5))
+            }
+            
+            it("grow + maxWidth") {
+                stackLayoutView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1).maxWidth(100)
+                    label2.item.grow(10).maxWidth(120)
+                    view1.item.grow(1).maxWidth(140)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 100, height: 600), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 100, y: 0, width: 120, height: 600), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 220, y: 0, width: 140, height: 600), within: 0.5))
+            }
+            
+            it("The label1 should grow to takes the extra space.") {
+                stackLayoutView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1)
+                    label2.item.grow(10).maxWidth(120)
+                    view1.item.grow(1).maxWidth(140)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 160.333, height: 600), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 160.333, y: 0, width: 120, height: 600), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 280.333, y: 0, width: 120, height: 600), within: 0.5))
+            }
+            
+            it("grow + minWidth") {
+                stackLayoutView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1).minWidth(150)
+                    label2.item.grow(2)
+                    view1.item.grow(1).minWidth(100)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 161.667, height: 600), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 161.667, y: 0, width: 127, height: 600), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 288.667, y: 0, width: 111.667, height: 600), within: 0.5))
+            }
+            
+            it("grow + minWidth + overflow") {
+                stackLayoutView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1).minWidth(200)
+                    label2.item.grow(2)
+                    view1.item.grow(1).minWidth(220)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.width(400).height(600)
+                stackLayoutView.layoutIfNeeded()
+             
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 600), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 200, y: 0, width: 104, height: 600), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 304, y: 0, width: 220, height: 600), within: 0.5))
+            }
+            
+            it("should not apply grow since the stack will adjust its height") {
+                stackLayoutView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1)
+                    label2.item.grow(10)
+                    view1.item.grow(1)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+                
+                stackLayoutView.pin.height(200).sizeToFit(.height)
+                
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 197.667, height: 200), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 200), within: 0.5))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 200), within: 0.5))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 40, height: 200), within: 0.5))
             }
         }
     }
