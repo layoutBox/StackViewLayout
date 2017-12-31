@@ -19,7 +19,6 @@
 import UIKit
 
 public func _setUnitTestDisplayScale(_ scale: CGFloat) {
-    displayScale = scale
-//    Coordinates.displayScale = displayScale
+    Coordinates.displayScale = scale
 }
 

@@ -24,6 +24,7 @@ import PinLayout
 
 class JustifytemsColumnSpec: QuickSpec {
     override func spec() {
+        let withinRange: CGFloat = 0.001
         var viewController: UIViewController!
         
         var stackLayoutView: StackLayoutView!
@@ -78,9 +79,9 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.start)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 53.667, height: 20.334), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.334, width: 154.334, height: 20.334), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 40.667, width: 262.667, height: 20.334), within: withinRange))
             }
             
             it("justify(.start)") {
@@ -88,9 +89,9 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.center)
                 stackLayoutView.layout()
 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 173.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.334, y: 0.0, width: 53.667, height: 20.334), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 20.334, width: 154.334, height: 20.334), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.667, y: 40.667, width: 262.667, height: 20.334), within: withinRange))
             }
             
             it("justify(.start)") {
@@ -98,9 +99,9 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.end)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 346.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 245.66, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 137.33, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 346.334, y: 0.0, width: 53.667, height: 20.334), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 245.667, y: 20.334, width: 154.334, height: 20.334), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 137.334, y: 40.667, width: 262.667, height: 20.334), within: withinRange))
             }
             
             it("justify(.center)") {
@@ -108,9 +109,9 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.start)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 269.5, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 290, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 310.33, width: 262.66, height: 20.33), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 269.667, width: 53.667, height: 20.334), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 290, width: 154.334, height: 20.334), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 310.334, width: 262.667, height: 20.334), within: withinRange))
             }
             
             it("justify(.center)") {
@@ -118,9 +119,9 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.center)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 173.33, y: 269.5, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 290, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 310.33, width: 262.66, height: 20.33), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.334, y: 269.667, width: 53.667, height: 20.334), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 290, width: 154.334, height: 20.334), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.667, y: 310.334, width: 262.667, height: 20.334), within: withinRange))
             }
             
             it("justify(.center)") {
@@ -128,9 +129,9 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.end)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 346.33, y: 269.5, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 245.66, y: 290, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 137.33, y: 310.33, width: 262.66, height: 20.33), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 346.334, y: 269.667, width: 53.667, height: 20.334), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 245.667, y: 290, width: 154.334, height: 20.334), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 137.334, y: 310.334, width: 262.667, height: 20.334), within: withinRange))
             }
             
             it("justifyContent(.end)") {
@@ -138,9 +139,9 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.start)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 539.0, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 559.33, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 579.66, width: 262.66, height: 20.33), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 539.0, width: 53.667, height: 20.334), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 559.334, width: 154.334, height: 20.334), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 0.0, y: 579.667, width: 262.667, height: 20.334), within: withinRange))
             }
             
             it("justifyContent(.end)") {
@@ -148,9 +149,9 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.center)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 173.33, y: 539.0, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 559.33, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 579.66, width: 262.66, height: 20.33), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.334, y: 539.0, width: 53.667, height: 20.334), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 559.334, width: 154.334, height: 20.334), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.667, y: 579.667, width: 262.667, height: 20.334), within: withinRange))
             }
             
             it("justifyContent(.end)") {
@@ -158,9 +159,9 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.end)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 346.33, y: 539.0, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 245.66, y: 559.33, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 137.33, y: 579.66, width: 262.66, height: 20.33), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 346.334, y: 539.0, width: 53.667, height: 20.334), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 245.667, y: 559.334, width: 154.334, height: 20.334), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 137.334, y: 579.667, width: 262.667, height: 20.334), within: withinRange))
             }
             
             it("justifyContent(.spaceBetween)") {
@@ -169,9 +170,10 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.center)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 173.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 290, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 579.66, width: 262.66, height: 20.33), within: 0.5))
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.333, y: 0, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 290, width: 154.333, height: 20.333), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.667, y: 580, width: 262.667, height: 20.333), within: withinRange))
             }
             
             it("justifyContent(.spaceAround)") {
@@ -180,9 +182,9 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.center)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 173.33, y: 90, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 290, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 490, width: 262.66, height: 20.33), within: 0.5))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.334, y: 90, width: 53.667, height: 20.334), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 290, width: 154.334, height: 20.334), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.667, y: 490, width: 262.667, height: 20.334), within: withinRange))
             }
             
             it("justifyContent(.spaceEvenly)") {
@@ -191,30 +193,11 @@ class JustifytemsColumnSpec: QuickSpec {
                 stackLayoutView.alignItems(.center)
                 stackLayoutView.layout()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 173.33, y: 134.75, width: 53.66, height: 20.33), within: 0.5))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 290, width: 154.33, height: 20.33), within: 0.5))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 68.66, y: 444.66, width: 262.66, height: 20.33), within: 0.5))
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 173.333, y: 134.667, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 123, y: 289.667, width: 154.333, height: 20.333), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 68.667, y: 444.667, width: 262.667, height: 20.333), within: withinRange))
             }
-            
-//            it("align(.end)") {
-//                stackLayoutView.justifyContent(.spaceBetween)
-//                stackLayoutView.alignItems(.end)
-//                stackLayoutView.layout()
-//
-////                expect(label1.frame).to(beCloseTo(CGRect(x: 346.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
-////                expect(label2.frame).to(beCloseTo(CGRect(x: 245.66, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
-////                expect(label3.frame).to(beCloseTo(CGRect(x: 137.33, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
-//            }
-            
-//            it("align(.end)") {
-//                stackLayoutView.justifyContent(.spaceBetween)
-//                stackLayoutView.alignItems(.end)
-//                stackLayoutView.layout()
-//
-//                expect(label1.frame).to(beCloseTo(CGRect(x: 346.33, y: 0.0, width: 53.66, height: 20.33), within: 0.5))
-//                expect(label2.frame).to(beCloseTo(CGRect(x: 245.66, y: 20.33, width: 154.33, height: 20.33), within: 0.5))
-//                expect(label3.frame).to(beCloseTo(CGRect(x: 137.33, y: 40.66, width: 262.66, height: 20.33), within: 0.5))
-//            }
         }
     }
 }

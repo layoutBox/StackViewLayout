@@ -40,12 +40,15 @@ public class StackLayoutView: UIView {
         closure(self)
     }
     
-    public func addItem(_ view: UIView) {
-        guard let stackItemImpl = view.item as? StackItemImpl else { return }
+    @discardableResult
+    public func addItem(_ view: UIView) -> StackItem {
+        let stackItemImpl = view.item as! StackItemImpl
 //        stackItemImpl.parent = self
         stackItems.append(stackItemImpl)
         
         super.addSubview(view)
+        
+        return stackItemImpl
      }
     
     public func insertItem(_ view: UIView, at index: Int) {
@@ -166,13 +169,13 @@ public class StackLayoutView: UIView {
         
         switch mode {
         case .fitContainer:
-            container.width = frame.width
-            container.height = frame.height
+            container.width = bounds.width
+            container.height = bounds.height
         case .adjustWidth:
             container.width = nil
-            container.height = frame.height
+            container.height = bounds.height
         case .adjustHeight:
-            container.width = frame.width
+            container.width = bounds.width
             container.height = nil
         }
         
@@ -199,7 +202,7 @@ public class StackLayoutView: UIView {
         
         if animate {
             if isVisible {
-                view.frame.size = direction == .column ? CGSize(width: view.frame.width, height: 0) : CGSize(width: 0, height: view.frame.height)
+                view.bounds.size = direction == .column ? CGSize(width: view.frame.width, height: 0) : CGSize(width: 0, height: view.frame.height)
                 view.isHidden = false
                 
                 UIView.animate(withDuration: duration, delay: 0, options: [.beginFromCurrentState], animations: {

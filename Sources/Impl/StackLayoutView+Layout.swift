@@ -57,23 +57,59 @@ class Container {
             mainAxisTotalItemsLength += item.mainAxisEndMargin ?? 0
         })
     }
+    
+    func growFactorTotal() -> CGFloat {
+        return items.reduce(0, { (result, itemInfo) -> CGFloat in
+            return result + itemInfo.growFactor()
+        })
+    }
+    
+    func shrinkFactorTotal() -> CGFloat {
+        return items.reduce(0, { (result, itemInfo) -> CGFloat in
+            return result + itemInfo.shrinkFactor()
+        })
+    }
 }
     
 class ItemInfo {
     var view: UIView
     var stackItem: StackItemImpl
     
+    private var _width: CGFloat?
     var width: CGFloat? {
-        didSet {
-            applyWidthMinMax()
+        get {
+            return _width
+        }
+        set {
+            _width = newValue?.roundUsingDisplayScale()
+            
+            if let minWidth = minWidth, minWidth > (width ?? 0) {
+                _width = minWidth
+            }
+            
+            if let maxWidth = maxWidth, maxWidth < (width ?? CGFloat.greatestFiniteMagnitude) {
+                _width = maxWidth
+            }
         }
     }
+
     var minWidth: CGFloat?
     var maxWidth: CGFloat?
 
+    private var _height: CGFloat?
     var height: CGFloat? {
-        didSet {
-            applyHeightMinMax()
+        get {
+            return _height
+        }
+        set {
+            _height = newValue?.roundUsingDisplayScale()
+            if let minHeight = minHeight, minHeight > (_height ?? 0) {
+                _height = minHeight
+            }
+            
+            if let maxHeight = maxHeight, maxHeight < (_height ?? CGFloat.greatestFiniteMagnitude) {
+                _height = maxHeight
+            }
         }
     }
     var minHeight: CGFloat?
@@ -84,16 +120,21 @@ class ItemInfo {
             return direction == .column ? height : width
         }
         set {
+            let value = newValue != nil ? max(0, newValue!)/*.roundUsingDisplayScale()*/ : nil
             if direction == .column {
-                height = newValue
+                height = value
             } else {
-                width = newValue
+                width = value
             }
         }
     }
     
     var mainAxisMaxLength: CGFloat? {
         return direction == .column ? maxHeight : maxWidth
+    }
+    
+    var mainAxisMinLength: CGFloat? {
+        return direction == .column ? minHeight : minWidth
     }
 
     var crossAxisLength: CGFloat {
@@ -104,6 +145,10 @@ class ItemInfo {
     var mainAxisStartMargin: CGFloat?
     var mainAxisEndMargin: CGFloat?
     
+    var basis: CGFloat {
+        return mainAxisLength ?? 1
+    }
+    
     private let direction: SDirection
     
     init(_ stackItem: StackItemImpl, container: Container) {
@@ -111,6 +156,10 @@ class ItemInfo {
         self.view = stackItem.view
         self.direction = container.direction
         
+        resetToStackItemProperties(container: container)
+    }
+    
+    func resetToStackItemProperties(container: Container) {
         if let stackItem = view.item as? StackItemImpl {
             self.width = stackItem.width?.resolveWidth(container: container)
             self.minWidth = stackItem.minWidth?.resolveWidth(container: container)
@@ -120,6 +169,64 @@ class ItemInfo {
             self.minHeight = stackItem.minHeight?.resolveHeight(container: container)
             self.maxHeight = stackItem.maxHeight?.resolveHeight(container: container)
         }
+    }
+    
+    func measureItem(container: Container, applyMargins: Bool) {
+        guard width == nil || height == nil else { return }
+        var fitWidth: CGFloat?
+        var fitHeight: CGFloat?
+        
+        if let itemWidth = width {
+            fitWidth = itemWidth
+        } else if let itemHeight = height {
+            fitHeight = itemHeight
+        } else if let containerWidth = container.width {
+            fitWidth = containerWidth
+        } else if let containerHeight = container.height {
+            fitHeight = containerHeight
+        }
+        
+//        if direction == .column {
+//            if let itemWidth = width {
+//                fitWidth = itemWidth
+//            } else if let itemHeight = height {
+//                fitHeight = itemHeight
+//            } else if let containerWidth = container.width {
+//                fitWidth = containerWidth
+//            } else if let containerHeight = container.height {
+//                fitHeight = containerHeight
+//            }
+//        } else {
+//            if let itemHeight = height {
+//                fitHeight = itemHeight
+//            } else if let itemWidth = width {
+//                fitWidth = itemWidth
+//            } else if let containerWidth = container.width {
+//                fitWidth = containerWidth
+//            } else if let containerHeight = container.height {
+//                fitHeight = containerHeight
+//            }
+//        }
+        
+        // Measure the view using sizeThatFits(:CGSize)
+        if let fitWidth = fitWidth, height == nil {
+            let adjustedFitWidth = applyMargins ? stackItem.applyMargins(toWidth: fitWidth) : fitWidth
+            let newSize = view.sizeThatFits(CGSize(width: adjustedFitWidth, height: .greatestFiniteMagnitude))
+            height = minValueOptional(newSize.height, container.height)
+            
+            if width == nil {
+                width = min(newSize.width, adjustedFitWidth)
+            }
+        } else if let fitHeight = fitHeight, width == nil {
+            let adjustedFitHeight = applyMargins ? stackItem.applyMargins(toHeight: fitHeight) : fitHeight
+            let newSize = view.sizeThatFits(CGSize(width: .greatestFiniteMagnitude, height: adjustedFitHeight))
+            width = minValueOptional(newSize.width, container.width)
+            
+            if height == nil {
+                height = min(newSize.height, adjustedFitHeight)
+            }
+        }
+        assert(height != nil && width != nil, "should not occurred")
     }
     
     func growFactor() -> CGFloat {
@@ -134,57 +241,18 @@ class ItemInfo {
         }
     }
     
-    private func applyWidthMinMax() {
-        if let minWidth = minWidth, minWidth > (width ?? 0) {
-            width = minWidth
-        }
+    func shrinkFactor() -> CGFloat {
+        guard let mainAxisLength = mainAxisLength else { return 0 }
+        guard mainAxisLength != 0 else { return 0 }
         
-        if let maxWidth = maxWidth, maxWidth < (width ?? CGFloat.greatestFiniteMagnitude) {
-            width = maxWidth
+        if let mainAxisMinLength = mainAxisMinLength, mainAxisLength <= mainAxisMinLength {
+            return 0
+        } else if let shrink = stackItem.shrink {
+            return shrink * basis
+        } else {
+            return 0
         }
     }
-    
-    private func applyHeightMinMax() {
-        if let minHeight = minHeight, minHeight > (height ?? 0) {
-            height = minHeight
-        }
-        
-        if let maxHeight = maxHeight, maxHeight < (height ?? CGFloat.greatestFiniteMagnitude) {
-            height = maxHeight
-        }
-    }
-    
-//    private func applyWidthMinMax(_ item: ItemInfo) -> CGFloat? {
-//        var result = item.width
-//
-//        // Handle minWidth
-//        if let minWidth = item.minWidth, minWidth > (result ?? 0) {
-//            result = minWidth
-//        }
-//
-//        // Handle maxWidth
-//        if let maxWidth = item.maxWidth, maxWidth < (result ?? CGFloat.greatestFiniteMagnitude) {
-//            result = maxWidth
-//        }
-//
-//        return result
-//    }
-//
-//    private func applyHeightMinMax(_ item: ItemInfo) -> CGFloat? {
-//        var result = item.height
-//
-//        // Handle minHeight
-//        if let minHeight = item.minHeight, minHeight > (result ?? 0) {
-//            result = minHeight
-//        }
-//
-//        // Handle maxHeight
-//        if let maxHeight = item.maxHeight, maxHeight < (result ?? CGFloat.greatestFiniteMagnitude) {
-//            result = maxHeight
-//        }
-//
-//        return result
-//    }
 }
     
 extension StackLayoutView {
@@ -192,8 +260,8 @@ extension StackLayoutView {
         super.layoutSubviews()
         
         let container = Container(direction: direction)
-        container.width = frame.size.width
-        container.height = frame.size.height
+        container.width = bounds.size.width
+        container.height = bounds.size.height
         layoutItems(container: container)
     }
     
@@ -275,26 +343,32 @@ extension StackLayoutView {
                     let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
                     crossAxisPos = containerCrossAxisLength - itemCrossAxisLength - crossAxisEndMargin
                 }
-                
+
                 let crossAxisStartMargin = stackItem.crossAxisStartMargin(container: container)
-                if crossAxisPos < crossAxisStartMargin {
-                    crossAxisPos = crossAxisStartMargin
+                crossAxisPos = max(crossAxisPos, crossAxisStartMargin)
+                
+                // Check if we must reduce the item's cross axis length to respect its cross axis margins
+                let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
+                if crossAxisPos + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisLength {
+                    itemCrossAxisLength = max(0, containerCrossAxisLength - crossAxisPos - crossAxisEndMargin)
                 }
             }
             
             let viewFrame  = direction == .column ? CGRect(x: crossAxisPos, y: mainAxisOffset, width: itemCrossAxisLength, height: item.height!) :
                                                     CGRect(x: mainAxisOffset, y: crossAxisPos, width: item.width!, height: itemCrossAxisLength)
-            item.view.frame = viewFrame.adjustToDisplayScale()
             
-            mainAxisOffset = direction == .column ? item.view.frame.maxY :  item.view.frame.maxX
+            let itemViewRect = Coordinates.adjustRectToDisplayScale(viewFrame)
+            Coordinates.setUntransformedViewRect(item.view, toRect: itemViewRect)
+            
+            mainAxisOffset = direction == .column ? itemViewRect.maxY :  itemViewRect.maxX
             mainAxisOffset += (item.mainAxisEndMargin ?? 0)
             
             if direction == .column {
-                maxX = max(item.view.frame.maxX, maxX)
+                maxX = max(itemViewRect.maxX, maxX)
                 maxY = mainAxisOffset
             } else {
                 maxX = mainAxisOffset
-                maxY = max(item.view.frame.maxY, maxY)
+                maxY = max(itemViewRect.maxY, maxY)
             }
         }
 
@@ -309,58 +383,13 @@ extension StackLayoutView {
             
             let item = ItemInfo(stackItem, container: container)
             
-            //
             // Compute width & height
-            var fitWidth: CGFloat?
-            var fitHeight: CGFloat?
-
-            if direction == .column {
-                if let itemWidth = item.width {
-                    fitWidth = itemWidth
-                } else if let itemHeight = item.height {
-                    fitHeight = itemHeight
-                } else if let containerWidth = container.width {
-                    fitWidth = containerWidth
-                } else if let containerHeight = container.height {
-                    fitHeight = containerHeight
-                }
-            } else {
-                if let itemHeight = item.height {
-                    fitHeight = itemHeight
-                } else if let itemWidth = item.width {
-                    fitWidth = itemWidth
-                } else if let containerHeight = container.height {
-                    fitHeight = containerHeight
-                } else if let containerWidth = container.width {
-                    fitWidth = containerWidth
-                } 
-            }
-
-            // Measure the view using sizeThatFits(:CGSize)
-            if let fitWidth = fitWidth, item.height == nil {
-                let adjustedFitWidth = stackItem.applyMargins(toWidth: fitWidth)
-                let newSize = view.sizeThatFits(CGSize(width: adjustedFitWidth, height: .greatestFiniteMagnitude))
-                item.height = minValue(newSize.height, container.height)
-
-                if item.width == nil {
-                    item.width = min(newSize.width, adjustedFitWidth)
-                }
-            } else if let fitHeight = fitHeight, item.width == nil {
-                let adjustedFitHeight = stackItem.applyMargins(toHeight: fitHeight)
-                let newSize = view.sizeThatFits(CGSize(width: .greatestFiniteMagnitude, height: adjustedFitHeight))
-                item.width = minValue(newSize.width, container.width)
-                
-                if item.height == nil {
-                    item.height = min(newSize.height, adjustedFitHeight)
-                }
-            }
-            assert(item.height != nil && item.width != nil, "should not occurred")
+            item.measureItem(container: container, applyMargins: true)
             
-            //
             // Compute item main-axis margins.
             item.mainAxisStartMargin = stackItem.mainAxisStartMargin(container: container)
             item.mainAxisEndMargin = stackItem.mainAxisEndMargin(container: container)
-            
+
             container.items.append(item)
         }
         
@@ -369,50 +398,60 @@ extension StackLayoutView {
     
     private func adjustItemsSizeToContainer(container: Container) {
         guard let containerMainAxisLength = container.mainAxisLength else { return }
-        
-        if container.mainAxisTotalItemsLength < containerMainAxisLength {
+        var lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
+        let delta = Coordinates.onePixelLength + 0.001
+
+        if lengthDiff > delta {
             // Grow
             var growFactorTotal: CGFloat = 0
-            
             repeat {
-                let lenghtToDistribute = containerMainAxisLength - container.mainAxisTotalItemsLength
+                growFactorTotal = container.growFactorTotal()
                 
-                growFactorTotal = container.items.reduce(0, { (result, itemInfo) -> CGFloat in
-                    return result + itemInfo.growFactor()
-                })
-                
-                print("growFactorTotal: \(growFactorTotal)")
                 if growFactorTotal > 0 {
-                    let factorLength = lenghtToDistribute / growFactorTotal
+                    let factorLength = lengthDiff / growFactorTotal
                     
                     for item in container.items {
                         guard let itemMainAxisLength = item.mainAxisLength else { continue }
                         let growFactor = item.growFactor()
                         
                         if growFactor > 0 {
-                            let addLength = growFactor * factorLength
-                            item.mainAxisLength = itemMainAxisLength + addLength
+                            item.resetToStackItemProperties(container: container)
+                            item.mainAxisLength = itemMainAxisLength + growFactor * factorLength
+                            item.measureItem(container: container, applyMargins: false)
                         }
                     }
+                    
+                    container.updateMainAxisTotalLength()
+                    lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
                 }
-                
-                container.updateMainAxisTotalLength()
-                
-            } while growFactorTotal > 0 && container.mainAxisTotalItemsLength < containerMainAxisLength
+            } while growFactorTotal > 0 && lengthDiff > delta
             
-        } else if container.mainAxisTotalItemsLength > containerMainAxisLength {
+        } else if lengthDiff < -delta {
             // Shrink
-//            var shrinkFactorTotal = container.items.reduce(0, { (result, itemInfo) -> CGFloat in
-//                return result + (itemInfo.stackItem.shrink ?? 0)
-//            })
-//            print("shrinkFactorTotal: \(shrinkFactorTotal)")
+            var shrinkFactorTotal: CGFloat = 0
+            
+            repeat {
+                shrinkFactorTotal = container.shrinkFactorTotal()
+                
+                if shrinkFactorTotal > 0 {
+                    let factorLength = lengthDiff / shrinkFactorTotal
+                    
+                    for item in container.items {
+                        guard let itemMainAxisLength = item.mainAxisLength else { continue }
+                        let shrinkFactor = item.shrinkFactor()
+                        
+                        if shrinkFactor > 0 {
+                            item.resetToStackItemProperties(container: container)
+                            item.mainAxisLength = itemMainAxisLength + shrinkFactor * factorLength
+                            item.measureItem(container: container, applyMargins: false)
+                        }
+                    }
+                    container.updateMainAxisTotalLength()
+                    lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
+                }
+            } while shrinkFactorTotal > 0 && lengthDiff < -delta
         }
     }
-}
-
-    
-private func minValue(_ value1: CGFloat, _ value2: CGFloat?) -> CGFloat {
-    return min(value1, value2 ?? .greatestFiniteMagnitude)
 }
 
 #endif
