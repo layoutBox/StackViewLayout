@@ -73,23 +73,23 @@ class AlignItemsRowSpec: QuickSpec {
         //
         // align()
         //
-//        describe("StackLayout align()") {
-//            it("align(.stretch)") {
-//                stackLayoutView.justifyContent(.start).alignItems(.stretch).define({ (stack) in
-//                    stack.addItem(label1)
-//                    stack.addItem(label2)
-//                    stack.addItem(view1)
-//                })
-//                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-//                stackLayoutView.layout()
-//
-//                // Match UIStackView
-//                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+        describe("StackLayout align()") {
+            it("align(.stretch)") {
+                stackLayoutView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                })
+                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+                stackLayoutView.layout()
+
+                // Match UIStackView
+                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
 //                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
 //                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 61), within: withinRange))
 //                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
-//            }
-//            
+            }
+//
 //            it("align(.start)") {
 //                stackLayoutView.justifyContent(.start).alignItems(.start).define({ (stack) in
 //                    stack.addItem(label1)
@@ -218,7 +218,7 @@ class AlignItemsRowSpec: QuickSpec {
 //                expect(label2.frame).to(beCloseTo(CGRect(x: 38.667, y: 20.333, width: 361.333, height: 61), within: withinRange))
 //                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
 //            }
-//        }
+        }
     }
     
     // TODO: row + align...
