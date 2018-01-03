@@ -1,26 +1,26 @@
 <p align="center">
-  <a href="https://github.com/layoutBox/StackLayout"><img src="docs_markdown/images/stacklayout_logo_text.png" width="260"/></a>
+  <a href="https://github.com/layoutBox/StackViewLayout"><img src="docs_markdown/images/stacklayout_logo_text.png" width="260"/></a>
 </p>
 
  
 <p align="center">
-  <a href=""><img src="https://img.shields.io/cocoapods/p/StackLayout.svg?style=flat" /></a>
-  <a href="https://travis-ci.org/layoutBox/StackLayout"><img src="https://travis-ci.org/layoutBox/StackLayout.svg?branch=dev" /></a>
-  <a href="https://codecov.io/gh/layoutBox/StackLayout"><img src="https://codecov.io/gh/layoutBox/StackLayout/branch/dev/graph/badge.svg"/></a>
-  <a href='https://cocoapods.org/pods/StackLayoutView'><img src="https://img.shields.io/cocoapods/v/StackLayout.svg" /></a>
+  <a href=""><img src="https://img.shields.io/cocoapods/p/StackViewLayout.svg?style=flat" /></a>
+  <a href="https://travis-ci.org/layoutBox/StackViewLayout"><img src="https://travis-ci.org/layoutBox/StackViewLayout.svg?branch=dev" /></a>
+  <a href="https://codecov.io/gh/layoutBox/StackViewLayout"><img src="https://codecov.io/gh/layoutBox/StackViewLayout/branch/dev/graph/badge.svg"/></a>
+  <a href='https://cocoapods.org/pods/StackViewLayoutView'><img src="https://img.shields.io/cocoapods/v/StackViewLayout.svg" /></a>
   <!--a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" /></a-->
-  <a href="https://github.com/layoutBox/StackLayout/issues"><img src="https://img.shields.io/github/issues/layoutBox/StackLayout.svg?style=flat" /></a>
+  <a href="https://github.com/layoutBox/StackViewLayout/issues"><img src="https://img.shields.io/github/issues/layoutBox/StackViewLayout.svg?style=flat" /></a>
 </p>
 </p>
 <p align="center">
-  <a href='https://cocoapods.org/pods/StackLayoutView'><img src="https://img.shields.io/cocoapods/v/StackLayoutView.svg" /></a>
-  <a href='https://cocoapods.org/pods/StackLayoutView'><img src="https://img.shields.io/cocoapods/dm/StackLayoutView.svg" /></a>
-  <a href='https://cocoapods.org/pods/StackLayoutView'><img src="https://img.shields.io/cocoapods/dt/StackLayoutView.svg" /></a>
+  <a href='https://cocoapods.org/pods/StackViewLayout'><img src="https://img.shields.io/cocoapods/v/StackViewLayout.svg" /></a>
+  <a href='https://cocoapods.org/pods/StackViewLayout'><img src="https://img.shields.io/cocoapods/dm/StackViewLayout.svg" /></a>
+  <a href='https://cocoapods.org/pods/StackViewLayout'><img src="https://img.shields.io/cocoapods/dt/StackViewLayout.svg" /></a>
 </p>
 
 <br>
 
-StackLayout is a UIStackView replacement.
+StackViewLayout is a UIStackView replacement.
 
 
 ### Requirements
@@ -31,7 +31,7 @@ StackLayout is a UIStackView replacement.
 ### Content
 
 * [Introduction examples](#intro_usage_example)
-* [StackLayout principles and philosophy](#introduction)
+* [StackViewLayout principles and philosophy](#introduction)
 * [Performance](#performance)
 * [Documentation](#documentation)
 	* [Creation, modification and definition of flexbox containers](#create_modify_define_containers)
@@ -53,11 +53,11 @@ StackLayout is a UIStackView replacement.
 
 <br>
 
-:pushpin: StackLayout is actively updated. So please come often to see latest changes. You can also **Star** it to be able to retrieve it easily later.
+:pushpin: StackViewLayout is actively updated. So please come often to see latest changes. You can also **Star** it to be able to retrieve it easily later.
 
 <br>
 
-### StackLayout + PinLayout + FlexLayout
+### StackViewLayout + PinLayout + FlexLayout
 
 <a href="https://github.com/mirego/PinLayout"><img src="docs_markdown/images/flexlayout_plus_pinlayout_small.png" width="250"/></a>
 
@@ -69,12 +69,12 @@ StackLayout is a UIStackView replacement.
 
 <br>
  
-## StackLayout Introduction examples <a name="intro_usage_example"></a>
+## StackViewLayout Introduction examples <a name="intro_usage_example"></a>
 ###### Example 1:
 
 
 ```swift
-fileprivate let stactLayout = StackLayoutView()
+fileprivate let stactLayout = StackView()
 
 init() {
    super.init(frame: .zero)
@@ -97,43 +97,43 @@ init() {
     label3.backgroundColor = .blue
     label3.text = "Label much longuer"
         
-    stackLayoutView.direction(.column).justifyContent(.spaceAround)
-    stackLayoutView.addItem(label1)
-    stackLayoutView.addItem(label2)
-    stackLayoutView.addItem(label3)
+    stackView.direction(.column).justifyContent(.spaceAround)
+    stackView.addItem(label1)
+    stackView.addItem(label2)
+    stackView.addItem(label3)
 }
 
 override func layoutSubviews() {
     super.layoutSubviews() 
 
-    // 1) Layout the StackLayoutView. This example use PinLayout for that purpose, but it could be done 
+    // 1) Layout the StackView. This example use PinLayout for that purpose, but it could be done 
     //    also by setting the rootFlexContainer's frame:
-    //       stackLayoutView.pin.top.frame = CGRect(x: 0, y: topLayoutGuide, 
+    //       StackView.pin.top.frame = CGRect(x: 0, y: topLayoutGuide, 
     //                                        width: frame.width, height: 
-    stackLayoutView.pin.top(80).left().width(400).height(600)
+    stackView.pin.top(80).left().width(400).height(600)
 }
 ``` 
 
-:pushpin: This example is available in the [Examples App](#examples_app). See complete [source code](https://github.com/layoutBox/StackLayout/blob/master/Example/StackLayoutSample/UI/Examples/Intro/IntroView.swift)
+:pushpin: This example is available in the [Examples App](#examples_app). See complete [source code](https://github.com/layoutBox/StackViewLayout/blob/master/Example/StackViewLayoutSample/UI/Examples/Intro/IntroView.swift)
 
 </br>
 
 
-## StackLayout principles and philosophy <a name="introduction"></a>
+## StackViewLayout principles and philosophy <a name="introduction"></a>
 
 TO BE DOCUMENTED
 
 <br>
 
-# StackLayout's Performance <a name="performance"></a>
+# StackViewLayout's Performance <a name="performance"></a>
 
 TO BE DOCUMENTED
 
 <br/>
 	
-### StackLayout default properties
+### StackViewLayout default properties
 
-| Property     | StackLayout default value |
+| Property     | StackViewLayout default value |
 |--------------|--------------------------|
 | **`direction`** | column |
 | **`justifyContent`** | start |
@@ -158,7 +158,7 @@ TO BE DOCUMENTED
 
 <br>
 
-## 2. StackLayoutView properties  <a name="containers_properties"></a>
+## 2. StackViewLayout properties  <a name="containers_properties"></a>
 This section describes all flex container's properties.
 
 ### direction() 
@@ -168,7 +168,7 @@ This section describes all flex container's properties.
 **Method:**
 
 * **`direction(_: SDirection)`**  
-The `direction` property establishes the main-axis, thus defining the direction items are placed in the StackLayoutView.
+The `direction` property establishes the main-axis, thus defining the direction items are placed in the StackViewLayout.
 
 TO BE DOCUMENTED
 
@@ -180,8 +180,8 @@ TO BE DOCUMENTED
 
 ###### Usage examples:
 ```swift
-  stackLayoutView.direction(.column)  // Not required, defaut value. 
-  stackLayoutView.direction(.row)
+  stackView.direction(.column)  // Not required, defaut value. 
+  stackView.direction(.row)
 ```
 
 ###### Example 1:
@@ -210,8 +210,8 @@ The `justifyContent` property defines the alignment along the main-axis of the c
 
 ###### Usage examples:
 ```swift
-  stackLayoutView.justifyContent(.start)  // defaut value. 
-  stackLayoutView.justifyContent(.center)
+  stackView.justifyContent(.start)  // defaut value. 
+  stackView.justifyContent(.center)
 ```
 <br/>
 
@@ -234,8 +234,8 @@ The `alignItems` property defines how flex items are laid out along the cross ax
 
 <br/>
 
-## 3. StackLayoutView items property <a name="containers_properties"></a>
-This section describes all StackLayoutView's items properties.
+## 3. StackViewLayout items property <a name="containers_properties"></a>
+This section describes all StackViewLayout's items properties.
 
 ### alignSelf()
 - Values: `auto` / `stretch` / `start` / `end` / `center`
@@ -349,17 +349,17 @@ NOT IMPLEMENTED
 ## 8. Differences with flexbox
 
 * Top and bottom margins using percentages  
-	* StackLayout resolve percentages in margin-top and margin-bottom against the **height of the container**.
+	* StackViewLayout resolve percentages in margin-top and margin-bottom against the **height of the container**.
 	* FlexLayout/flexbox resolve percentages in margin-top and margin-bottom against the **width of the container**.
 
 * Row direction
-	* StackLayout use the **container's height** to adjust the item's size if the item's width or haven't been specified.
+	* StackViewLayout use the **container's height** to adjust the item's size if the item's width or haven't been specified.
 	* FlexLayout/flexbox use the **container's width** to adjust the item's size if the item's width or haven't been specified.
 
 <br>
 
-## StackLayout API Documentation <a name="api_documentation"></a>
-The [**complete StackLayout API is available here**](https://layoutBox.github.io/FlexLayout/1.1/Classes/Flex.html). 
+## StackViewLayout API Documentation <a name="api_documentation"></a>
+The [**complete StackViewLayout API is available here**](https://layoutBox.github.io/FlexLayout/1.1/Classes/Flex.html). 
 
 <br>
 
@@ -377,11 +377,11 @@ NOT IMPLEMENTED
 <br/>
 
 ## Contributing, comments, ideas, suggestions, issues, .... <a name="comments"></a>
-For any **comments**, **ideas**, **suggestions**, simply open an [issue](https://github.com/layoutBox/StackLayout/issues). 
+For any **comments**, **ideas**, **suggestions**, simply open an [issue](https://github.com/layoutBox/StackViewLayout/issues). 
 
-For **issues**, please have a look at [Yoga's issues](https://github.com/facebook/yoga/issues). Your issue may have been already reported. If not, it may be a StackLayout issue. In this case open an issue and we'll let you know if the issue is related to Yoga's implementation. 
+For **issues**, please have a look at [Yoga's issues](https://github.com/facebook/yoga/issues). Your issue may have been already reported. If not, it may be a StackViewLayout issue. In this case open an issue and we'll let you know if the issue is related to Yoga's implementation. 
 
-If you find StackLayout interesting, thanks to **Star** it. You'll be able to retrieve it easily later.
+If you find StackViewLayout interesting, thanks to **Star** it. You'll be able to retrieve it easily later.
 
 If you'd like to contribute, you're welcome!
 
@@ -393,7 +393,7 @@ If you'd like to contribute, you're welcome!
 NOT DONE YET
 
 ## Changelog
-StackLayout recent history is available in the are documented in the [CHANGELOG](CHANGELOG.md).
+StackViewLayout recent history is available in the are documented in the [CHANGELOG](CHANGELOG.md).
 
 <br>
 
