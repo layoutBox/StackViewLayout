@@ -8,9 +8,11 @@
 
 Pod::Spec.new do |s|
   s.name         = "StackLayoutView"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "StackLayout is a UIStackView replacement that don't rely on auto layout"
   #s.description  = ""
+  spec.deprecated = true
+  spec.deprecated_in_favor_of = 'StackViewLayout'
 
   s.homepage     = "https://github.com/layoutBox/StackLayout/"
   s.license      = "BSD 3-clause"
