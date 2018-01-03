@@ -1,5 +1,5 @@
 use_frameworks!
-platform :ios, "8.0"
+platform :ios, "9.0"
 
 workspace 'StackLayout.xcworkspace'
 
@@ -20,12 +20,12 @@ target 'StackLayoutTests' do
 end
 
 target 'StackLayoutExample' do
-  platform :ios, "8.0"
   project 'Example/StackLayoutExample.xcodeproj'
 
   pod 'StackLayoutView', :path => './'
   pod 'PinLayout'
   #pod 'PinLayout', :path => '../PinLayout'
+  pod 'FlexLayout'  
 
   # Debug only
   pod 'Reveal-SDK', '~> 10', :configurations => ['Debug']

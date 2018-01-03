@@ -31,6 +31,7 @@
 		2475B6D11FC37C8C0054CADD /* UIView+LTR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2475B6D01FC37C8C0054CADD /* UIView+LTR.swift */; };
 		2475B6DB1FC37D4D0054CADD /* StackLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2475B6D91FC37D4D0054CADD /* StackLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		248E4C771F7A88D200C0E7F7 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */; };
+		248F0C1F1FF92238004CD8AC /* WidthHeightSizeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248F0C191FF919F2004CD8AC /* WidthHeightSizeSpec.swift */; };
 		249EFE841E64FB4C00165E39 /* StackLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249EFE7A1E64FB4C00165E39 /* StackLayout.framework */; };
 		24B3F7CE1FE1544100AC174B /* GrowSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3F7C91FE0165F00AC174B /* GrowSpec.swift */; };
 		24BBE6351F50FA1D0091D5E9 /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BBE6341F50FA1D0091D5E9 /* UnitTests.swift */; };
@@ -516,6 +517,7 @@
 				24EC06E71FD7186E00459C62 /* MarginsSpec.swift in Sources */,
 				2469C5041E75DB7600073BEE /* RectNimbleMatcher.swift in Sources */,
 				245B58061FE8BA5800C0E8EA /* AlignItemsRowSpec.swift in Sources */,
+				248F0C1F1FF92238004CD8AC /* WidthHeightSizeSpec.swift in Sources */,
 				24496C311FE55F9D006F0E78 /* ShrinkColumnSpec.swift in Sources */,
 				2469C5021E75D88500073BEE /* BasicView.swift in Sources */,
 				24EC06AC1FD254F700459C62 /* JustifytemsColumnSpec.swift in Sources */,

@@ -142,6 +142,8 @@ class ItemInfo {
         return direction == .column ? width! : height!
     }
     
+    private(set) var isCrossAxisFlexible: Bool = true
+    
     var mainAxisStartMargin: CGFloat?
     var mainAxisEndMargin: CGFloat?
     
@@ -168,18 +170,23 @@ class ItemInfo {
             self.height = stackItem.height?.resolveHeight(container: container)
             self.minHeight = stackItem.minHeight?.resolveHeight(container: container)
             self.maxHeight = stackItem.maxHeight?.resolveHeight(container: container)
+            
+            self.isCrossAxisFlexible = direction == .column ? (width == nil) : (height == nil)
         }
     }
     
     func measureItem(container: Container, applyMargins: Bool) {
         guard width == nil || height == nil else { return }
+        var applyMargins = applyMargins
         var fitWidth: CGFloat?
         var fitHeight: CGFloat?
         
         if let itemWidth = width {
             fitWidth = itemWidth
+            applyMargins = false
         } else if let itemHeight = height {
             fitHeight = itemHeight
+            applyMargins = false
         } else if let containerWidth = container.width {
             fitWidth = containerWidth
         } else if let containerHeight = container.height {
@@ -230,7 +237,7 @@ class ItemInfo {
     }
     
     func growFactor() -> CGFloat {
-        guard let mainAxisLength = mainAxisLength else { return 0 }
+        guard let mainAxisLength = mainAxisLength, mainAxisLength != 0 else { return 0 }
         
         if let mainAxisMaxLength = mainAxisMaxLength, mainAxisLength >= mainAxisMaxLength {
             return 0
@@ -242,8 +249,7 @@ class ItemInfo {
     }
     
     func shrinkFactor() -> CGFloat {
-        guard let mainAxisLength = mainAxisLength else { return 0 }
-        guard mainAxisLength != 0 else { return 0 }
+        guard let mainAxisLength = mainAxisLength, mainAxisLength != 0 else { return 0 }
         
         if let mainAxisMinLength = mainAxisMinLength, mainAxisLength <= mainAxisMinLength {
             return 0
@@ -323,24 +329,26 @@ extension StackLayoutView {
             
             //
             // Handle cross-axis position
-            var crossAxisPos: CGFloat = 0
             var itemCrossAxisLength = item.crossAxisLength
+            var crossAxisPos = stackItem.crossAxisStartMargin(container: container)
+            let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
             
             if let containerCrossAxisLength = containerCrossAxisLength {
                 switch stackItem.resolveStackItemAlign(stackAlignItems: alignItems) {
                 case .stretch:
-                    crossAxisPos = stackItem.crossAxisStartMargin(container: container)
-                    itemCrossAxisLength = stackItem.applyMargins(toCrossAxisLength: containerCrossAxisLength, container: container)
+                    if item.isCrossAxisFlexible {
+                        itemCrossAxisLength = stackItem.applyMargins(toCrossAxisLength: containerCrossAxisLength, container: container)
+                    }
                 case .start:
-                    crossAxisPos = stackItem.crossAxisStartMargin(container: container)
+                    // nop
+                    break
                 case .center:
                     // Takes margins into account when centering items (compatible with flexbox).
                     let itemCrossAxisForCentering = itemCrossAxisLength -
                                                     stackItem.crossAxisStartMargin(container: container) +
-                                                    stackItem.crossAxisEndMargin(container: container)
+                                                    crossAxisEndMargin
                     crossAxisPos = (containerCrossAxisLength - itemCrossAxisForCentering) / 2
                 case .end:
-                    let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
                     crossAxisPos = containerCrossAxisLength - itemCrossAxisLength - crossAxisEndMargin
                 }
 
@@ -348,8 +356,7 @@ extension StackLayoutView {
                 crossAxisPos = max(crossAxisPos, crossAxisStartMargin)
                 
                 // Check if we must reduce the item's cross axis length to respect its cross axis margins
-                let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
-                if crossAxisPos + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisLength {
+                if item.isCrossAxisFlexible && (crossAxisPos + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisLength) {
                     itemCrossAxisLength = max(0, containerCrossAxisLength - crossAxisPos - crossAxisEndMargin)
                 }
             }
@@ -364,11 +371,11 @@ extension StackLayoutView {
             mainAxisOffset += (item.mainAxisEndMargin ?? 0)
             
             if direction == .column {
-                maxX = max(itemViewRect.maxX, maxX)
+                maxX = max(itemViewRect.maxX + crossAxisEndMargin, maxX)
                 maxY = mainAxisOffset
             } else {
                 maxX = mainAxisOffset
-                maxY = max(itemViewRect.maxY, maxY)
+                maxY = max(itemViewRect.maxY + crossAxisEndMargin, maxY)
             }
         }
 
