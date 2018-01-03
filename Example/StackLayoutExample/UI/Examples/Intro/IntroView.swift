@@ -19,7 +19,7 @@
 
 import UIKit
 import PinLayout
-import StackLayoutView
+import StackViewLayout
 
 class IntroView: BaseView {
 

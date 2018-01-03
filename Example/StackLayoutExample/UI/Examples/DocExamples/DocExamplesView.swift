@@ -18,7 +18,7 @@
 //  THE SOFTWARE.
 
 import UIKit
-import StackLayoutView
+import StackViewLayout
 import PinLayout
 
 class DocExamplesView: BaseView {

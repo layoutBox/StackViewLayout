@@ -22,7 +22,7 @@ end
 target 'StackLayoutExample' do
   project 'Example/StackLayoutExample.xcodeproj'
 
-  pod 'StackLayoutView', :path => './'
+  pod 'StackViewLayout', :path => './'
   pod 'PinLayout'
   #pod 'PinLayout', :path => '../PinLayout'
   pod 'FlexLayout'  
