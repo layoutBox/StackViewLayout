@@ -22,9 +22,11 @@ import Nimble
 import StackLayout
 import PinLayout
 
+//let withinRange: CGFloat = 0.001
+let withinRange: CGFloat = 1.0
+
 class AlignItemsRowSpec: QuickSpec {
     override func spec() {
-        let withinRange: CGFloat = 0.001
         var viewController: UIViewController!
         
         var stackLayoutView: StackLayoutView!

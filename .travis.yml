@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.1s
+osx_image: xcode9.2
 
 # env:
 #   matrix:

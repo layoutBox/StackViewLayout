@@ -23,7 +23,6 @@ import StackLayout
 
 class ShrinkRowSpec: QuickSpec {
     override func spec() {
-        let withinRange: CGFloat = 0.001
         var viewController: UIViewController!
         
         var stackLayoutView: StackLayoutView!
