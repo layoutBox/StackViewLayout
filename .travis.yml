@@ -1,9 +1,9 @@
 language: objective-c
-osx_image: xcode9.2
+osx_image: xcode9.1s
 
-env:
-  matrix:
-    - SCHEME=StackLayout       SDK=iphonesimulator11.2
+# env:
+#   matrix:
+    # - SCHEME=StackLayout       SDK=iphonesimulator11.1
 
 before_install:
 #  - brew outdated xctool || brew upgrade xctool;
