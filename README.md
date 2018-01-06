@@ -34,9 +34,9 @@ Extremely Fast StackView without auto layout. Concise syntax, intuitive, readabl
 * [StackViewLayout principles and philosophy](#introduction)
 * [Performance](#performance)
 * [Documentation](#documentation)
-	* [Creation, modification and definition of flexbox containers](#create_modify_define_containers)
-	* [Flexbox containers properties](#containers_properties)
-	* [Flexbox items properties](#intems_properties)
+	* [Creation, modification and definition of StackViews](#create_modify_define_stackViews)
+	* [StackView properties](#StackView_properties)
+	* [Items properties](#items_properties)
 	* [Absolute positioning](#absolute_positioning)
 	* [Adjusting the size](#adjusting_size)
 		* [Width, height and size](#width_height_size)
@@ -112,10 +112,10 @@ override func layoutSubviews() {
     super.layoutSubviews() 
 
     // 1) Layout the StackView. This example use PinLayout for that purpose, but it could be done 
-    //    also by setting the rootFlexContainer's frame:
-    //       StackView.pin.top.frame = CGRect(x: 0, y: topLayoutGuide, 
-    //                                        width: frame.width, height: 
-    stackView.pin.top(80).left().width(400).height(600)
+    //    also by setting the StackView's frame:
+    //       stackView.frame = CGRect(x: 0, y: 64, 
+    //                                width: frame.width, height: frame.height - 64)
+    stackView.pin.all().marginTop(64)
 }
 ``` 
 
@@ -148,7 +148,7 @@ StackViewLayout is pretty easy and straightforward to use.
 
 The defining aspect of StackViewLayout is the ability to alter its items, width, height to best fill the available space on any display device. A StackView expands its items to fill the available free space or shrinks them to prevent overflow.
 
-The StackViewLayout is constituted of a `StackView` its immediate children which are called **items**. 
+The StackViewLayout is constituted of the `StackView` class and its immediate children which are called **items**. 
 
 | StackViewLayout term        | Definition |
 |---------------------|------------|
@@ -157,37 +157,60 @@ The StackViewLayout is constituted of a `StackView` its immediate children which
 	
 In the following sections we will see:
 
-1. How to create, modify and defines StackViews and their items.
+1. How to create, modify and define StackViews.
 2. StackView properties
 3. StackView's items properties
 
-TODO: :pushpin: This document is a guide that explains how to use FlexLayout. You can also checks the [**StackViewLayout API documentation**](https://layoutBox.github.io/StackViewLayout/1.1/Classes/StackViewLayout.html).
+TODO: :pushpin: This document is a guide that explains how to use StackViewLayout. You can also checks the [**StackViewLayout API documentation**](https://layoutBox.github.io/StackViewLayout/1.1/Classes/StackViewLayout.html).
 
 <br>
 
-## 1. Creation, modification and definition of flexbox items <a name="create_modify_define_containers"></a>
+## 1. Creation, modification and definition of StackViews <a name="create_modify_define_stackViews"></a>
 
+### StackView class
+`StackView` class inherits from UIView, and thus it can be added has a subview and layouted has any other UIView.
 
-### Adding addItem(:UIView), insertItem(_ view: UIView, at index: Int), 
+###### Usage examples:
+```swift
+private let stackview = StackView()
+
+init() {
+   super.init(frame: .zero)
+   addSubView(stackView)
+}
+  
+override func layoutSubviews() {
+   super.layoutSubviews() 
+   stackView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+}
+
+```
+<br>
+
+### Adding items to a StackView 
 - Applies to: `StackView`
 - Returns: StackItem interface of the newly added item.
+
+There is few methods to add or remove items from a StackView:
 
 **Methods:**
 
 * **`addItem(_: UIView) -> StackView`**  
-This method adds a item (UIView) to a StackView. Internally this method adds the UIView as a subview.
+This method adds an item (UIView) to a StackView. The item is added as the last item. Internally this method adds the UIView as a subview.
 * **`insertItem(_ view: UIView, at index: Int)`**  
-This method ....
-* **`insertItem(_ view: UIView, before refView: UIView)`**  
-This method ....
-* **`insertItem(_ view: UIView, after refView: UIView)`**  
-This method ....
+This method adds an item (UIView) at the specified index.
+* **`insertItem(_ view: UIView, before refItem: UIView)`**  
+This method adds an item (UIView) before the specified reference item.  
+* **`insertItem(_ view: UIView, after refItem: UIView)`**  
+This method adds an item (UIView) after the specified reference item.  
 * **`removeItem(_ view: UIView)`**  
-This method ....
+This method removes the item from a StackView.
 
 ###### Usage examples:
 ```swift
   stackview.addItem(imageView)
+  stackview.addItem(titleLabel, after: imageView)
+  stackview.removeItem(descriptionLabel)
 ```
 <br>
 
@@ -223,12 +246,11 @@ The same results can also be obtained without using the `define()` method.
 * Changing an item order, it's just moving up/down its line/block that defines it.
 * Moving an item from one StackView to another is just moving line/block that defines it.
 
- 
 <br>
  
 
-## 2. StackViewLayout properties  <a name="containers_properties"></a>
-This section describes all flex container's properties.
+## 2. StackView properties  <a name="StackView_properties"></a>
+This section describes all StackView properties.
 
 ### direction() 
 - Applies to: `StackView`
@@ -309,7 +331,6 @@ The `justifyContent` property defines the alignment along the main-axis. It help
 * **`alignItems(_: AlignItems)`**  
 The `alignItems` property defines how items are laid out along the cross axis. Similar to `justifyContent` but for the cross-axis (perpendicular to the main-axis). For example, for a column StackView, `alignItems` controls how they align horizontally. 
 
-
 |                     	| direction(.column) | direction(.row) |
 |---------------------	|:------------------:|:---------------:|
 | **stretch** (default) 	| <img src="docs_markdown/images/align-column-stretch.png" width="140"/>| <img src="docs_markdown/images/align-row-stretch.png" width="160"/>|
@@ -319,7 +340,35 @@ The `alignItems` property defines how items are laid out along the cross axis. S
 
 <br/>
 
-## 3. StackView's item properties <a name="items_properties"></a>
+### Adjusting StackView size
+This section explain how to control the size of a StackView and how it is possible to adjust the StackView's size to match its items.
+
+#### Fixed size
+StackView's size can be set to a specific width and height, in this situation the StackView will adjust the size and the position of all its items to fill the available space. You can control how items are layouted using either StackView's property but also using item's properties (explained in the next section [Items properties](#items_properties))
+
+Adjusting the StackView size is mostly done from `UIView.layoutSubviews()` or 'UIViewController. viewWillLayoutSubviews()`
+
+###### Usage examples:
+```swift
+override func layoutSubviews() {
+   super.layoutSubviews() 
+   
+   // Adjust the StackView to fill completely the parent.
+   // This example use PinLayout, but it could be done using:
+   //    stackView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+   stackView.pin.all()
+}
+
+```
+
+#### Adjusting size to match its items
+
+
+
+### layout() method
+TO BE DONE
+
+## 3. Item properties <a name="items_properties"></a>
 This section describes all StackView's item properties.
 
 ### alignSelf()
@@ -409,29 +458,60 @@ The value specifies the view's maximum height of the view in percentage of its c
 ```
 <br>
 
+### Margins <a name="margins"></a>
+
+By applying Margin to an item you specify the offset a certain edge of the item should have from it’s closest sibling or parent (StackView).
+
+**Methods:**
+
+* **`marginTop(_ value: CGFloat)`, `marginTop(_ percent: FPercent)`**  
+Specify the offset the top edge of the item should have from it’s closest sibling (item) or parent (StackView).
+* **`marginLeft(_ value: CGFloat)`, `marginLeft(_ percent: FPercent)`**  
+Specify the offset the left edge of the item should have from it’s closest sibling (item) or parent (StackView).
+* **`marginBottom(_ value: CGFloat)`, `marginBottom(_ percent: FPercent)`**  
+Specify the offset the bottom edge of the item should have from it’s closest sibling (item) or parent (StackView)
+* **`marginRight(_ value: CGFloat)`, `marginRight(_ percent: FPercent)`**  
+Specify the offset the right edge of the item should have from it’s closest sibling (item) or parent (StackView).
+* **`marginStart(_ value: CGFloat)`, `marginStart(_ percent: FPercent)`**  
+Set the start margin. In LTR direction, start margin specify the **left** margin. In RTL direction, start margin specify the **right** margin.
+* **`marginEnd(_ value: CGFloat)`, `marginEnd(_ percent: FPercent)`**  
+Set the end margin. In LTR direction, end margin specify the **right** margin. In RTL direction, end margin specify the **left** margin.
+* **`marginHorizontal(_ value: CGFloat)`, `marginHorizontal(_ percent: FPercent)`**  
+Set the left, right, start and end margins to the specified value.
+* **`marginVertical(_ value: CGFloat)`, `marginVertical(_ percent: FPercent)`**  
+Set the top and bottom margins to the specified value.
+* **`margin(_ insets: UIEdgeInsets)`**
+Set all margins using an UIEdgeInsets. This method is particularly useful to set all margins using iOS 11 `UIView.safeAreaInsets`.
+* **`margin(_ insets: NSDirectionalEdgeInsets)`**
+Set all margins using an NSDirectionalEdgeInsets. This method is useful to set all margins using iOS 11 `UIView. directionalLayoutMargins` when layouting a view supporting RTL/LTR languages.
+* **`margin(_ value: CGFloat) `**  
+Set all margins to the specified value.
+* **`margin(_ vertical: CGFloat, _ horizontal: CGFloat)`**
+* **`margin(_ top: CGFloat, _ horizontal: CGFloat, _ bottom: CGFloat)`**
+* **`margin(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat)`**
+
+###### Usage examples:
+```swift
+  view.item.margin(20)
+  view.item.marginTop(20%).marginLeft(20%)
+  view.item.marginHorizontal(20)
+  view.item.margin(safeAreaInsets)
+  view.item.margin(10, 12, 0, 12)
+  
+  // Margin is defined inline
+  stackview.addItem(separatorView).margin(20)
+```
+
+<br>
+
 ### aspectRatio() <a name="aspect_ratio"></a>
 
-NOT IMPLEMENTED
+NOT IMPLEMENTED YET. COMING SOON.
 
 <br/>
 
 
-## 6. Margins <a name="margins"></a>
-
-NOT IMPLEMENTED
-
-
-<br>
-
-## 7. Paddings <a name="paddings"></a>
-
-NOT IMPLEMENTED
-
-<br>
-
 ### StackViewLayout default properties
-
-StackViewLayout is greatly inspired by CSS Flexbox, and share the same exact API as [FlexLayout](https://github.com/layoutBox/FlexLayout). 
 
 This table resume StackViewLayout default properties.
 
@@ -448,33 +528,29 @@ This table resume StackViewLayout default properties.
 <br>
 
 
-## 8. Differences with flexbox
+## 8. Differences with FlexLayout/FlexBox
 
 * Top and bottom margins using percentages  
-	* StackViewLayout resolve percentages in margin-top and margin-bottom against the **height of the container**.
-	* FlexLayout/flexbox resolve percentages in margin-top and margin-bottom against the **width of the container**.
-
-* Row direction
-	* StackViewLayout use the **container's height** to adjust the item's size if the item's width or haven't been specified.
-	* FlexLayout/flexbox use the **container's width** to adjust the item's size if the item's width or haven't been specified.
+	* StackViewLayout resolve percentages in marginTop and marginBottom against the **height of the container**.
+	* FlexLayout/flexbox resolve percentages in marginTop and marginBottom against the **width of the container**.
 
 <br>
 
 ## StackViewLayout API Documentation <a name="api_documentation"></a>
-The [**complete StackViewLayout API is available here**](https://layoutBox.github.io/FlexLayout/1.1/Classes/Flex.html). 
+The [**complete StackViewLayout API is available here**](https://layoutBox.github.io/StackViewLayout/1.1/Classes/StackViewLayout.html). 
 
 <br>
 
 ## Example App <a name="examples_app"></a>
 
-NOT IMPLEMENTED
+NOT IMPLEMENTED YET. COMING SOON.
 
 <br>
 
 
 ## FAQ <a name="faq"></a>
 
-NOT IMPLEMENTED
+COMING SOON.
 
 <br/>
 
@@ -492,7 +568,23 @@ If you'd like to contribute, you're welcome!
 
 ## Installation <a name="installation"></a>
 
-NOT DONE YET
+### CocoaPods
+
+To integrate StackLayoutView into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+    pod 'StackLayoutView'
+```
+
+Then, run `pod install`.
+
+### Carthage
+NOT IMPLEMENTED YET. COMING SOON.
+
+### Swift Package Manager
+NOT IMPLEMENTED YET. COMING SOON.
+
+<br>
 
 ## Changelog
 StackViewLayout recent history is available in the are documented in the [CHANGELOG](CHANGELOG.md).
