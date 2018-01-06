@@ -48,8 +48,8 @@ class IntroView: BaseView {
         super.init()
     
         stackView = StackView()
-        stackView.layer.borderColor = UIColor.black.cgColor
-        stackView.layer.borderWidth = 1
+        stackView.layer.borderColor = UIColor.darkGray.cgColor
+        stackView.layer.borderWidth = 2 / UIScreen.main.scale
         addSubview(stackView)
         
         toggleDirectionButton.backgroundColor = .gray
@@ -85,7 +85,8 @@ class IntroView: BaseView {
         
 //        testAlignItems()
 //        testRowDirection()
-        testMargins()
+//        testMargins()
+        doc()
 
 //        logo.contentMode = .scaleAspectFit
 //
@@ -235,6 +236,26 @@ class IntroView: BaseView {
 //        }
     }
     
+    func doc() {
+        let button1 = BasicButton(text: "button1")
+        let button2 = BasicButton(text: "button2")
+        let button3 = BasicButton(text: "button3")
+
+//        stackView.define { (stack) in
+//            stack.addItem(button1)
+//            stack.addItem(button2).marginTop(10)
+//            stack.addItem(button3).marginTop(10)
+//        }
+        
+        stackView.direction(.row).alignItems(.start).define { (stack) in
+            stack.addItem(button1).shrink(1)
+            stack.addItem(button2).marginLeft(10).shrink(1)
+            stack.addItem(button3).marginLeft(10).shrink(1)
+        }
+
+        layout()
+    }
+    
     func didTapView() {
         if label1.isHidden {
             stackView.showItem(label1, animate: true)
@@ -246,10 +267,11 @@ class IntroView: BaseView {
     
     private func layout() {
 //        stackView.pin.top(64).left().width(400).height(600)
-        stackView.pin.top(64).height(200).sizeToFit(.height)
+//        stackView.pin.top(64).height(200).sizeToFit(.height)
         
 //        stackView.pin.top(80).left().height(400).sizeToFit(.height)
 //        stackView.pin.top(80).left().width(400).sizeToFit(.width)
+        stackView.pin.top(80).left(20).width(300).height(400)
         stackView.layout()
     }
     

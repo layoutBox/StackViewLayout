@@ -43,7 +43,6 @@ public class StackView: UIView {
     @discardableResult
     public func addItem(_ view: UIView) -> StackItem {
         let stackItemImpl = view.item as! StackItemImpl
-//        stackItemImpl.parent = self
         stackItems.append(stackItemImpl)
         
         super.addSubview(view)
@@ -51,30 +50,36 @@ public class StackView: UIView {
         return stackItemImpl
      }
     
-    public func insertItem(_ view: UIView, at index: Int) {
-        guard let stackItemImpl = view.item as? StackItemImpl else { return }
-//        stackItemImpl.parent = self
+    @discardableResult
+    public func insertItem(_ view: UIView, at index: Int) -> StackItem {
+        let stackItemImpl = view.item as! StackItemImpl
         stackItems.insert(stackItemImpl, at: index)
         
         self.insertSubview(view, at: index)
+        
+        return stackItemImpl
     }
     
-    public func insertItem(_ view: UIView, before refItem: UIView) {
-        guard let stackItemImpl = view.item as? StackItemImpl else { return }
-        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return }
-//        stackItemImpl.parent = self
+    @discardableResult
+    public func insertItem(_ view: UIView, before refItem: UIView) -> StackItem? {
+        guard let stackItemImpl = view.item as? StackItemImpl else { return nil }
+        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return nil }
         stackItems.insert(stackItemImpl, at: itemIndex)
         
         super.insertSubview(view, aboveSubview: refItem)
+        
+        return stackItemImpl
     }
     
-    public func insertItem(_ view: UIView, after refItem: UIView) {
-        guard let stackItemImpl = view.item as? StackItemImpl else { return }
-        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return }
-//        stackItemImpl.parent = self
+    @discardableResult
+    public func insertItem(_ view: UIView, after refItem: UIView) -> StackItem? {
+        guard let stackItemImpl = view.item as? StackItemImpl else { return nil }
+        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return nil }
         stackItems.insert(stackItemImpl, at: itemIndex + 1)
 
         super.insertSubview(view, belowSubview: refItem)
+        
+        return stackItemImpl
     }
     
     public func removeItem(_ view: UIView) {
@@ -90,7 +95,6 @@ public class StackView: UIView {
     private func removStackItem(_ view: UIView) {
         guard let stackItemImpl = view.item as? StackItemImpl else { return }
         guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this StackLayoutView!"); return }
-//        stackItemImpl.parent = nil
         stackItems.remove(at: itemIndex)
     }
     

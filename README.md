@@ -36,15 +36,12 @@ Extremely Fast StackView without auto layout. Concise syntax, intuitive, readabl
 * [Documentation](#documentation)
 	* [Creation, modification and definition of StackViews](#create_modify_define_stackViews)
 	* [StackView properties](#StackView_properties)
+	* [Layout StackViews](#layout_stackviews)
 	* [Items properties](#items_properties)
-	* [Absolute positioning](#absolute_positioning)
-	* [Adjusting the size](#adjusting_size)
-		* [Width, height and size](#width_height_size)
-		* [minWidth, maxWidth, minHeight, maxHeight](#minmax_width_height_size)
-		* [Aspect Ratio](#aspect_ratio)
+	* [Adjusting item's width, height and size](#adjusting_size)
 	* [Margins](#margins)
-	* [Paddings](#paddings)
-	* [Borders](#borders)
+	* [layout() method](#layout_method)
+
 * [API Documentation](#api_documentation)
 * [Examples App](#examples_app)
 * [FAQ](#faq)
@@ -64,7 +61,7 @@ Extremely Fast StackView without auto layout. Concise syntax, intuitive, readabl
 Three layout frameworks to rule them all:
 
 * **StackViewLayout**: Stack easily views horizontally or vertically. 
-* **[PinLayout](https://github.com/mirego/PinLayout)**: PinLayout is a layout framework greatly inspired by CSS absolute positioning, it is particularly useful for greater fine control and animations. It gives you full control by layouting one view at a time (simple to code and debug).
+* **[PinLayout](https://github.com/mirego/PinLayout)**: PinLayout is a layout framework greatly inspired by CSS absolute positioning, it is particularly useful for greater fine control and animations, and works perfectly with StactViews. It gives you full control by layouting one view at a time (simple to code and debug).
 * **[FlexLayout](https://github.com/layoutBox/FlexLayout)**: FlexLayout is a full-blown flexbox implementation. Use the same engine as ReactNative. 
 
 They all share a similar syntax and method names. Also...
@@ -79,12 +76,12 @@ They all share a similar syntax and method names. Also...
 
 
 ```swift
-fileprivate let stactLayout = StackView()
+fileprivate let stackView = StackView()
 
 init() {
    super.init(frame: .zero)
    
-   addSubview(stactLayout)
+   addSubview(stackView)
    ...
 
    label1 = UILabel()
@@ -150,16 +147,25 @@ The defining aspect of StackViewLayout is the ability to alter its items, width,
 
 The StackViewLayout is constituted of the `StackView` class and its immediate children which are called **items**. 
 
-| StackViewLayout term        | Definition |
-|---------------------|------------|
-| **`main-axis`** | The main axis of a StackView is the primary axis along which items are laid out. The main-axis direction is set using the `direction()` property. |
-| **`cross-axis`** | The axis perpendicular to the main axis is called the cross axis. Its direction depends on the main axis direction |
-	
+`StackView` calls item's `sizeThatFits()` method to compute their sizebased on the StackView's available space.
+
+##### Axes <a name="axes"></a>
+
+When working with StackViews you need to think in terms of two axes — the main axis and the cross axis. The main axis is defined by StackView's `direction` property, and the cross axis runs perpendicular to it.
+
+| StackView direction | Axes |
+|---------------------|:------------------:|---------|
+| **column** | <img src="docs_markdown/images/axis-column.png" width="200"/> |
+| **row** | <img src="docs_markdown/images/axis-row.png" width="200"/>|
+
+
+##### Sections	
 In the following sections we will see:
 
 1. How to create, modify and define StackViews.
 2. StackView properties
-3. StackView's items properties
+3. How to layout StackViews
+4. Items properties
 
 TODO: :pushpin: This document is a guide that explains how to use StackViewLayout. You can also checks the [**StackViewLayout API documentation**](https://layoutBox.github.io/StackViewLayout/1.1/Classes/StackViewLayout.html).
 
@@ -176,6 +182,7 @@ private let stackview = StackView()
 
 init() {
    super.init(frame: .zero)
+   ...
    addSubView(stackView)
 }
   
@@ -191,20 +198,20 @@ override func layoutSubviews() {
 - Applies to: `StackView`
 - Returns: StackItem interface of the newly added item.
 
-There is few methods to add or remove items from a StackView:
+StackView layout its items. Here is the list methods to add or remove items from StackViews.
 
 **Methods:**
 
-* **`addItem(_: UIView) -> StackView`**  
+* **`addItem(_: UIView) -> StackItem`**  
 This method adds an item (UIView) to a StackView. The item is added as the last item. Internally this method adds the UIView as a subview.
-* **`insertItem(_ view: UIView, at index: Int)`**  
+* **`insertItem(_ view: UIView, at index: Int) -> StackItem`**  
 This method adds an item (UIView) at the specified index.
-* **`insertItem(_ view: UIView, before refItem: UIView)`**  
+* **`insertItem(_ view: UIView, before refItem: UIView) -> StackItem?`**  
 This method adds an item (UIView) before the specified reference item.  
-* **`insertItem(_ view: UIView, after refItem: UIView)`**  
+* **`insertItem(_ view: UIView, after refItem: UIView) -> StackItem?`**  
 This method adds an item (UIView) after the specified reference item.  
 * **`removeItem(_ view: UIView)`**  
-This method removes the item from a StackView.
+This method removes the specified item from the StackView.
 
 ###### Usage examples:
 ```swift
@@ -250,20 +257,15 @@ The same results can also be obtained without using the `define()` method.
  
 
 ## 2. StackView properties  <a name="StackView_properties"></a>
-This section describes all StackView properties.
+This section describes all StackView properties that affect how items are layouted.
 
-### direction() 
+### direction <a name="direction"></a>
 - Applies to: `StackView`
 - Values: `column` / `row`
 - Default value: `column`
+- Method: **`direction(_: SDirection)`**  
 
-**Method:**
-
-* **`direction(_: SDirection)`**  
-The `direction` property establishes the main-axis, thus defining the direction items are placed in the StackView.
-
-The `direction` property specifies how items are laid out in the StackView, by setting the direction of the StackView's main axis. 
-
+The `direction` property establishes the [main-axis](#axes), thus defining the direction items are placed in the StackView. 
 
 | Value | Result | Description |
 |---------------------|:------------------:|---------|
@@ -278,57 +280,92 @@ The `direction` property specifies how items are laid out in the StackView, by s
 ```
 
 ###### Example 1:
-This example center three views of 40 pixels tall with a padding of 10 pixels.  
-[Example source code](https://github.com/layoutBox/FlexLayout/blob/master/Example/FlexLayoutSample/UI/Examples/Example1/Example1View.swift)
-
-<img src="docs_markdown/images/flexlayout_example_column_center.png" width="160"/>
+This example show a StackView of size 300x400 containing three buttons with a margin of 10 pixels between them. 
 
 ```swift
-    stackview.justifyContent(.center).define { (stack) in
-        stack.addItem(button1).height(40)
-        stack.addItem(button2).height(40).marginTop(10)
-        stack.addItem(button3).height(40).marginTop(10)
+   stackView.define { (stack) in
+      stack.addItem(button1)
+      stack.addItem(button2).marginTop(10)
+      stack.addItem(button3).marginTop(10)
+    }
+    
+   override func layoutSubviews() {
+      super.layoutSubviews() 
+      stackView.width(300).height(400)
+   }
+``` 
+
+<img src="docs_markdown/images/example-direction-column.png" width="160"/>
+
+Buttons are stretched horizontally because StackView's default [`alignItems`](#alignItems) property is `.stretch`. Also, we don't need to set the [`direction`](#direction) since the default value is `.column`.
+
+
+###### Example 2:
+Using the same setup as the Example 1, but using the `.row` direction.
+
+```swift
+    stackview.direction(.row).define { (stack) in
+       stack.addItem(button1)
+       stack.addItem(button2).marginTop(10)
+       stack.addItem(button3).marginTop(10)
     }
 ``` 
 
+<img src="docs_markdown/images/example-direction-row-wrong.png" width="160"/>
+
+Not really the expected result, right?! Two issues:
+
+1. Buttons are too tall: By default StackView `alignItems` property is set to `.stretch`, which cause items to stretch in the cross axis direction. To fix that we need to change that to `.start`. See [`alignItems`](#alignItems) for more details.  
+2. Buttons overflow the StackView: The reason for this is that the size of the three buttons + margins are wider than the specified StackView's width (300 pixels). To contain buttons inside the StackView, we can increase the StackView's width OR we must allow at least one item to shrink if there is not enough space. By default item don't shrink. To enable this we must set the item's `shrink` property. We want that all buttons shrink equitably, so we set each button the same `shrink` property. See [`shrink`](#shrink) for more details.  
+
+```swift
+   stackView.direction(.row).alignItems(.start).define { (stack) in
+      stack.addItem(button1).shrink(1)
+      stack.addItem(button2).marginLeft(10).shrink(1)
+      stack.addItem(button3).marginLeft(10).shrink(1)
+   }
+``` 
+
+<img src="docs_markdown/images/example-direction-row.png" width="160"/>
+
+Much better! 
+
 <br/>
 
-### justifyContent()
+### justifyContent <a name="justifyContent"></a>
 - Applies to: `StackView`
 - Values: `start` / `end` / `center` / `spaceBetween` / `spaceAround` / `spaceEvenly`
 - Default value: `start`
+- Method: **`justifyContent(_: JustifyContent)`** 
 
-**Method:**
-
-* **`justifyContent(_: JustifyContent)`**  
 The `justifyContent` property defines the alignment along the main-axis. It helps distribute extra free space leftover when either all items have reached their maximum size. For example, for a column StackView, `justifyContent` controls how items align vertically. 
-
-:pushpin: Note that if you adjust the StatckView size using the value returned by `sizeThatFits` (ex: `stackView.sizeThatFits(CGSize(width: 400, height: .greatestFiniteMagnitude)`), there will no space leftover in the main-axis direction, so the `justifyContent` property will have no effect.
 
 |                     	| direction(.column) | direction(.row) | |
 |---------------------	|:------------------:|:---------------:|:--|
 | **start** (default) 	| <img src="docs_markdown/images/justify-column-start.png" width="140"/>| <img src="docs_markdown/images/justify-row-start.png" width="160"/>| Items are packed at the beginning of the main-axis. |
 | **end**	| <img src="docs_markdown/images/justify-column-end.png" width="140"/>| <img src="docs_markdown/images/justify-row-end.png" width="160"/>| Items are packed at the end of the main-axis. |
 | **center** 	| <img src="docs_markdown/images/justify-column-center.png" width="140"/>| <img src="docs_markdown/images/justify-row-center.png" width="160"/>| items are centered along the main-axis. |
-| **spaceBetween** 	| <img src="docs_markdown/images/justify-column-spacebetween.png" width="140"/>| <img src="docs_markdown/images/justify-row-spacebetween.png" width="160"/> | Items are evenly distributed in the main-axis; first item is at the beginning, last item at the end. |
-| **spaceAround** 	| <img src="docs_markdown/images/justify-column-spacearound.png" width="140"/> | <img src="docs_markdown/images/justify-row-spacearound.png" width="160"/> | Items are evenly distributed in the main-axis with equal space around them. |
-| **spaceEvenly** 	| <img src="docs_markdown/images/justify-column-evenly.png" width="140"/> | <img src="docs_markdown/images/justify-row-evenly.png" width="160"/> |  |
+| **spaceBetween** 	| <img src="docs_markdown/images/justify-column-spacebetween.png" width="95"/>| <img src="docs_markdown/images/justify-row-spacebetween.png" width="160"/> | Items are evenly distributed in the main-axis; first item is at the beginning, last item at the end. |
+| **spaceAround** 	| <img src="docs_markdown/images/justify-column-spacearound.png" width="95"/> | <img src="docs_markdown/images/justify-row-spacearound.png" width="160"/> | Items are evenly distributed in the main-axis with equal space around them. Items have a half-size space on either end. |
+| **spaceEvenly** 	| <img src="docs_markdown/images/justify-column-spaceevenly.png" width="95"/> | <img src="docs_markdown/images/justify-row-spaceevenly.png" width="160"/> | Items are evenly distributed in the main-axis with equal space around them. |
 
 ###### Usage examples:
 ```swift
   stackView.justifyContent(.start)  // default value. 
   stackView.justifyContent(.center)
 ```
+
+
+TODO: Add an example!!!
+
 <br/>
 
-### alignItems()
+### alignItems <a name="alignItems"></a>
 - Applies to: `StackView`
 - Values: `stretch` / `start` / `end` / `center`
 - Default value: `stretch `
+- Method: **`alignItems(_: AlignItems)`**  
 
-**Method:**
-
-* **`alignItems(_: AlignItems)`**  
 The `alignItems` property defines how items are laid out along the cross axis. Similar to `justifyContent` but for the cross-axis (perpendicular to the main-axis). For example, for a column StackView, `alignItems` controls how they align horizontally. 
 
 |                     	| direction(.column) | direction(.row) |
@@ -338,54 +375,120 @@ The `alignItems` property defines how items are laid out along the cross axis. S
 | **end**	| <img src="docs_markdown/images/align-column-end.png" width="140"/>| <img src="docs_markdown/images/align-row-end.png" width="160"/>|
 | **center** 	| <img src="docs_markdown/images/align-column-center.png" width="140"/>| <img src="docs_markdown/images/align-row-center.png" width="160"/>|
 
+
+TODO: Add an example!!!
+
 <br/>
 
-### Adjusting StackView size
+## 3. Layout StackViews <a name="layout_stackviews"></a>
 This section explain how to control the size of a StackView and how it is possible to adjust the StackView's size to match its items.
 
-#### Fixed size
-StackView's size can be set to a specific width and height, in this situation the StackView will adjust the size and the position of all its items to fill the available space. You can control how items are layouted using either StackView's property but also using item's properties (explained in the next section [Items properties](#items_properties))
+### Fixed size
+StackView's size can be set to a specific width and height, in this situation the StackView will adjust the size and the position of all its items to fill the available space. You can control how items are layouted using StackView's properties and item's properties (explained in the next section [Items properties](#items_properties))
 
-Adjusting the StackView size is mostly done from `UIView.layoutSubviews()` or 'UIViewController. viewWillLayoutSubviews()`
+StackView layout is mostly done from `UIView.layoutSubviews()` or 'UIViewController.viewWillLayoutSubviews()`.
 
-###### Usage examples:
+###### Example:
+This example layout a StackView to fill completely its parent.
+
+Using PinLayout:
+
 ```swift
 override func layoutSubviews() {
    super.layoutSubviews() 
-   
-   // Adjust the StackView to fill completely the parent.
-   // This example use PinLayout, but it could be done using:
-   //    stackView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
    stackView.pin.all()
 }
-
 ```
 
-#### Adjusting size to match its items
+Using frame property:
+
+```swift
+override func layoutSubviews() {
+   super.layoutSubviews() 
+   stackView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+}
+```
+
+### Adjusting size to match its items
+StackView width or height can be adjusted to fit its items.
+
+:pushpin: If the StackView adjust its size to match its items, the [`justifyContent`](#justifyContent) property will have no effect.
 
 
+###### Example:
+This example layout a StackView at the top and fill the parent horizontally. The StackView's height is computed to fit nicely its items. 
 
-### layout() method
+Using PinLayout:
+
+```swift
+override func layoutSubviews() {
+   super.layoutSubviews() 
+   stackView.pin.top().left().width(100%).sizeToFit(.width)
+}
+```
+
+Using frame property:
+
+```swift
+override func layoutSubviews() {
+   super.layoutSubviews() 
+   let adjustedSize = stackView.sizeThatFits(CGSize(width: frame.width, 
+                                                    height: .greatestFiniteMagnitude))
+   stackView.frame = CGRect(x: 0, y: 0, width: adjustedSize.width, height: adjustedSize.height)
+}
+```
+
+### layout() method <a name="layout_method"></a>
 TO BE DONE
 
-## 3. Item properties <a name="items_properties"></a>
+<br/>
+
+## 4. Item properties <a name="items_properties"></a>
 This section describes all StackView's item properties.
 
-### alignSelf()
+### alignSelf
 - Values: `auto` / `stretch` / `start` / `end` / `center`
 - Default value: `auto`
+- method: **`alignSelf(_: AlignSelf)`**
 
-**Method:**
-
-* **`alignSelf(_: AlignSelf)`**  
 The `alignSelf` property controls how an item aligns in the cross direction, overriding the `alignItems` of the StackView. For example, for a column StackView, `alignSelf` will control how the item will align horizontally. 
 
 The `auto` value means use the stack view `alignItems` property. See `alignItems` for documentation of the other values.
 
+TODO: Add an example!!!
+
 <br/>
 
 
-### Adjusting item's width, height and size  <a name="adjusting_size"></a> 
+### grow <a name="grow"></a>
+- Default value: 0
+- method: **`grow(_: CGFloat)`** 
+
+The `grow` property defines the ability for an item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the StackView the item should take up.
+
+A `grow` value of 0 (default value) keeps the view's size in the main-axis direction. If you want the view to use the available space set a `grow` value > 0.
+
+For example, if all items have `grow` set to 1, every child will grow to an equal size inside the container. If you were to give one of the children a value of 2, that child would take up twice as much space as the others.
+
+TODO: Add an example!!!
+
+<br>
+
+### shrink <a name="shrink"></a>
+- Default value: 0
+- Method: **`shrink(_: CGFloat)`** 
+
+The `shrink` defines how much the item will shrink relative to the rest of items in the StackView **when there isn't enough space on the main-axis**.
+  
+A shrink value of 0 keeps the view's size in the main-axis direction. Note that this may cause the view to overflow its flex container.
+  
+Shrink is about proportions. If an item has a shrink of 3, and the rest have a shrink of 1, the item will shrink 3x as fast as the rest.
+
+TODO: Add an example!!!
+
+<br>
+
+### Adjusting item's width, height and size <a name="adjusting_size"></a> 
 
 StackView's items size can be set manually using the following methods.
 
@@ -413,9 +516,12 @@ The value specifies the width and the height in pixels, creating a square view. 
 	
   view.item.size(250)
 ```
+
+TODO: Add an example!!!
+
 <br>
 
-### minWidth(), maxWidth(), minHeight(), maxHeight() <a name="minmax_width_height_size"></a>
+### minWidth, maxWidth, minHeight, maxHeight <a name="minmax_width_height_size"></a>
 
 StackView's items min/max width and min/max height can be specified.
 
@@ -426,7 +532,6 @@ An example of when Max properties can be useful is if you are using `alignItems(
 Same goes for the Min properties when using `shrink`. For example, you may want an item to shrink, but if you specify a minimum width, the item won't be shrink past the specified value.
 
 Another case where Min and Max dimension constraints are useful is when using `aspectRatio`.
-
 
 **Methods:**
 
@@ -456,6 +561,9 @@ The value specifies the view's maximum height of the view in percentage of its c
   view.item.maxHeight(100)
   view.item.height(of: view1).maxHeight(30%)
 ```
+
+TODO: Add an example!!!
+
 <br>
 
 ### Margins <a name="margins"></a>
@@ -513,14 +621,14 @@ NOT IMPLEMENTED YET. COMING SOON.
 
 ### StackViewLayout default properties
 
-This table resume StackViewLayout default properties.
+This table resume **StackView's default properties**:
 
 | Property     | StackViewLayout default value |
 |--------------|--------------------------|
-| **`direction`** | column |
-| **`justifyContent`** | start |
-| **`alignItems`** | stretch |
-| **`alignSelf`** | auto |
+| **`direction`** | .column |
+| **`justifyContent`** | .start |
+| **`alignItems`** | .stretch |
+| **`alignSelf`** | .auto |
 | **`grow`** | 0 |
 | **`shrink`** | 0 |
 | **`basis`** | 0 |
