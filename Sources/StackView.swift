@@ -22,7 +22,7 @@ import Foundation
 #if os(iOS) || os(tvOS)
 import UIKit
  
-public class StackLayoutView: UIView {
+public class StackView: UIView {
     internal var stackItems: [StackItemImpl] = []
     internal var direction = SDirection.column
     internal var justifyContent = SJustifyContent.start
@@ -36,7 +36,7 @@ public class StackLayoutView: UIView {
      - Parameter closure:
      - Returns: Flex interface
      */
-    public func define(_ closure: (_ stackView: StackLayoutView) -> Void) {
+    public func define(_ closure: (_ stackView: StackView) -> Void) {
         closure(self)
     }
     
@@ -107,7 +107,7 @@ public class StackLayoutView: UIView {
      - Parameter value: Default value is .column
      */
     @discardableResult
-    public func direction(_ value: SDirection) -> StackLayoutView {
+    public func direction(_ value: SDirection) -> StackView {
         direction = value
         setNeedsLayout()
         return self
@@ -118,7 +118,7 @@ public class StackLayoutView: UIView {
     }
     
     @discardableResult
-    public func justifyContent(_ value: SJustifyContent) -> StackLayoutView {
+    public func justifyContent(_ value: SJustifyContent) -> StackView {
         justifyContent = value
         setNeedsLayout()
         return self
@@ -143,7 +143,7 @@ public class StackLayoutView: UIView {
      - Parameter value: Default value is .stretch
      */
     @discardableResult
-    public func alignItems(_ value: SAlignItems) -> StackLayoutView {
+    public func alignItems(_ value: SAlignItems) -> StackView {
         alignItems = value
         setNeedsLayout()
         return self

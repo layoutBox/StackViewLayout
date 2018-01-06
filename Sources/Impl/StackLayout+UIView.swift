@@ -22,7 +22,7 @@ import Foundation
 #if os(iOS) || os(tvOS)
 import UIKit
 
-extension StackLayoutView {
+extension StackView {
     @available(*, deprecated, message: "You should call addItem() to add a view to a StackLayoutView")
     override public func addSubview(_ view: UIView) {
         assert(false, "You should call addItem() to add a view to a StackLayoutView")

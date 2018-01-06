@@ -26,7 +26,7 @@ class JustifytemsColumnSpec: QuickSpec {
     override func spec() {
         var viewController: UIViewController!
         
-        var stackLayoutView: StackLayoutView!
+        var stackLayoutView: StackView!
         var label1: UILabel!
         var label2: UILabel!
         var label3: UILabel!
@@ -40,7 +40,7 @@ class JustifytemsColumnSpec: QuickSpec {
             
             viewController = UIViewController()
             
-            stackLayoutView = StackLayoutView()
+            stackLayoutView = StackView()
             stackLayoutView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
             stackLayoutView.setNeedsLayout()
             viewController.view.addSubview(stackLayoutView)

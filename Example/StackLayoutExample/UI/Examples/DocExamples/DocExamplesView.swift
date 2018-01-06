@@ -27,14 +27,14 @@ class DocExamplesView: BaseView {
     fileprivate let textLabel = UILabel()
     fileprivate let separatorView = UIView()
     
-    fileprivate let buttonsStackView = StackLayoutView()
+    fileprivate let buttonsStackView = StackView()
     fileprivate let toggleDirectionButton = UIButton(type: .custom)
     fileprivate let toggleJustifyButton = UIButton(type: .custom)
     fileprivate let toggleVisibilityButton = UIButton(type: .custom)
     fileprivate let removeButton = UIButton(type: .custom)
     fileprivate let insertButton = UIButton(type: .custom)
     
-    var stackLayoutView: StackLayoutView!
+    var stackView: StackView!
     //        let logo = UIImageView(image: UIImage(named: "PinLayout-logo"))
     //        let textLabel = UILabel()
     //        let separatorView = UIView()
@@ -47,10 +47,10 @@ class DocExamplesView: BaseView {
     override init() {
         super.init()
         
-        stackLayoutView = StackLayoutView()
-        stackLayoutView.layer.borderColor = UIColor.black.cgColor
-        stackLayoutView.layer.borderWidth = 1
-        addSubview(stackLayoutView)
+        stackView = StackView()
+        stackView.layer.borderColor = UIColor.black.cgColor
+        stackView.layer.borderWidth = 1
+        addSubview(stackView)
         
         toggleDirectionButton.backgroundColor = .gray
         toggleDirectionButton.setTitle("Dir", for: .normal)
@@ -109,7 +109,7 @@ class DocExamplesView: BaseView {
         let view2 = BasicView(text: "View 2", color: .red)
         let view3 = BasicView(text: "View 3", color: .red)
         
-        stackLayoutView.direction(.column).define { (stack) in
+        stackView.direction(.column).define { (stack) in
             view1.item.height(40)
             stack.addItem(view1)
             
@@ -124,9 +124,9 @@ class DocExamplesView: BaseView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        stackLayoutView.pin.top(80).left().width(400).height(600)
+        stackView.pin.top(80).left().width(400).height(600)
 
-//        buttonsStackView.pin.below(of: stackLayoutView).left().right().margin(8).sizeToFit(.width)
+//        buttonsStackView.pin.below(of: stackView).left().right().margin(8).sizeToFit(.width)
     }
     
     fileprivate func printViewFrame(_ view: UIView, name: String) {
@@ -134,23 +134,23 @@ class DocExamplesView: BaseView {
     }
     
     internal func didTapToggleDirection() {
-        if stackLayoutView.getDirection() == .column {
-            stackLayoutView.direction(.row)
+        if stackView.getDirection() == .column {
+            stackView.direction(.row)
         } else {
-            stackLayoutView.direction(.column)
+            stackView.direction(.column)
         }
         
         setNeedsLayout()
     }
     
     internal func didTapToggleJustify() {
-        switch stackLayoutView.getJustifyContent() {
-        case .start:        stackLayoutView.justifyContent(.center)
-        case .center:       stackLayoutView.justifyContent(.end)
-        case .end:          stackLayoutView.justifyContent(.spaceBetween)
-        case .spaceBetween: stackLayoutView.justifyContent(.spaceAround)
-        case .spaceAround:  stackLayoutView.justifyContent(.spaceEvenly)
-        case .spaceEvenly:  stackLayoutView.justifyContent(.start)
+        switch stackView.getJustifyContent() {
+        case .start:        stackView.justifyContent(.center)
+        case .center:       stackView.justifyContent(.end)
+        case .end:          stackView.justifyContent(.spaceBetween)
+        case .spaceBetween: stackView.justifyContent(.spaceAround)
+        case .spaceAround:  stackView.justifyContent(.spaceEvenly)
+        case .spaceEvenly:  stackView.justifyContent(.start)
         }
         
         setNeedsLayout()
@@ -158,9 +158,9 @@ class DocExamplesView: BaseView {
     
     internal func didTapToggleVisibility() {
         if label2.isHidden {
-            stackLayoutView.showItem(label2, animate: true)
+            stackView.showItem(label2, animate: true)
         } else {
-            stackLayoutView.hideItem(label2, animate: true)
+            stackView.hideItem(label2, animate: true)
         }
 
         setNeedsLayout()
@@ -171,6 +171,6 @@ class DocExamplesView: BaseView {
     }
     
     internal func didTapInsert() {
-        stackLayoutView.insertItem(label2, at: 1)
+        stackView.insertItem(label2, at: 1)
     }
 }

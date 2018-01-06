@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1219A842BBAEAD0FA8213A94 /* Pods_StackLayoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD49253AF7327F24DA0757C /* Pods_StackLayoutTests.framework */; };
 		240F88C11F0C1F5000280FC8 /* AlignItemsColumnSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F88BF1F0C1ED900280FC8 /* AlignItemsColumnSpec.swift */; };
-		2423C77A1FD08A5B00C794AE /* StackLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7791FD08A5B00C794AE /* StackLayoutView.swift */; };
 		2423C77C1FD08AD600C794AE /* StackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C77B1FD08AD600C794AE /* StackItem.swift */; };
 		2423C77E1FD08B1500C794AE /* StackItemImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C77D1FD08B1500C794AE /* StackItemImpl.swift */; };
 		2423C7861FD0AA8000C794AE /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7851FD0AA8000C794AE /* Value.swift */; };
@@ -30,6 +29,7 @@
 		2469C5041E75DB7600073BEE /* RectNimbleMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469C5031E75DB7600073BEE /* RectNimbleMatcher.swift */; };
 		2475B6D11FC37C8C0054CADD /* UIView+LTR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2475B6D01FC37C8C0054CADD /* UIView+LTR.swift */; };
 		2475B6DB1FC37D4D0054CADD /* StackLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 2475B6D91FC37D4D0054CADD /* StackLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2479AD7C1FFFBDD800F39774 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2479AD7B1FFFBDD700F39774 /* StackView.swift */; };
 		248E4C771F7A88D200C0E7F7 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */; };
 		248F0C1F1FF92238004CD8AC /* WidthHeightSizeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248F0C191FF919F2004CD8AC /* WidthHeightSizeSpec.swift */; };
 		249EFE841E64FB4C00165E39 /* StackLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249EFE7A1E64FB4C00165E39 /* StackLayout.framework */; };
@@ -69,7 +69,6 @@
 		144303E5200662A28FC92F65 /* Pods-StackLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayout.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayout/Pods-StackLayout.debug.xcconfig"; sourceTree = "<group>"; };
 		2409E90E6CFDA14D9CF84D98 /* Pods_StackLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		240F88BF1F0C1ED900280FC8 /* AlignItemsColumnSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignItemsColumnSpec.swift; sourceTree = "<group>"; };
-		2423C7791FD08A5B00C794AE /* StackLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackLayoutView.swift; sourceTree = "<group>"; };
 		2423C77B1FD08AD600C794AE /* StackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackItem.swift; sourceTree = "<group>"; };
 		2423C77D1FD08B1500C794AE /* StackItemImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StackItemImpl.swift; path = Impl/StackItemImpl.swift; sourceTree = "<group>"; };
 		2423C7851FD0AA8000C794AE /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Value.swift; path = Impl/Value.swift; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		2475B6D71FC37D4D0054CADD /* StackLayoutTVOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackLayoutTVOS.h; sourceTree = "<group>"; };
 		2475B6D81FC37D4D0054CADD /* InfoTVOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoTVOS.plist; sourceTree = "<group>"; };
 		2475B6D91FC37D4D0054CADD /* StackLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackLayout.h; sourceTree = "<group>"; };
+		2479AD7B1FFFBDD700F39774 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		248F0C191FF919F2004CD8AC /* WidthHeightSizeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidthHeightSizeSpec.swift; sourceTree = "<group>"; };
 		249EFE7A1E64FB4C00165E39 /* StackLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,7 +183,7 @@
 		249EFE7C1E64FB4C00165E39 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2423C7791FD08A5B00C794AE /* StackLayoutView.swift */,
+				2479AD7B1FFFBDD700F39774 /* StackView.swift */,
 				2423C77B1FD08AD600C794AE /* StackItem.swift */,
 				2423C7871FD0AD6700C794AE /* Types.swift */,
 				2423C7A61FD0B64600C794AE /* UIView+StackItem.swift */,
@@ -498,10 +498,10 @@
 				2423C7881FD0AD6700C794AE /* Types.swift in Sources */,
 				2475B6D11FC37C8C0054CADD /* UIView+LTR.swift in Sources */,
 				2423C7A31FD0B36900C794AE /* StackLayoutView+Layout.swift in Sources */,
-				2423C77A1FD08A5B00C794AE /* StackLayoutView.swift in Sources */,
 				2423C7A71FD0B64600C794AE /* UIView+StackItem.swift in Sources */,
 				245C1D9E1FEC4CB9007594F7 /* Coordinates.swift in Sources */,
 				2423C7861FD0AA8000C794AE /* Value.swift in Sources */,
+				2479AD7C1FFFBDD800F39774 /* StackView.swift in Sources */,
 				24BBE6351F50FA1D0091D5E9 /* UnitTests.swift in Sources */,
 				2423C77C1FD08AD600C794AE /* StackItem.swift in Sources */,
 				2423C7A51FD0B39900C794AE /* StackLayout+UIView.swift in Sources */,

@@ -23,13 +23,16 @@ import Foundation
 import UIKit
 
 public protocol StackItem {
-
-//    stack.direction(.column)
-//    stack.justifyContent(.spaceBetween)
-//    stack.alignItems(.center)
-//
-//    view.item.alignSelf(.start)
-
+    /**
+     The `alignSelf` property controls how a child aligns in the cross direction, overriding the `alignItems`
+     of the parent. For example, if children are flowing vertically, `alignSelf` will control how the StackItem item
+     will align horizontally.
+     
+     - Parameter value: Default value is .auto
+     */
+    @discardableResult
+    func alignSelf(_ value: SAlignSelf) -> StackItem
+    
     //
     // MARK: grow / shrink
     //
@@ -41,7 +44,8 @@ public protocol StackItem {
      
      - Parameter value: Default value is 0
      */
-    @discardableResult func grow(_ value: CGFloat) -> StackItem
+    @discardableResult
+    func grow(_ value: CGFloat) -> StackItem
     
     /**
      It specifies the "flex shrink factor", which determines how much the flex item will shrink relative to the
@@ -55,7 +59,8 @@ public protocol StackItem {
      
      - Parameter value: Default value is 1
      */
-    @discardableResult func shrink(_ value: CGFloat) -> StackItem
+    @discardableResult
+    func shrink(_ value: CGFloat) -> StackItem
 
     //
     // MARK: Width, height and size
@@ -63,65 +68,76 @@ public protocol StackItem {
     /**
      The value specifies the view's width in pixels. The value must be non-negative.
      */
-    @discardableResult func width(_ width: CGFloat) -> StackItem
+    @discardableResult
+    func width(_ width: CGFloat?) -> StackItem
     
     /**
      The value specifies the view's width in percentage of its container width. The value must be non-negative.
      Example: view.flex.width(20%)
      */
-    @discardableResult func width(_ percent: SPercent) -> StackItem
+    @discardableResult
+    func width(_ percent: SPercent) -> StackItem
     
     /**
      The value specifies the view's minimum width in pixels. The value must be non-negative.
      */
-    @discardableResult func minWidth(_ width: CGFloat) -> StackItem
+    @discardableResult
+    func minWidth(_ width: CGFloat?) -> StackItem
     
     /**
      The value specifies the view's minimum width in percentage of its container width. The value must be non-negative.
      */
-    @discardableResult func minWidth(_ percent: SPercent) -> StackItem
+    @discardableResult
+    func minWidth(_ percent: SPercent) -> StackItem
     
     /**
      The value specifies the view's maximum width in pixels. The value must be non-negative.
      */
-    @discardableResult func maxWidth(_ width: CGFloat) -> StackItem
+    @discardableResult
+    func maxWidth(_ width: CGFloat?) -> StackItem
     
     /**
      The value specifies the view's maximum width in percentage of its container width. The value must be non-negative.
      */
-    @discardableResult func maxWidth(_ percent: SPercent) -> StackItem
+    @discardableResult
+    func maxWidth(_ percent: SPercent) -> StackItem
     
     /**
      The value specifies the view's height in pixels. The value must be non-negative.
      */
-    @discardableResult func height(_ height: CGFloat) -> StackItem
+    @discardableResult
+    func height(_ height: CGFloat?) -> StackItem
     
     /**
      The value specifies the view's height in percentage of its container height. The value must be non-negative.
      Example: view.flex.height(40%)
      */
-    @discardableResult func height(_ percent: SPercent) -> StackItem
+    @discardableResult
+    func height(_ percent: SPercent) -> StackItem
     
     /**
      The value specifies the view's minimum height in pixels. The value must be non-negative.
      */
-    @discardableResult func minHeight(_ height: CGFloat) -> StackItem
+    @discardableResult
+    func minHeight(_ height: CGFloat?) -> StackItem
     
     /**
      The value specifies the view's minimum height in percentage of its container height. The value must be non-negative.
      */
-    @discardableResult func minHeight(_ percent: SPercent) -> StackItem
+    @discardableResult
+    func minHeight(_ percent: SPercent) -> StackItem
     
     /**
      The value specifies the view's maximum height in pixels. The value must be non-negative.
      */
-    @discardableResult func maxHeight(_ height: CGFloat) -> StackItem
+    @discardableResult
+    func maxHeight(_ height: CGFloat?) -> StackItem
     
     /**
      The value specifies the view's maximum height in percentage of its container height. The value must be non-negative.
      */
-    @discardableResult func maxHeight(_ percent: SPercent) -> StackItem
-    
+    @discardableResult
+    func maxHeight(_ percent: SPercent) -> StackItem
     
     /**
      The value specifies view's width and the height in pixels. Values must be non-negative.
@@ -137,16 +153,6 @@ public protocol StackItem {
     
     @discardableResult
     func size(_ percent: SPercent) -> StackItem
-    
-    /**
-     The `alignSelf` property controls how a child aligns in the cross direction, overriding the `alignItems`
-     of the parent. For example, if children are flowing vertically, `alignSelf` will control how the StackItem item
-     will align horizontally.
-     
-     - Parameter value: Default value is .auto
-     */
-    @discardableResult
-    func alignSelf(_ value: SAlignSelf) -> StackItem
     
     //
     // MARK: Margins
@@ -261,12 +267,14 @@ public protocol StackItem {
     /**
      Set the individually vertical margins (top, bottom) and horizontal margins (left, right, start, end).
      */
-    @discardableResult func margin(_ vertical: CGFloat, _ horizontal: CGFloat) -> StackItem
+    @discardableResult
+    func margin(_ vertical: CGFloat, _ horizontal: CGFloat) -> StackItem
     
     /**
      Set the individually top, horizontal margins and bottom margin.
      */
-    @discardableResult func margin(_ top: CGFloat, _ horizontal: CGFloat, _ bottom: CGFloat) -> StackItem
+    @discardableResult
+    func margin(_ top: CGFloat, _ horizontal: CGFloat, _ bottom: CGFloat) -> StackItem
     
     /**
      Set the individually top, left, bottom and right margins.

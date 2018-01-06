@@ -65,12 +65,11 @@ class StackItemImpl: NSObject, StackItem {
         return self
     }
 
-    
     //
     // width, height
     //
     @discardableResult
-    func width(_ value: CGFloat) -> StackItem {
+    func width(_ value: CGFloat?) -> StackItem {
         width = Value(value)
         return self
     }
@@ -82,7 +81,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func minWidth(_ value: CGFloat) -> StackItem {
+    func minWidth(_ value: CGFloat?) -> StackItem {
         minWidth = Value(value)
         return self
     }
@@ -94,7 +93,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func maxWidth(_ value: CGFloat) -> StackItem {
+    func maxWidth(_ value: CGFloat?) -> StackItem {
         maxWidth = Value(value)
         return self
     }
@@ -106,7 +105,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func height(_ value: CGFloat) -> StackItem {
+    func height(_ value: CGFloat?) -> StackItem {
         height = Value(value)
         return self
     }
@@ -118,7 +117,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func minHeight(_ value: CGFloat) -> StackItem {
+    func minHeight(_ value: CGFloat?) -> StackItem {
         minHeight = Value(value)
         return self
     }
@@ -130,7 +129,7 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func maxHeight(_ value: CGFloat) -> StackItem {
+    func maxHeight(_ value: CGFloat?) -> StackItem {
         maxHeight = Value(value)
         return self
     }

@@ -27,14 +27,14 @@ class IntroView: BaseView {
     fileprivate let textLabel = UILabel()
     fileprivate let separatorView = UIView()
     
-    fileprivate let buttonsStackView = StackLayoutView()
+    fileprivate let buttonsStackView = StackView()
     fileprivate let toggleDirectionButton = UIButton(type: .custom)
     fileprivate let toggleJustifyButton = UIButton(type: .custom)
     fileprivate let toggleVisibilityButton = UIButton(type: .custom)
     fileprivate let removeButton = UIButton(type: .custom)
     fileprivate let insertButton = UIButton(type: .custom)
     
-    var stackLayoutView: StackLayoutView!
+    var stackView: StackView!
     //        let logo = UIImageView(image: UIImage(named: "PinLayout-logo"))
     //        let textLabel = UILabel()
     //        let separatorView = UIView()
@@ -47,10 +47,10 @@ class IntroView: BaseView {
     override init() {
         super.init()
     
-        stackLayoutView = StackLayoutView()
-        stackLayoutView.layer.borderColor = UIColor.black.cgColor
-        stackLayoutView.layer.borderWidth = 1
-        addSubview(stackLayoutView)
+        stackView = StackView()
+        stackView.layer.borderColor = UIColor.black.cgColor
+        stackView.layer.borderWidth = 1
+        addSubview(stackView)
         
         toggleDirectionButton.backgroundColor = .gray
         toggleDirectionButton.setTitle("Dir", for: .normal)
@@ -107,23 +107,23 @@ class IntroView: BaseView {
         
         // configure the StackView
 //        logo.item.size(60)
-//        stackLayoutView.addItem(logo)
+//        stackView.addItem(logo)
 //        
 //        textLabel.item.maxWidth(50%)
-//        stackLayoutView.addItem(textLabel)
+//        stackView.addItem(textLabel)
 //        
 //        separatorView.item.height(4)
-//        stackLayoutView.addItem(separatorView)
+//        stackView.addItem(separatorView)
 //        
 //        label1.item.marginTop(10).marginBottom(10)
-//        stackLayoutView.addItem(label1)
+//        stackView.addItem(label1)
 //        
-//        stackLayoutView.addItem(label2)
-//        stackLayoutView.addItem(label3)
+//        stackView.addItem(label2)
+//        stackView.addItem(label3)
 //
-//        stackLayoutView.direction(.column)  // Default
-//        stackLayoutView.justifyContent(.start)
-//        stackLayoutView.alignItems(.stretch)
+//        stackView.direction(.column)  // Default
+//        stackView.justifyContent(.start)
+//        stackView.alignItems(.stretch)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -148,13 +148,13 @@ class IntroView: BaseView {
         label3.backgroundColor = .blue
         label3.text = "Label very very very much longuer"
         
-        stackLayoutView.addItem(label1)
-        stackLayoutView.addItem(label2)
-        stackLayoutView.addItem(label3)
+        stackView.addItem(label1)
+        stackView.addItem(label2)
+        stackView.addItem(label3)
         
-        stackLayoutView.direction(.column)
-        stackLayoutView.justifyContent(.spaceAround)
-//        stackLayoutView.alignItems(.center)
+        stackView.direction(.column)
+        stackView.justifyContent(.spaceAround)
+//        stackView.alignItems(.center)
         
 //        label2.item.alignSelf(.end)
     }
@@ -180,13 +180,13 @@ class IntroView: BaseView {
         label3.text = "Label much longuer"
         label3.numberOfLines = 0
 
-        stackLayoutView.addItem(label1)
-        stackLayoutView.addItem(label2)
-        stackLayoutView.addItem(label3)
+        stackView.addItem(label1)
+        stackView.addItem(label2)
+        stackView.addItem(label3)
         
-        stackLayoutView.direction(.row)
-        stackLayoutView.justifyContent(.start)
-        stackLayoutView.alignItems(.start)
+        stackView.direction(.row)
+        stackView.justifyContent(.start)
+        stackView.alignItems(.start)
         
         label2.item.alignSelf(.auto)
     }
@@ -210,7 +210,7 @@ class IntroView: BaseView {
         
         view1.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
         
-        stackLayoutView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
+        stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
             label1.item.grow(1)
             label2.item.grow(10)
             view1.item.grow(1)
@@ -222,7 +222,7 @@ class IntroView: BaseView {
         
         layout()
         
-        printViewFrame(stackLayoutView, name: "stackLayoutView")
+        printViewFrame(stackView, name: "stackView")
         printViewFrame(label1, name: "label1")
         printViewFrame(label2, name: "label2")
         //        printViewFrame(label3, name: "label3")
@@ -237,20 +237,20 @@ class IntroView: BaseView {
     
     func didTapView() {
         if label1.isHidden {
-            stackLayoutView.showItem(label1, animate: true)
+            stackView.showItem(label1, animate: true)
         } else {
-            stackLayoutView.hideItem(label1, animate: true)
+            stackView.hideItem(label1, animate: true)
         }
         print("asdfa")
     }
     
     private func layout() {
-//        stackLayoutView.pin.top(64).left().width(400).height(600)
-        stackLayoutView.pin.top(64).height(200).sizeToFit(.height)
+//        stackView.pin.top(64).left().width(400).height(600)
+        stackView.pin.top(64).height(200).sizeToFit(.height)
         
-//        stackLayoutView.pin.top(80).left().height(400).sizeToFit(.height)
-//        stackLayoutView.pin.top(80).left().width(400).sizeToFit(.width)
-        stackLayoutView.layout()
+//        stackView.pin.top(80).left().height(400).sizeToFit(.height)
+//        stackView.pin.top(80).left().width(400).sizeToFit(.width)
+        stackView.layout()
     }
     
     override func layoutSubviews() {
@@ -272,23 +272,23 @@ class IntroView: BaseView {
     }
     
     internal func didTapToggleDirection() {
-        if stackLayoutView.getDirection() == .column {
-            stackLayoutView.direction(.row)
+        if stackView.getDirection() == .column {
+            stackView.direction(.row)
         } else {
-            stackLayoutView.direction(.column)
+            stackView.direction(.column)
         }
         
         setNeedsLayout()
     }
     
     internal func didTapToggleJustify() {
-        switch stackLayoutView.getJustifyContent() {
-        case .start:        stackLayoutView.justifyContent(.center)
-        case .center:       stackLayoutView.justifyContent(.end)
-        case .end:          stackLayoutView.justifyContent(.spaceBetween)
-        case .spaceBetween: stackLayoutView.justifyContent(.spaceAround)
-        case .spaceAround:  stackLayoutView.justifyContent(.spaceEvenly)
-        case .spaceEvenly:  stackLayoutView.justifyContent(.start)
+        switch stackView.getJustifyContent() {
+        case .start:        stackView.justifyContent(.center)
+        case .center:       stackView.justifyContent(.end)
+        case .end:          stackView.justifyContent(.spaceBetween)
+        case .spaceBetween: stackView.justifyContent(.spaceAround)
+        case .spaceAround:  stackView.justifyContent(.spaceEvenly)
+        case .spaceEvenly:  stackView.justifyContent(.start)
         }
         
         setNeedsLayout()
@@ -296,9 +296,9 @@ class IntroView: BaseView {
     
     internal func didTapToggleVisibility() {
         if label2.isHidden {
-            stackLayoutView.showItem(label2, animate: true)
+            stackView.showItem(label2, animate: true)
         } else {
-            stackLayoutView.hideItem(label2, animate: true)
+            stackView.hideItem(label2, animate: true)
         }
 
         setNeedsLayout()
@@ -309,6 +309,6 @@ class IntroView: BaseView {
     }
     
     internal func didTapInsert() {
-        stackLayoutView.insertItem(label2, at: 1)
+        stackView.insertItem(label2, at: 1)
     }
 }

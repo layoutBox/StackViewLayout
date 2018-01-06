@@ -261,7 +261,7 @@ class ItemInfo {
     }
 }
     
-extension StackLayoutView {
+extension StackView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
