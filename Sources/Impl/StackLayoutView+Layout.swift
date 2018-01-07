@@ -262,6 +262,19 @@ class ItemInfo {
 }
     
 extension StackView {
+    // TODO: Tests StackView using autolayout
+    public override var intrinsicContentSize: CGSize {
+        let container = Container(direction: direction)
+        container.width = nil
+        container.height = nil
+        return layoutItems(container: container)
+    }
+    
+    // TODO: Tests StackView using autolayout
+    public override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {
+        return super.systemLayoutSizeFitting(targetSize)
+    }
+    
     public override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -275,8 +288,7 @@ extension StackView {
         let container = Container(direction: direction)
         container.width = size.width == CGFloat.greatestFiniteMagnitude ? nil : size.width
         container.height = size.height == CGFloat.greatestFiniteMagnitude ? nil : size.height
-        let size = layoutItems(container: container)
-        return size
+        return layoutItems(container: container)
     }
     
     @discardableResult

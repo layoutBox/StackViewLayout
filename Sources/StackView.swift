@@ -28,6 +28,20 @@ public class StackView: UIView {
     internal var justifyContent = SJustifyContent.start
     internal var alignItems = SAlignItems.stretch
     
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    public static override var requiresConstraintBasedLayout: Bool {
+        return false
+    }
+    
     /**
      This method is used to structure your code so that it matches the stack view structure. The method has a closure parameter with a
      single parameter called `flex`. This parameter is in fact, the view's flex interface, it can be used to adds other flex items

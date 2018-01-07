@@ -34,12 +34,13 @@ Extremely Fast StackView without auto layout. Concise syntax, intuitive, readabl
 * [StackViewLayout principles and philosophy](#introduction)
 * [Performance](#performance)
 * [Documentation](#documentation)
-	* [Layout StackViews](#layout_stackviews)
+	* [StackView class](#stackview) 
+	* [How to layout StackViews](#stackview_layout)
 	* [Managing StackView's items](#managing_items)
 	* [StackView properties](#StackView_properties)
 	* [Items properties](#items_properties)
-	* [Adjusting item's width, height and size](#adjusting_size)
-	* [Margins](#margins)
+		* [Adjusting item's width, height and size](#adjusting_size)
+		* [Margins](#margins)
 
 * [API Documentation](#api_documentation)
 * [Examples App](#examples_app)
@@ -70,7 +71,8 @@ They all share a similar syntax and method names. Also...
 
 <br>
  
-## StackViewLayout Introduction examples <a name="intro_usage_example"></a>
+<a name="intro_usage_example"></a>
+## StackViewLayout Introduction examples 
 ###### Example 1:
 
 
@@ -102,7 +104,8 @@ override func layoutSubviews() {
 </br>
 
 
-## StackViewLayout principles and philosophy <a name="introduction"></a>
+<a name="introduction"></a>
+## StackViewLayout principles and philosophy 
 
 * StackViewLayout layouting is simple, powerful and fast.
 * StackViewLayout syntax is concise and chainable.
@@ -110,27 +113,26 @@ override func layoutSubviews() {
 * StackViewLayout is incredibly fast compared to UIStackView. See [Performance](#performance).
 * Not too intrusive. StackViewLayout only adds one property to existing iOS classes: `UIView.item`.
 * Method's name match [PinLayout](https://github.com/mirego/PinLayout) and [FlexLayout](https://github.com/layoutBox/FlexLayout).
+* StackView inherits from UIView, so it supports all visual tweaks, including backgroundColor, layer borders. Which is not the case for UIStackView.
 
 <br>
 
-# StackViewLayout's Performance <a name="performance"></a>
-
+<a name="performance"></a>
+# StackViewLayout's Performance 
 TO BE DOCUMENTED
 
 <br/>
 	
 
-# Documentation <a name="documentation"></a>
 
-StackViewLayout is pretty easy and straightforward to use. 
+# Documentation 
 
 The defining aspect of StackViewLayout is the ability to alter its items, width, height to best fill the available space on any display device. A StackView expands its items to fill the available free space or shrinks them to prevent overflow.
 
 The StackViewLayout is constituted of the `StackView` class and its immediate children which are called **items**. 
 
-`StackView` calls item's `sizeThatFits()` method to compute their size based on the StackView's available space.
-
-##### Axes <a name="axes"></a>
+<a name="axes"></a>
+##### Axes 
 
 When working with StackViews you need to think in terms of two axes — the main axis and the cross axis. The main axis is defined by StackView's `direction` property, and the cross axis runs perpendicular to it.
 
@@ -143,22 +145,31 @@ When working with StackViews you need to think in terms of two axes — the main
 ##### Sections	
 In the following sections we will see:
 
-* How to layout StackViews
-* How to create, modify and define StackViews
-* StackView properties
-* How to layout StackViews
-* Items properties
+* [StackView class](#stackview) 
+* [How to layout StackViews](#stackview_layout)
+* [Managing StackView's items](#managing_items)
+* [StackView properties](#StackView_properties)
+* [Items properties](#items_properties)
 
 TODO: :pushpin: This document is a guide that explains how to use StackViewLayout. You can also checks the [**StackViewLayout API documentation**](https://layoutBox.github.io/StackViewLayout/1.1/Classes/StackViewLayout.html).
 
 <br>
 
-## StackViews <a name="layout_stackviews"></a>
-
-### StackView class
+<a name="stackview"></a>
+## StackView class 
 `StackView` is the main component of the StackViewLayout framework. 
 
 `StackView` class inherits from UIView, and thus it can be added has a subview and layouted has any other UIView.
+
+StackView inherits from UIView, so it supports all visual tweaks, including backgroundColor, layer borders, rounded corners, .... Which is not the case for an UIStackView.
+
+
+<a name="stackview_layout"></a>
+## StackView layout
+
+When you use a StackView, you are responsible for the layout (position and size) of the StackView in its container (superview). Then, the StackView manages the layout and size of its content. Views contained in the StackView are called items.
+
+StackView attempts to fill the space along the main-axis with its items. It sizes each item via its sizeThatFits returned value and if there is a leftover or a lack of space, it uses item's `grow` and `shrink` properties to determine which items to grow or shrink. StackView also takes into account item's margins. See [grow](#grow) and [shrink](#shrink) properties for more details.
 
 ###### Usage examples:
 ```swift
@@ -184,11 +195,13 @@ override func layoutSubviews() {
 ### Layouting StackViews
 This section explain how to control the size of a StackView and how it is possible to adjust the StackView's size to match its items.
 
+You must define at least one dimension (width or height) to layout a StackView. 
+
 Two options when layouting StackView:
 1. Fixed size
 2. StackView adjust its size to match its items 
 
-### Fixed size
+#### Fixed size
 StackView's size can be set to a specific width and height, in this situation the StackView will adjust the size and the position of all its items to fill the available space. You can control how items are layouted using [StackView's properties](#StackView_properties) and [item's properties](#items_properties).
 
 StackView should be layouted either from `UIView.layoutSubviews()` or `UIViewController.viewWillLayoutSubviews()`.
@@ -228,7 +241,7 @@ Result:
 
 <img src="docs_markdown/images/example-size-fixed-size.png" width="160"/>
 
-### Adjusting size to match its items
+#### Adjusting size to match its items
 StackView can be layouted by specifying only one dimension and letting the StackView compute the other dimension. In this situation StackLayout set its dimension to fit all its items. 
 
 :pushpin: If the StackView adjust its size to match its items, the [`justifyContent`](#justifyContent) property will have no effect.
@@ -263,7 +276,8 @@ Result: The StackView height as been adjusted to contain all its items.
 
 <br/>
 
-### layout() method <a name="layout_method"></a>
+<a name="layout_method"></a>
+### layout() method 
 Setting a UIView's frame doesn't layout the view immediately. The layout is postponed. To force the layout of a UIView immediately you must call `UIView.layoutIfNeeded()`.
 
 StackView expose a `layout` method to also force a layout immediately.
@@ -280,7 +294,8 @@ TODO: Does this method is really required?
 
 <br/>
 
-## 2. Managing StackView's items <a name="managing_items"></a>
+<a name="managing_items"></a>
+## 2. Managing StackView's items 
 
 ### Adding items to a StackView 
 - Applies to: `StackView`
@@ -339,9 +354,9 @@ This method is used to structure your code so that it matches the view structure
 The same results can also be obtained without using the `define()` method.
 
 ```swift
-   stack.addItem(imageView)
-   stack.addItem(nameLabel)
-   stack.addItem(descriptionLabel)		
+   stackview.addItem(imageView)
+   stackview.addItem(nameLabel)
+   stackview.addItem(descriptionLabel)
 ```
 
 **Advantages of using `define()`**:
@@ -352,10 +367,12 @@ The same results can also be obtained without using the `define()` method.
 
 <br>
  
-## 3. StackView properties  <a name="StackView_properties"></a>
-This section describes all StackView properties that affect how items are layouted.
+<a name="StackView_properties"></a>
+## 3. StackView properties  
+This section describes StackView properties that affect how items are layouted.
 
-### direction <a name="direction"></a>
+<a name="direction"></a>
+### direction 
 - Applies to: `StackView`
 - Values: `column` / `row`
 - Default value: `column`
@@ -428,13 +445,17 @@ Much better!
 
 <br/>
 
-### justifyContent <a name="justifyContent"></a>
+<a name="justifyContent"></a>
+### justifyContent 
 - Applies to: `StackView`
 - Values: `start` / `end` / `center` / `spaceBetween` / `spaceAround` / `spaceEvenly`
 - Default value: `start`
 - Method: **`justifyContent(_: JustifyContent)`** 
 
 The `justifyContent` property defines the alignment along the main-axis. It helps distribute extra free space leftover when either all items have reached their maximum size. For example, for a column StackView, `justifyContent` controls how items align vertically. 
+
+This property is similar to `UIStackView.distribution` (UIStackViewDistribution)
+
 
 |                     	| direction(.column) | direction(.row) | |
 |---------------------	|:------------------:|:---------------:|:--|
@@ -456,13 +477,16 @@ TODO: Add an example!!!
 
 <br/>
 
-### alignItems <a name="alignItems"></a>
+<a name="alignItems"></a>
+### alignItems 
 - Applies to: `StackView`
 - Values: `stretch` / `start` / `end` / `center`
 - Default value: `stretch `
 - Method: **`alignItems(_: AlignItems)`**  
 
 The `alignItems` property defines how items are laid out along the cross axis. Similar to `justifyContent` but for the cross-axis (perpendicular to the main-axis). For example, for a column StackView, `alignItems` controls how they align horizontally. 
+
+This property is similar to `UIStackView.alignment` (UIStackViewAlignment)
 
 |                     	| direction(.column) | direction(.row) |
 |---------------------	|:------------------:|:---------------:|
@@ -476,7 +500,8 @@ TODO: Add an example!!!
 
 <br/>
 
-## 4. Item properties <a name="items_properties"></a>
+<a name="items_properties"></a>
+## 4. Item properties 
 This section describes all StackView's item properties.
 
 ### alignSelf
@@ -493,7 +518,8 @@ TODO: Add an example!!!
 <br/>
 
 
-### grow <a name="grow"></a>
+<a name="grow"></a>
+### grow 
 - Default value: 0
 - method: **`grow(_: CGFloat)`** 
 
@@ -507,7 +533,8 @@ TODO: Add an example!!!
 
 <br>
 
-### shrink <a name="shrink"></a>
+<a name="shrink"></a>
+### shrink 
 - Default value: 0
 - Method: **`shrink(_: CGFloat)`** 
 
@@ -521,7 +548,8 @@ TODO: Add an example!!!
 
 <br>
 
-### Adjusting item's width, height and size <a name="adjusting_size"></a> 
+<a name="adjusting_size"></a> 
+### Adjusting item's width, height and size 
 
 StackView's items size can be set manually using the following methods.
 
@@ -554,7 +582,8 @@ TODO: Add an example!!!
 
 <br>
 
-### minWidth, maxWidth, minHeight, maxHeight <a name="minmax_width_height_size"></a>
+<a name="minmax_width_height_size"></a>
+### minWidth, maxWidth, minHeight, maxHeight 
 
 StackView's items min/max width and min/max height can be specified.
 
@@ -599,7 +628,8 @@ TODO: Add an example!!!
 
 <br>
 
-### Margins <a name="margins"></a>
+<a name="margins"></a>
+### Margins 
 
 By applying Margin to an item you specify the offset a certain edge of the item should have from it’s closest sibling or parent (StackView).
 
@@ -645,11 +675,20 @@ Set all margins to the specified value.
 
 <br>
 
-### aspectRatio() <a name="aspect_ratio"></a>
+<a name="aspect_ratio"></a>
+### aspectRatio() 
 
 NOT IMPLEMENTED YET. COMING SOON.
 
 <br/>
+
+
+### Nesting StackViews
+
+TODO:
+If you run into situations where multiple elements need to be arranged along multiple axes, UIStackViews can be nested inside each other. Below is the layout from the example project. Each property UILabel and UISegmentedControl are contained in a UIStackView. All of the UIStackViews are then contained in a parent UIStackView denoted on the left.
+
+
 
 
 ### StackViewLayout default properties
@@ -677,25 +716,29 @@ This table resume **StackView's default properties**:
 
 <br>
 
-## StackViewLayout API Documentation <a name="api_documentation"></a>
+<a name="api_documentation"></a>
+## StackViewLayout API Documentation 
 The [**complete StackViewLayout API is available here**](https://layoutBox.github.io/StackViewLayout/1.1/Classes/StackViewLayout.html). 
 
 <br>
 
-## Example App <a name="examples_app"></a>
+<a name="examples_app"></a>
+## Example App 
 
 NOT IMPLEMENTED YET. COMING SOON.
 
 <br>
 
 
-## FAQ <a name="faq"></a>
+<a name="faq"></a>
+## FAQ 
 
 COMING SOON.
 
 <br/>
 
-## Contributing, comments, ideas, suggestions, issues, .... <a name="comments"></a>
+<a name="comments"></a>
+## Contributing, comments, ideas, suggestions, issues, .... 
 For any **comments**, **ideas**, **suggestions**, simply open an [issue](https://github.com/layoutBox/StackViewLayout/issues). 
 
 For **issues**, please have a look at [Yoga's issues](https://github.com/facebook/yoga/issues). Your issue may have been already reported. If not, it may be a StackViewLayout issue. In this case open an issue and we'll let you know if the issue is related to Yoga's implementation. 
@@ -707,7 +750,8 @@ If you'd like to contribute, you're welcome!
 <br>
 
 
-## Installation <a name="installation"></a>
+<a name="installation"></a>
+## Installation 
 
 ### CocoaPods
 
