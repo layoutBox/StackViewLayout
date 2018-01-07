@@ -36,8 +36,6 @@ class SizeThatFitsSpec: QuickSpec {
         }
 
         beforeEach {
-            Pin.lastWarningText = nil
-            
             viewController = UIViewController()
             
             stackLayoutView = StackView()

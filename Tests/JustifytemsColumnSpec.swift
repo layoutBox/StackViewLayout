@@ -36,13 +36,10 @@ class JustifytemsColumnSpec: QuickSpec {
         }
 
         beforeEach {
-            Pin.lastWarningText = nil
-            
             viewController = UIViewController()
             
             stackLayoutView = StackView()
             stackLayoutView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-            stackLayoutView.setNeedsLayout()
             viewController.view.addSubview(stackLayoutView)
 
             label1 = UILabel()

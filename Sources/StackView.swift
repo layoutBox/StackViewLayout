@@ -60,6 +60,7 @@ public class StackView: UIView {
 //        stackItems.append(stackItemImpl)
         
         addSubview(view)
+        markDirty()
         
         return view.item
      }
@@ -70,6 +71,7 @@ public class StackView: UIView {
 //        stackItems.insert(stackItemImpl, at: index)
         
         insertSubview(view, at: index)
+        markDirty()
         
         return view.item
     }
@@ -81,6 +83,7 @@ public class StackView: UIView {
 //        stackItems.insert(stackItemImpl, at: itemIndex)
         
         insertSubview(view, aboveSubview: refItem)
+        markDirty()
         
         return view.item
     }
@@ -92,6 +95,7 @@ public class StackView: UIView {
 //        stackItems.insert(stackItemImpl, at: itemIndex + 1)
 
         insertSubview(view, belowSubview: refItem)
+        markDirty()
         
         return view.item
     }
@@ -99,6 +103,7 @@ public class StackView: UIView {
     public func removeItem(_ view: UIView) {
 //        removStackItem(view)
         view.removeFromSuperview()
+        markDirty()
     }
     
 //    public override func willRemoveSubview(_ subview: UIView) {
@@ -127,7 +132,7 @@ public class StackView: UIView {
     @discardableResult
     public func direction(_ value: SDirection) -> StackView {
         direction = value
-        setNeedsLayout()
+        markDirty()
         return self
     }
     
@@ -138,7 +143,7 @@ public class StackView: UIView {
     @discardableResult
     public func justifyContent(_ value: SJustifyContent) -> StackView {
         justifyContent = value
-        setNeedsLayout()
+        markDirty()
         return self
     }
     
@@ -163,7 +168,7 @@ public class StackView: UIView {
     @discardableResult
     public func alignItems(_ value: SAlignItems) -> StackView {
         alignItems = value
-        setNeedsLayout()
+        markDirty()
         return self
     }
     
@@ -175,6 +180,15 @@ public class StackView: UIView {
     // Layout view
     //
 
+    public func markDirty() {
+        setNeedsLayout()
+
+        // All StackViews ancestors dirty.
+        if let stackView = superview as? StackView {
+            stackView.markDirty()
+        }
+    }
+    
     /**
      The method layout the StackView's items using the current frame's size
      or by automatically adjusting the width or the height to match

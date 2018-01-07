@@ -61,7 +61,15 @@ public protocol StackItem {
      */
     @discardableResult
     func shrink(_ value: CGFloat) -> StackItem
-
+    
+    /**
+     StackView's items are layouted only when a item's property is changed and when the StackView size change.
+     In the event that you want to force StackView to do a layout of an item, you can mark it as dirty
+     using `markDirty()`.
+     */
+    @discardableResult
+    func markDirty() -> StackItem
+    
     //
     // MARK: Width, height and size
     //

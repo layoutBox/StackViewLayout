@@ -64,6 +64,17 @@ class StackItemImpl: NSObject, StackItem {
         shrink = value
         return self
     }
+    
+    @discardableResult
+    public func markDirty() -> StackItem {
+        view.setNeedsLayout()
+        
+        if let stackView = view.superview as? StackView {
+            stackView.markDirty()
+        }
+        return self
+    }
+
 
     //
     // width, height

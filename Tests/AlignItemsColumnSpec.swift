@@ -36,8 +36,6 @@ class AlignItemsColumnSpec: QuickSpec {
         }
 
         beforeEach {
-            Pin.lastWarningText = nil
-            
             viewController = UIViewController()
 
             stackLayoutView = StackView()

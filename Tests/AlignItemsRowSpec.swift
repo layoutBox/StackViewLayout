@@ -47,8 +47,6 @@ class AlignItemsRowSpec: QuickSpec {
         // TODO
 
         beforeEach {
-            Pin.lastWarningText = nil
-            
             viewController = UIViewController()
 
             stackLayoutView = StackView()

@@ -696,6 +696,24 @@ NOT IMPLEMENTED YET. COMING SOON.
 
 <br/>
 
+<a name="markDirty"></a>
+### markDirty() 
+- Method: **`markDirty()`** 
+
+StackView's items are layouted only when an item's property is changed and when the StackView size change. In the event that you want to force the StackView to update the layout of an item, you can mark it as dirty using `markDirty()`.
+
+:pushpin: Following an item's change, you may choose to re-layout the StackView, in that case you don't need to call `markDirty()` because StackView always re-layout all its items in its layout process. 
+     
+###### Usage examples:
+In the case where a UILabel's text is updated, it is needed to mark the label as dirty.
+
+```swift
+    // Update UILabel's text and mark the UILabel as dirty
+    label.text = "I love FlexLayout"
+    label.item.markDirty()    
+```
+
+<br>
 
 ### Nesting StackViews
 
