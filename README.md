@@ -111,9 +111,11 @@ override func layoutSubviews() {
 * StackViewLayout syntax is concise and chainable.
 * StackViewLayout share the same exact API as [FlexLayout](https://github.com/layoutBox/FlexLayout). But its usage is easier in most situations. 
 * StackViewLayout is incredibly fast compared to UIStackView. See [Performance](#performance).
+* Fine items spacing adjustment using margins. 
 * Not too intrusive. StackViewLayout only adds one property to existing iOS classes: `UIView.item`.
 * Method's name match [PinLayout](https://github.com/mirego/PinLayout) and [FlexLayout](https://github.com/layoutBox/FlexLayout).
 * StackView inherits from UIView, so it supports all visual tweaks, including backgroundColor, layer borders. Which is not the case for UIStackView.
+* StackView doesn't have an internal list of items (as [`UIStackView.arrangedSubviews`](https://developer.apple.com/documentation/uikit/uistackview/1616232-arrangedsubviews)), it simply layout all views from its `UIView.subviews` array. 
 
 <br>
 
@@ -127,7 +129,7 @@ TO BE DOCUMENTED
 
 # Documentation 
 
-The defining aspect of StackViewLayout is the ability to alter its items, width, height to best fill the available space on any display device. A StackView expands its items to fill the available free space or shrinks them to prevent overflow.
+The defining aspect of StackView is the ability to alter its items, width, height to best fill the available space on any display device. A StackView expands its items to fill the available free space or shrinks them to prevent overflow.
 
 The StackViewLayout is constituted of the `StackView` class and its immediate children which are called **items**. 
 
@@ -157,11 +159,12 @@ TODO: :pushpin: This document is a guide that explains how to use StackViewLayou
 
 <a name="stackview"></a>
 ## StackView class 
-`StackView` is the main component of the StackViewLayout framework. 
 
-`StackView` class inherits from UIView, and thus it can be added has a subview and layouted has any other UIView.
-
-StackView inherits from UIView, so it supports all visual tweaks, including backgroundColor, layer borders, rounded corners, .... Which is not the case for an UIStackView.
+* StackView class **inherits from UIView**:
+	* So, it can be added has a subview and layouted has any other UIView. 
+	* It also means it supports all visual tweaks, including backgroundColor, layer borders, rounded corners, .... Which is not the case for an UIStackView.
+* StackView **doesn't have an internal list of items** (as [`UIStackView.arrangedSubviews`](https://developer.apple.com/documentation/uikit/uistackview/1616232-arrangedsubviews)), it simply layout all views from its `UIView.subviews` array. 
+* StackView layout all visible views (`isHidden = false`) from its `UIView.subviews` array. 
 
 
 <a name="stackview_layout"></a>
@@ -301,18 +304,27 @@ TODO: Does this method is really required?
 - Applies to: `StackView`
 - Returns: StackItem interface of the newly added item.
 
-Here is the list methods to add items to a StackView.
+StackView layout all visible views (`isHidden = false`) in the `UIView.subviews` array. 
+
+Here is the list methods to add or insert items to a StackView.
+
+:pushpin: Since StackView layout all views in the `UIView.subviews` array, it is also possible to add or insert views using:
+
+* `addSubview(_ view: UIView)`
+* `insertSubview(_ view: UIView, at index: Int)`
+* `insertSubview(_ view: UIView, aboveSubview: UIView)`
+* `insertSubview(_ view: UIView, belowSubview: UIView)`
 
 **Methods:**
 
 * **`addItem(_: UIView) -> StackItem`**  
-This method adds an item (UIView) to a StackView. The item is added as the last item. Internally this method adds the UIView as a subview.
+This method adds an item (UIView) to a StackView. The item is added as the last item. Internally this method adds the UIView as a subview. Note that you can also use .
 * **`insertItem(_ view: UIView, at index: Int) -> StackItem`**  
-This method adds an item (UIView) at the specified index.
+This method adds an item (UIView) at the specified index. Note that you can also use `insertSubview(_ view: UIView, at index: Int)`.
 * **`insertItem(_ view: UIView, before refItem: UIView) -> StackItem?`**  
-This method adds an item (UIView) before the specified reference item.  
+This method adds an item (UIView) before the specified reference item. Note that you can also use `insertSubview(_ view: UIView, aboveSubview: UIView)`.
 * **`insertItem(_ view: UIView, after refItem: UIView) -> StackItem?`**  
-This method adds an item (UIView) after the specified reference item.  
+This method adds an item (UIView) after the specified reference item. Note that you can also use `insertSubview(_ view: UIView, belowSubview: UIView)`.
 
 ###### Usage examples:
 ```swift
@@ -324,10 +336,12 @@ This method adds an item (UIView) after the specified reference item.
 ### Removing items 
 - Applies to: `StackView`
 
+:pushpin: StackView layout all views in the `UIView.subviews` array. So it is also possible to remove items views using `removeFromSuperview()`.
+
 **Method:**
 
 * **`removeItem(_ view: UIView)`**  
-Removes the specified item from the StackView.
+Removes the specified item from the StackView. Note that you can also use `removeFromSuperview()`.
 
 ###### Usage example:
 ```swift
@@ -688,22 +702,25 @@ NOT IMPLEMENTED YET. COMING SOON.
 TODO:
 If you run into situations where multiple elements need to be arranged along multiple axes, UIStackViews can be nested inside each other. Below is the layout from the example project. Each property UILabel and UISegmentedControl are contained in a UIStackView. All of the UIStackViews are then contained in a parent UIStackView denoted on the left.
 
-
-
+<br/>
 
 ### StackViewLayout default properties
 
 This table resume **StackView's default properties**:
 
-| Property     | StackViewLayout default value |
+| Property     | StackView default value |
 |--------------|--------------------------|
 | **`direction`** | .column |
 | **`justifyContent`** | .start |
 | **`alignItems`** | .stretch |
+
+This table resume **Items default properties**:
+
+| Property     | Items default value |
+|--------------|--------------------------|
 | **`alignSelf`** | .auto |
 | **`grow`** | 0 |
 | **`shrink`** | 0 |
-| **`basis`** | 0 |
 
 <br>
 

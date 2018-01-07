@@ -23,7 +23,7 @@ import Foundation
 import UIKit
  
 public class StackView: UIView {
-    internal var stackItems: [StackItemImpl] = []
+//    internal var stackItems: [StackItemImpl] = []
     internal var direction = SDirection.column
     internal var justifyContent = SJustifyContent.start
     internal var alignItems = SAlignItems.stretch
@@ -56,61 +56,61 @@ public class StackView: UIView {
     
     @discardableResult
     public func addItem(_ view: UIView) -> StackItem {
-        let stackItemImpl = view.item as! StackItemImpl
-        stackItems.append(stackItemImpl)
+//        let stackItemImpl = view.item as! StackItemImpl
+//        stackItems.append(stackItemImpl)
         
-        super.addSubview(view)
+        addSubview(view)
         
-        return stackItemImpl
+        return view.item
      }
     
     @discardableResult
     public func insertItem(_ view: UIView, at index: Int) -> StackItem {
-        let stackItemImpl = view.item as! StackItemImpl
-        stackItems.insert(stackItemImpl, at: index)
+//        let stackItemImpl = view.item as! StackItemImpl
+//        stackItems.insert(stackItemImpl, at: index)
         
-        self.insertSubview(view, at: index)
+        insertSubview(view, at: index)
         
-        return stackItemImpl
+        return view.item
     }
     
     @discardableResult
     public func insertItem(_ view: UIView, before refItem: UIView) -> StackItem? {
-        guard let stackItemImpl = view.item as? StackItemImpl else { return nil }
-        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return nil }
-        stackItems.insert(stackItemImpl, at: itemIndex)
+//        guard let stackItemImpl = view.item as? StackItemImpl else { return nil }
+//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return nil }
+//        stackItems.insert(stackItemImpl, at: itemIndex)
         
-        super.insertSubview(view, aboveSubview: refItem)
+        insertSubview(view, aboveSubview: refItem)
         
-        return stackItemImpl
+        return view.item
     }
     
     @discardableResult
     public func insertItem(_ view: UIView, after refItem: UIView) -> StackItem? {
-        guard let stackItemImpl = view.item as? StackItemImpl else { return nil }
-        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return nil }
-        stackItems.insert(stackItemImpl, at: itemIndex + 1)
+//        guard let stackItemImpl = view.item as? StackItemImpl else { return nil }
+//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return nil }
+//        stackItems.insert(stackItemImpl, at: itemIndex + 1)
 
-        super.insertSubview(view, belowSubview: refItem)
+        insertSubview(view, belowSubview: refItem)
         
-        return stackItemImpl
+        return view.item
     }
     
     public func removeItem(_ view: UIView) {
-        removStackItem(view)
+//        removStackItem(view)
         view.removeFromSuperview()
     }
     
-    public override func willRemoveSubview(_ subview: UIView) {
-        super.willRemoveSubview(subview)
-        removStackItem(subview)
-    }
+//    public override func willRemoveSubview(_ subview: UIView) {
+//        super.willRemoveSubview(subview)
+//        removStackItem(subview)
+//    }
     
-    private func removStackItem(_ view: UIView) {
-        guard let stackItemImpl = view.item as? StackItemImpl else { return }
-        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this StackLayoutView!"); return }
-        stackItems.remove(at: itemIndex)
-    }
+//    private func removStackItem(_ view: UIView) {
+//        guard let stackItemImpl = view.item as? StackItemImpl else { return }
+//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this StackLayoutView!"); return }
+//        stackItems.remove(at: itemIndex)
+//    }
     
     /**
      The `direction` property establishes the main-axis, thus defining the direction flex items are placed in the flex container.
@@ -213,42 +213,42 @@ public class StackView: UIView {
 //        updateItemVisibility(view: view, isVisible: true, animate: animate)
     }
     
-    internal func updateItemVisibility(view: UIView, isVisible: Bool, animate: Bool) {
-        guard let stackItemImpl = view.item as? StackItemImpl else { return }
-        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this StackLayoutView!"); return }
-        let duration = 0.3
-        
-        if animate {
-            if isVisible {
-                view.bounds.size = direction == .column ? CGSize(width: view.frame.width, height: 0) : CGSize(width: 0, height: view.frame.height)
-                view.isHidden = false
-                
-                UIView.animate(withDuration: duration, delay: 0, options: [.beginFromCurrentState], animations: {
-                    self.forceLayoutNow()
-                })
-            } else {
-                let itemSnapshot = view.snapshotView(afterScreenUpdates: true)!
-                itemSnapshot.frame = view.frame
-                insertSubview(itemSnapshot, at: itemIndex)
-                view.isHidden = true
-                
-                UIView.animate(withDuration: duration, delay: 0, options: [.beginFromCurrentState], animations: {
-                    itemSnapshot.frame.size = self.direction == .column ? CGSize(width: itemSnapshot.frame.width, height: 0) : CGSize(width: 0, height: itemSnapshot.frame.height)
-                    self.forceLayoutNow()
-                }, completion: { (completed) in
-                    itemSnapshot.removeFromSuperview()
-                })
-            }
-        } else {
-            view.isHidden = !isVisible
-            forceLayoutNow()
-        }
-    }
+//    internal func updateItemVisibility(view: UIView, isVisible: Bool, animate: Bool) {
+//        guard let stackItemImpl = view.item as? StackItemImpl else { return }
+//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this StackLayoutView!"); return }
+//        let duration = 0.3
+//
+//        if animate {
+//            if isVisible {
+//                view.bounds.size = direction == .column ? CGSize(width: view.frame.width, height: 0) : CGSize(width: 0, height: view.frame.height)
+//                view.isHidden = false
+//
+//                UIView.animate(withDuration: duration, delay: 0, options: [.beginFromCurrentState], animations: {
+//                    self.forceLayoutNow()
+//                })
+//            } else {
+//                let itemSnapshot = view.snapshotView(afterScreenUpdates: true)!
+//                itemSnapshot.frame = view.frame
+//                insertSubview(itemSnapshot, at: itemIndex)
+//                view.isHidden = true
+//
+//                UIView.animate(withDuration: duration, delay: 0, options: [.beginFromCurrentState], animations: {
+//                    itemSnapshot.frame.size = self.direction == .column ? CGSize(width: itemSnapshot.frame.width, height: 0) : CGSize(width: 0, height: itemSnapshot.frame.height)
+//                    self.forceLayoutNow()
+//                }, completion: { (completed) in
+//                    itemSnapshot.removeFromSuperview()
+//                })
+//            }
+//        } else {
+//            view.isHidden = !isVisible
+//            forceLayoutNow()
+//        }
+//    }
     
-    internal func forceLayoutNow() {
-        setNeedsLayout()
-        layoutIfNeeded()
-    }
+//    internal func forceLayoutNow() {
+//        setNeedsLayout()
+//        layoutIfNeeded()
+//    }
 }
     
 #endif

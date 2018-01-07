@@ -395,8 +395,7 @@ extension StackView {
     }
     
     private func measuresItemsAndMargins(container: Container) {
-        stackItems.forEach{ (stackItem) in
-            let view = stackItem.view
+        subviews.forEach { (view) in
             guard !view.isHidden else { return }
             guard let stackItem = view.item as? StackItemImpl else { return }
             

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1219A842BBAEAD0FA8213A94 /* Pods_StackLayoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD49253AF7327F24DA0757C /* Pods_StackLayoutTests.framework */; };
 		240F88C11F0C1F5000280FC8 /* AlignItemsColumnSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F88BF1F0C1ED900280FC8 /* AlignItemsColumnSpec.swift */; };
+		241819C02002900F0092B369 /* SubviewsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241819BE20028FDA0092B369 /* SubviewsSpec.swift */; };
 		2423C77C1FD08AD600C794AE /* StackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C77B1FD08AD600C794AE /* StackItem.swift */; };
 		2423C77E1FD08B1500C794AE /* StackItemImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C77D1FD08B1500C794AE /* StackItemImpl.swift */; };
 		2423C7861FD0AA8000C794AE /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7851FD0AA8000C794AE /* Value.swift */; };
@@ -69,6 +70,7 @@
 		144303E5200662A28FC92F65 /* Pods-StackLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayout.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayout/Pods-StackLayout.debug.xcconfig"; sourceTree = "<group>"; };
 		2409E90E6CFDA14D9CF84D98 /* Pods_StackLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		240F88BF1F0C1ED900280FC8 /* AlignItemsColumnSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignItemsColumnSpec.swift; sourceTree = "<group>"; };
+		241819BE20028FDA0092B369 /* SubviewsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubviewsSpec.swift; sourceTree = "<group>"; };
 		2423C77B1FD08AD600C794AE /* StackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackItem.swift; sourceTree = "<group>"; };
 		2423C77D1FD08B1500C794AE /* StackItemImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StackItemImpl.swift; path = Impl/StackItemImpl.swift; sourceTree = "<group>"; };
 		2423C7851FD0AA8000C794AE /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Value.swift; path = Impl/Value.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				2469C5011E75D88500073BEE /* BasicView.swift */,
 				2469C5031E75DB7600073BEE /* RectNimbleMatcher.swift */,
 				240F88BF1F0C1ED900280FC8 /* AlignItemsColumnSpec.swift */,
+				241819BE20028FDA0092B369 /* SubviewsSpec.swift */,
 				245B58041FE8BA4F00C0E8EA /* AlignItemsRowSpec.swift */,
 				2464A8721FD253DC007A92A8 /* JustifytemsColumnSpec.swift */,
 				24EC06D81FD633F500459C62 /* JustifytemsRowSpec.swift */,
@@ -518,6 +521,7 @@
 				2469C5041E75DB7600073BEE /* RectNimbleMatcher.swift in Sources */,
 				245B58061FE8BA5800C0E8EA /* AlignItemsRowSpec.swift in Sources */,
 				248F0C1F1FF92238004CD8AC /* WidthHeightSizeSpec.swift in Sources */,
+				241819C02002900F0092B369 /* SubviewsSpec.swift in Sources */,
 				24496C311FE55F9D006F0E78 /* ShrinkColumnSpec.swift in Sources */,
 				2469C5021E75D88500073BEE /* BasicView.swift in Sources */,
 				24EC06AC1FD254F700459C62 /* JustifytemsColumnSpec.swift in Sources */,
