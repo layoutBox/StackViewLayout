@@ -34,13 +34,12 @@ Extremely Fast StackView without auto layout. Concise syntax, intuitive, readabl
 * [StackViewLayout principles and philosophy](#introduction)
 * [Performance](#performance)
 * [Documentation](#documentation)
-	* [Creation, modification and definition of StackViews](#create_modify_define_stackViews)
-	* [StackView properties](#StackView_properties)
 	* [Layout StackViews](#layout_stackviews)
+	* [Managing StackView's items](#managing_items)
+	* [StackView properties](#StackView_properties)
 	* [Items properties](#items_properties)
 	* [Adjusting item's width, height and size](#adjusting_size)
 	* [Margins](#margins)
-	* [layout() method](#layout_method)
 
 * [API Documentation](#api_documentation)
 * [Examples App](#examples_app)
@@ -84,25 +83,7 @@ init() {
    addSubview(stackView)
    ...
 
-   label1 = UILabel()
-    label1.backgroundColor = .red
-    label1.font = UIFont.systemFont(ofSize: 17)
-    label1.text = "Label 1"
-    
-    label2 = UILabel()
-    label2.font = UIFont.systemFont(ofSize: 17)
-    label2.backgroundColor = .green
-    label2.text = "Label longuer"
-    
-    label3 = UILabel()
-    label3.font = UIFont.systemFont(ofSize: 17)
-    label3.backgroundColor = .blue
-    label3.text = "Label much longuer"
-        
-    stackView.direction(.column).justifyContent(.spaceAround)
-    stackView.addItem(label1)
-    stackView.addItem(label2)
-    stackView.addItem(label3)
+   ...
 }
 
 override func layoutSubviews() {
@@ -147,7 +128,7 @@ The defining aspect of StackViewLayout is the ability to alter its items, width,
 
 The StackViewLayout is constituted of the `StackView` class and its immediate children which are called **items**. 
 
-`StackView` calls item's `sizeThatFits()` method to compute their sizebased on the StackView's available space.
+`StackView` calls item's `sizeThatFits()` method to compute their size based on the StackView's available space.
 
 ##### Axes <a name="axes"></a>
 
@@ -162,18 +143,21 @@ When working with StackViews you need to think in terms of two axes — the main
 ##### Sections	
 In the following sections we will see:
 
-1. How to create, modify and define StackViews.
-2. StackView properties
-3. How to layout StackViews
-4. Items properties
+* How to layout StackViews
+* How to create, modify and define StackViews
+* StackView properties
+* How to layout StackViews
+* Items properties
 
 TODO: :pushpin: This document is a guide that explains how to use StackViewLayout. You can also checks the [**StackViewLayout API documentation**](https://layoutBox.github.io/StackViewLayout/1.1/Classes/StackViewLayout.html).
 
 <br>
 
-## 1. Creation, modification and definition of StackViews <a name="create_modify_define_stackViews"></a>
+## StackViews <a name="layout_stackviews"></a>
 
 ### StackView class
+`StackView` is the main component of the StackViewLayout framework. 
+
 `StackView` class inherits from UIView, and thus it can be added has a subview and layouted has any other UIView.
 
 ###### Usage examples:
@@ -182,7 +166,11 @@ private let stackview = StackView()
 
 init() {
    super.init(frame: .zero)
-   ...
+   
+   stackview.define { (stack) in
+      stack.addItem(button1)
+      stack.addItem(button2)
+   }
    addSubView(stackView)
 }
   
@@ -190,15 +178,115 @@ override func layoutSubviews() {
    super.layoutSubviews() 
    stackView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
 }
-
 ```
 <br>
+
+### Layouting StackViews
+This section explain how to control the size of a StackView and how it is possible to adjust the StackView's size to match its items.
+
+Two options when layouting StackView:
+1. Fixed size
+2. StackView adjust its size to match its items 
+
+### Fixed size
+StackView's size can be set to a specific width and height, in this situation the StackView will adjust the size and the position of all its items to fill the available space. You can control how items are layouted using [StackView's properties](#StackView_properties) and [item's properties](#items_properties).
+
+StackView should be layouted either from `UIView.layoutSubviews()` or `UIViewController.viewWillLayoutSubviews()`.
+
+###### Example:
+In this example the StackView will be layouted to fill completely its parent. 
+
+Using [PinLayout](https://github.com/mirego/PinLayout):
+
+```swift
+init() {
+	...   
+   stackview.define { (stack) in
+      stack.addItem(button1)
+      stack.addItem(button2)
+      stack.addItem(button3)
+   }
+   addSubView(stackView)
+}
+  
+override func layoutSubviews() {
+   super.layoutSubviews() 
+   stackView.pin.all()
+}
+```
+
+Using `UIView.frame` property:
+
+```swift
+override func layoutSubviews() {
+   super.layoutSubviews() 
+   stackView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+}
+```
+
+Result:
+
+<img src="docs_markdown/images/example-size-fixed-size.png" width="160"/>
+
+### Adjusting size to match its items
+StackView can be layouted by specifying only one dimension and letting the StackView compute the other dimension. In this situation StackLayout set its dimension to fit all its items. 
+
+:pushpin: If the StackView adjust its size to match its items, the [`justifyContent`](#justifyContent) property will have no effect.
+
+###### Example:
+This example layout a StackView at the top and fill the parent horizontally. The StackView's height will be computed to fit nicely its items. Here is the result:
+
+Using [PinLayout](https://github.com/mirego/PinLayout):
+
+```swift
+override func layoutSubviews() {
+   super.layoutSubviews() 
+   // Use PinLayout sizeToFit(.width) method to adjust the StackView's size.
+   stackView.pin.top().left().width(100%).sizeToFit(.width)
+}
+```
+
+Using `UIView.frame` property:
+
+```swift
+override func layoutSubviews() {
+   super.layoutSubviews() 
+   let adjustedSize = stackView.sizeThatFits(CGSize(width: frame.width, 
+                                                    height: .greatestFiniteMagnitude))
+   stackView.frame = CGRect(x: 0, y: 0, width: adjustedSize.width, height: adjustedSize.height)
+}
+```
+
+Result: The StackView height as been adjusted to contain all its items.
+
+<img src="docs_markdown/images/example-size-adjust-height.png" width="160"/>
+
+<br/>
+
+### layout() method <a name="layout_method"></a>
+Setting a UIView's frame doesn't layout the view immediately. The layout is postponed. To force the layout of a UIView immediately you must call `UIView.layoutIfNeeded()`.
+
+StackView expose a `layout` method to also force a layout immediately.
+
+* **`layout(mode: SLayoutMode)`**  
+The method layout the StackView's items using the current frame's size or by automatically adjusting the width or the height to match its items.
+
+	**mode:**
+	* **.fitContainer**: This is the default mode when no parameter is specified. Items are layouted **inside** the StackView (width and height).
+	* **.adjustHeight**: In this mode, items are layouted **using only the StackView's width**. The container's height will be adjusted to fit its items.
+	* **.adjustWidth**: In this mode, items are layouted **using only the StackView's height**. The StackView width will be adjusted to fit its items.
+
+TODO: Does this method is really required?
+
+<br/>
+
+## 2. Managing StackView's items <a name="managing_items"></a>
 
 ### Adding items to a StackView 
 - Applies to: `StackView`
 - Returns: StackItem interface of the newly added item.
 
-StackView layout its items. Here is the list methods to add or remove items from StackViews.
+Here is the list methods to add items to a StackView.
 
 **Methods:**
 
@@ -210,20 +298,29 @@ This method adds an item (UIView) at the specified index.
 This method adds an item (UIView) before the specified reference item.  
 * **`insertItem(_ view: UIView, after refItem: UIView) -> StackItem?`**  
 This method adds an item (UIView) after the specified reference item.  
-* **`removeItem(_ view: UIView)`**  
-This method removes the specified item from the StackView.
 
 ###### Usage examples:
 ```swift
   stackview.addItem(imageView)
   stackview.addItem(titleLabel, after: imageView)
-  stackview.removeItem(descriptionLabel)
 ```
 <br>
 
+### Removing items 
+- Applies to: `StackView`
+
+**Method:**
+
+* **`removeItem(_ view: UIView)`**  
+Removes the specified item from the StackView.
+
+###### Usage example:
+```swift
+  stackview.removeItem(descriptionLabel)
+```
+
 ### define()
 - Applies to: `StackView`
-- Parameter: Closure of type `(stackView: StackView) -> Void`
 
 **Method:**
 
@@ -255,8 +352,7 @@ The same results can also be obtained without using the `define()` method.
 
 <br>
  
-
-## 2. StackView properties  <a name="StackView_properties"></a>
+## 3. StackView properties  <a name="StackView_properties"></a>
 This section describes all StackView properties that affect how items are layouted.
 
 ### direction <a name="direction"></a>
@@ -377,69 +473,6 @@ The `alignItems` property defines how items are laid out along the cross axis. S
 
 
 TODO: Add an example!!!
-
-<br/>
-
-## 3. Layout StackViews <a name="layout_stackviews"></a>
-This section explain how to control the size of a StackView and how it is possible to adjust the StackView's size to match its items.
-
-### Fixed size
-StackView's size can be set to a specific width and height, in this situation the StackView will adjust the size and the position of all its items to fill the available space. You can control how items are layouted using StackView's properties and item's properties (explained in the next section [Items properties](#items_properties))
-
-StackView layout is mostly done from `UIView.layoutSubviews()` or 'UIViewController.viewWillLayoutSubviews()`.
-
-###### Example:
-This example layout a StackView to fill completely its parent.
-
-Using PinLayout:
-
-```swift
-override func layoutSubviews() {
-   super.layoutSubviews() 
-   stackView.pin.all()
-}
-```
-
-Using frame property:
-
-```swift
-override func layoutSubviews() {
-   super.layoutSubviews() 
-   stackView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-}
-```
-
-### Adjusting size to match its items
-StackView width or height can be adjusted to fit its items.
-
-:pushpin: If the StackView adjust its size to match its items, the [`justifyContent`](#justifyContent) property will have no effect.
-
-
-###### Example:
-This example layout a StackView at the top and fill the parent horizontally. The StackView's height is computed to fit nicely its items. 
-
-Using PinLayout:
-
-```swift
-override func layoutSubviews() {
-   super.layoutSubviews() 
-   stackView.pin.top().left().width(100%).sizeToFit(.width)
-}
-```
-
-Using frame property:
-
-```swift
-override func layoutSubviews() {
-   super.layoutSubviews() 
-   let adjustedSize = stackView.sizeThatFits(CGSize(width: frame.width, 
-                                                    height: .greatestFiniteMagnitude))
-   stackView.frame = CGRect(x: 0, y: 0, width: adjustedSize.width, height: adjustedSize.height)
-}
-```
-
-### layout() method <a name="layout_method"></a>
-TO BE DONE
 
 <br/>
 

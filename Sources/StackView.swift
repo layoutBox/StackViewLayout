@@ -131,7 +131,7 @@ public class StackView: UIView {
     /**
      The `justifyContent` property defines the alignment along the main-axis of the current line of the flex container.
      It helps distribute extra free space leftover when either all the flex items on a line have reached their maximum
-     size. For example, if children are flowing vertically, `justifyContent` controls how they align vertically.
+     size. For example, if items are flowing vertically, `justifyContent` controls how they align vertically.
      
      - Parameter value: Default value is .start
      */
@@ -142,7 +142,7 @@ public class StackView: UIView {
     /**
      The `alignItems` property defines how flex items are laid out along the cross axis on the current line.
      Similar to `justifyContent` but for the cross-axis (perpendicular to the main-axis). For example, if
-     children are flowing vertically, `alignItems` controls how they align horizontally.
+     items are flowing vertically, `alignItems` controls how they align horizontally.
      
      - Parameter value: Default value is .stretch
      */
@@ -162,7 +162,7 @@ public class StackView: UIView {
     //
 
     /**
-     The method layout the stack's items using the current frame's size
+     The method layout the StackView's items using the current frame's size
      or by automatically adjusting the width or the height to match
      its items.
      

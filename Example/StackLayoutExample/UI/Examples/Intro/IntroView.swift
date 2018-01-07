@@ -241,17 +241,17 @@ class IntroView: BaseView {
         let button2 = BasicButton(text: "button2")
         let button3 = BasicButton(text: "button3")
 
-//        stackView.define { (stack) in
-//            stack.addItem(button1)
-//            stack.addItem(button2).marginTop(10)
-//            stack.addItem(button3).marginTop(10)
-//        }
-        
-        stackView.direction(.row).alignItems(.start).define { (stack) in
-            stack.addItem(button1).shrink(1)
-            stack.addItem(button2).marginLeft(10).shrink(1)
-            stack.addItem(button3).marginLeft(10).shrink(1)
+        stackView.define { (stack) in
+            stack.addItem(button1)
+            stack.addItem(button2).marginTop(10)
+            stack.addItem(button3).marginTop(10)
         }
+        
+//        stackView.direction(.row).alignItems(.start).define { (stack) in
+//            stack.addItem(button1).shrink(1)
+//            stack.addItem(button2).marginLeft(10).shrink(1)
+//            stack.addItem(button3).marginLeft(10).shrink(1)
+//        }
 
         layout()
     }
@@ -271,6 +271,7 @@ class IntroView: BaseView {
         
 //        stackView.pin.top(80).left().height(400).sizeToFit(.height)
 //        stackView.pin.top(80).left().width(400).sizeToFit(.width)
+        //stackView.pin.top(80).left(20).width(300).sizeToFit(.width)  //.height(400)
         stackView.pin.top(80).left(20).width(300).height(400)
         stackView.layout()
     }

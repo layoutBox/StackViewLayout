@@ -63,7 +63,7 @@ public enum SAlignItems {
 }
 
 public enum SAlignSelf {
-    /// Default. The element inherits its parent container's align-items property, or "stretch" if it has no parent container
+    /// Default. The element inherits its parent StackView align-items property, or "stretch" if it has no parent container
     case auto
     /// The element is positioned to fit the container
     case stretch
@@ -81,10 +81,10 @@ public enum SAlignSelf {
  Defines how the `layout(mode:)` method layout its flex items.
  */
 public enum SLayoutMode {
-    /// This is the default mode when no parameter is specified. Children are layouted **inside** the container's size (width and height).
+    /// This is the default mode when no parameter is specified. Items are layouted **inside** the StackView size (width and height).
     case fitContainer
-    /// In this mode, children are layouted **using only the container's width**. The container's height will be adjusted to fit the flexbox's children
+    /// In this mode, Items are layouted **using only the StackView width**. The StackView height will be adjusted to fit the flexbox's Items
     case adjustHeight
-    /// In this mode, children are layouted **using only the container's height**. The container's width will be adjusted to fit the flexbox's children
+    /// In this mode, Items are layouted **using only the StackView height**. The StackView width will be adjusted to fit the flexbox's Items
     case adjustWidth
 }
