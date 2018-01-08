@@ -25,7 +25,7 @@ class ShrinkColumnSpec: QuickSpec {
     override func spec() {
         var viewController: UIViewController!
         
-        var stackLayoutView: StackView!
+        var stackView: StackView!
         var label1: UILabel!
         var label2: UILabel!
         var view1: BasicView!
@@ -37,9 +37,9 @@ class ShrinkColumnSpec: QuickSpec {
         beforeEach {
             viewController = UIViewController()
             
-            stackLayoutView = StackView()
-            stackLayoutView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-            viewController.view.addSubview(stackLayoutView)
+            stackView = StackView()
+            stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+            viewController.view.addSubview(stackView)
 
             // label1 is single line
             label1 = UILabel()
@@ -64,24 +64,24 @@ class ShrinkColumnSpec: QuickSpec {
         //
         describe("COLUMN: shrink") {
             it("no shrink") {
-                stackLayoutView.define { (stack) in
+                stackView.define { (stack) in
                     stack.addItem(label1)
                     stack.addItem(label2)
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 200, height: 101.667), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 122, width: 200, height: 100), within: withinRange))
             }
             
             it("1 item with shrink") {
-                stackLayoutView.define { (stack) in
+                stackView.define { (stack) in
                     label1.item.shrink(1)
                     
                     stack.addItem(label1)
@@ -89,36 +89,36 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 0), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 101.667), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 101.667, width: 200, height: 100), within: withinRange))
             }
             
             it("1 item with shrink") {
-                stackLayoutView.define { (stack) in
+                stackView.define { (stack) in
                     label2.item.shrink(1)
                     stack.addItem(label1)
                     stack.addItem(label2)
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 200, height: 59.667), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 80, width: 200, height: 100), within: withinRange))
             }
             
             it("2 items with shrink") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.shrink(1)
                     label2.item.shrink(1)
                     
@@ -127,18 +127,18 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layout()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layout()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 13.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 13.333, width: 200, height: 66.667), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 80, width: 200, height: 100), within: withinRange))
             }
             
             it("2 items with shrink") {
-                stackLayoutView.define { (stack) in
+                stackView.define { (stack) in
                     label1.item.shrink(1)
                     label2.item.shrink(4)
                     
@@ -147,18 +147,18 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 18.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 18.333, width: 200, height: 61.667), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 80, width: 200, height: 100), within: withinRange))
             }
             
             it("3 items with shrink") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.shrink(1)
                     label2.item.shrink(1)
                     view1.item.shrink(1)
@@ -168,18 +168,18 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 16.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 16.333, width: 200, height: 82.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 98.667, width: 200, height: 81), within: withinRange))
             }
             
             it("3 items with shrink") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.shrink(1)
                     label2.item.shrink(10)
                     view1.item.shrink(1)
@@ -189,18 +189,18 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 19.667), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 19.667, width: 200, height: 64), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 83.667, width: 200, height: 96.333), within: withinRange))
             }
             
             it("shrink + maxHeight") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.shrink(1).maxHeight(100)
                     label2.item.shrink(10).maxHeight(120)
                     view1.item.shrink(1).maxHeight(140)
@@ -210,18 +210,18 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 19.667), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 19.667, width: 200, height: 64), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 83.667, width: 200, height: 96.333), within: withinRange))
             }
             
             it("The label1 should shrink to takes the extra space.") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.shrink(1)
                     label2.item.shrink(10).maxHeight(120)
                     view1.item.shrink(1).maxHeight(140)
@@ -231,18 +231,18 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 19.667), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 19.667, width: 200, height: 64), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 83.667, width: 200, height: 96.333), within: withinRange))
             }
             
             it("shrink + minHeight + label2 height result is 0") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.shrink(1).minHeight(80)
                     label2.item.shrink(2)
                     view1.item.shrink(1).minHeight(100)
@@ -252,18 +252,18 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 80), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 80, width: 200, height: 0), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 80, width: 200, height: 100), within: withinRange))
             }
             
             it("shrink + minHeight + overflow") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.shrink(1).minHeight(200)
                     label2.item.shrink(2)
                     view1.item.shrink(1).minHeight(220)
@@ -273,18 +273,18 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 200), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 200, height: 0), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 200, height: 220), within: withinRange))
             }
             
             it("shrink + minHeight + overflow") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.shrink(1).minHeight(300)
                     label2.item.shrink(2)
                     view1.item.shrink(1).minHeight(320)
@@ -294,18 +294,18 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 300), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 300, width: 200, height: 0), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 300, width: 200, height: 320), within: withinRange))
             }
             
             it("shrink + minHeight") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.shrink(1)
                     label2.item.shrink(2)
                     view1.item.shrink(1).minHeight(100)
@@ -315,18 +315,18 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackLayoutView.layoutIfNeeded()
+                stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 16.667), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 16.667, width: 200, height: 63.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 80, width: 200, height: 100), within: withinRange))
             }
             
             it("should not apply shrink since the stack will adjust its height") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.shrink(1)
                     label2.item.shrink(10)
                     view1.item.shrink(1)
@@ -336,9 +336,9 @@ class ShrinkColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 131.333), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 131.333), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 61), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))

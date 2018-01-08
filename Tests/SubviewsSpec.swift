@@ -26,7 +26,7 @@ class SubviewsSpec: QuickSpec {
     override func spec() {
         var viewController: UIViewController!
         
-        var stackLayoutView: StackView!
+        var stackView: StackView!
         var label1: UILabel!
         var label2: UILabel!
         var view1: BasicView!
@@ -38,9 +38,9 @@ class SubviewsSpec: QuickSpec {
         beforeEach {
             viewController = UIViewController()
 
-            stackLayoutView = StackView()
-            stackLayoutView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-            viewController.view.addSubview(stackLayoutView)
+            stackView = StackView()
+            stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+            viewController.view.addSubview(stackView)
 
             label1 = UILabel()
             label1.backgroundColor = .red
@@ -64,16 +64,16 @@ class SubviewsSpec: QuickSpec {
         //
         describe("StackLayout using addSubview") {
             it("addSubview") {
-                stackLayoutView.justifyContent(.start).alignItems(.stretch).define({ (stack) in
-                    stackLayoutView.addSubview(label1)
-                    stackLayoutView.addSubview(label2)
-                    stackLayoutView.addSubview(view1)
+                stackView.justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                    stackView.addSubview(label1)
+                    stackView.addSubview(label2)
+                    stackView.addSubview(view1)
                 })
-                stackLayoutView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackLayoutView.layout()
+                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+                stackView.layout()
 
                 // Match UIStackView
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 61), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))

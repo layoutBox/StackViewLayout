@@ -24,7 +24,7 @@ import UIKit
 
 class StackItemImpl: NSObject, StackItem {
     internal let view: UIView
-//    var parent: StackLayoutView?
+//    var parent: StackView?
     
     internal var width: Value?
     internal var minWidth: Value?

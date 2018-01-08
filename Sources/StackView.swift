@@ -79,7 +79,7 @@ public class StackView: UIView {
     @discardableResult
     public func insertItem(_ view: UIView, before refItem: UIView) -> StackItem? {
 //        guard let stackItemImpl = view.item as? StackItemImpl else { return nil }
-//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return nil }
+//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this stackView!"); return nil }
 //        stackItems.insert(stackItemImpl, at: itemIndex)
         
         insertSubview(view, aboveSubview: refItem)
@@ -91,7 +91,7 @@ public class StackView: UIView {
     @discardableResult
     public func insertItem(_ view: UIView, after refItem: UIView) -> StackItem? {
 //        guard let stackItemImpl = view.item as? StackItemImpl else { return nil }
-//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this StackLayoutView!"); return nil }
+//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this stackView!"); return nil }
 //        stackItems.insert(stackItemImpl, at: itemIndex + 1)
 
         insertSubview(view, belowSubview: refItem)
@@ -113,7 +113,7 @@ public class StackView: UIView {
     
 //    private func removStackItem(_ view: UIView) {
 //        guard let stackItemImpl = view.item as? StackItemImpl else { return }
-//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this StackLayoutView!"); return }
+//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this stackView!"); return }
 //        stackItems.remove(at: itemIndex)
 //    }
     
@@ -229,7 +229,7 @@ public class StackView: UIView {
     
 //    internal func updateItemVisibility(view: UIView, isVisible: Bool, animate: Bool) {
 //        guard let stackItemImpl = view.item as? StackItemImpl else { return }
-//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this StackLayoutView!"); return }
+//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this stackView!"); return }
 //        let duration = 0.3
 //
 //        if animate {

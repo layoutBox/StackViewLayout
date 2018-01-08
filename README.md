@@ -567,6 +567,8 @@ TODO: Add an example!!!
 
 StackView's items size can be set manually using the following methods.
 
+:pushpin: Note that if the width/height/size is set and the item's `shrink` or `grow` property have a value > 0, than if required the item may shrink or grow. Shrink and grow properties have an higher priority than width/height/size.
+
 **Methods:**
 
 * **`width(_ width: CGFloat?)`**  

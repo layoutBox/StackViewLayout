@@ -23,19 +23,19 @@ import Foundation
 import UIKit
 
 //extension StackView {
-//    @available(*, deprecated, message: "You should call addItem() to add a view to a StackLayoutView")
+//    @available(*, deprecated, message: "You should call addItem() to add a view to a stackView")
 //    override public func addSubview(_ view: UIView) {
-//        assert(false, "You should call addItem() to add a view to a StackLayoutView")
+//        assert(false, "You should call addItem() to add a view to a StackView")
 //    }
 //    
-//    @available(*, deprecated, message: "You should call insertItem(:before) to insert a view to a StackLayoutView")
+//    @available(*, deprecated, message: "You should call insertItem(:before) to insert a view to a stackView")
 //    override public func insertSubview(_ view: UIView, aboveSubview siblingSubview: UIView) {
-//        assert(false, "You should call insertItem(:before) to insert a view to a StackLayoutView")
+//        assert(false, "You should call insertItem(:before) to insert a view to a StackView")
 //    }
 //    
-//    @available(*, deprecated, message: "You should call insertItem(after:) to insert a view to a StackLayoutView")
+//    @available(*, deprecated, message: "You should call insertItem(after:) to insert a view to a stackView")
 //    public override func insertSubview(_ view: UIView, belowSubview siblingSubview: UIView) {
-//        assert(false, "You should call insertItem(after:) to insert a view to a StackLayoutView")
+//        assert(false, "You should call insertItem(after:) to insert a view to a StackView")
 //    }
 //}
 

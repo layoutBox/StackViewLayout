@@ -26,7 +26,7 @@ class SizeThatFitsSpec: QuickSpec {
     override func spec() {
         var viewController: UIViewController!
         
-        var stackLayoutView: StackView!
+        var stackView: StackView!
         var label1: UILabel!
         var label2: UILabel!
         var view1: BasicView!
@@ -38,9 +38,9 @@ class SizeThatFitsSpec: QuickSpec {
         beforeEach {
             viewController = UIViewController()
             
-            stackLayoutView = StackView()
-            stackLayoutView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-            viewController.view.addSubview(stackLayoutView)
+            stackView = StackView()
+            stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+            viewController.view.addSubview(stackView)
 
             label1 = UILabel()
             label1.font = UIFont.systemFont(ofSize: 17)
@@ -61,39 +61,39 @@ class SizeThatFitsSpec: QuickSpec {
         //
         describe("COLUMN: Adjust height") {
             it("default") {
-                stackLayoutView.define { (stack) in
+                stackView.define { (stack) in
                     stack.addItem(label1)
                     stack.addItem(label2)
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 400, height: 20), within: withinRange))
             }
             
             it("using sizeThatFits") {
-                stackLayoutView.define { (stack) in
+                stackView.define { (stack) in
                     stack.addItem(label1)
                     stack.addItem(label2)
                     stack.addItem(view1)
                 }
                 
-                let size = stackLayoutView.sizeThatFits(CGSize(width: 400, height: CGFloat.greatestFiniteMagnitude))
-                stackLayoutView.frame = CGRect(origin: CGPoint(x: 0, y: 64), size: size)
-                stackLayoutView.layoutIfNeeded()
+                let size = stackView.sizeThatFits(CGSize(width: 400, height: CGFloat.greatestFiniteMagnitude))
+                stackView.frame = CGRect(origin: CGPoint(x: 0, y: 64), size: size)
+                stackView.layoutIfNeeded()
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.start).alignItems(.stretch)") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.marginStart(10)
                     label2.item.marginStart(25%)
                     
@@ -102,16 +102,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 390, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 100, y: 20.333, width: 300, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.start).alignItems(.stretch)") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define{ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define{ (stack) in
                     label1.item.marginEnd(10)
                     label2.item.marginEnd(25%)
                     
@@ -120,16 +120,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 390, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 300, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.start).alignItems(.stretch)") {
-                stackLayoutView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.marginLeft(10).marginRight(20)
                     
                     stack.addItem(label1)
@@ -137,16 +137,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 370, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.start).alignItems(.stretch)") {
-                stackLayoutView.define { (stack) in
+                stackView.define { (stack) in
                     label1.item.marginTop(40).marginBottom(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginTop(30).marginBottom(40)
@@ -156,16 +156,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 80.333, width: 400, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.start).alignItems(.start)") {
-                stackLayoutView.justifyContent(.start).alignItems(.start).define { (stack) in
+                stackView.justifyContent(.start).alignItems(.start).define { (stack) in
                     label1.item.marginTop(40).marginBottom(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginTop(30).marginBottom(40)
@@ -175,16 +175,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 80.333, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.start).alignItems(.center)") {
-                stackLayoutView.justifyContent(.start).alignItems(.center).define { (stack) in
+                stackView.justifyContent(.start).alignItems(.center).define { (stack) in
                     label1.item.marginTop(40).marginBottom(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginTop(30).marginBottom(40)
@@ -194,17 +194,17 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.pin.top(64).width(400).sizeToFit(.width)
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 173.333, y: 40, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 148, y: 80.333, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.start).alignItems(.end)") {
-                stackLayoutView.justifyContent(.start).alignItems(.end).define { (stack) in
+                stackView.justifyContent(.start).alignItems(.end).define { (stack) in
                     label1.item.marginTop(40).marginBottom(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginTop(30).marginBottom(40)
@@ -214,16 +214,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 346.333, y: 40, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 296, y: 80.333, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.center).alignItems(.start)") {
-                stackLayoutView.justifyContent(.center).alignItems(.start).define { (stack) in
+                stackView.justifyContent(.center).alignItems(.start).define { (stack) in
                     label1.item.marginTop(40).marginBottom(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginTop(30).marginBottom(40)
@@ -233,16 +233,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 80.333, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.spaceBetween).alignItems(.start)") {
-                stackLayoutView.justifyContent(.spaceBetween).alignItems(.start).define { (stack) in
+                stackView.justifyContent(.spaceBetween).alignItems(.start).define { (stack) in
                     label1.item.marginTop(40).marginBottom(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginTop(30).marginBottom(40)
@@ -252,16 +252,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 80.333, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.spaceAround).alignItems(.center)") {
-                stackLayoutView.justifyContent(.spaceAround).alignItems(.center).define { (stack) in
+                stackView.justifyContent(.spaceAround).alignItems(.center).define { (stack) in
                     label1.item.marginTop(40).marginBottom(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginTop(30).marginBottom(40)
@@ -271,17 +271,17 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 173.333, y: 40, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 148, y: 80.333, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.center).alignItems(.stretch)") {
-                stackLayoutView.justifyContent(.center).alignItems(.stretch).define { (stack) in
+                stackView.justifyContent(.center).alignItems(.stretch).define { (stack) in
                     label1.item.marginTop(40).marginBottom(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginTop(30).marginBottom(40)
@@ -291,16 +291,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 80.333, width: 400, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.end).alignItems(.stretch)") {
-                stackLayoutView.justifyContent(.end).alignItems(.stretch).define { (stack) in
+                stackView.justifyContent(.end).alignItems(.stretch).define { (stack) in
                     label1.item.marginTop(40).marginBottom(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginTop(30).marginBottom(40)
@@ -310,16 +310,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 80.333, width: 400, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.spaceAround).alignItems(.stretch)") {
-                stackLayoutView.justifyContent(.spaceAround).alignItems(.stretch).define { (stack) in
+                stackView.justifyContent(.spaceAround).alignItems(.stretch).define { (stack) in
                     label1.item.marginTop(40).marginBottom(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginTop(30).marginBottom(40)
@@ -329,16 +329,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 80.333, width: 400, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.spaceBetween).alignItems(.stretch)") {
-                stackLayoutView.justifyContent(.spaceBetween).alignItems(.stretch).define { (stack) in
+                stackView.justifyContent(.spaceBetween).alignItems(.stretch).define { (stack) in
                     label1.item.marginTop(40).marginBottom(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginTop(30).marginBottom(40)
@@ -348,24 +348,24 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 80.333, width: 400, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140.667, width: 400, height: 20), within: withinRange))
             }
             
             it("justifyContent(.spaceEvenly).alignItems(.stretch)") {
-                stackLayoutView.direction(.column).justifyContent(.spaceEvenly).alignItems(.stretch).define { (stack) in
+                stackView.direction(.column).justifyContent(.spaceEvenly).alignItems(.stretch).define { (stack) in
                     stack.addItem(label1)
                     stack.addItem(label2)
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
+                stackView.pin.width(400).sizeToFit(.width)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 400, height: 20), within: withinRange))
@@ -377,16 +377,16 @@ class SizeThatFitsSpec: QuickSpec {
         //
         describe("COLUMN: Adjust width") {
             it("default") {
-                stackLayoutView.define { (stack) in
+                stackView.define { (stack) in
                     stack.addItem(label1)
                     stack.addItem(label2)
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.height(400).sizeToFit(.height)
-                stackLayoutView.layout()
+                stackView.pin.height(400).sizeToFit(.height)
+                stackView.layout()
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 104, height: 400), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 104, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 104, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 104, height: 77), within: withinRange))
@@ -399,7 +399,7 @@ class SizeThatFitsSpec: QuickSpec {
         //
         describe("rows + horizontal margins") {
             it("justifyContent(.start) + marginTop() + marginBottom()") {
-                stackLayoutView.direction(.row).justifyContent(.start).alignItems(.start).define { (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.start).define { (stack) in
                     label1.item.marginLeft(10).marginRight(20)
                     label2.item.marginLeft(10).marginRight(20)
                     view1.item.marginLeft(30).marginRight(40)
@@ -409,16 +409,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.height(400).sizeToFit(.height)
+                stackView.pin.height(400).sizeToFit(.height)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 93.667, y: 0, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 247.667, y: 0, width: 20, height: 400), within: withinRange))
             }
             
             it("justifyContent(.start) + marginLeft() + marginRight()") {
-                stackLayoutView.direction(.row).justifyContent(.end).alignItems(.end).define { (stack) in
+                stackView.direction(.row).justifyContent(.end).alignItems(.end).define { (stack) in
                     label1.item.marginLeft(10).marginRight(20)
                     label2.item.marginLeft(10).marginRight(20)
                     view1.item.marginLeft(30).marginRight(40)
@@ -428,16 +428,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.height(400).sizeToFit(.height)
+                stackView.pin.height(400).sizeToFit(.height)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 379.667, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 93.667, y: 379.667, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 247.667, y: 0, width: 20, height: 400), within: withinRange))
             }
             
             it("justifyContent(.end) + marginLeft() + marginRight()") {
-                stackLayoutView.direction(.row).justifyContent(.end).alignItems(.stretch).define { (stack) in
+                stackView.direction(.row).justifyContent(.end).alignItems(.stretch).define { (stack) in
                     label1.item.marginLeft(10).marginRight(20)
                     label2.item.marginLeft(10).marginRight(20)
                     view1.item.marginLeft(30).marginRight(40)
@@ -447,16 +447,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.height(400).sizeToFit(.height)
+                stackView.pin.height(400).sizeToFit(.height)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 53.667, height: 400), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 93.667, y: 0, width: 104, height: 400), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 247.667, y: 0, width: 20, height: 400), within: withinRange))
             }
             
             it("justifyContent(.center) + marginLeft() + marginRight()") {
-                stackLayoutView.direction(.row).justifyContent(.center).alignItems(.stretch).define { (stack) in
+                stackView.direction(.row).justifyContent(.center).alignItems(.stretch).define { (stack) in
                     label1.item.marginLeft(10).marginRight(20)
                     label2.item.marginLeft(10).marginRight(20)
                     view1.item.marginLeft(30).marginRight(40)
@@ -466,16 +466,16 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.height(400).sizeToFit(.height)
+                stackView.pin.height(400).sizeToFit(.height)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 53.667, height: 400), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 93.667, y: 0, width: 104, height: 400), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 247.667, y: 0, width: 20, height: 400), within: withinRange))
             }
             
             it("justifyContent(.center) + marginLeft() + marginRight()") {
-                stackLayoutView.direction(.row).justifyContent(.center).alignItems(.stretch).define { (stack) in
+                stackView.direction(.row).justifyContent(.center).alignItems(.stretch).define { (stack) in
                     label1.item.marginRight(20)
                     label2.item.marginLeft(10).marginRight(20)
                     view1.item.marginLeft(30)
@@ -485,9 +485,9 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
             
-                stackLayoutView.pin.height(400).sizeToFit(.height)
+                stackView.pin.height(400).sizeToFit(.height)
                 
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 257.667, height: 400), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 257.667, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 400), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 83.667, y: 0, width: 104, height: 400), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 237.667, y: 0, width: 20, height: 400), within: withinRange))
@@ -499,17 +499,17 @@ class SizeThatFitsSpec: QuickSpec {
         //
         describe("ROW: Adjust width") {
             it("default") {
-                stackLayoutView.direction(.row).define { (stack) in
+                stackView.direction(.row).define { (stack) in
                     stack.addItem(label1)
                     stack.addItem(label2)
                     stack.addItem(view1)
                 }
                 
-                stackLayoutView.pin.width(400).sizeToFit(.width)
-                stackLayoutView.layout()
+                stackView.pin.width(400).sizeToFit(.width)
+                stackView.layout()
                 
                 // Match FlexLayout
-                expect(stackLayoutView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 20.333), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 20.333), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 400, height: 20.333), within: withinRange))
