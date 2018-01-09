@@ -219,8 +219,8 @@ init() {
 	...   
    stackview.define { (stack) in
       stack.addItem(button1)
-      stack.addItem(button2)
-      stack.addItem(button3)
+      stack.addItem(button2).marginTop(10)
+      stack.addItem(button3).marginTop(10)
    }
    addSubView(stackView)
 }
