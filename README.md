@@ -808,6 +808,18 @@ NOT IMPLEMENTED YET. COMING SOON.
 
 <br>
 
+## Coming soon
+
+List of features that will be implement soon:
+
+* Add aspect ratio support
+* RTL (right-to-left) language support 
+* Implement distribution mode as UIStackView (.fill, FillEqually, FillProportionally, ...)
+* Implement directions row-reverse and column-reverse
+* Support StackView padding
+
+<br>
+
 ## Changelog
 StackViewLayout recent history is available in the are documented in the [CHANGELOG](CHANGELOG.md).
 
