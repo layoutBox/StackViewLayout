@@ -38,14 +38,6 @@ class AlignItemsRowSpec: QuickSpec {
             _setUnitTestDisplayScale(3)
         }
         
-        // TODO
-        // TODO
-        // TODO
-        // TODO
-        // TODO
-        // TODO
-        // TODO
-
         beforeEach {
             viewController = UIViewController()
 
@@ -56,18 +48,18 @@ class AlignItemsRowSpec: QuickSpec {
             label1 = UILabel()
             label1.backgroundColor = .red
             label1.font = UIFont.systemFont(ofSize: 17)
-            label1.numberOfLines = 0
+            label1.numberOfLines = 1
             
             label2 = UILabel()
             label2.font = UIFont.systemFont(ofSize: 17)
             label2.backgroundColor = .green
             label2.numberOfLines = 0
             
-            label1.text = "Label 1 Label 1 Label 1 Label 1 "
-            label2.text = "Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 "
+            label1.text = "Label 1"
+            label2.text = "Label longuer"
             
             view1 = BasicView(text: "View 1", color: .red)
-            view1.sizeThatFitsExpectedArea = 400 * 50
+            view1.sizeThatFitsExpectedArea = 400 * 20
         }
         
         //
@@ -84,142 +76,144 @@ class AlignItemsRowSpec: QuickSpec {
                 stackView.layout()
 
                 // Match UIStackView
+                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-//                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
-//                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 61), within: withinRange))
-//                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 600), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 600), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 400, height: 600), within: withinRange))
             }
-//
-//            it("align(.start)") {
-//                stackView.justifyContent(.start).alignItems(.start).define({ (stack) in
-//                    stack.addItem(label1)
-//                    stack.addItem(label2)
-//                    stack.addItem(view1)
-//                })
-//                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-//                stackView.layout()
-//                
-//                // Match UIStackView
-//                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-//                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 231.667, height: 20.333), within: withinRange))
-//                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 361.333, height: 61), within: withinRange))
-//                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
-//            }
-//            
-//            it("align(.center)") {
-//                stackView.justifyContent(.start).alignItems(.center).define({ (stack) in
-//                    stack.addItem(label1)
-//                    stack.addItem(label2)
-//                    stack.addItem(view1)
-//                })
-//                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-//                stackView.layout()
-//                
-//                // Match UIStackView
-//                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-//                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
-//                expect(label2.frame).to(beCloseTo(CGRect(x: 19.333, y: 20.333, width: 361.333, height: 61), within: withinRange))
-//                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
-//            }
-//            
-//            it("align(.end)") {
-//                stackView.justifyContent(.start).alignItems(.end).define({ (stack) in
-//                    stack.addItem(label1)
-//                    stack.addItem(label2)
-//                    stack.addItem(view1)
-//                })
-//                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-//                stackView.layout()
-//                
-//                // Match UIStackView
-//                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-//                expect(label1.frame).to(beCloseTo(CGRect(x: 168.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
-//                expect(label2.frame).to(beCloseTo(CGRect(x: 38.667, y: 20.333, width: 361.333, height: 61), within: withinRange))
-//                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
-//            }
-//        }
-//        
-//        //
-//        // alignSelf()
-//        //
-//        describe("StackLayout alignSelf()") {
-//            it("alignSelf(.auto)") {
-//                stackView.direction(.column).justifyContent(.start).alignItems(.center).define({ (stack) in
-//                    label2.item.alignSelf(.auto)
-//
-//                    stack.addItem(label1)
-//                    stack.addItem(label2)
-//                    stack.addItem(view1)
-//                })
-//                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-//                stackView.layout()
-//                
-//                // Match UIStackView
-//                // Match FlexLayout
-//                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-//                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
-//                expect(label2.frame).to(beCloseTo(CGRect(x: 19.333, y: 20.333, width: 361.333, height: 61), within: withinRange))
-//                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
-//            }
-//            
-//            it("alignSelf(.start)") {
-//                stackView.direction(.column).justifyContent(.start).alignItems(.center).define({ (stack) in
-//                    label2.item.alignSelf(.start)
-//                    
-//                    stack.addItem(label1)
-//                    stack.addItem(label2)
-//                    stack.addItem(view1)
-//                })
-//                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-//                stackView.layout()
-//                
-//                // Match UIStackView
-//                // Match FlexLayout
-//                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-//                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
-//                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 361.333, height: 61), within: withinRange))
-//                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
-//            }
-//            
-//            it("alignSelf(.center)") {
-//                stackView.direction(.column).justifyContent(.start).alignItems(.start).define({ (stack) in
-//                    label2.item.alignSelf(.center)
-//
-//                    stack.addItem(label1)
-//                    stack.addItem(label2)
-//                    stack.addItem(view1)
-//                })
-//                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-//                stackView.layout()
-//                
-//                // Match UIStackView
-//                // Match FlexLayout
-//                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-//                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 231.667, height: 20.333), within: withinRange))
-//                expect(label2.frame).to(beCloseTo(CGRect(x: 19.333, y: 20.333, width: 361.333, height: 61), within: withinRange))
-//                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
-//            }
-//            
-//            it("alignSelf(.end)") {
-//                stackView.direction(.column).justifyContent(.start).alignItems(.center).define({ (stack) in
-//                    label2.item.alignSelf(.end)
-//
-//                    stack.addItem(label1)
-//                    stack.addItem(label2)
-//                    stack.addItem(view1)
-//                })
-//                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-//                stackView.layout()
-//                
-//                // Match UIStackView
-//                // Match FlexLayout
-//                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-//                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
-//                expect(label2.frame).to(beCloseTo(CGRect(x: 38.667, y: 20.333, width: 361.333, height: 61), within: withinRange))
-//                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
-//            }
+
+            it("align(.start)") {
+                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (stack) in
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                })
+                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+                stackView.layout()
+                
+                // Match UIStackView
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 400, height: 20), within: withinRange))
+            }
+            
+            it("align(.center)") {
+                stackView.direction(.row).justifyContent(.start).alignItems(.center).define({ (stack) in
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                })
+                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+                stackView.layout()
+                
+                // Match UIStackView
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 290, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 290, width: 104, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 290, width: 400, height: 20), within: withinRange))
+            }
+            
+            it("align(.end)") {
+                stackView.direction(.row).justifyContent(.start).alignItems(.end).define({ (stack) in
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                })
+                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+                stackView.layout()
+                
+                // Match UIStackView
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 579.667, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 579.667, width: 104, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 580, width: 400, height: 20), within: withinRange))
+            }
+        }
+        
+        //
+        // alignSelf()
+        //
+        describe("StackLayout alignSelf()") {
+            it("alignSelf(.auto)") {
+                stackView.direction(.row).justifyContent(.start).alignItems(.center).define({ (stack) in
+                    label2.item.alignSelf(.auto)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                })
+                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+                stackView.layout()
+                
+                // Match UIStackView
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 290, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 290, width: 104, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 290, width: 400, height: 20), within: withinRange))
+            }
+            
+            it("alignSelf(.start)") {
+                stackView.direction(.row).justifyContent(.start).alignItems(.center).define({ (stack) in
+                    label2.item.alignSelf(.start)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                })
+                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+                stackView.layout()
+                
+                // Match UIStackView
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 290, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 290, width: 400, height: 20), within: withinRange))
+            }
+            
+            it("alignSelf(.center)") {
+                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (stack) in
+                    label2.item.alignSelf(.center)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                })
+                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+                stackView.layout()
+                
+                // Match UIStackView
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 290, width: 104, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 400, height: 20), within: withinRange))
+            }
+            
+            it("alignSelf(.end)") {
+                stackView.direction(.row).justifyContent(.start).alignItems(.center).define({ (stack) in
+                    label2.item.alignSelf(.end)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                })
+                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+                stackView.layout()
+                
+                // Match UIStackView
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 290, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 579.667, width: 104, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 290, width: 400, height: 20), within: withinRange))
+            }
         }
     }
-    
-    // TODO: row + align...
 }

@@ -45,7 +45,7 @@ class AlignItemsColumnSpec: QuickSpec {
             label1 = UILabel()
             label1.backgroundColor = .red
             label1.font = UIFont.systemFont(ofSize: 17)
-            label1.numberOfLines = 0
+            label1.numberOfLines = 1
             
             label2 = UILabel()
             label2.font = UIFont.systemFont(ofSize: 17)
@@ -73,6 +73,7 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.layout()
 
                 // Match UIStackView
+                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 61), within: withinRange))
@@ -89,6 +90,7 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.layout()
                 
                 // Match UIStackView
+                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 231.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 361.333, height: 61), within: withinRange))
@@ -105,6 +107,7 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.layout()
                 
                 // Match UIStackView
+                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 19.333, y: 20.333, width: 361.333, height: 61), within: withinRange))
@@ -121,6 +124,7 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.layout()
                 
                 // Match UIStackView
+                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 168.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 38.667, y: 20.333, width: 361.333, height: 61), within: withinRange))
