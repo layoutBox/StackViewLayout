@@ -24,13 +24,13 @@ import UIKit
     
 extension StackView {
     // TODO: Tests StackView using autolayout
-    public override var intrinsicContentSize: CGSize {
-        let container = Container(direction: direction)
-        container.width = nil
-        container.height = nil
-        return layoutItems(container: container)
-    }
-    
+//    public override var intrinsicContentSize: CGSize {
+//        let container = Container(direction: direction)
+//        container.width = nil
+//        container.height = nil
+//        return layoutItems(container: container)
+//    }
+
     // TODO: Tests StackView using autolayout
     public override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {
         return super.systemLayoutSizeFitting(targetSize)
