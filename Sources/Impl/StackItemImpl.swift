@@ -29,10 +29,13 @@ class StackItemImpl: NSObject, StackItem {
     internal var width: Value?
     internal var minWidth: Value?
     internal var maxWidth: Value?
+
     internal var height: Value?
     internal var minHeight: Value?
     internal var maxHeight: Value?
-    
+
+    internal var _aspectRatio: CGFloat?
+
     internal var marginTop: Value?
     internal var marginLeft: Value?
     internal var marginStart: Value?
@@ -151,9 +154,6 @@ class StackItemImpl: NSObject, StackItem {
         return self
     }
     
-    /**
-     The value specifies view's width and the height in pixels. Values must be non-negative.
-     */
     @discardableResult
     func size(_ size: CGSize) -> StackItem {
         width = Value(size.width)
@@ -161,9 +161,6 @@ class StackItemImpl: NSObject, StackItem {
         return self
     }
     
-    /**
-     The value specifies the width and the height of the view in pixels, creating a square view. Values must be non-negative.
-     */
     @discardableResult
     func size(_ sideLength: CGFloat?) -> StackItem{
         width = Value(sideLength)
@@ -177,14 +174,34 @@ class StackItemImpl: NSObject, StackItem {
         height = Value(percent)
         return self
     }
+
+    @discardableResult
+    public func aspectRatio(_ value: CGFloat?) -> StackItem {
+        _aspectRatio = value
+        return self
+    }
+
+    @discardableResult
+    func aspectRatio(of view: UIView) -> StackItem {
+        _aspectRatio = view.bounds.width / view.bounds.height
+        return self
+    }
+
+    @discardableResult
+    func aspectRatio() -> StackItem {
+        if let imageView = view as? UIImageView {
+            if let imageSize = imageView.image?.size {
+                _aspectRatio = imageSize.width / imageSize.height
+            } else {
+//                warnWontBeApplied("the layouted UIImageView's image hasn't been set", context)
+            }
+        } else {
+//            warnWontBeApplied("the layouted must be an UIImageView() to use the aspectRatio() method without parameter.", context)
+        }
+
+        return self
+    }
     
-    /**
-     The `alignSelf` property controls how a child aligns in the cross direction, overriding the `alignItems`
-     of the parent. For example, if children are flowing vertically, `alignSelf` will control how the StackItem item
-     will align horizontally.
-     
-     - Parameter value: Default value is .auto
-     */
     @discardableResult
     public func alignSelf(_ value: SAlignSelf) -> StackItem {
         alignSelf = value

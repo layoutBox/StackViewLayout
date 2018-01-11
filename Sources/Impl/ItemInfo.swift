@@ -1,4 +1,4 @@
-//  Copyright (c) 2017 Luc Dion
+
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -162,23 +162,33 @@ class ItemInfo {
         //                fitHeight = containerHeight
         //            }
         //        }
-        
+
         // Measure the view using sizeThatFits(:CGSize)
         if let fitWidth = fitWidth, height == nil {
-            let adjustedFitWidth = applyMargins ? stackItem.applyMargins(toWidth: fitWidth) : fitWidth
-            let newSize = view.sizeThatFits(CGSize(width: adjustedFitWidth, height: .greatestFiniteMagnitude))
-            height = minValueOptional(newSize.height, container.height)
-            
-            if width == nil {
-                width = min(newSize.width, adjustedFitWidth)
+            if let aspectRatio = stackItem._aspectRatio {
+                width = fitWidth
+                height = fitWidth / aspectRatio
+            } else {
+                let adjustedFitWidth = applyMargins ? stackItem.applyMargins(toWidth: fitWidth) : fitWidth
+                let newSize = view.sizeThatFits(CGSize(width: adjustedFitWidth, height: .greatestFiniteMagnitude))
+                height = minValueOptional(newSize.height, container.height)
+
+                if width == nil {
+                    width = min(newSize.width, adjustedFitWidth)
+                }
             }
         } else if let fitHeight = fitHeight, width == nil {
-            let adjustedFitHeight = applyMargins ? stackItem.applyMargins(toHeight: fitHeight) : fitHeight
-            let newSize = view.sizeThatFits(CGSize(width: .greatestFiniteMagnitude, height: adjustedFitHeight))
-            width = minValueOptional(newSize.width, container.width)
-            
-            if height == nil {
-                height = min(newSize.height, adjustedFitHeight)
+            if let aspectRatio = stackItem._aspectRatio {
+                width = fitHeight * aspectRatio
+                height = fitWidth
+            } else {
+                let adjustedFitHeight = applyMargins ? stackItem.applyMargins(toHeight: fitHeight) : fitHeight
+                let newSize = view.sizeThatFits(CGSize(width: .greatestFiniteMagnitude, height: adjustedFitHeight))
+                width = minValueOptional(newSize.width, container.width)
+                
+                if height == nil {
+                    height = min(newSize.height, adjustedFitHeight)
+                }
             }
         }
         assert(height != nil && width != nil, "should not occurred")
