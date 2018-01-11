@@ -24,9 +24,9 @@ import UIKit
     
 extension StackView {
     // TODO: Tests StackView using autolayout
-    public override var intrinsicContentSize: CGSize {
-        return sizeThatFits(CGSize(width: frame.width, height: .greatestFiniteMagnitude))
-    }
+//    public override var intrinsicContentSize: CGSize {
+//        return sizeThatFits(CGSize(width: frame.width, height: .greatestFiniteMagnitude))
+//    }
 
     // TODO: Tests StackView using autolayout
     public override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {

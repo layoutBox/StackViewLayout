@@ -46,20 +46,21 @@ class GrowSpec: QuickSpec {
             label1 = UILabel()
             label1.font = UIFont.systemFont(ofSize: 17)
             label1.backgroundColor = .red
-            label1.text = "Label 1"
-            
+
             label2 = UILabel()
             label2.font = UIFont.systemFont(ofSize: 17)
             label2.backgroundColor = .green
-            label2.text = "Label longuer"
-            
+
             label3 = UILabel()
             label3.font = UIFont.systemFont(ofSize: 17)
             label3.backgroundColor = .blue
             label3.numberOfLines = 0
-            label3.text = "Label much longuer"
-            
+
             view1 = BasicView(text: "View 1", color: .red)
+
+            label1.text = "Label 1"
+            label2.text = "Label longuer"
+            label3.text = "Label much longuer"
             view1.sizeThatFitsExpectedArea = 400 * 20
         }
         
