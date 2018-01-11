@@ -36,14 +36,14 @@ extension StackView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        let container = Container(direction: direction)
+        let container = Container(stackView: self)
         container.width = bounds.size.width
         container.height = bounds.size.height
         layoutItems(container: container)
     }
     
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let container = Container(direction: direction)
+        let container = Container(stackView: self)
         container.width = size.width == CGFloat.greatestFiniteMagnitude ? nil : size.width
         container.height = size.height == CGFloat.greatestFiniteMagnitude ? nil : size.height
         return layoutItems(container: container)
@@ -99,6 +99,7 @@ extension StackView {
             
             //
             // Handle cross-axis position
+            var itemMainAxisLength = item.mainAxisLength ?? 0
             var itemCrossAxisLength = item.crossAxisLength
             var crossAxisPos = stackItem.crossAxisStartMargin(container: container)
             let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
@@ -107,7 +108,18 @@ extension StackView {
                 switch stackItem.resolveStackItemAlign(stackAlignItems: alignItems) {
                 case .stretch:
                     if item.isCrossAxisFlexible {
+//                        item.stretchItemCrossAxisLength(to: containerCrossAxisLength)
                         itemCrossAxisLength = stackItem.applyMargins(toCrossAxisLength: containerCrossAxisLength, container: container)
+//                        itemCrossAxisLength = item.applyMinMax(toCrossAxisLength: itemCrossAxisLength)
+
+                        if let aspectRatio = stackItem._aspectRatio {
+                            if direction == .column {
+                                itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemCrossAxisLength / aspectRatio)
+                            } else {
+//                                assert(false)
+                                itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemCrossAxisLength * aspectRatio)
+                            }
+                        }
                     }
                 case .start:
                     // nop
@@ -130,9 +142,12 @@ extension StackView {
                     itemCrossAxisLength = max(0, containerCrossAxisLength - crossAxisPos - crossAxisEndMargin)
                 }
             }
-            
-            let viewFrame  = direction == .column ? CGRect(x: crossAxisPos, y: mainAxisOffset, width: itemCrossAxisLength, height: item.height!) :
-                                                    CGRect(x: mainAxisOffset, y: crossAxisPos, width: item.width!, height: itemCrossAxisLength)
+
+            itemCrossAxisLength = item.applyMinMax(toCrossAxisLength: itemCrossAxisLength)
+            itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemMainAxisLength)
+
+            let viewFrame  = direction == .column ? CGRect(x: crossAxisPos, y: mainAxisOffset, width: itemCrossAxisLength, height: itemMainAxisLength) :
+                                                    CGRect(x: mainAxisOffset, y: crossAxisPos, width: itemMainAxisLength, height: itemCrossAxisLength)
             
             let itemViewRect = Coordinates.adjustRectToDisplayScale(viewFrame)
             Coordinates.setUntransformedViewRect(item.view, toRect: itemViewRect)

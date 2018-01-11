@@ -301,6 +301,7 @@ TODO: Does this method is really required?
 <a name="managing_items"></a>
 ## 2. Managing StackView's items 
 
+<a name="addItem"></a>
 ### Adding items to a StackView 
 - Applies to: `StackView`
 - Returns: StackItem interface of the newly added item.
@@ -333,6 +334,12 @@ This method adds an item (UIView) after the specified reference item. Note that 
   stackview.addItem(titleLabel, after: imageView)
 ```
 <br>
+
+<a name="addStackView"></a>
+### addStackView()
+
+TODO: Document addStackView()
+
 
 ### Removing items 
 - Applies to: `StackView`
@@ -725,6 +732,8 @@ In the case where a UILabel's text is updated, it is needed to mark the label as
 
 TODO:
 If you run into situations where multiple elements need to be arranged along multiple axes, UIStackViews can be nested inside each other. Below is the layout from the example project. Each property UILabel and UISegmentedControl are contained in a UIStackView. All of the UIStackViews are then contained in a parent UIStackView denoted on the left.
+
+See [addStackView()](#addStackView) 
 
 <br/>
 

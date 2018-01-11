@@ -21,6 +21,7 @@ import UIKit
 
 class Container {
     let direction: SDirection
+    let alignItems: SAlignItems
     var width: CGFloat?
     var height: CGFloat?
     var items: [ItemInfo] = []
@@ -35,8 +36,9 @@ class Container {
     
     var mainAxisTotalItemsLength: CGFloat = 0
     
-    init(direction: SDirection) {
-        self.direction = direction
+    init(stackView: StackView) {
+        self.direction = stackView.direction
+        self.alignItems = stackView.alignItems
     }
     
     func updateMainAxisTotalLength() {

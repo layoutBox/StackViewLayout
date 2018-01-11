@@ -174,6 +174,27 @@ class GrowSpec: QuickSpec {
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 100, width: 400, height: 120), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 220, width: 400, height: 140), within: withinRange))
             }
+
+            it("grow + maxHeight") {
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    label1.item.grow(1).maxHeight(100)
+                    label2.item.grow(10).maxHeight(120)
+                    view1.item.grow(1)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout (except view1, FlexLayout don't grow the view1 to fill the remaining vertical space!)
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 100), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 100, width: 400, height: 120), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 220, width: 400, height: 380), within: withinRange))
+            }
             
             it("The label1 should grow to takes the extra space.") {
                 stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
