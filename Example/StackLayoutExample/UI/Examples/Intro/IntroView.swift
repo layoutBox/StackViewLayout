@@ -145,11 +145,10 @@ class IntroView: BaseView {
 //            stack.addItem(view1)
 //        }
 
-        stackView.direction(.column).define { (stack) in
-//            label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10)
-            label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10).maxWidth(200).maxHeight(150)
+        stackView.direction(.row).alignItems(.start).define { (stack) in
+            label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10)
             label2.item.aspectRatio(1)
-            view1.item.aspectRatio(5/6).margin(20).shrink(1)
+            view1.item.aspectRatio(5 / 6).margin(20).shrink(1)
 
             stack.addItem(label1)
             stack.addItem(label2)
@@ -188,22 +187,10 @@ class IntroView: BaseView {
         
         rootFlexContainer.isHidden = true
 
-//        rootFlexContainer.flex.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (flex) in
-//            label1.flex.grow(1).maxHeight(100)
-//            label2.flex.grow(10).maxHeight(120)
-//            view1.flex.grow(1)//.maxHeight(140)
-//
-//            flex.addItem(label1)
-//            flex.addItem(label2)
-//            flex.addItem(view1)
-//        })
-
-        rootFlexContainer.flex.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (flex) in
-//            label1.flex.aspectRatio(2).marginVertical(10).marginHorizontal(10)
-            label1.flex.aspectRatio(2).marginVertical(10).marginHorizontal(10).maxWidth(200).maxHeight(150)
-
+        rootFlexContainer.flex.direction(.row).justifyContent(.start).alignItems(.start).define({ (flex) in
+            label1.flex.aspectRatio(2).marginVertical(10).marginHorizontal(10)
             label2.flex.aspectRatio(1)
-            view1.flex.aspectRatio(5/6).margin(20).shrink(1)
+            view1.flex.aspectRatio(5 / 6).margin(20).shrink(1)
 
             flex.addItem(label1)
             flex.addItem(label2)

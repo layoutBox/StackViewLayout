@@ -107,20 +107,21 @@ extension StackView {
             if let containerCrossAxisLength = containerCrossAxisLength {
                 switch stackItem.resolveStackItemAlign(stackAlignItems: alignItems) {
                 case .stretch:
-                    if item.isCrossAxisFlexible {
-//                        item.stretchItemCrossAxisLength(to: containerCrossAxisLength)
-                        itemCrossAxisLength = stackItem.applyMargins(toCrossAxisLength: containerCrossAxisLength, container: container)
-//                        itemCrossAxisLength = item.applyMinMax(toCrossAxisLength: itemCrossAxisLength)
-
-                        if let aspectRatio = stackItem._aspectRatio {
-                            if direction == .column {
-                                itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemCrossAxisLength / aspectRatio)
-                            } else {
-//                                assert(false)
-                                itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemCrossAxisLength * aspectRatio)
-                            }
-                        }
-                    }
+//                    if item.isCrossAxisFlexible {
+////                        item.stretchItemCrossAxisLength(to: containerCrossAxisLength)
+//                        itemCrossAxisLength = stackItem.applyMargins(toCrossAxisLength: containerCrossAxisLength, container: container)
+////                        itemCrossAxisLength = item.applyMinMax(toCrossAxisLength: itemCrossAxisLength)
+//
+//                        if let aspectRatio = stackItem._aspectRatio {
+//                            if direction == .column {
+//                                itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemCrossAxisLength / aspectRatio)
+//                            } else {
+////                                assert(false)
+//                                itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemCrossAxisLength * aspectRatio)
+//                            }
+//                        }
+//                    }
+                    break
                 case .start:
                     // nop
                     break
@@ -175,7 +176,7 @@ extension StackView {
             let item = ItemInfo(stackItem, container: container)
             
             // Compute width & height
-            item.measureItem(container: container, applyMargins: true)
+            item.measureItem(container: container, initialMeasure: true)
             
             // Compute item main-axis margins.
             item.mainAxisStartMargin = stackItem.mainAxisStartMargin(container: container)
@@ -189,6 +190,8 @@ extension StackView {
     
     private func adjustItemsSizeToContainer(container: Container) {
         guard let containerMainAxisLength = container.mainAxisLength else { return }
+
+        var previousLength: CGFloat?
         var lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
         let delta = Coordinates.onePixelLength + 0.001
 
@@ -208,19 +211,21 @@ extension StackView {
                         if growFactor > 0 {
                             item.resetToStackItemProperties(container: container)
                             item.mainAxisLength = itemMainAxisLength + growFactor * factorLength
-                            item.measureItem(container: container, applyMargins: false)
+                            item.measureAterGrowShrink(container: container)
                         }
                     }
                     
                     container.updateMainAxisTotalLength()
+
+                    previousLength = lengthDiff
                     lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
                 }
-            } while growFactorTotal > 0 && lengthDiff > delta
+            } while (growFactorTotal > 0) && (lengthDiff > delta) && (previousLength != lengthDiff)
             
         } else if lengthDiff < -delta {
             // Shrink
             var shrinkFactorTotal: CGFloat = 0
-            
+
             repeat {
                 shrinkFactorTotal = container.shrinkFactorTotal()
                 
@@ -234,13 +239,15 @@ extension StackView {
                         if shrinkFactor > 0 {
                             item.resetToStackItemProperties(container: container)
                             item.mainAxisLength = itemMainAxisLength + shrinkFactor * factorLength
-                            item.measureItem(container: container, applyMargins: false)
+                            item.measureAterGrowShrink(container: container)
                         }
                     }
                     container.updateMainAxisTotalLength()
+
+                    previousLength = lengthDiff
                     lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
                 }
-            } while shrinkFactorTotal > 0 && lengthDiff < -delta
+            } while (shrinkFactorTotal > 0) && (lengthDiff < -delta) && (previousLength != lengthDiff)
         }
     }
 }
