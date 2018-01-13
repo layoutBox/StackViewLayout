@@ -106,25 +106,6 @@ extension StackView {
             
             if let containerCrossAxisLength = containerCrossAxisLength {
                 switch stackItem.resolveStackItemAlign(stackAlignItems: alignItems) {
-                case .stretch:
-//                    if item.isCrossAxisFlexible {
-////                        item.stretchItemCrossAxisLength(to: containerCrossAxisLength)
-//                        itemCrossAxisLength = stackItem.applyMargins(toCrossAxisLength: containerCrossAxisLength, container: container)
-////                        itemCrossAxisLength = item.applyMinMax(toCrossAxisLength: itemCrossAxisLength)
-//
-//                        if let aspectRatio = stackItem._aspectRatio {
-//                            if direction == .column {
-//                                itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemCrossAxisLength / aspectRatio)
-//                            } else {
-////                                assert(false)
-//                                itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemCrossAxisLength * aspectRatio)
-//                            }
-//                        }
-//                    }
-                    break
-                case .start:
-                    // nop
-                    break
                 case .center:
                     // Takes margins into account when centering items (compatible with flexbox).
                     let itemCrossAxisForCentering = itemCrossAxisLength -
@@ -133,13 +114,15 @@ extension StackView {
                     crossAxisPos = (containerCrossAxisLength - itemCrossAxisForCentering) / 2
                 case .end:
                     crossAxisPos = containerCrossAxisLength - itemCrossAxisLength - crossAxisEndMargin
+                default:
+                    break
                 }
 
                 let crossAxisStartMargin = stackItem.crossAxisStartMargin(container: container)
                 crossAxisPos = max(crossAxisPos, crossAxisStartMargin)
                 
                 // Check if we must reduce the item's cross axis length to respect its cross axis margins
-                if item.isCrossAxisFlexible && (crossAxisPos + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisLength) {
+                if item.isCrossAxisFlexible() && (crossAxisPos + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisLength) {
                     itemCrossAxisLength = max(0, containerCrossAxisLength - crossAxisPos - crossAxisEndMargin)
                 }
             }
