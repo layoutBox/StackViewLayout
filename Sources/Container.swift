@@ -57,15 +57,15 @@ class Container {
         })
     }
     
-    func growFactorTotal() -> CGFloat {
-        return items.reduce(0, { (result, itemInfo) -> CGFloat in
-            return result + itemInfo.growFactor()
+    func itemsGrowFactors() -> [CGFloat] {
+        return items.map({ (itemInfo) -> CGFloat in
+            return itemInfo.growFactor()
         })
     }
     
-    func shrinkFactorTotal() -> CGFloat {
-        return items.reduce(0, { (result, itemInfo) -> CGFloat in
-            return result + itemInfo.shrinkFactor()
+    func itemsShrinkFactors() -> [CGFloat] {
+        return items.map({ (itemInfo) -> CGFloat in
+            return itemInfo.shrinkFactor()
         })
     }
 }

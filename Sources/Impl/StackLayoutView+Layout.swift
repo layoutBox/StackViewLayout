@@ -176,7 +176,7 @@ extension StackView {
             let item = ItemInfo(stackItem, container: container)
             
             // Compute width & height
-            item.measureItem(container: container, initialMeasure: true)
+            item.measureItem(initialMeasure: true)
             
             // Compute item main-axis margins.
             item.mainAxisStartMargin = stackItem.mainAxisStartMargin(container: container)
@@ -199,19 +199,18 @@ extension StackView {
             // Grow
             var growFactorTotal: CGFloat = 0
             repeat {
-                growFactorTotal = container.growFactorTotal()
-                
+                let itemsGrowFactors = container.itemsGrowFactors()
+                growFactorTotal = itemsGrowFactors.reduce(0, +)
+
                 if growFactorTotal > 0 {
                     let factorLength = lengthDiff / growFactorTotal
-                    
-                    for item in container.items {
+
+                    for (index, item) in container.items.enumerated() {
                         guard let itemMainAxisLength = item.mainAxisLength else { continue }
-                        let growFactor = item.growFactor()
+                        let growFactor = itemsGrowFactors[index]
                         
                         if growFactor > 0 {
-                            item.resetToStackItemProperties(container: container)
-                            item.mainAxisLength = itemMainAxisLength + growFactor * factorLength
-                            item.measureAterGrowShrink(container: container)
+                            item.grow(mainAxisLength: itemMainAxisLength + growFactor * factorLength)
                         }
                     }
                     
@@ -227,19 +226,18 @@ extension StackView {
             var shrinkFactorTotal: CGFloat = 0
 
             repeat {
-                shrinkFactorTotal = container.shrinkFactorTotal()
-                
+                let itemsShrinkFactors = container.itemsShrinkFactors()
+                shrinkFactorTotal = itemsShrinkFactors.reduce(0, +)
+
                 if shrinkFactorTotal > 0 {
                     let factorLength = lengthDiff / shrinkFactorTotal
-                    
-                    for item in container.items {
+
+                    for (index, item) in container.items.enumerated() {
                         guard let itemMainAxisLength = item.mainAxisLength else { continue }
-                        let shrinkFactor = item.shrinkFactor()
+                        let shrinkFactor = itemsShrinkFactors[index]
                         
                         if shrinkFactor > 0 {
-                            item.resetToStackItemProperties(container: container)
-                            item.mainAxisLength = itemMainAxisLength + shrinkFactor * factorLength
-                            item.measureAterGrowShrink(container: container)
+                            item.shrink(mainAxisLength: itemMainAxisLength + shrinkFactor * factorLength)
                         }
                     }
                     container.updateMainAxisTotalLength()

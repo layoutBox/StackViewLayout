@@ -22,35 +22,18 @@ import UIKit
 class ItemInfo {
     var view: UIView
     var stackItem: StackItemImpl
+    var container: Container
     
-    private var _width: CGFloat?
-    var width: CGFloat? {
-        get {
-            return _width
-        }
-        set {
-            _width = newValue?.roundUsingDisplayScale()
-        }
-    }
-    
+    var width: CGFloat?
     var minWidth: CGFloat?
     var maxWidth: CGFloat?
-    
-    private var _height: CGFloat?
-    var height: CGFloat? {
-        get {
-            return _height
-        }
-        set {
-            _height = newValue?.roundUsingDisplayScale()
-        }
-    }
+
+    var height: CGFloat?
     var minHeight: CGFloat?
     var maxHeight: CGFloat?
     
     var mainAxisLength: CGFloat? {
         get {
-            //assert(width != nil || height != nil)
             return direction == .column ? height! : width!
         }
         set {
@@ -96,38 +79,39 @@ class ItemInfo {
         return mainAxisLength ?? 1
     }
     
-    private let direction: SDirection
+    private var direction: SDirection {
+        return container.direction
+    }
     
     init(_ stackItem: StackItemImpl, container: Container) {
         self.stackItem = stackItem
         self.view = stackItem.view
-        self.direction = container.direction
-        
-        resetToStackItemProperties(container: container)
-    }
-    
-    func resetToStackItemProperties(container: Container) {
-        if let stackItem = view.item as? StackItemImpl {
-            self.width = stackItem.width?.resolveWidth(container: container)
-            self.minWidth = stackItem.minWidth?.resolveWidth(container: container)
-            self.maxWidth = stackItem.maxWidth?.resolveWidth(container: container)
-            if let minWidth = minWidth, let width = width, width < minWidth {
-                self.width = minWidth
-            }
-            
-            self.height = stackItem.height?.resolveHeight(container: container)
-            self.minHeight = stackItem.minHeight?.resolveHeight(container: container)
-            self.maxHeight = stackItem.maxHeight?.resolveHeight(container: container)
-            if let minHeight = minHeight, let height = height, height < minHeight {
-                self.height = minHeight
-            }
+        self.container = container
 
-            self.isCrossAxisFlexible = (direction == .column ? (width == nil) : (height == nil))
-                //&& stackItem._aspectRatio == nil
-        }
+        self.minWidth = stackItem.minWidth?.resolveWidth(container: container)
+        self.maxWidth = stackItem.maxWidth?.resolveWidth(container: container)
+
+        self.minHeight = stackItem.minHeight?.resolveHeight(container: container)
+        self.maxHeight = stackItem.maxHeight?.resolveHeight(container: container)
+
+        resetToStackItemProperties()
     }
     
-    func measureItem(container: Container, initialMeasure: Bool) {
+    func resetToStackItemProperties() {
+        self.width = stackItem.width?.resolveWidth(container: container)
+        if let minWidth = minWidth, let width = width, width < minWidth {
+            self.width = minWidth
+        }
+
+        self.height = stackItem.height?.resolveHeight(container: container)
+        if let minHeight = minHeight, let height = height, height < minHeight {
+            self.height = minHeight
+        }
+
+        self.isCrossAxisFlexible = (direction == .column ? (width == nil) : (height == nil))
+    }
+    
+    func measureItem(initialMeasure: Bool) {
         if width == nil || height == nil {
             var applyMargins = initialMeasure
             var fitWidth: CGFloat?
@@ -178,7 +162,7 @@ class ItemInfo {
 
             assert(height != nil && width != nil, "should not occurred")
             
-            applySizeMin()
+            applySizeMinMax()
             applyAspectRatioIfNeeded()
 
             if stackItem.resolveStackItemAlign(stackAlignItems: container.alignItems) == .stretch, let containerCrossAxisLength = container.crossAxisLength {
@@ -199,12 +183,12 @@ class ItemInfo {
         applySizeMinMax()
     }
 
-    func measureAterGrowShrink(container: Container) {
+    func measureAterGrowShrink() {
         if stackItem._aspectRatio != nil {
             applyAspectRatioIfNeeded(.adjustCrossAxis)
             applySizeMinMax()
         } else {
-            measureItem(container: container, initialMeasure: false)
+            measureItem(initialMeasure: false)
         }
     }
 
@@ -238,6 +222,19 @@ class ItemInfo {
         }
     }
 
+    private func hasReachedMaxAspectRatio() -> Bool {
+        guard let aspectRatio = stackItem._aspectRatio else { return false }
+
+        if let containerWidth = container.width {
+            let innerWidth = stackItem.applyMargins(toWidth: containerWidth)
+            if let width = width, width >= innerWidth {
+                return true
+            }
+        }
+
+        return false
+    }
+
     fileprivate func applyAspectRatio(_ aspectRatio: CGFloat, adjustWidth: Bool) {
         if adjustWidth {
             width = height! * aspectRatio
@@ -251,11 +248,19 @@ class ItemInfo {
 
         if let mainAxisMaxLength = mainAxisMaxLength, mainAxisLength >= mainAxisMaxLength {
             return 0
+        } else if hasReachedMaxAspectRatio() {
+            return 0
         } else if let growFactor = stackItem.grow {
             return growFactor
         } else {
             return 0
         }
+    }
+
+    func grow(mainAxisLength: CGFloat) {
+        resetToStackItemProperties()
+        self.mainAxisLength = mainAxisLength
+        measureAterGrowShrink()
     }
     
     func shrinkFactor() -> CGFloat {
@@ -270,14 +275,20 @@ class ItemInfo {
         }
     }
 
+    func shrink(mainAxisLength: CGFloat) {
+        resetToStackItemProperties()
+        self.mainAxisLength = mainAxisLength
+        measureAterGrowShrink()
+    }
+
     fileprivate func applySizeMinMax() {
-        _width = applyWidthMinMax(_width)
-        _height = applyHeightMinMax(_height)
+        width = applyWidthMinMax(width)
+        height = applyHeightMinMax(height)
     }
 
     fileprivate func applySizeMin() {
-        _width = applyWidthMin(_width)
-        _height = applyHeightMin(_height)
+        width = applyWidthMin(width)
+        height = applyHeightMin(height)
     }
 
     func applyMinMax(toMainAxisLength mainAxisLength: CGFloat) -> CGFloat {
@@ -304,11 +315,6 @@ class ItemInfo {
     func applyWidthMin(_ width: CGFloat?) -> CGFloat? {
         guard let width = width else { return minWidth }
         return applyWidthMin(width)
-//        if let minWidth = minWidth, minWidth > (width ?? 0) {
-//            return minWidth
-//        } else {
-//            return width
-//        }
     }
 
     func applyWidthMin(_ width: CGFloat) -> CGFloat {
