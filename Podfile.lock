@@ -2,7 +2,7 @@ PODS:
   - FlexLayout (1.2.2):
     - Yoga
   - Nimble (7.0.3)
-  - PinLayout (1.5.4)
+  - PinLayout (1.5.6)
   - Quick (1.2.0)
   - Reveal-SDK (10)
   - StackViewLayout (0.1.5)
@@ -25,7 +25,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FlexLayout: 96fb7794cf3d427112cd7f110e958bfe7f02b3af
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
-  PinLayout: c5049f38476c193a4fe39920e4878823dfac59fa
+  PinLayout: f7d1dc9a64c351cd9fc46293e5ed6c4172971ca4
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   Reveal-SDK: 7869ddf1f902cabbb07a1f0dd06bd25861a126f7
   StackViewLayout: d928641696aa0ce58cc04a6a29c29676b0eac058
