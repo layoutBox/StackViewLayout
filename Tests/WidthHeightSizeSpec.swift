@@ -46,16 +46,17 @@ class WidthHeightSizeSpec: QuickSpec {
             label1.font = UIFont.systemFont(ofSize: 17)
             label1.backgroundColor = .red
             label1.numberOfLines = 1
-            label1.text = "Label 1"
 
             // label1 is multi line
             label2 = UILabel()
             label2.font = UIFont.systemFont(ofSize: 17)
             label2.backgroundColor = .green
             label2.numberOfLines = 0
-            label2.text = "Label longuer"
-            
+
             view1 = BasicView(text: "View 1", color: .red)
+
+            label1.text = "Label 1"
+            label2.text = "Label longuer"
             view1.sizeThatFitsExpectedArea = 400 * 20
         }
         
@@ -79,6 +80,27 @@ class WidthHeightSizeSpec: QuickSpec {
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 100, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 80, height: 40.667), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 61, width: 200, height: 40), within: withinRange))
+            }
+
+            it("minWidth + maxWidth") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.width(100).minWidth(120)
+                    label2.item.width(100).maxWidth(80)
+                    view1.item.width(200)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 120, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 80, height: 40.667), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 61, width: 200, height: 40), within: withinRange))
             }
@@ -272,6 +294,27 @@ class WidthHeightSizeSpec: QuickSpec {
                 expect(label2.frame).to(beCloseTo(CGRect(x: 100, y: 0, width: 80, height: 80), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 180, y: 0, width: 200, height: 80), within: withinRange))
             }
+
+            it("minWidth + maxWidth") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.width(100).minWidth(120)
+                    label2.item.width(100).maxWidth(80)
+                    view1.item.width(200)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 120, height: 600), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 120, y: 0, width: 80, height: 600), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 200, y: 0, width: 200, height: 600), within: withinRange))
+            }
             
             it("width + margins") {
                 stackView.direction(.row).define { (stack) in
@@ -383,6 +426,27 @@ class WidthHeightSizeSpec: QuickSpec {
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 100, width: 400, height: 64), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 164, width: 400, height: 200), within: withinRange))
             }
+
+            it("minWidth + maxWidth") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.height(100).minHeight(120)
+                    label2.item.height(200).maxHeight(180)
+                    view1.item.height(200)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 120), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 120, width: 400, height: 180), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 300, width: 400, height: 200), within: withinRange))
+            }
             
             it("height + margins") {
                 stackView.direction(.column).define { (stack) in
@@ -447,20 +511,45 @@ class WidthHeightSizeSpec: QuickSpec {
             it("adjust") {
                 stackView.direction(.row).define { (stack) in
                     label1.item.height(100)
-                    
+                    label2.item.height(200)
+                    view1.item.height(200)
+
                     stack.addItem(label1)
                     stack.addItem(label2)
                     stack.addItem(view1)
                 }
                 
-                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.pin.top(64).width(400).height(600)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 100), within: withinRange))
+                // Match FlexLayout (except view1, flexlayout doesn't respect the view1.sizeThatFits using
+                // using the height of 200)
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 100), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 100), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 400, height: 100), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 200), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 40, height: 200), within: withinRange))
+            }
+
+            it("minWidth + maxWidth") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.height(100).minHeight(120)
+                    label2.item.height(200).maxHeight(180)
+                    view1.item.height(200)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout (except view1, flexlayout doesn't respect the view1.sizeThatFits using
+                // using the height of 200)
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 120), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 180), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 40, height: 200), within: withinRange))
             }
             
             it("height + margins") {
@@ -549,6 +638,48 @@ class WidthHeightSizeSpec: QuickSpec {
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 100, width: 50, height: 50), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 150, width: 200, height: 200), within: withinRange))
             }
+
+            it("minHeight + maxHeight") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.size(100).minHeight(120)
+                    label2.item.size(50).maxHeight(40)
+                    view1.item.size(200)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 100, height: 120), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 120, width: 50, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 160, width: 200, height: 200), within: withinRange))
+            }
+
+            it("minWidth + maxWidth") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.size(100).minWidth(120)
+                    label2.item.size(50).maxWidth(40)
+                    view1.item.size(200)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 120, height: 100), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 100, width: 40, height: 50), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 150, width: 200, height: 200), within: withinRange))
+            }
             
             it("size + margins") {
                 stackView.direction(.column).define { (stack) in
@@ -635,7 +766,49 @@ class WidthHeightSizeSpec: QuickSpec {
                 expect(label2.frame).to(beCloseTo(CGRect(x: 100, y: 0, width: 50, height: 50), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 150, y: 0, width: 500, height: 500), within: withinRange))
             }
-            
+
+            it("minHeight + maxHeight") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.size(100).minHeight(120)
+                    label2.item.size(50).maxHeight(40)
+                    view1.item.size(200)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 100, height: 120), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 100, y: 0, width: 50, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 150, y: 0, width: 200, height: 200), within: withinRange))
+            }
+
+            it("minWidth + maxWidth") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.size(100).minWidth(120)
+                    label2.item.size(50).maxWidth(40)
+                    view1.item.size(200)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 120, height: 100), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 120, y: 0, width: 40, height: 50), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 160, y: 0, width: 200, height: 200), within: withinRange))
+            }
+
             it("size + margins") {
                 stackView.direction(.row).define { (stack) in
                     label1.item.size(100).marginVertical(10).marginHorizontal(10)
@@ -697,6 +870,976 @@ class WidthHeightSizeSpec: QuickSpec {
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 100, height: 100), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 100, y: 0, width: 20, height: 50), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 120, y: 0, width: 280, height: 280), within: withinRange))
+            }
+        }
+
+
+        //
+        // aspectRatio
+        //
+        describe("aspectRatio column") {
+            it("adjust") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2)
+                    label2.item.aspectRatio(1)
+                    view1.item.aspectRatio(5 / 6)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 400, height: 400), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 600, width: 400, height: 480), within: withinRange))
+            }
+
+            it("aspectRatio + shrink") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2)
+                    label2.item.aspectRatio(1)
+                    view1.item.aspectRatio(5 / 6).shrink(1)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 400, height: 400), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 600, width: 0, height: 0), within: withinRange))
+            }
+
+            it("aspectRatio + margins") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10)
+                    label2.item.aspectRatio(1)
+                    view1.item.aspectRatio(5 / 6).margin(20).shrink(1)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 10, width: 380, height: 190), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 210, width: 400, height: 400), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 20, y: 630, width: 0, height: 0), within: withinRange))
+            }
+
+            it("aspectRatio + margins + min max") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10).maxWidth(200).maxHeight(150)
+                    label2.item.aspectRatio(1).maxWidth(350).maxHeight(340)
+                    view1.item.aspectRatio(5 / 6).margin(20).shrink(1)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout, except:
+                //   - label1, with FlexLayout this label aspectRatio is not respected (200x150), StackViewLayout respect it (200x100)
+                //   - view1, with FlexLayout the item size if 1x2!, StackLayoutView size is 83x100 which respect aspectRatio,
+                //     maxWidth, maxHeight and the available space (shrink)
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 10, width: 200, height: 100), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 120, width: 340, height: 340), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 20, y: 480, width: 83.333, height: 100), within: withinRange))
+            }
+
+            it("aspectRatio + margins + min max") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10).minWidth(420).minHeight(430)
+                    label2.item.aspectRatio(1).maxWidth(300)
+                    view1.item.aspectRatio(5 / 6).margin(20).shrink(1)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout except:
+                //   - label1, with FlexLayout this label overflow horizontally, StackViewLayout keep it inside but doesn't respect the aspectRatio)
+                //   - label2, with FlexLayout this label aspectRatio is not respected (300x400), StackViewLayout respect it (300x300)
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 10, width: 420, height: 430), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 450, width: 300, height: 300), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 20, y: 770, width: 0, height: 0), within: withinRange))
+            }
+
+            it("aspectRatio + margins + min max") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10).minWidth(420).minHeight(430)
+                    label2.item.aspectRatio(1).maxHeight(300)
+                    view1.item.aspectRatio(5 / 6).margin(20).shrink(1)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 10, width: 420, height: 430), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 450, width: 300, height: 300), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 20, y: 770, width: 0, height: 0), within: withinRange))
+            }
+
+            it("aspectRatio + margins") {
+                stackView.direction(.row).alignItems(.start).define { (stack) in
+                    label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10)
+                    label2.item.aspectRatio(1)
+                    view1.item.aspectRatio(5 / 6).margin(20).shrink(1)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout, except:
+                //    1- view1: FlexLayout size is too small (149x179) and leaves free space horizontally, where StackViewLayout don't
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 10, width: 53.667, height: 27), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 73.667, y: 0, width: 104, height: 104), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 197.667, y: 20, width: 182.333, height: 218.667), within: withinRange))
+            }
+
+            it("aspectRatio ") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2)
+                    label2.item.aspectRatio(1)
+                    view1.item.aspectRatio(5 / 6)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 400, height: 400), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 600, width: 400, height: 480), within: withinRange))
+            }
+
+            it("aspectRatio + grow") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2).grow(1)
+                    label2.item.aspectRatio(4)
+                    view1.item.aspectRatio(4)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 400, height: 100), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 300, width: 400, height: 100), within: withinRange))
+            }
+
+            it("row aspectRatio + grow") {
+                stackView.direction(.row).alignItems(.start).define { (stack) in
+                    label1.item.aspectRatio(5).grow(1)
+                    label2.item.aspectRatio(4)
+                    view1.item.aspectRatio(6).maxWidth(50)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 246, height: 49.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 246, y: 0, width: 104, height: 26), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 350, y: 0, width: 50, height: 8.333), within: withinRange))
+            }
+
+            it("aspectRatio + grow") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2).margin(20).grow(1)
+                    label2.item.aspectRatio(4)
+                    view1.item.aspectRatio(4)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout, except:
+                //  1- label1: the label overflow horizontally (cross-axis) with flexlayout, with StackLayout it don't.
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 20, width: 360, height: 180), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 220, width: 400, height: 100), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 320, width: 400, height: 100), within: withinRange))
+            }
+
+            it("aspectRatio + shrink") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2)
+                    label2.item.aspectRatio(1).shrink(1)
+                    view1.item.aspectRatio(5 / 6).shrink(1)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 181.667, height: 181.667), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 381.667, width: 181.667, height: 218.333), within: withinRange))
+            }
+
+            it("aspectRatio + shrink") {
+                stackView.direction(.column).alignItems(.center).define { (stack) in
+                    label1.item.aspectRatio(2)
+                    label2.item.aspectRatio(1).shrink(1)
+                    view1.item.aspectRatio(5 / 6).shrink(1)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 179.667, y: 0, width: 40.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 190, y: 20.333, width: 20.333, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 191.667, y: 40.667, width: 16.667, height: 20), within: withinRange))
+            }
+
+            it("aspectRatio + shrink") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2).shrink(1)
+                    label2.item.aspectRatio(1)
+                    view1.item.aspectRatio(5 / 6)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 0), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 400), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 400, width: 400, height: 480), within: withinRange))
+            }
+
+            it("aspectRatio + sizeToFit(.width)") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2).shrink(1)
+                    label2.item.aspectRatio(1)
+                    view1.item.aspectRatio(5 / 6)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 1080), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 400, height: 400), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 600, width: 400, height: 480), within: withinRange))
+            }
+
+            it("aspectRatio + sizeToFit(.height)") {
+                stackView.direction(.column).alignItems(.start).define { (stack) in
+                    label1.item.aspectRatio(2).shrink(1)
+                    label2.item.aspectRatio(5)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                }
+
+                stackView.pin.top(64).height(400).sizeToFit(.height)
+                stackView.layoutIfNeeded()
+
+                // Dont match FlexLayout!
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 101.667, height: 400), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 40.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 101.667, height: 40.667), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 0), within: withinRange))
+            }
+
+            it("aspectRatio + width/height/size") {
+                stackView.direction(.column).alignItems(.start).define { (stack) in
+                    label1.item.aspectRatio(2).width(200)
+                    label2.item.aspectRatio(1).height(40)
+                    view1.item.aspectRatio(5 / 6).size(50)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout, except:
+                //  1- view1: flexlayout layout size is 41.3x50, and StackViewLayout is 50x50
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 100), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 100, width: 40, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 140, width: 50, height: 60), within: withinRange))
+            }
+
+            it("aspectRatio + width/height/size") {
+                stackView.direction(.column).alignItems(.stretch).define { (stack) in
+                    label1.item.aspectRatio(2).width(200).margin(20)
+                    label2.item.aspectRatio(1).height(40).margin(20)
+                    view1.item.aspectRatio(5 / 6).size(50).margin(20)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout, except:
+                //  1- view1: flexlayout layout size is 41.6x50, and StackViewLayout is 50x50
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 20, width: 200, height: 100), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 160, width: 40, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 20, y: 240, width: 50, height: 60), within: withinRange))
+            }
+
+            it("aspectRatio + width/height/size") {
+                stackView.direction(.column).alignItems(.start).define { (stack) in
+                    label1.item.aspectRatio(2).width(200).margin(20)
+                    label2.item.aspectRatio(1).height(40).margin(20)
+                    view1.item.aspectRatio(5 / 6).size(50).margin(20)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout, except:
+                //  1- view1: flexlayout layout size is 41.3x50, and StackViewLayout is 50x50
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 20, width: 200, height: 100), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 160, width: 40, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 20, y: 240, width: 50, height: 60), within: withinRange))
+            }
+
+            it("aspectRatio + minWidth/maxWidth") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2).minWidth(50)
+                    label2.item.aspectRatio(1).maxWidth(40)
+                    view1.item.aspectRatio(5 / 6)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout, except:
+                // 1- label2, flexlayout layout it with a size of 400x480?!, StackView size if 40x40 which respect the maxWidth
+                //    of 40 and the aspectRatio of 1.
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 40, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 240, width: 400, height: 480), within: withinRange))
+            }
+
+            it("aspectRatio + minHeight/maxHeight") {
+                stackView.direction(.column).define { (stack) in
+                    label1.item.aspectRatio(2).minHeight(220)
+                    label2.item.aspectRatio(1).maxHeight(50)
+                    view1.item.aspectRatio(5 / 6)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout, except:
+                // 1- label1 overflow in flexlayout but not using StackView
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 220), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 220, width: 50, height: 50), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 270, width: 400, height: 480), within: withinRange))
+            }
+        }
+
+        // row
+        describe("aspectRatio row") {
+            it("adjust") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6)
+                    view1.item.aspectRatio(1 / 4)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(200)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 33.333, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 33.333, y: 0, width: 33.333, height: 200), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 66.667, y: 0, width: 50, height: 200), within: withinRange))
+            }
+
+            it("adjust") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6).margin(20)
+                    label2.item.aspectRatio(1 / 6).margin(20)
+                    view1.item.aspectRatio(1 / 4).margin(20)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(200)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 20, width: 26.667, height: 160), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 86.667, y: 20, width: 26.667, height: 160), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 153.333, y: 20, width: 40, height: 160), within: withinRange))
+            }
+
+            it("aspectRatio + margins") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6).marginVertical(10).marginHorizontal(10)
+                    label2.item.aspectRatio(1 / 6).marginHorizontal(15)
+                    view1.item.aspectRatio(1 / 4).margin(20)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(200)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 10, width: 30, height: 180), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 65, y: 0, width: 33.333, height: 200), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 133.333, y: 20, width: 40, height: 160), within: withinRange))
+            }
+
+            it("aspectRatio + grow") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6).grow(1)
+                    view1.item.aspectRatio(1 / 4)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(200)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 33.333, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 33.333, y: 0, width: 33.333, height: 200), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 66.667, y: 0, width: 50, height: 200), within: withinRange))
+            }
+
+            it("aspectRatio + grow") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6).margin(20)
+                    label2.item.aspectRatio(1 / 6).grow(1)
+                    view1.item.aspectRatio(1 / 4)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(200)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 20, width: 26.667, height: 160), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 66.667, y: 0, width: 33.333, height: 200), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 100, y: 0, width: 50, height: 200), within: withinRange))
+            }
+
+            it("aspectRatio + grow + maxWidth") {
+                stackView.direction(.row).alignItems(.start).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6).grow(1)
+                    view1.item.aspectRatio(1 / 4).maxWidth(30)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 1898), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 322), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 316.333, height: 1898), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 370, y: 0, width: 30, height: 120), within: withinRange))
+            }
+
+            it("aspectRatio + alignItems(.center)") {
+                stackView.direction(.row).alignItems(.center).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6)
+                    view1.item.aspectRatio(1 / 4)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(200)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 33.333, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 33.333, y: 0, width: 33.333, height: 200), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 66.667, y: 0, width: 50, height: 200), within: withinRange))
+            }
+
+            it("aspectRatio + grow") {
+                stackView.direction(.row).alignItems(.center).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6)
+                    view1.item.aspectRatio(1 / 4)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout, except:
+                //  1- label2, flexlayout layout is much bigger (104x624). StackView don't overflow its container
+                //  2- view1, flexlayout layout is much bigger (400x1600). StackView don't overflow its container
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 139, width: 53.667, height: 322), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 126, width: 58, height: 348), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 111.667, y: 0, width: 150, height: 600), within: withinRange))
+            }
+
+            it("aspectRatio + shrink") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6)
+                    view1.item.width(350)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(200)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 33.333, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 33.333, y: 0, width: 33.333, height: 200), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 66.667, y: 0, width: 350, height: 200), within: withinRange))
+            }
+
+            it("aspectRatio + shrink") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6).shrink(1)
+                    view1.item.width(350)
+                    
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(200)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 33.333, height: 200), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 33.333, y: 0, width: 16.667, height: 100), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 50, y: 0, width: 350, height: 200), within: withinRange))
+            }
+
+            it("aspectRatio + sizeToFit(.width)") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6)
+                    view1.item.width(350)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout, except:
+                //  1-label1: flexlayout don't stretch it vertically! (53x322)
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 624), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 104, height: 624), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 104, y: 0, width: 104, height: 624), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 208, y: 0, width: 350, height: 624), within: withinRange))
+            }
+
+            it("aspectRatio + sizeToFit(.width)") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6).shrink(1)
+                    view1.item.width(350)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 322), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 322), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 0, height: 0), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 350, height: 322), within: withinRange))
+            }
+
+            it("aspectRatio + sizeToFit(.width)") {
+                stackView.direction(.row).alignItems(.end).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6).shrink(1)
+                    view1.item.width(350)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 322), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 322), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 322, width: 0, height: 0), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 53.667, y: 299, width: 350, height: 23), within: withinRange))
+            }
+
+            it("aspectRatio + alignItems center") {
+                stackView.direction(.row).alignItems(.center).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6).shrink(1)
+                    view1.item.width(350)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 322), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 322), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 161, width: 0, height: 0), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 53.667, y: 149.667, width: 350, height: 23), within: withinRange))
+            }
+
+            it("aspectRatio + justify center ") {
+                stackView.direction(.row).justifyContent(.center).alignItems(.center).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6).shrink(1)
+                    view1.item.width(150)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 624), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 46.333, y: 151, width: 53.667, height: 322), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 100, y: 0, width: 104, height: 624), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 204, y: 285.333, width: 150, height: 53.333), within: withinRange))
+            }
+
+            it("aspectRatio + justify spaceAround ") {
+                stackView.direction(.row).justifyContent(.spaceAround).alignItems(.start).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6).shrink(1)
+                    view1.item.width(150)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 624), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 15.333, y: 0, width: 53.667, height: 322), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 99.667, y: 0, width: 104, height: 624), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 234.333, y: 0, width: 150, height: 53.333), within: withinRange))
+            }
+
+            it("aspectRatio + justify spaceEvenly ") {
+                stackView.direction(.row).justifyContent(.spaceEvenly).alignItems(.stretch).define { (stack) in
+                    label1.item.aspectRatio(1 / 6)
+                    label2.item.aspectRatio(1 / 6).shrink(1)
+                    view1.item.width(150)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 624), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 10.667, y: 0, width: 104, height: 624), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 125.333, y: 0, width: 104, height: 624), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 240, y: 0, width: 150, height: 624), within: withinRange))
+            }
+
+            it("aspectRatio + sizeToFit(.height)") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6).shrink(1)
+                    label2.item.aspectRatio(1 / 6)
+                    view1.item.width(350)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 624), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 0), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 104, height: 624), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 104, y: 0, width: 350, height: 624), within: withinRange))
+            }
+
+            it("aspectRatio + sizeToFit(.height)") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6).width(20)
+                    label2.item.aspectRatio(1 / 6).height(40)
+                    view1.item.aspectRatio(5 / 6).size(50)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).height(400).sizeToFit(.height)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 76.667, height: 400), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 20, height: 120), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 0, width: 6.667, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 26.667, y: 0, width: 50, height: 60), within: withinRange))
+            }
+
+            it("aspectRatio + sizeToFit(.height)") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6).width(20)
+                    label2.item.aspectRatio(1 / 6).height(40)
+                    view1.item.aspectRatio(5 / 6).size(50)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 120), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 20, height: 120), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 0, width: 6.667, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 26.667, y: 0, width: 50, height: 60), within: withinRange))
+            }
+
+            it("aspectRatio + width/height/size") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6).width(20)
+                    label2.item.aspectRatio(1 / 6).height(40)
+                    view1.item.aspectRatio(5 / 6).size(50)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 20, height: 120), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 0, width: 6.667, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 26.667, y: 0, width: 50, height: 60), within: withinRange))
+            }
+
+            it("aspectRatio + minWidth/maxWidth") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6).minWidth(20)
+                    label2.item.aspectRatio(1).maxWidth(40)
+                    view1.item.aspectRatio(5 / 6)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 100, height: 600), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 100, y: 0, width: 40, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 140, y: 0, width: 500, height: 600), within: withinRange))
+            }
+
+            it("aspectRatio + minWidth/maxWidth") {
+                stackView.direction(.row).alignItems(.center).define { (stack) in
+                    label1.item.aspectRatio(1 / 6).minWidth(20)
+                    label2.item.aspectRatio(1).maxWidth(40)
+                    view1.item.aspectRatio(5 / 6)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 139, width: 53.667, height: 322), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 280, width: 40, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 93.667, y: 60, width: 400, height: 480), within: withinRange))
+            }
+
+            it("aspectRatio + minHeight/maxHeight") {
+                stackView.direction(.row).define { (stack) in
+                    label1.item.aspectRatio(1 / 6).minHeight(20)
+                    label2.item.aspectRatio(1).maxHeight(40)
+                    view1.item.aspectRatio(5 / 6)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.top(64).width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout, except:
+                //  1- label2, flexlayout size is 600x40, which respect maxHeight(40) but not aspectRatio(1)! StackView is right (40x40)
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 100, height: 600), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 100, y: 0, width: 40, height: 40), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 140, y: 0, width: 500, height: 600), within: withinRange))
             }
         }
     }

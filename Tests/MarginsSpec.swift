@@ -94,13 +94,11 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginStart()") {
-                stackView.direction(.column)
-                stackView.justifyContent(.start)
-                stackView.alignItems(.stretch)
-                
-                label1.item.marginStart(10)
-                label2.item.marginStart(25%)
-                
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (stackView) in
+                    label1.item.marginStart(10)
+                    label2.item.marginStart(25%)
+                })
+
                 stackView.layout()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10.0, y: 0.0, width: 390.0, height: 20.333), within: withinRange))
@@ -562,6 +560,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.marginTop(40).marginBottom(40)
                     view1.item.marginTop(20%).marginBottom(10%).shrink(1)
                 })
+                
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 90)
                 stackView.layout()
                 

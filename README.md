@@ -244,6 +244,7 @@ Result:
 
 <img src="docs_markdown/images/example-size-fixed-size.png" width="160"/>
 
+<a name="adjust_size_to_items"></a>
 #### Adjusting size to match its items
 StackView can be layouted by specifying only one dimension and letting the StackView compute the other dimension. In this situation StackLayout set its dimension to fit all its items. 
 
@@ -300,6 +301,7 @@ TODO: Does this method is really required?
 <a name="managing_items"></a>
 ## 2. Managing StackView's items 
 
+<a name="addItem"></a>
 ### Adding items to a StackView 
 - Applies to: `StackView`
 - Returns: StackItem interface of the newly added item.
@@ -332,6 +334,12 @@ This method adds an item (UIView) after the specified reference item. Note that 
   stackview.addItem(titleLabel, after: imageView)
 ```
 <br>
+
+<a name="addStackView"></a>
+### addStackView()
+
+TODO: Document addStackView()
+
 
 ### Removing items 
 - Applies to: `StackView`
@@ -442,7 +450,10 @@ Using the same setup as the Example 1, but using the `.row` direction.
 
 Not really the expected result, right?! Two issues:
 
-1. Buttons are too tall: By default StackView `alignItems` property is set to `.stretch`, which cause items to stretch in the cross axis direction. To fix that we need to change that to `.start`. See [`alignItems`](#alignItems) for more details.  
+1. Buttons are too tall: By default StackView `alignItems` property is set to `.stretch`, which cause items to stretch in the cross axis direction. To fix that, two possible solutions:
+	1. Set the `alignItems` property to `.start`. See [`alignItems`](#alignItems).  
+	2. Adjust the StackView's height to match its items. See [Adjusting size to match its items](#adjust_size_to_items).
+
 2. Buttons overflow the StackView: The reason for this is that the size of the three buttons + margins are wider than the specified StackView's width (300 pixels). To contain buttons inside the StackView, we can increase the StackView's width OR we must allow at least one item to shrink if there is not enough space. By default item don't shrink. To enable this we must set the item's `shrink` property. We want that all buttons shrink equitably, so we set each button the same `shrink` property. See [`shrink`](#shrink) for more details.  
 
 ```swift
@@ -721,6 +732,8 @@ In the case where a UILabel's text is updated, it is needed to mark the label as
 
 TODO:
 If you run into situations where multiple elements need to be arranged along multiple axes, UIStackViews can be nested inside each other. Below is the layout from the example project. Each property UILabel and UISegmentedControl are contained in a UIStackView. All of the UIStackViews are then contained in a parent UIStackView denoted on the left.
+
+See [addStackView()](#addStackView) 
 
 <br/>
 

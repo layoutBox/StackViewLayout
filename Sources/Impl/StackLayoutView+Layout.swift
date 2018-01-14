@@ -25,10 +25,7 @@ import UIKit
 extension StackView {
     // TODO: Tests StackView using autolayout
 //    public override var intrinsicContentSize: CGSize {
-//        let container = Container(direction: direction)
-//        container.width = nil
-//        container.height = nil
-//        return layoutItems(container: container)
+//        return sizeThatFits(CGSize(width: frame.width, height: .greatestFiniteMagnitude))
 //    }
 
     // TODO: Tests StackView using autolayout
@@ -39,14 +36,14 @@ extension StackView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        let container = Container(direction: direction)
+        let container = Container(stackView: self)
         container.width = bounds.size.width
         container.height = bounds.size.height
         layoutItems(container: container)
     }
     
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let container = Container(direction: direction)
+        let container = Container(stackView: self)
         container.width = size.width == CGFloat.greatestFiniteMagnitude ? nil : size.width
         container.height = size.height == CGFloat.greatestFiniteMagnitude ? nil : size.height
         return layoutItems(container: container)
@@ -102,40 +99,41 @@ extension StackView {
             
             //
             // Handle cross-axis position
+            var itemMainAxisLength = item.mainAxisLength ?? 0
             var itemCrossAxisLength = item.crossAxisLength
-            var crossAxisPos = stackItem.crossAxisStartMargin(container: container)
+            let crossAxisStartMargin = stackItem.crossAxisStartMargin(container: container)
             let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
-            
+            var crossAxisPos = crossAxisStartMargin
+
             if let containerCrossAxisLength = containerCrossAxisLength {
                 switch stackItem.resolveStackItemAlign(stackAlignItems: alignItems) {
-                case .stretch:
-                    if item.isCrossAxisFlexible {
-                        itemCrossAxisLength = stackItem.applyMargins(toCrossAxisLength: containerCrossAxisLength, container: container)
-                    }
-                case .start:
-                    // nop
-                    break
                 case .center:
                     // Takes margins into account when centering items (compatible with flexbox).
                     let itemCrossAxisForCentering = itemCrossAxisLength -
-                                                    stackItem.crossAxisStartMargin(container: container) +
+                                                    crossAxisStartMargin +
                                                     crossAxisEndMargin
                     crossAxisPos = (containerCrossAxisLength - itemCrossAxisForCentering) / 2
                 case .end:
                     crossAxisPos = containerCrossAxisLength - itemCrossAxisLength - crossAxisEndMargin
+                default:
+                    break
                 }
 
-                let crossAxisStartMargin = stackItem.crossAxisStartMargin(container: container)
-                crossAxisPos = max(crossAxisPos, crossAxisStartMargin)
-                
+//                let crossAxisStartMargin = crossAxisStartMargin
+//                crossAxisPos = max(crossAxisPos, crossAxisStartMargin)
+//                crossAxisPos += crossAxisStartMargin
+
                 // Check if we must reduce the item's cross axis length to respect its cross axis margins
-                if item.isCrossAxisFlexible && (crossAxisPos + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisLength) {
+                if item.limitCrossAxisToContainer() && (crossAxisPos + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisLength) {
                     itemCrossAxisLength = max(0, containerCrossAxisLength - crossAxisPos - crossAxisEndMargin)
                 }
             }
-            
-            let viewFrame  = direction == .column ? CGRect(x: crossAxisPos, y: mainAxisOffset, width: itemCrossAxisLength, height: item.height!) :
-                                                    CGRect(x: mainAxisOffset, y: crossAxisPos, width: item.width!, height: itemCrossAxisLength)
+
+            itemCrossAxisLength = item.applyMinMax(toCrossAxisLength: itemCrossAxisLength)
+            itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemMainAxisLength)
+
+            let viewFrame  = direction == .column ? CGRect(x: crossAxisPos, y: mainAxisOffset, width: itemCrossAxisLength, height: itemMainAxisLength) :
+                                                    CGRect(x: mainAxisOffset, y: crossAxisPos, width: itemMainAxisLength, height: itemCrossAxisLength)
             
             let itemViewRect = Coordinates.adjustRectToDisplayScale(viewFrame)
             Coordinates.setUntransformedViewRect(item.view, toRect: itemViewRect)
@@ -163,7 +161,7 @@ extension StackView {
             let item = ItemInfo(stackItem, container: container)
             
             // Compute width & height
-            item.measureItem(container: container, applyMargins: true)
+            item.measureItem(initialMeasure: true)
             
             // Compute item main-axis margins.
             item.mainAxisStartMargin = stackItem.mainAxisStartMargin(container: container)
@@ -177,6 +175,8 @@ extension StackView {
     
     private func adjustItemsSizeToContainer(container: Container) {
         guard let containerMainAxisLength = container.mainAxisLength else { return }
+
+        var previousLength: CGFloat?
         var lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
         let delta = Coordinates.onePixelLength + 0.001
 
@@ -184,51 +184,53 @@ extension StackView {
             // Grow
             var growFactorTotal: CGFloat = 0
             repeat {
-                growFactorTotal = container.growFactorTotal()
-                
+                let itemsGrowFactors = container.itemsGrowFactors()
+                growFactorTotal = itemsGrowFactors.reduce(0, +)
+
                 if growFactorTotal > 0 {
                     let factorLength = lengthDiff / growFactorTotal
-                    
-                    for item in container.items {
+
+                    for (index, item) in container.items.enumerated() {
                         guard let itemMainAxisLength = item.mainAxisLength else { continue }
-                        let growFactor = item.growFactor()
+                        let growFactor = itemsGrowFactors[index]
                         
                         if growFactor > 0 {
-                            item.resetToStackItemProperties(container: container)
-                            item.mainAxisLength = itemMainAxisLength + growFactor * factorLength
-                            item.measureItem(container: container, applyMargins: false)
+                            item.grow(mainAxisLength: itemMainAxisLength + growFactor * factorLength)
                         }
                     }
                     
                     container.updateMainAxisTotalLength()
+
+                    previousLength = lengthDiff
                     lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
                 }
-            } while growFactorTotal > 0 && lengthDiff > delta
+            } while (growFactorTotal > 0) && (lengthDiff > delta) && (previousLength != lengthDiff)
             
         } else if lengthDiff < -delta {
             // Shrink
             var shrinkFactorTotal: CGFloat = 0
-            
+
             repeat {
-                shrinkFactorTotal = container.shrinkFactorTotal()
-                
+                let itemsShrinkFactors = container.itemsShrinkFactors()
+                shrinkFactorTotal = itemsShrinkFactors.reduce(0, +)
+
                 if shrinkFactorTotal > 0 {
                     let factorLength = lengthDiff / shrinkFactorTotal
-                    
-                    for item in container.items {
+
+                    for (index, item) in container.items.enumerated() {
                         guard let itemMainAxisLength = item.mainAxisLength else { continue }
-                        let shrinkFactor = item.shrinkFactor()
+                        let shrinkFactor = itemsShrinkFactors[index]
                         
                         if shrinkFactor > 0 {
-                            item.resetToStackItemProperties(container: container)
-                            item.mainAxisLength = itemMainAxisLength + shrinkFactor * factorLength
-                            item.measureItem(container: container, applyMargins: false)
+                            item.shrink(mainAxisLength: itemMainAxisLength + shrinkFactor * factorLength)
                         }
                     }
                     container.updateMainAxisTotalLength()
+
+                    previousLength = lengthDiff
                     lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
                 }
-            } while shrinkFactorTotal > 0 && lengthDiff < -delta
+            } while (shrinkFactorTotal > 0) && (lengthDiff < -delta) && (previousLength != lengthDiff)
         }
     }
 }

@@ -53,7 +53,15 @@ public class StackView: UIView {
     public func define(_ closure: (_ stackView: StackView) -> Void) {
         closure(self)
     }
-    
+
+    @discardableResult
+    public func addStackView() -> StackView {
+        let stackView = StackView()
+        addItem(stackView)
+
+        return stackView
+    }
+
     @discardableResult
     public func addItem(_ view: UIView) -> StackItem {
 //        let stackItemImpl = view.item as! StackItemImpl
@@ -197,7 +205,7 @@ public class StackView: UIView {
      - Parameter mode: specify the layout mode (LayoutMode).
      */
     public func layout(mode: SLayoutMode = .fitContainer) {
-        let container = Container(direction: direction)
+        let container = Container(stackView: self)
         
         switch mode {
         case .fitContainer:
