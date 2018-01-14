@@ -94,13 +94,11 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginStart()") {
-                stackView.direction(.column)
-                stackView.justifyContent(.start)
-                stackView.alignItems(.stretch)
-                
-                label1.item.marginStart(10)
-                label2.item.marginStart(25%)
-                
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (stackView) in
+                    label1.item.marginStart(10)
+                    label2.item.marginStart(25%)
+                })
+
                 stackView.layout()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10.0, y: 0.0, width: 390.0, height: 20.333), within: withinRange))

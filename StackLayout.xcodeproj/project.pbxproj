@@ -172,7 +172,6 @@
 			children = (
 				249EFE7C1E64FB4C00165E39 /* Sources */,
 				249EFE871E64FB4C00165E39 /* Tests */,
-				249EFE7B1E64FB4C00165E39 /* Products */,
 				138A1F602470415292B7194B /* Frameworks */,
 				E2EE9A188294BFBC07C19DF6 /* Pods */,
 			);
@@ -186,6 +185,7 @@
 				244DF2F81EF46C500090508B /* StackLayoutTVOS.framework */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		249EFE7C1E64FB4C00165E39 /* Sources */ = {
@@ -218,6 +218,7 @@
 				24496C2F1FE55F7D006F0E78 /* ShrinkColumnSpec.swift */,
 				24EB78231FEA098C00C979AA /* ShrinkRowSpec.swift */,
 				248F0C191FF919F2004CD8AC /* WidthHeightSizeSpec.swift */,
+				249EFE7B1E64FB4C00165E39 /* Products */,
 				248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */,
 				DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */,
 			);
