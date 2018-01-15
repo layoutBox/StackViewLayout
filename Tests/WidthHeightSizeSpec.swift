@@ -1213,10 +1213,9 @@ class WidthHeightSizeSpec: QuickSpec {
                 stackView.layoutIfNeeded()
 
                 // Dont match FlexLayout!
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 101.667, height: 400), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 101.667, height: 400), within: 1.4))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 40.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 101.667, height: 40.667), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 0), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 101.667, height: 40.667), within: 1.4))
             }
 
             it("aspectRatio + width/height/size") {
