@@ -24,6 +24,8 @@
 		24EC06EE1FD87DD300459C62 /* DocExamplesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06E91FD87DD300459C62 /* DocExamplesView.swift */; };
 		24EC06EF1FD87DD300459C62 /* DocExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06EA1FD87DD300459C62 /* DocExamplesViewController.swift */; };
 		24F246141FA8D57100B6332E /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F246131FA8D57100B6332E /* UIImageView+Download.swift */; };
+		DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */; };
+		DF8B0314200BE042008FF4CA /* Autolayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF8B0313200BE042008FF4CA /* Autolayout.storyboard */; };
 		FC19F3AB71E0416A5DF3C997 /* Pods_StackLayoutExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BC1DFC5AD1ACBF99B5F0F2 /* Pods_StackLayoutExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +116,8 @@
 		A35A00E6536E49A548E763E6 /* Pods-PinLayoutSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinLayoutSample.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PinLayoutSample/Pods-PinLayoutSample.debug.xcconfig"; sourceTree = "<group>"; };
 		AAD69688AA2A3F0994F3074E /* Pods_PinLayoutSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinLayoutSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C589624E868FCB20F7C10918 /* Pods-PinLayoutSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinLayoutSample.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PinLayoutSample/Pods-PinLayoutSample.release.xcconfig"; sourceTree = "<group>"; };
+		DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutolayoutViewController.swift; sourceTree = "<group>"; };
+		DF8B0313200BE042008FF4CA /* Autolayout.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Autolayout.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 		2439CC371E665C5E003326FB /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				DF8B0309200BDFA5008FF4CA /* Autolayout */,
 				24CB99991F290591004EA7FB /* AdjustToContainer */,
 				DF66F9D61E8493D400ADB8D5 /* AutoAdjustingSizeView */,
 				24F2460C1FA8D4D100B6332E /* CollectionViewExample */,
@@ -358,6 +363,15 @@
 			path = AutoAdjustingSizeView;
 			sourceTree = "<group>";
 		};
+		DF8B0309200BDFA5008FF4CA /* Autolayout */ = {
+			isa = PBXGroup;
+			children = (
+				DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */,
+				DF8B0313200BE042008FF4CA /* Autolayout.storyboard */,
+			);
+			path = Autolayout;
+			sourceTree = "<group>";
+		};
 		F143180314A617EFD07C5709 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +479,7 @@
 			files = (
 				249EFE4D1E64FAFE00165E39 /* LaunchScreen.storyboard in Resources */,
 				249EFE4A1E64FAFE00165E39 /* Assets.xcassets in Resources */,
+				DF8B0314200BE042008FF4CA /* Autolayout.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +573,7 @@
 				2423C79F1FD0B00B00C794AE /* IntroViewController.swift in Sources */,
 				24EC06EE1FD87DD300459C62 /* DocExamplesView.swift in Sources */,
 				2479AD802001737300F39774 /* BasicButton.swift in Sources */,
+				DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */,
 				2439CC351E665BF6003326FB /* MenuView.swift in Sources */,
 				2493268C1EEEEFF100BCB814 /* BaseViewController.swift in Sources */,
 				2439CC4B1E665C6B003326FB /* BasicView.swift in Sources */,

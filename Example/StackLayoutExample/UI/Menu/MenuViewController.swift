@@ -22,6 +22,7 @@ import UIKit
 enum PageType: Int {
     case intro
     case docExamples
+    case autolayout
 //    case adjustToContainer
 //    case tableView
 //    case collectionView
@@ -37,30 +38,16 @@ enum PageType: Int {
         switch self {
         case .intro:                      return "StackLayout's Intro"
         case .docExamples:                return "Doc Examples"
-//        case .adjustToContainer:          return "Adjust to container size"
-//        case .tableView:                  return "UITableView with variable cell's height"
-//        case .collectionView:             return "UICollectionView Example"
-//        case .form:                       return "Form Example"
-//        case .relativePositions:          return "Relative Positionning"
-//        case .multiRelativePositions:     return "Multiple Relatives Positionning"
-//        case .autoAdjustingSize:          return "Auto adjusting size"
-//        case .introRTL:                   return "StackLayout's right-to-left language support"
+        case .autolayout:                 return "Autolayout"
         case .count:                      return ""
         }
     }
 
     var viewController: UIViewController {
         switch self {
-        case .intro:                      return IntroViewController(pageType: self)
-        case .docExamples:                return DocExamplesViewController(pageType: self)
-//        case .adjustToContainer:          return AdjustToContainerViewController(pageType: self)
-//        case .tableView:                  return TableViewExampleViewController(pageType: self)
-//        case .collectionView:             return CollectionViewExampleViewController(pageType: self)
-//        case .form:                       return FormViewController(pageType: self)
-//        case .relativePositions:          return RelativeViewController(pageType: self)
-//        case .multiRelativePositions:     return MultiRelativeViewController(pageType: self)
-//        case .autoAdjustingSize:          return AutoAdjustingSizeViewController(pageType: self)
-//        case .introRTL:                   return IntroRTLViewController(pageType: self)
+        case .intro:            return IntroViewController(pageType: self)
+        case .docExamples:      return DocExamplesViewController(pageType: self)
+        case .autolayout:       return UIStoryboard.init(name: "Autolayout", bundle: nil).instantiateViewController(withIdentifier: "AutolayoutViewController")
         case .count:                      return UIViewController()
         }
     }
@@ -87,7 +74,7 @@ class MenuViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        didSelect(pageType: .intro)
+//        didSelect(pageType: .autolayout)
     }
 }
 

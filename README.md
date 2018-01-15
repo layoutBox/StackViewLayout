@@ -21,6 +21,8 @@
 <br>
 
 Extremely Fast StackView without auto layout. Concise syntax, intuitive, readable & chainable. Stacks easily many views horizontally or vertically. Greatly inspired by CSS Flexbox.
+
+StackView can be used with Autolayout and Storyboards, but it was mainly designed for manual layout.
   
 
 ### Requirements
@@ -41,7 +43,7 @@ Extremely Fast StackView without auto layout. Concise syntax, intuitive, readabl
 	* [Items properties](#items_properties)
 		* [Adjusting item's width, height and size](#adjusting_size)
 		* [Margins](#margins)
-
+	* [Using with Autolayout and Storyboards](#autolayout)
 * [API Documentation](#api_documentation)
 * [Examples App](#examples_app)
 * [FAQ](#faq)
@@ -758,7 +760,40 @@ This table resume **Items default properties**:
 <br>
 
 
-## 8. Differences with FlexLayout/FlexBox
+<a name="autolayout"></a>
+## Using with Autolayout and Storyboards
+StackView can be also be used with autolayout.
+
+So it is compatible with Storyboards and NIBs.
+
+To use StackView in a Storyboard:
+
+1. From Interface builder:
+	1. Add a UIView into your view controller's view.
+	2. Set the view's class to `StackView`:  
+<img src="docs_markdown/images/storyboard_class.png" width="200"/>
+	3. You can either add StackView's items (sub views) from source code, or using Interface Builder. Just note that you don't need to position and size StackView's subviews in interface builder, StackView will layout them at runtime.
+	4. You must set autolayout constraints to layout the StackView inside your view.
+2. Add a reference to the added StackView into your UIViewController's class.
+3. You can customize StackView's properties. For example to set the `justifyContent` and the `alignItems` simply add this line in your UIViewController's class:  
+
+	```swift
+	stackView.justifyContent(.spaceAround).alignItems(.center)
+	``` 
+	
+4. You can also set the StackView's items properties from source code, simply add reference to them and customize them from source code.
+
+See the example "Autolayout" in the [Example App](#examples_app) for a complete example.
+
+### StackView advantage over UIStackView
+* Finer control: You can control each item's margin individually (horizontally and vertically). No more needs of adding filler UIViews to add margin between items.
+* More control over how items are layouted.
+* Can be layouted using autolayout or not, you're not stuck with a single layout framework. StackView can be layouted with any layout frameworks!
+
+<br>
+
+<a name="differences_flexlayout"></a>
+## Differences with FlexLayout/FlexBox
 
 * Top and bottom margins using percentages  
 	* StackViewLayout resolve percentages in marginTop and marginBottom against the **height of the container**.
