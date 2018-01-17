@@ -178,14 +178,7 @@ class ItemInfo {
             if let fitWidth = fitWidth, height == nil {
                 if fitWidth > 0 {
                     var adjustedFitWidth = applyMargins ? stackItem.applyMargins(toWidth: fitWidth) : fitWidth
-
-                    if let aspectRatio = stackItem._aspectRatio, let containerHeight = container.height {
-                        let maxWidth = containerHeight * aspectRatio
-                        if adjustedFitWidth > maxWidth {
-                            adjustedFitWidth = maxWidth
-                        }
-                    }
-
+                    adjustedFitWidth = adjustWidthToAspectRatioAndContainer(width: adjustedFitWidth)
                     adjustedFitWidth = applyWidthMin(adjustedFitWidth)
 
                     let newSize = view.sizeThatFits(CGSize(width: adjustedFitWidth, height: .greatestFiniteMagnitude))
@@ -200,6 +193,7 @@ class ItemInfo {
             } else if let fitHeight = fitHeight, width == nil {
                 if fitHeight > 0 {
                     var adjustedFitHeight = applyMargins ? stackItem.applyMargins(toHeight: fitHeight) : fitHeight
+                    adjustedFitHeight = adjustHeightToAspectRatioAndContainer(height: adjustedFitHeight)
                     adjustedFitHeight = applyHeightMin(adjustedFitHeight)
 
                     let newSize = view.sizeThatFits(CGSize(width: .greatestFiniteMagnitude, height: adjustedFitHeight))
@@ -216,7 +210,7 @@ class ItemInfo {
             assert(height != nil && width != nil, "should not occurred")
             
             applySizeMinMax()
-            applyAspectRatioIfNeeded()
+            applyAspectRatioIfNeeded(.adjustCrossAxis)
 
             if let stretchedCrossAxisLength = stretchedCrossAxisLength {
                 if stretchedCrossAxisLength > self.crossAxisLength {
@@ -228,7 +222,7 @@ class ItemInfo {
         applySizeMinMax()
     }
 
-    private func resolveStretchedCrossAxisLength(/*applyMargins: Bool*/) -> CGFloat? {
+    private func resolveStretchedCrossAxisLength() -> CGFloat? {
         if stackItem.resolveStackItemAlign(stackAlignItems: container.alignItems) == .stretch, let containerCrossAxisLength = container.crossAxisLength {
             if isCrossAxisFlexible() {
                 var crossAxisLength = stackItem.applyMargins(toCrossAxisLength: containerCrossAxisLength, container: container)
@@ -250,19 +244,18 @@ class ItemInfo {
     }
 
     enum AdjustType {
-        case `default`
         case adjustMainAxis
         case adjustCrossAxis
         case adjustWidth
         case adjustHeight
     }
 
-    private func applyAspectRatioIfNeeded(_ adjustType: AdjustType = .default) {
+    private func applyAspectRatioIfNeeded(_ adjustType: AdjustType) {
         if let aspectRatio = stackItem._aspectRatio {
             let adjustWidth: Bool
 
             switch adjustType {
-            case .default, .adjustCrossAxis:
+            case .adjustCrossAxis:
                 adjustWidth = direction == .column
             case .adjustMainAxis:
                 adjustWidth = direction == .row
@@ -274,13 +267,26 @@ class ItemInfo {
 
             applyAspectRatio(aspectRatio, adjustWidth: adjustWidth)
 
-            // Check if the new width/height respect maxWidth/maxHeight, if not compute the reverse aspect ratio 
-            if let width = width, let maxWidth = maxWidth, adjustWidth && width > maxWidth {
-                self.width = applyWidthMinMax(width)
-                applyAspectRatio(aspectRatio, adjustWidth: false)
-            } else if let height = height, let maxHeight = maxHeight, !adjustWidth && height > maxHeight {
-                self.height = applyHeightMinMax(height)
-                applyAspectRatio(aspectRatio, adjustWidth: true)
+            // Check if the new width/height respect maxWidth/maxHeight and the containe size,
+            // if not reapply the aspect ratio
+            if let width = width, adjustWidth {
+                if let maxWidth = maxWidth, width > maxWidth {
+                    self.width = applyWidthMinMax(width)
+                    applyAspectRatioIfNeeded(.adjustHeight)
+                } else if let containerWidth = container.width, direction == .column && width > containerWidth {
+                    // direction is column, so the width must not be greater than the container's width
+                    self.width = containerWidth
+                    applyAspectRatioIfNeeded(.adjustHeight)
+                }
+            } else if let height = height, !adjustWidth {
+                if let maxHeight = maxHeight, height > maxHeight {
+                    self.height = applyHeightMinMax(height)
+                    applyAspectRatioIfNeeded(.adjustWidth)
+                } else if let containerHeight = container.height, direction == .row && height > containerHeight {
+                    // direction is row, so the width must not be greater than the container's height
+                    self.height = containerHeight
+                    applyAspectRatioIfNeeded(.adjustWidth)
+                }
             }
         }
     }
@@ -315,9 +321,38 @@ class ItemInfo {
         }
     }
 
+    private func adjustWidthToAspectRatioAndContainer(width: CGFloat) -> CGFloat {
+        guard direction == .row else { return width }
+        guard let aspectRatio = stackItem._aspectRatio else { return width }
+        guard let containerHeight = container.height else { return width }
+
+        // aspectRatio and container's height are set => limit the specified width to the maximum width
+        // respecting the aspectRatio.
+        let maxWidth = containerHeight * aspectRatio
+        if width > maxWidth {
+            return maxWidth
+        } else {
+            return width
+        }
+    }
+
+    private func adjustHeightToAspectRatioAndContainer(height: CGFloat) -> CGFloat {
+        guard direction == .column else { return height }
+        guard let aspectRatio = stackItem._aspectRatio else { return height }
+        guard let containerWidth = container.width else { return height }
+
+        // aspectRatio and container's width are set => limit the specified height to the maximum height
+        // respecting the aspectRatio.
+        let maxHeight = containerWidth / aspectRatio
+        if height > maxHeight {
+            return maxHeight
+        } else {
+            return height
+        }
+    }
+
     func growFactor() -> CGFloat {
         guard let mainAxisLength = mainAxisLength, mainAxisLength != 0 else { return 0 }
-//        guard measureType == .aspectRatio else { return 0 }
 
         if let mainAxisMaxLength = mainAxisMaxLength, mainAxisLength >= mainAxisMaxLength {
             return 0
@@ -338,7 +373,6 @@ class ItemInfo {
     
     func shrinkFactor() -> CGFloat {
         guard let mainAxisLength = mainAxisLength, mainAxisLength != 0 else { return 0 }
-//        guard measureType != .aspectRatio else { return 0 }
 
         if let mainAxisMinLength = mainAxisMinLength, mainAxisLength <= mainAxisMinLength {
             return 0
