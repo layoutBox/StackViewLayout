@@ -20,27 +20,92 @@
 import UIKit
 
 class Container {
-    let direction: SDirection
-    let alignItems: SAlignItems
+    fileprivate let stackView: StackView
     var width: CGFloat?
     var height: CGFloat?
+    var innerWidth: CGFloat?
+    var innerHeight: CGFloat?
     var items: [ItemInfo] = []
-    
-    var mainAxisLength: CGFloat? {
-        return direction == .column ? height : width
+
+    var direction: SDirection {
+        return stackView.direction
     }
-    
+
+    var alignItems: SAlignItems {
+        return stackView.alignItems
+    }
+
+    var mainAxisLength: CGFloat? {
+        return direction == .column ? innerHeight : innerWidth
+    }
+
     var crossAxisLength: CGFloat? {
         return direction == .column ? width : height
+    }
+
+    var crossAxisInnerLength: CGFloat? {
+        return direction == .column ? innerWidth : innerHeight
+    }
+
+    var paddingLeft: CGFloat = 0
+    var paddingRight: CGFloat = 0
+    var paddingTop: CGFloat = 0
+    var paddingBottom: CGFloat = 0
+
+    var crossAxisStartPadding: CGFloat {
+        return direction == .column ? paddingLeft : paddingTop
     }
     
     var mainAxisTotalItemsLength: CGFloat = 0
     
-    init(stackView: StackView) {
-        self.direction = stackView.direction
-        self.alignItems = stackView.alignItems
+    init(_ stackView: StackView) {
+        self.stackView = stackView
     }
     
+    convenience init(stackView: StackView) {
+        self.init(stackView)
+        
+        let rect = Coordinates.getUntransformedViewRect(stackView)
+        width = rect.width
+        height = rect.height
+        
+        initializeInnerSize()
+    }
+
+    convenience init(stackView: StackView, size: CGSize) {
+        self.init(stackView)
+        width = size.width == CGFloat.greatestFiniteMagnitude ? nil : size.width
+        height = size.height == CGFloat.greatestFiniteMagnitude ? nil : size.height
+
+        initializeInnerSize()
+    }
+
+    fileprivate func initializeInnerSize() {
+        if let paddingLeft = stackView._paddingLeft?.resolveWidth(container: self) {
+            self.paddingLeft = paddingLeft
+        }
+
+        if let paddingRight = stackView._paddingRight?.resolveWidth(container: self) {
+            self.paddingRight = paddingRight
+        }
+
+        if let paddingTop = stackView._paddingTop?.resolveWidth(container: self) {
+            self.paddingTop = paddingTop
+        }
+
+        if let paddingBottom = stackView._paddingBottom?.resolveWidth(container: self) {
+            self.paddingBottom = paddingBottom
+        }
+
+        if let width = width {
+            innerWidth = width - paddingLeft - paddingRight
+        }
+
+        if let height = height {
+            innerHeight = height - paddingTop - paddingBottom
+        }
+    }
+
     func updateMainAxisTotalLength() {
         mainAxisTotalItemsLength = 0
         

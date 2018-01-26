@@ -427,12 +427,12 @@ extension StackItemImpl {
         case .row:    itemCrossAxisLength = applyMargins(toHeight: length)
         }
         
-        if let containerCrossAxisLength = container.crossAxisLength {
+        if let containerCrossAxisInnerLength = container.crossAxisInnerLength {
             let crossAxisStartMargin = self.crossAxisStartMargin(container: container)
             let crossAxisEndMargin = self.crossAxisEndMargin(container: container)
-            if crossAxisStartMargin + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisLength {
+            if crossAxisStartMargin + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisInnerLength {
                 // The computed itemCrossAxisLength is too long, we must respect margins!
-                itemCrossAxisLength = containerCrossAxisLength - crossAxisStartMargin - crossAxisEndMargin
+                itemCrossAxisLength = containerCrossAxisInnerLength - crossAxisStartMargin - crossAxisEndMargin
             }
         }
         
