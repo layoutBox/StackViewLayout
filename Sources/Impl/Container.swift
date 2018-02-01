@@ -36,6 +36,10 @@ class Container {
     }
 
     var mainAxisLength: CGFloat? {
+        return direction == .column ? height : width
+    }
+
+    var mainAxisInnerLength: CGFloat? {
         return direction == .column ? innerHeight : innerWidth
     }
 
@@ -52,8 +56,20 @@ class Container {
     var paddingTop: CGFloat = 0
     var paddingBottom: CGFloat = 0
 
+    var mainAxisStartPadding: CGFloat {
+        return direction == .column ? paddingTop : paddingLeft
+    }
+
+    var mainAxisEndPadding: CGFloat {
+        return direction == .column ? paddingBottom : paddingRight
+    }
+
     var crossAxisStartPadding: CGFloat {
         return direction == .column ? paddingLeft : paddingTop
+    }
+    
+    var crossAxisEndPadding: CGFloat {
+        return direction == .column ? paddingRight : paddingBottom
     }
     
     var mainAxisTotalItemsLength: CGFloat = 0

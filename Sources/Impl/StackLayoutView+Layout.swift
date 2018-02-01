@@ -47,7 +47,7 @@ extension StackView {
     
     @discardableResult
     internal func layoutItems(container: Container) -> CGSize {
-        var mainAxisOffset: CGFloat = 0
+        var mainAxisOffset = container.paddingTop
         let containerMainAxisLength = container.mainAxisLength
         let containerCrossAxisLength = container.crossAxisLength
 
@@ -67,16 +67,17 @@ extension StackView {
         
         let mainAxisTotalItemsLength = container.mainAxisTotalItemsLength
         
-        if let mainAxisLength = containerMainAxisLength {
+        if let mainAxisLength = containerMainAxisLength,
+            let containerMainAxisInnner = container.mainAxisInnerLength {
             switch justifyContent {
             case .start:
-                mainAxisOffset = container.paddingTop
+                mainAxisOffset += 0
             case .center:
-                mainAxisOffset = container.paddingTop + (mainAxisLength - mainAxisTotalItemsLength) / 2
+                mainAxisOffset = container.mainAxisStartPadding + (containerMainAxisInnner - mainAxisTotalItemsLength) / 2
             case .end:
-                mainAxisOffset = container.paddingTop + mainAxisLength - mainAxisTotalItemsLength
+                mainAxisOffset = mainAxisLength - mainAxisTotalItemsLength - container.paddingBottom
             case .spaceBetween:
-                betweenSpacing = (mainAxisLength - mainAxisTotalItemsLength) / CGFloat(container.items.count - 1)
+                betweenSpacing = (containerMainAxisInnner - mainAxisTotalItemsLength) / CGFloat(container.items.count - 1)
             case .spaceAround:
                 betweenSpacing = (mainAxisLength - mainAxisTotalItemsLength) / CGFloat(container.items.count)
                 startEndSpacing = betweenSpacing / 2
@@ -104,16 +105,20 @@ extension StackView {
             let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
             var crossAxisPos = container.crossAxisStartPadding + crossAxisStartMargin
 
-            if let containerCrossAxisLength = containerCrossAxisLength {
+            if let containerCrossAxisLength = containerCrossAxisLength,
+                let containerCrossAxisInnerLength = container.crossAxisInnerLength {
                 switch stackItem.resolveStackItemAlign(stackAlignItems: alignItems) {
                 case .center:
                     // Takes margins into account when centering items (compatible with flexbox).
-                    let itemCrossAxisForCentering = itemCrossAxisLength -
-                                                    crossAxisStartMargin +
-                                                    crossAxisEndMargin
-                    crossAxisPos = container.crossAxisStartPadding + ((containerCrossAxisLength - itemCrossAxisForCentering) / 2)
+//                    let itemCrossAxisForCentering = itemCrossAxisLength/* -
+//                                                    crossAxisStartMargin +
+//                                                    crossAxisEndMargin*/
+
+                    crossAxisPos = container.crossAxisStartPadding + crossAxisStartMargin +
+                        ((containerCrossAxisInnerLength - itemCrossAxisLength - crossAxisStartMargin - crossAxisEndMargin) / 2)
                 case .end:
-                    crossAxisPos = container.crossAxisStartPadding + containerCrossAxisLength - itemCrossAxisLength - crossAxisEndMargin
+//                    crossAxisPos = container.crossAxisStartPadding + containerCrossAxisLength - itemCrossAxisLength
+                    crossAxisPos = containerCrossAxisLength - container.crossAxisEndPadding - crossAxisEndMargin - itemCrossAxisLength
                 default:
                     break
                 }
@@ -148,6 +153,9 @@ extension StackView {
                 maxY = max(itemViewRect.maxY + crossAxisEndMargin, maxY)
             }
         }
+        
+        maxX += container.paddingRight
+        maxY += container.paddingBottom
 
         return CGSize(width: maxX, height: maxY)
     }
