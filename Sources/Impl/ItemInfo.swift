@@ -70,8 +70,8 @@ class ItemInfo {
         }
     }
     
-    var mainAxisStartMargin: CGFloat?
-    var mainAxisEndMargin: CGFloat?
+    var mainAxisStartMargin: CGFloat = 0
+    var mainAxisEndMargin: CGFloat = 0
     
     var basis: CGFloat {
         return mainAxisLength ?? 1

@@ -126,7 +126,7 @@ class Container {
         mainAxisTotalItemsLength = 0
         
         items.forEach({ (item) in
-            mainAxisTotalItemsLength += item.mainAxisStartMargin ?? 0
+            mainAxisTotalItemsLength += item.mainAxisStartMargin
             
             if direction == .column {
                 mainAxisTotalItemsLength += (item.height != nil ? item.height! : 0)
@@ -134,7 +134,7 @@ class Container {
                 mainAxisTotalItemsLength += (item.width != nil ? item.width! : 0)
             }
             
-            mainAxisTotalItemsLength += item.mainAxisEndMargin ?? 0
+            mainAxisTotalItemsLength += item.mainAxisEndMargin
         })
     }
     

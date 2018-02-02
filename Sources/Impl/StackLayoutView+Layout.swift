@@ -79,10 +79,10 @@ extension StackView {
             case .spaceBetween:
                 betweenSpacing = (containerMainAxisInnner - mainAxisTotalItemsLength) / CGFloat(container.items.count - 1)
             case .spaceAround:
-                betweenSpacing = (mainAxisLength - mainAxisTotalItemsLength) / CGFloat(container.items.count)
+                betweenSpacing = (containerMainAxisInnner - mainAxisTotalItemsLength) / CGFloat(container.items.count)
                 startEndSpacing = betweenSpacing / 2
             case .spaceEvenly:
-                betweenSpacing = (mainAxisLength - mainAxisTotalItemsLength) / CGFloat(container.items.count + 1)
+                betweenSpacing = (containerMainAxisInnner - mainAxisTotalItemsLength) / CGFloat(container.items.count + 1)
                 startEndSpacing = betweenSpacing
             }
         }
@@ -92,9 +92,9 @@ extension StackView {
             //
             // Handle main-axis position
             if index == 0 {
-                mainAxisOffset += max(item.mainAxisStartMargin ?? 0, startEndSpacing)
+                mainAxisOffset += item.mainAxisStartMargin + startEndSpacing
             } else {
-                mainAxisOffset += max(item.mainAxisStartMargin ?? 0, betweenSpacing)
+                mainAxisOffset += item.mainAxisStartMargin + betweenSpacing
             }
             
             //
@@ -143,7 +143,7 @@ extension StackView {
             Coordinates.setUntransformedViewRect(item.view, toRect: itemViewRect)
             
             mainAxisOffset = direction == .column ? itemViewRect.maxY :  itemViewRect.maxX
-            mainAxisOffset += (item.mainAxisEndMargin ?? 0)
+            mainAxisOffset += item.mainAxisEndMargin
             
             if direction == .column {
                 maxX = max(itemViewRect.maxX + crossAxisEndMargin, maxX)
