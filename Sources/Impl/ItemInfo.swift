@@ -131,8 +131,6 @@ class ItemInfo {
         if let minHeight = minHeight, let height = height, height < minHeight {
             self.height = minHeight
         }
-
-//        self.isCrossAxisFlexible = (direction == .column ? (width == nil) : (height == nil))
     }
     
     func measureItem(initialMeasure: Bool) {

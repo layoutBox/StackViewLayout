@@ -46,6 +46,7 @@
 		3B86EED5331AA27C418C2AF5 /* Pods_StackLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2409E90E6CFDA14D9CF84D98 /* Pods_StackLayout.framework */; };
 		DFA4B965200A3ED800AF1BFF /* UnitTestsConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */; };
 		DFAF926F2016AC4B002013D3 /* PaddingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAF926D2016AC44002013D3 /* PaddingSpec.swift */; };
+		DFB506182024DEA00067A4DD /* AspectRatioSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB506162024DD310067A4DD /* AspectRatioSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		DF6D467C2013D2A40022C5D6 /* TransformSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformSpec.swift; sourceTree = "<group>"; };
 		DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestsConst.swift; sourceTree = "<group>"; };
 		DFAF926D2016AC44002013D3 /* PaddingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingSpec.swift; sourceTree = "<group>"; };
+		DFB506162024DD310067A4DD /* AspectRatioSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AspectRatioSpec.swift; sourceTree = "<group>"; };
 		F91D3F965902CA40AF890854 /* Pods-StackLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayoutTests/Pods-StackLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +214,7 @@
 				2469C5011E75D88500073BEE /* BasicView.swift */,
 				2469C5031E75DB7600073BEE /* RectNimbleMatcher.swift */,
 				240F88BF1F0C1ED900280FC8 /* AlignItemsColumnSpec.swift */,
+				DFB506162024DD310067A4DD /* AspectRatioSpec.swift */,
 				241819BE20028FDA0092B369 /* SubviewsSpec.swift */,
 				245B58041FE8BA4F00C0E8EA /* AlignItemsRowSpec.swift */,
 				2464A8721FD253DC007A92A8 /* JustifytemsColumnSpec.swift */,
@@ -547,6 +550,7 @@
 				24B3F7CE1FE1544100AC174B /* GrowSpec.swift in Sources */,
 				2439036C1FDD67C70064F034 /* SizeThatFitsSpec.swift in Sources */,
 				24EC06DA1FD6345400459C62 /* JustifytemsRowSpec.swift in Sources */,
+				DFB506182024DEA00067A4DD /* AspectRatioSpec.swift in Sources */,
 				DFAF926F2016AC4B002013D3 /* PaddingSpec.swift in Sources */,
 				DFA4B965200A3ED800AF1BFF /* UnitTestsConst.swift in Sources */,
 			);

@@ -21,7 +21,7 @@ import Quick
 import Nimble
 import StackLayout
 
-class WidthHeightSizeSpec: QuickSpec {
+class AspectRatioSpec: QuickSpec {
     override func spec() {
         var viewController: UIViewController!
         
@@ -66,9 +66,12 @@ class WidthHeightSizeSpec: QuickSpec {
         describe("Width column") {
             it("adjust") {
                 stackView.direction(.column).define { (stack) in
-                    stack.addItem(label1).width(100)
-                    stack.addItem(label2).width(20%)
-                    stack.addItem(view1).width(200)
+                    label1.item.width(100)
+                    label2.item.width(20%)
+                    view1.item.width(200)
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
                 }
                 
                 stackView.pin.top(64).width(400).height(600)

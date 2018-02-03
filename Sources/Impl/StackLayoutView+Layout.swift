@@ -47,7 +47,7 @@ extension StackView {
     
     @discardableResult
     internal func layoutItems(container: Container) -> CGSize {
-        var mainAxisOffset = container.paddingTop
+        var mainAxisOffset = container.mainAxisStartPadding
         let containerMainAxisLength = container.mainAxisLength
         let containerCrossAxisLength = container.crossAxisLength
 
@@ -71,11 +71,11 @@ extension StackView {
             let containerMainAxisInnner = container.mainAxisInnerLength {
             switch justifyContent {
             case .start:
-                mainAxisOffset += 0
+                break // nop
             case .center:
                 mainAxisOffset = container.mainAxisStartPadding + (containerMainAxisInnner - mainAxisTotalItemsLength) / 2
             case .end:
-                mainAxisOffset = mainAxisLength - mainAxisTotalItemsLength - container.paddingBottom
+                mainAxisOffset = mainAxisLength - mainAxisTotalItemsLength - container.mainAxisEndPadding
             case .spaceBetween:
                 betweenSpacing = (containerMainAxisInnner - mainAxisTotalItemsLength) / CGFloat(container.items.count - 1)
             case .spaceAround:
@@ -181,10 +181,10 @@ extension StackView {
     }
     
     private func adjustItemsSizeToContainer(container: Container) {
-        guard let containerMainAxisLength = container.mainAxisLength else { return }
+        guard let mainAxisInnerLength = container.mainAxisInnerLength else { return }
 
         var previousLength: CGFloat?
-        var lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
+        var lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
         let delta = Coordinates.onePixelLength + 0.001
 
         if lengthDiff > delta {
@@ -209,7 +209,7 @@ extension StackView {
                     container.updateMainAxisTotalLength()
 
                     previousLength = lengthDiff
-                    lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
+                    lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
                 }
             } while (growFactorTotal > 0) && (lengthDiff > delta) && (previousLength != lengthDiff)
             
@@ -235,7 +235,7 @@ extension StackView {
                     container.updateMainAxisTotalLength()
 
                     previousLength = lengthDiff
-                    lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
+                    lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
                 }
             } while (shrinkFactorTotal > 0) && (lengthDiff < -delta) && (previousLength != lengthDiff)
         }
