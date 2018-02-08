@@ -110,22 +110,13 @@ extension StackView {
                 switch stackItem.resolveStackItemAlign(stackAlignItems: alignItems) {
                 case .center:
                     // Takes margins into account when centering items (compatible with flexbox).
-//                    let itemCrossAxisForCentering = itemCrossAxisLength/* -
-//                                                    crossAxisStartMargin +
-//                                                    crossAxisEndMargin*/
-
                     crossAxisPos = container.crossAxisStartPadding + crossAxisStartMargin +
                         ((containerCrossAxisInnerLength - itemCrossAxisLength - crossAxisStartMargin - crossAxisEndMargin) / 2)
                 case .end:
-//                    crossAxisPos = container.crossAxisStartPadding + containerCrossAxisLength - itemCrossAxisLength
                     crossAxisPos = containerCrossAxisLength - container.crossAxisEndPadding - crossAxisEndMargin - itemCrossAxisLength
                 default:
                     break
                 }
-
-//                let crossAxisStartMargin = crossAxisStartMargin
-//                crossAxisPos = max(crossAxisPos, crossAxisStartMargin)
-//                crossAxisPos += crossAxisStartMargin
 
                 // Check if we must reduce the item's cross axis length to respect its cross axis margins
                 if item.limitCrossAxisToContainer() && (crossAxisPos + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisLength) {
