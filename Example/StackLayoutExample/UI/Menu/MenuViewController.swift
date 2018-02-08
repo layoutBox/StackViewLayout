@@ -30,8 +30,8 @@ enum PageType: Int {
 //    case relativePositions
 //    case multiRelativePositions
 //    case autoAdjustingSize
-//    case introRTL
-    
+    case unitTests
+
     case count
     
     var text: String {
@@ -39,6 +39,7 @@ enum PageType: Int {
         case .intro:                      return "StackLayout's Intro"
         case .docExamples:                return "Doc Examples"
         case .autolayout:                 return "Autolayout"
+        case .unitTests:                  return "UnitTests"
         case .count:                      return ""
         }
     }
@@ -48,6 +49,7 @@ enum PageType: Int {
         case .intro:            return IntroViewController(pageType: self)
         case .docExamples:      return DocExamplesViewController(pageType: self)
         case .autolayout:       return UIStoryboard.init(name: "Autolayout", bundle: nil).instantiateViewController(withIdentifier: "AutolayoutViewController")
+        case .unitTests:        return UnitTestsViewController(pageType: self)
         case .count:                      return UIViewController()
         }
     }
@@ -74,7 +76,7 @@ class MenuViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-//        didSelect(pageType: .autolayout)
+//        didSelect(pageType: .unitTests)
     }
 }
 

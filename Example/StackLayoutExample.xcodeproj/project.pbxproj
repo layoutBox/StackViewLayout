@@ -26,6 +26,8 @@
 		24F246141FA8D57100B6332E /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F246131FA8D57100B6332E /* UIImageView+Download.swift */; };
 		DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */; };
 		DF8B0314200BE042008FF4CA /* Autolayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF8B0313200BE042008FF4CA /* Autolayout.storyboard */; };
+		DFEE3CCE202BDC24004AEC4F /* UnitTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24040D2A1FA3B39300682980 /* UnitTestsViewController.swift */; };
+		DFEE3CD2202BDC2E004AEC4F /* UnitTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24040D291FA3B39300682980 /* UnitTestsView.swift */; };
 		FC19F3AB71E0416A5DF3C997 /* Pods_StackLayoutExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BC1DFC5AD1ACBF99B5F0F2 /* Pods_StackLayoutExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -568,9 +570,11 @@
 			files = (
 				24EC06EF1FD87DD300459C62 /* DocExamplesViewController.swift in Sources */,
 				24F246141FA8D57100B6332E /* UIImageView+Download.swift in Sources */,
+				DFEE3CCE202BDC24004AEC4F /* UnitTestsViewController.swift in Sources */,
 				24DA374B1EF7F90600D1AB2F /* BaseFormView.swift in Sources */,
 				247157941F87BD680003424F /* UIEdgeInsets+PinLayout.swift in Sources */,
 				2423C79F1FD0B00B00C794AE /* IntroViewController.swift in Sources */,
+				DFEE3CD2202BDC2E004AEC4F /* UnitTestsView.swift in Sources */,
 				24EC06EE1FD87DD300459C62 /* DocExamplesView.swift in Sources */,
 				2479AD802001737300F39774 /* BasicButton.swift in Sources */,
 				DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */,
