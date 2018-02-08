@@ -417,13 +417,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("minWidth + maxWidth") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.height(100).minHeight(120)
-                    label2.item.height(200).maxHeight(180)
-                    view1.item.height(200)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).height(100).minHeight(120)
+                    stack.addItem(label2).height(200).maxHeight(180)
+                    stack.addItem(view1).height(200)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -458,11 +454,9 @@ class AspectRatioSpec: QuickSpec {
             
             it("height + grow") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.height(100).grow(1)
-                    view1.item.shrink(1)
-                    stack.addItem(label1)
+                    stack.addItem(label1).height(100).grow(1)
                     stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(view1).shrink(1)
                 }
                 
                 stackView.pin.top(64).width(400).height(600)
@@ -477,11 +471,9 @@ class AspectRatioSpec: QuickSpec {
             
             it("height + shrink") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.height(100).shrink(1)
-                    view1.item.shrink(1)
-                    stack.addItem(label1)
+                    stack.addItem(label1).height(100).shrink(1)
                     stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(view1).shrink(1)
                 }
                 
                 stackView.pin.top(64).width(400).height(100)
@@ -498,13 +490,9 @@ class AspectRatioSpec: QuickSpec {
         describe("height row") {
             it("adjust") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.height(100)
-                    label2.item.height(200)
-                    view1.item.height(200)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).height(100)
+                    stack.addItem(label2).height(200)
+                    stack.addItem(view1).height(200)
                 }
                 
                 stackView.pin.top(64).width(400).height(600)
@@ -520,13 +508,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("minWidth + maxWidth") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.height(100).minHeight(120)
-                    label2.item.height(200).maxHeight(180)
-                    view1.item.height(200)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).height(100).minHeight(120)
+                    stack.addItem(label2).height(200).maxHeight(180)
+                    stack.addItem(view1).height(200)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -608,13 +592,9 @@ class AspectRatioSpec: QuickSpec {
         describe("size column") {
             it("adjust") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.size(100)
-                    label2.item.size(50)
-                    view1.item.size(200)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).size(100)
+                    stack.addItem(label2).size(50)
+                    stack.addItem(view1).size(200)
                 }
                 
                 stackView.pin.top(64).width(400).sizeToFit(.width)
@@ -629,13 +609,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("minHeight + maxHeight") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.size(100).minHeight(120)
-                    label2.item.size(50).maxHeight(40)
-                    view1.item.size(200)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).size(100).minHeight(120)
+                    stack.addItem(label2).size(50).maxHeight(40)
+                    stack.addItem(view1).size(200)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -650,13 +626,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("minWidth + maxWidth") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.size(100).minWidth(120)
-                    label2.item.size(50).maxWidth(40)
-                    view1.item.size(200)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).size(100).minWidth(120)
+                    stack.addItem(label2).size(50).maxWidth(40)
+                    stack.addItem(view1).size(200)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -757,13 +729,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("minHeight + maxHeight") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.size(100).minHeight(120)
-                    label2.item.size(50).maxHeight(40)
-                    view1.item.size(200)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).size(100).minHeight(120)
+                    stack.addItem(label2).size(50).maxHeight(40)
+                    stack.addItem(view1).size(200)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -778,13 +746,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("minWidth + maxWidth") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.size(100).minWidth(120)
-                    label2.item.size(50).maxWidth(40)
-                    view1.item.size(200)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).size(100).minWidth(120)
+                    stack.addItem(label2).size(50).maxWidth(40)
+                    stack.addItem(view1).size(200)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -868,13 +832,9 @@ class AspectRatioSpec: QuickSpec {
         describe("aspectRatio column") {
             it("adjust") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2)
-                    label2.item.aspectRatio(1)
-                    view1.item.aspectRatio(5 / 6)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2)
+                    stack.addItem(label2).aspectRatio(1)
+                    stack.addItem(view1).aspectRatio(5 / 6)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -889,13 +849,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + shrink") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2)
-                    label2.item.aspectRatio(1)
-                    view1.item.aspectRatio(5 / 6).shrink(1)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2)
+                    stack.addItem(label2).aspectRatio(1)
+                    stack.addItem(view1).aspectRatio(5 / 6).shrink(1)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -910,13 +866,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + margins") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10)
-                    label2.item.aspectRatio(1)
-                    view1.item.aspectRatio(5 / 6).margin(20).shrink(1)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).marginVertical(10).marginHorizontal(10)
+                    stack.addItem(label2).aspectRatio(1)
+                    stack.addItem(view1).aspectRatio(5 / 6).margin(20).shrink(1)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -931,13 +883,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + margins + min max") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10).maxWidth(200).maxHeight(150)
-                    label2.item.aspectRatio(1).maxWidth(350).maxHeight(340)
-                    view1.item.aspectRatio(5 / 6).margin(20).shrink(1)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).marginVertical(10).marginHorizontal(10).maxWidth(200).maxHeight(150)
+                    stack.addItem(label2).aspectRatio(1).maxWidth(350).maxHeight(340)
+                    stack.addItem(view1).aspectRatio(5 / 6).margin(20).shrink(1)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -978,13 +926,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + margins + min max") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10).minWidth(420).minHeight(430)
-                    label2.item.aspectRatio(1).maxHeight(300)
-                    view1.item.aspectRatio(5 / 6).margin(20).shrink(1)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).marginVertical(10).marginHorizontal(10).minWidth(420).minHeight(430)
+                    stack.addItem(label2).aspectRatio(1).maxHeight(300)
+                    stack.addItem(view1).aspectRatio(5 / 6).margin(20).shrink(1)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -999,13 +943,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + margins") {
                 stackView.direction(.row).alignItems(.start).define { (stack) in
-                    label1.item.aspectRatio(2).marginVertical(10).marginHorizontal(10)
-                    label2.item.aspectRatio(1)
-                    view1.item.aspectRatio(5 / 6).margin(20).shrink(1)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).marginVertical(10).marginHorizontal(10)
+                    stack.addItem(label2).aspectRatio(1)
+                    stack.addItem(view1).aspectRatio(5 / 6).margin(20).shrink(1)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1019,36 +959,11 @@ class AspectRatioSpec: QuickSpec {
                 expect(view1.frame).to(beCloseTo(CGRect(x: 197.667, y: 20, width: 182.333, height: 218.667), within: withinRange))
             }
 
-            it("aspectRatio ") {
-                stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2)
-                    label2.item.aspectRatio(1)
-                    view1.item.aspectRatio(5 / 6)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
-                }
-
-                stackView.pin.top(64).width(400).height(600)
-                stackView.layoutIfNeeded()
-
-                // Match FlexLayout
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 200), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 400, height: 400), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 600, width: 400, height: 480), within: withinRange))
-            }
-
             it("aspectRatio + grow") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2).grow(1)
-                    label2.item.aspectRatio(4)
-                    view1.item.aspectRatio(4)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).grow(1)
+                    stack.addItem(label2).aspectRatio(4)
+                    stack.addItem(view1).aspectRatio(4)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1063,13 +978,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("row aspectRatio + grow") {
                 stackView.direction(.row).alignItems(.start).define { (stack) in
-                    label1.item.aspectRatio(5).grow(1)
-                    label2.item.aspectRatio(4)
-                    view1.item.aspectRatio(6).maxWidth(50)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(5).grow(1)
+                    stack.addItem(label2).aspectRatio(4)
+                    stack.addItem(view1).aspectRatio(6).maxWidth(50).shrink(1)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1084,13 +995,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + grow") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2).margin(20).grow(1)
-                    label2.item.aspectRatio(4)
-                    view1.item.aspectRatio(4)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).margin(20).grow(1)
+                    stack.addItem(label2).aspectRatio(4)
+                    stack.addItem(view1).aspectRatio(4)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1106,13 +1013,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + shrink") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2)
-                    label2.item.aspectRatio(1).shrink(1)
-                    view1.item.aspectRatio(5 / 6).shrink(1)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2)
+                    stack.addItem(label2).aspectRatio(1).shrink(1)
+                    stack.addItem(view1).aspectRatio(5 / 6).shrink(1)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1148,13 +1051,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + shrink") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2).shrink(1)
-                    label2.item.aspectRatio(1)
-                    view1.item.aspectRatio(5 / 6)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).shrink(1)
+                    stack.addItem(label2).aspectRatio(1)
+                    stack.addItem(view1).aspectRatio(5 / 6)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1169,13 +1068,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + sizeToFit(.width)") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2).shrink(1)
-                    label2.item.aspectRatio(1)
-                    view1.item.aspectRatio(5 / 6)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).shrink(1)
+                    stack.addItem(label2).aspectRatio(1)
+                    stack.addItem(view1).aspectRatio(5 / 6)
                 }
 
                 stackView.pin.top(64).width(400).sizeToFit(.width)
@@ -1190,11 +1085,8 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + sizeToFit(.height)") {
                 stackView.direction(.column).alignItems(.start).define { (stack) in
-                    label1.item.aspectRatio(2).shrink(1)
-                    label2.item.aspectRatio(5)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
+                    stack.addItem(label1).aspectRatio(2).shrink(1)
+                    stack.addItem(label2).aspectRatio(5)
                 }
 
                 stackView.pin.top(64).height(400).sizeToFit(.height)
@@ -1208,13 +1100,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + width/height/size") {
                 stackView.direction(.column).alignItems(.start).define { (stack) in
-                    label1.item.aspectRatio(2).width(200)
-                    label2.item.aspectRatio(1).height(40)
-                    view1.item.aspectRatio(5 / 6).size(50)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).width(200)
+                    stack.addItem(label2).aspectRatio(1).height(40)
+                    stack.addItem(view1).aspectRatio(5 / 6).size(50)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1230,13 +1118,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + width/height/size") {
                 stackView.direction(.column).alignItems(.stretch).define { (stack) in
-                    label1.item.aspectRatio(2).width(200).margin(20)
-                    label2.item.aspectRatio(1).height(40).margin(20)
-                    view1.item.aspectRatio(5 / 6).size(50).margin(20)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).width(200).margin(20)
+                    stack.addItem(label2).aspectRatio(1).height(40).margin(20)
+                    stack.addItem(view1).aspectRatio(5 / 6).size(50).margin(20)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1252,13 +1136,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + width/height/size") {
                 stackView.direction(.column).alignItems(.start).define { (stack) in
-                    label1.item.aspectRatio(2).width(200).margin(20)
-                    label2.item.aspectRatio(1).height(40).margin(20)
-                    view1.item.aspectRatio(5 / 6).size(50).margin(20)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).width(200).margin(20)
+                    stack.addItem(label2).aspectRatio(1).height(40).margin(20)
+                    stack.addItem(view1).aspectRatio(5 / 6).size(50).margin(20)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1274,13 +1154,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + minWidth/maxWidth") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2).minWidth(50)
-                    label2.item.aspectRatio(1).maxWidth(40)
-                    view1.item.aspectRatio(5 / 6)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).minWidth(50)
+                    stack.addItem(label2).aspectRatio(1).maxWidth(40)
+                    stack.addItem(view1).aspectRatio(5 / 6)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1297,13 +1173,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + minHeight/maxHeight") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2).minHeight(220)
-                    label2.item.aspectRatio(1).maxHeight(50)
-                    view1.item.aspectRatio(5 / 6)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).minHeight(220)
+                    stack.addItem(label2).aspectRatio(1).maxHeight(50)
+                    stack.addItem(view1).aspectRatio(5 / 6)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1322,13 +1194,9 @@ class AspectRatioSpec: QuickSpec {
         describe("aspectRatio row") {
             it("adjust") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.aspectRatio(1 / 6)
-                    label2.item.aspectRatio(1 / 6)
-                    view1.item.aspectRatio(1 / 4)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6)
+                    stack.addItem(label2).aspectRatio(1 / 6)
+                    stack.addItem(view1).aspectRatio(1 / 4)
                 }
 
                 stackView.pin.top(64).width(400).height(200)
@@ -1343,13 +1211,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("adjust") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.aspectRatio(1 / 6).margin(20)
-                    label2.item.aspectRatio(1 / 6).margin(20)
-                    view1.item.aspectRatio(1 / 4).margin(20)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6).margin(20)
+                    stack.addItem(label2).aspectRatio(1 / 6).margin(20)
+                    stack.addItem(view1).aspectRatio(1 / 4).margin(20)
                 }
 
                 stackView.pin.top(64).width(400).height(200)
@@ -1364,13 +1228,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + margins") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.aspectRatio(1 / 6).marginVertical(10).marginHorizontal(10)
-                    label2.item.aspectRatio(1 / 6).marginHorizontal(15)
-                    view1.item.aspectRatio(1 / 4).margin(20)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6).marginVertical(10).marginHorizontal(10)
+                    stack.addItem(label2).aspectRatio(1 / 6).marginHorizontal(15)
+                    stack.addItem(view1).aspectRatio(1 / 4).margin(20)
                 }
 
                 stackView.pin.top(64).width(400).height(200)
@@ -1385,13 +1245,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + grow") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.aspectRatio(1 / 6)
-                    label2.item.aspectRatio(1 / 6).grow(1)
-                    view1.item.aspectRatio(1 / 4)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6)
+                    stack.addItem(label2).aspectRatio(1 / 6).grow(1)
+                    stack.addItem(view1).aspectRatio(1 / 4)
                 }
 
                 stackView.pin.top(64).width(400).height(200)
@@ -1406,13 +1262,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + grow") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.aspectRatio(1 / 6).margin(20)
-                    label2.item.aspectRatio(1 / 6).grow(1)
-                    view1.item.aspectRatio(1 / 4)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6).margin(20)
+                    stack.addItem(label2).aspectRatio(1 / 6).grow(1)
+                    stack.addItem(view1).aspectRatio(1 / 4)
                 }
 
                 stackView.pin.top(64).width(400).height(200)
@@ -1427,13 +1279,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + grow + maxWidth") {
                 stackView.direction(.row).alignItems(.start).define { (stack) in
-                    label1.item.aspectRatio(1 / 6)
-                    label2.item.aspectRatio(1 / 6).grow(1)
-                    view1.item.aspectRatio(1 / 4).maxWidth(30)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6)
+                    stack.addItem(label2).aspectRatio(1 / 6).grow(1)
+                    stack.addItem(view1).aspectRatio(1 / 4).maxWidth(30)
                 }
 
                 stackView.pin.top(64).width(400).sizeToFit(.width)
@@ -1448,13 +1296,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + alignItems(.center)") {
                 stackView.direction(.row).alignItems(.center).define { (stack) in
-                    label1.item.aspectRatio(1 / 6)
-                    label2.item.aspectRatio(1 / 6)
-                    view1.item.aspectRatio(1 / 4)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6)
+                    stack.addItem(label2).aspectRatio(1 / 6)
+                    stack.addItem(view1).aspectRatio(1 / 4)
                 }
 
                 stackView.pin.top(64).width(400).height(200)
@@ -1469,13 +1313,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + grow") {
                 stackView.direction(.row).alignItems(.center).define { (stack) in
-                    label1.item.aspectRatio(1 / 6)
-                    label2.item.aspectRatio(1 / 6)
-                    view1.item.aspectRatio(1 / 4)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6)
+                    stack.addItem(label2).aspectRatio(1 / 6)
+                    stack.addItem(view1).aspectRatio(1 / 4)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1493,13 +1333,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + shrink") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.aspectRatio(1 / 6)
-                    label2.item.aspectRatio(1 / 6)
-                    view1.item.width(350)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6)
+                    stack.addItem(label2).aspectRatio(1 / 6)
+                    stack.addItem(view1).width(350)
                 }
 
                 stackView.pin.top(64).width(400).height(200)
@@ -1535,13 +1371,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + sizeToFit(.width)") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.aspectRatio(1 / 6)
-                    label2.item.aspectRatio(1 / 6)
-                    view1.item.width(350)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6)
+                    stack.addItem(label2).aspectRatio(1 / 6)
+                    stack.addItem(view1).width(350)
                 }
 
                 stackView.pin.top(64).width(400).sizeToFit(.width)
@@ -1557,13 +1389,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + sizeToFit(.width)") {
                 stackView.direction(.row).define { (stack) in
-                    label1.item.aspectRatio(1 / 6)
-                    label2.item.aspectRatio(1 / 6).shrink(1)
-                    view1.item.width(350)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6)
+                    stack.addItem(label2).aspectRatio(1 / 6).shrink(1)
+                    stack.addItem(view1).width(350)
                 }
 
                 stackView.pin.top(64).width(400).sizeToFit(.width)
@@ -1578,13 +1406,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + sizeToFit(.width)") {
                 stackView.direction(.row).alignItems(.end).define { (stack) in
-                    label1.item.aspectRatio(1 / 6)
-                    label2.item.aspectRatio(1 / 6).shrink(1)
-                    view1.item.width(350)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6)
+                    stack.addItem(label2).aspectRatio(1 / 6).shrink(1)
+                    stack.addItem(view1).width(350)
                 }
 
                 stackView.pin.top(64).width(400).sizeToFit(.width)
@@ -1599,13 +1423,9 @@ class AspectRatioSpec: QuickSpec {
 
             it("aspectRatio + alignItems center") {
                 stackView.direction(.row).alignItems(.center).define { (stack) in
-                    label1.item.aspectRatio(1 / 6)
-                    label2.item.aspectRatio(1 / 6).shrink(1)
-                    view1.item.width(350)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(1 / 6)
+                    stack.addItem(label2).aspectRatio(1 / 6).shrink(1)
+                    stack.addItem(view1).width(350)
                 }
 
                 stackView.pin.top(64).width(400).sizeToFit(.width)
