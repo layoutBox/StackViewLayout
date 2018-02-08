@@ -45,15 +45,16 @@ class MarginsSpec: QuickSpec {
             label1 = UILabel()
             label1.font = UIFont.systemFont(ofSize: 17)
             label1.backgroundColor = .red
-            label1.text = "Label 1"
-            
+
             label2 = UILabel()
             label2.font = UIFont.systemFont(ofSize: 17)
             label2.backgroundColor = .green
             label2.numberOfLines = 0
-            label2.text = "Label longuer"
-            
+
             view1 = BasicView(text: "View 1", color: .red)
+
+            label1.text = "Label 1"
+            label2.text = "Label longuer"
             view1.sizeThatFitsExpectedArea = 400 * 20
             
             stackView.addItem(label1)
@@ -66,13 +67,10 @@ class MarginsSpec: QuickSpec {
         //
         describe("margins") {
             it("marginLeft()") {
-                stackView.direction(.column)
-                stackView.justifyContent(.start)
-                stackView.alignItems(.stretch)
-                
-                label1.item.marginLeft(10)
-                label2.item.marginLeft(25%)
-                
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (stackView) in
+                    label1.item.marginLeft(10)
+                    label2.item.marginLeft(25%)
+                })
                 stackView.layout()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10.0, y: 0.0, width: 390.0, height: 20.333), within: withinRange))

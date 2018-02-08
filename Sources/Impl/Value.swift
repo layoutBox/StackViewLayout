@@ -41,11 +41,11 @@ struct Value {
     }
     
     func resolveWidth(container: Container) -> CGFloat? {
-        return resolve(usingContainerDimension: container.width)
+        return resolve(usingContainerDimension: container.innerWidth)
     }
     
     func resolveHeight(container: Container) -> CGFloat? {
-        return resolve(usingContainerDimension: container.height)
+        return resolve(usingContainerDimension: container.innerHeight)
    }
     
     func resolve(usingContainerDimension dimension: CGFloat?) -> CGFloat? {

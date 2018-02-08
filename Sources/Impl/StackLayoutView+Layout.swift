@@ -37,24 +37,23 @@ extension StackView {
         super.layoutSubviews()
         
         let container = Container(stackView: self)
-        container.width = bounds.size.width
-        container.height = bounds.size.height
         layoutItems(container: container)
     }
     
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let container = Container(stackView: self)
-        container.width = size.width == CGFloat.greatestFiniteMagnitude ? nil : size.width
-        container.height = size.height == CGFloat.greatestFiniteMagnitude ? nil : size.height
+        let container = Container(stackView: self, size: size)
         return layoutItems(container: container)
     }
     
     @discardableResult
     internal func layoutItems(container: Container) -> CGSize {
-        var mainAxisOffset: CGFloat = 0
+        var mainAxisOffset = container.mainAxisStartPadding
         let containerMainAxisLength = container.mainAxisLength
         let containerCrossAxisLength = container.crossAxisLength
-        
+
+        guard containerMainAxisLength != nil || containerCrossAxisLength != nil else { return .zero }
+        guard (containerMainAxisLength ?? 0) > 0 || (containerCrossAxisLength ?? 0) > 0 else { return .zero }
+
         var startEndSpacing: CGFloat = 0
         var betweenSpacing: CGFloat = 0
         
@@ -68,21 +67,22 @@ extension StackView {
         
         let mainAxisTotalItemsLength = container.mainAxisTotalItemsLength
         
-        if let mainAxisLength = containerMainAxisLength {
+        if let mainAxisLength = containerMainAxisLength,
+            let containerMainAxisInnner = container.mainAxisInnerLength {
             switch justifyContent {
             case .start:
-                mainAxisOffset = 0
+                break // nop
             case .center:
-                mainAxisOffset = (mainAxisLength - mainAxisTotalItemsLength) / 2
+                mainAxisOffset = container.mainAxisStartPadding + (containerMainAxisInnner - mainAxisTotalItemsLength) / 2
             case .end:
-                mainAxisOffset = mainAxisLength - mainAxisTotalItemsLength
+                mainAxisOffset = mainAxisLength - mainAxisTotalItemsLength - container.mainAxisEndPadding
             case .spaceBetween:
-                betweenSpacing = (mainAxisLength - mainAxisTotalItemsLength) / CGFloat(container.items.count - 1)
+                betweenSpacing = (containerMainAxisInnner - mainAxisTotalItemsLength) / CGFloat(container.items.count - 1)
             case .spaceAround:
-                betweenSpacing = (mainAxisLength - mainAxisTotalItemsLength) / CGFloat(container.items.count)
+                betweenSpacing = (containerMainAxisInnner - mainAxisTotalItemsLength) / CGFloat(container.items.count)
                 startEndSpacing = betweenSpacing / 2
             case .spaceEvenly:
-                betweenSpacing = (mainAxisLength - mainAxisTotalItemsLength) / CGFloat(container.items.count + 1)
+                betweenSpacing = (containerMainAxisInnner - mainAxisTotalItemsLength) / CGFloat(container.items.count + 1)
                 startEndSpacing = betweenSpacing
             }
         }
@@ -92,9 +92,9 @@ extension StackView {
             //
             // Handle main-axis position
             if index == 0 {
-                mainAxisOffset += max(item.mainAxisStartMargin ?? 0, startEndSpacing)
+                mainAxisOffset += item.mainAxisStartMargin + startEndSpacing
             } else {
-                mainAxisOffset += max(item.mainAxisStartMargin ?? 0, betweenSpacing)
+                mainAxisOffset += item.mainAxisStartMargin + betweenSpacing
             }
             
             //
@@ -103,25 +103,20 @@ extension StackView {
             var itemCrossAxisLength = item.crossAxisLength
             let crossAxisStartMargin = stackItem.crossAxisStartMargin(container: container)
             let crossAxisEndMargin = stackItem.crossAxisEndMargin(container: container)
-            var crossAxisPos = crossAxisStartMargin
+            var crossAxisPos = container.crossAxisStartPadding + crossAxisStartMargin
 
-            if let containerCrossAxisLength = containerCrossAxisLength {
+            if let containerCrossAxisLength = containerCrossAxisLength,
+                let containerCrossAxisInnerLength = container.crossAxisInnerLength {
                 switch stackItem.resolveStackItemAlign(stackAlignItems: alignItems) {
                 case .center:
                     // Takes margins into account when centering items (compatible with flexbox).
-                    let itemCrossAxisForCentering = itemCrossAxisLength -
-                                                    crossAxisStartMargin +
-                                                    crossAxisEndMargin
-                    crossAxisPos = (containerCrossAxisLength - itemCrossAxisForCentering) / 2
+                    crossAxisPos = container.crossAxisStartPadding + crossAxisStartMargin +
+                        ((containerCrossAxisInnerLength - itemCrossAxisLength - crossAxisStartMargin - crossAxisEndMargin) / 2)
                 case .end:
-                    crossAxisPos = containerCrossAxisLength - itemCrossAxisLength - crossAxisEndMargin
+                    crossAxisPos = containerCrossAxisLength - container.crossAxisEndPadding - crossAxisEndMargin - itemCrossAxisLength
                 default:
                     break
                 }
-
-//                let crossAxisStartMargin = crossAxisStartMargin
-//                crossAxisPos = max(crossAxisPos, crossAxisStartMargin)
-//                crossAxisPos += crossAxisStartMargin
 
                 // Check if we must reduce the item's cross axis length to respect its cross axis margins
                 if item.limitCrossAxisToContainer() && (crossAxisPos + itemCrossAxisLength + crossAxisEndMargin > containerCrossAxisLength) {
@@ -139,7 +134,7 @@ extension StackView {
             Coordinates.setUntransformedViewRect(item.view, toRect: itemViewRect)
             
             mainAxisOffset = direction == .column ? itemViewRect.maxY :  itemViewRect.maxX
-            mainAxisOffset += (item.mainAxisEndMargin ?? 0)
+            mainAxisOffset += item.mainAxisEndMargin
             
             if direction == .column {
                 maxX = max(itemViewRect.maxX + crossAxisEndMargin, maxX)
@@ -149,6 +144,9 @@ extension StackView {
                 maxY = max(itemViewRect.maxY + crossAxisEndMargin, maxY)
             }
         }
+        
+        maxX += container.paddingRight
+        maxY += container.paddingBottom
 
         return CGSize(width: maxX, height: maxY)
     }
@@ -174,10 +172,10 @@ extension StackView {
     }
     
     private func adjustItemsSizeToContainer(container: Container) {
-        guard let containerMainAxisLength = container.mainAxisLength else { return }
+        guard let mainAxisInnerLength = container.mainAxisInnerLength else { return }
 
         var previousLength: CGFloat?
-        var lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
+        var lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
         let delta = Coordinates.onePixelLength + 0.001
 
         if lengthDiff > delta {
@@ -202,7 +200,7 @@ extension StackView {
                     container.updateMainAxisTotalLength()
 
                     previousLength = lengthDiff
-                    lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
+                    lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
                 }
             } while (growFactorTotal > 0) && (lengthDiff > delta) && (previousLength != lengthDiff)
             
@@ -228,7 +226,7 @@ extension StackView {
                     container.updateMainAxisTotalLength()
 
                     previousLength = lengthDiff
-                    lengthDiff = containerMainAxisLength - container.mainAxisTotalItemsLength
+                    lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
                 }
             } while (shrinkFactorTotal > 0) && (lengthDiff < -delta) && (previousLength != lengthDiff)
         }

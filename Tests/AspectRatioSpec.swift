@@ -21,7 +21,7 @@ import Quick
 import Nimble
 import StackLayout
 
-class WidthHeightSizeSpec: QuickSpec {
+class AspectRatioSpec: QuickSpec {
     override func spec() {
         var viewController: UIViewController!
         
@@ -66,9 +66,12 @@ class WidthHeightSizeSpec: QuickSpec {
         describe("Width column") {
             it("adjust") {
                 stackView.direction(.column).define { (stack) in
-                    stack.addItem(label1).width(100)
-                    stack.addItem(label2).width(20%)
-                    stack.addItem(view1).width(200)
+                    label1.item.width(100)
+                    label2.item.width(20%)
+                    view1.item.width(200)
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
                 }
                 
                 stackView.pin.top(64).width(400).height(600)
@@ -1027,9 +1030,13 @@ class WidthHeightSizeSpec: QuickSpec {
 
             it("aspectRatio + shrink") {
                 stackView.direction(.column).alignItems(.center).define { (stack) in
-                    stack.addItem(label1).aspectRatio(2)
-                    stack.addItem(label2).aspectRatio(1).shrink(1)
-                    stack.addItem(view1).aspectRatio(5 / 6).shrink(1)
+                    label1.item.aspectRatio(2)
+                    label2.item.aspectRatio(1).shrink(1)
+                    view1.item.aspectRatio(5 / 6).shrink(1)
+
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
                 }
 
                 stackView.pin.top(64).width(400).height(600)
@@ -1166,13 +1173,9 @@ class WidthHeightSizeSpec: QuickSpec {
 
             it("aspectRatio + minHeight/maxHeight") {
                 stackView.direction(.column).define { (stack) in
-                    label1.item.aspectRatio(2).minHeight(220)
-                    label2.item.aspectRatio(1).maxHeight(50)
-                    view1.item.aspectRatio(5 / 6)
-
-                    stack.addItem(label1)
-                    stack.addItem(label2)
-                    stack.addItem(view1)
+                    stack.addItem(label1).aspectRatio(2).minHeight(220)
+                    stack.addItem(label2).aspectRatio(1).maxHeight(50)
+                    stack.addItem(view1).aspectRatio(5 / 6)
                 }
 
                 stackView.pin.top(64).width(400).height(600)

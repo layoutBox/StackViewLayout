@@ -23,11 +23,17 @@ import Foundation
 import UIKit
  
 public class StackView: UIView {
-//    internal var stackItems: [StackItemImpl] = []
     internal var direction = SDirection.column
     internal var justifyContent = SJustifyContent.start
     internal var alignItems = SAlignItems.stretch
-    
+
+    internal var _paddingTop: Value?
+    internal var _paddingLeft: Value?
+    internal var _paddingStart: Value?
+    internal var _paddingBottom: Value?
+    internal var _paddingRight: Value?
+    internal var _paddingEnd: Value?
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
@@ -44,14 +50,15 @@ public class StackView: UIView {
     
     /**
      This method is used to structure your code so that it matches the stack view structure. The method has a closure parameter with a
-     single parameter called `flex`. This parameter is in fact, the view's flex interface, it can be used to adds other flex items
-     and containers.
+     single parameter called `stackView`. This parameter is in fact the StackView instance, it can be used to adds items
+     to the StackView.
      
      - Parameter closure:
-     - Returns: Flex interface
      */
-    public func define(_ closure: (_ stackView: StackView) -> Void) {
+    @discardableResult
+    public func define(_ closure: (_ stackView: StackView) -> Void) -> StackView {
         closure(self)
+        return self
     }
 
     @discardableResult
@@ -64,9 +71,6 @@ public class StackView: UIView {
 
     @discardableResult
     public func addItem(_ view: UIView) -> StackItem {
-//        let stackItemImpl = view.item as! StackItemImpl
-//        stackItems.append(stackItemImpl)
-        
         addSubview(view)
         markDirty()
         
@@ -75,9 +79,6 @@ public class StackView: UIView {
     
     @discardableResult
     public func insertItem(_ view: UIView, at index: Int) -> StackItem {
-//        let stackItemImpl = view.item as! StackItemImpl
-//        stackItems.insert(stackItemImpl, at: index)
-        
         insertSubview(view, at: index)
         markDirty()
         
@@ -86,10 +87,6 @@ public class StackView: UIView {
     
     @discardableResult
     public func insertItem(_ view: UIView, before refItem: UIView) -> StackItem? {
-//        guard let stackItemImpl = view.item as? StackItemImpl else { return nil }
-//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this stackView!"); return nil }
-//        stackItems.insert(stackItemImpl, at: itemIndex)
-        
         insertSubview(view, aboveSubview: refItem)
         markDirty()
         
@@ -98,10 +95,6 @@ public class StackView: UIView {
     
     @discardableResult
     public func insertItem(_ view: UIView, after refItem: UIView) -> StackItem? {
-//        guard let stackItemImpl = view.item as? StackItemImpl else { return nil }
-//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The reference view is not part of this stackView!"); return nil }
-//        stackItems.insert(stackItemImpl, at: itemIndex + 1)
-
         insertSubview(view, belowSubview: refItem)
         markDirty()
         
@@ -109,31 +102,14 @@ public class StackView: UIView {
     }
     
     public func removeItem(_ view: UIView) {
-//        removStackItem(view)
         view.removeFromSuperview()
         markDirty()
     }
     
-//    public override func willRemoveSubview(_ subview: UIView) {
-//        super.willRemoveSubview(subview)
-//        removStackItem(subview)
-//    }
-    
-//    private func removStackItem(_ view: UIView) {
-//        guard let stackItemImpl = view.item as? StackItemImpl else { return }
-//        guard let itemIndex = stackItems.index(of: stackItemImpl) else { print("The view is not part of this stackView!"); return }
-//        stackItems.remove(at: itemIndex)
-//    }
-    
     /**
-     The `direction` property establishes the main-axis, thus defining the direction flex items are placed in the flex container.
+     The `direction` property establishes the main-axis, thus defining the direction items are placed in the StackView.
      
-     The `direction` property specifies how flex items are laid out in the flex container, by setting the direction of the flex
-     container’s main axis. They can be laid out in two main directions,  like columns vertically or like rows horizontally.
-     
-     Note that row and row-reverse are affected by the layout direction (see `layoutDirection` property) of the flex container.
-     If its text direction is LTR (left to right), row represents the horizontal axis oriented from left to right, and row-reverse
-     from right to left; if the direction is rtl, it's the opposite.
+     The `direction` property specifies how items are laid out in the StackView, by setting the direction of the StackView’s main axis. They can be laid out in two main directions, like columns vertically or like rows horizontally.
      
      - Parameter value: Default value is .column
      */
@@ -148,6 +124,13 @@ public class StackView: UIView {
         return direction
     }
     
+    /**
+     The `justifyContent` property defines the alignment along the main-axis of the StackView.
+     It helps distribute extra free space leftover when either all the items on a line have reached their maximum
+     size. For example, if items are flowing vertically, `justifyContent` controls how they align vertically.
+
+     - Parameter value: Default value is .start
+     */
     @discardableResult
     public func justifyContent(_ value: SJustifyContent) -> StackView {
         justifyContent = value
@@ -155,19 +138,12 @@ public class StackView: UIView {
         return self
     }
     
-    /**
-     The `justifyContent` property defines the alignment along the main-axis of the current line of the flex container.
-     It helps distribute extra free space leftover when either all the flex items on a line have reached their maximum
-     size. For example, if items are flowing vertically, `justifyContent` controls how they align vertically.
-     
-     - Parameter value: Default value is .start
-     */
     public func getJustifyContent() -> SJustifyContent {
         return justifyContent
     }
     
     /**
-     The `alignItems` property defines how flex items are laid out along the cross axis on the current line.
+     The `alignItems` property defines how items are laid out along the cross-axis in the StackView.
      Similar to `justifyContent` but for the cross-axis (perpendicular to the main-axis). For example, if
      items are flowing vertically, `alignItems` controls how they align horizontally.
      
@@ -182,6 +158,164 @@ public class StackView: UIView {
     
     public func getAlignItems() -> SAlignItems {
         return alignItems
+    }
+
+    //
+    // MARK: Padding
+    //
+
+    /**
+     Set the top padding. Top padding specify the **offset children should have** from the container's top edge.
+     */
+    @discardableResult
+    public func paddingTop(_ value: CGFloat) -> StackView {
+        _paddingTop = Value(value)
+        return self
+    }
+
+    /**
+     Set the left padding. Left padding specify the **offset children should have** from the container's left edge.
+     */
+    @discardableResult
+    public func paddingLeft(_ value: CGFloat) -> StackView {
+        _paddingLeft = Value(value)
+        return self
+    }
+
+    /**
+     Set the bottom padding. Bottom padding specify the **offset children should have** from the container's bottom edge.
+     */
+    @discardableResult
+    public func paddingBottom(_ value: CGFloat) -> StackView {
+        _paddingBottom = Value(value)
+        return self
+    }
+
+    /**
+     Set the top padding. Top padding specify the **offset children should have** from the container's top edge.
+     */
+    @discardableResult
+    public func paddingRight(_ value: CGFloat) -> StackView {
+        _paddingRight = Value(value)
+        return self
+    }
+
+    /**
+     Set the start padding.
+
+     Depends on the item `LayoutDirection`:
+     * In LTR direction, start padding specify the **offset children should have** from the container's left edge.
+     * IN RTL direction, start padding specify the **offset children should have** from the container's right edge.
+     */
+    @discardableResult
+    public func paddingStart(_ value: CGFloat) -> StackView {
+        _paddingStart = Value(value)
+        return self
+    }
+
+    /**
+     Set the end padding.
+
+     Depends on the item `LayoutDirection`:
+     * In LTR direction, end padding specify the **offset children should have** from the container's right edge.
+     * IN RTL direction, end padding specify the **offset children should have** from the container's left edge.
+     */
+    @discardableResult
+    public func paddingEnd(_ value: CGFloat) -> StackView {
+        _paddingEnd = Value(value)
+        return self
+    }
+
+    /**
+     Set the left, right, start and end paddings to the specified value.
+     */
+    @discardableResult
+    public func paddingHorizontal(_ value: CGFloat) -> StackView {
+        _paddingLeft = Value(value)
+        _paddingRight = Value(value)
+        return self
+    }
+
+    /**
+     Set the top and bottom paddings to the specified value.
+     */
+    @discardableResult
+    public func paddingVertical(_ value: CGFloat) -> StackView {
+        _paddingTop = Value(value)
+        _paddingBottom = Value(value)
+        return self
+    }
+
+    /**
+     Set paddings using UIEdgeInsets.
+     This method is particularly useful to set all paddings using iOS 11 `UIView.safeAreaInsets`.
+     */
+    @discardableResult
+    public func padding(_ insets: UIEdgeInsets) -> StackView {
+        _paddingTop = Value(insets.top)
+        _paddingLeft = Value(insets.left)
+        _paddingBottom = Value(insets.bottom)
+        _paddingRight = Value(insets.right)
+        return self
+    }
+
+    /**
+     Set paddings using NSDirectionalEdgeInsets.
+     This method is particularly to set all paddings using iOS 11 `UIView.directionalLayoutMargins`.
+
+     Available only on iOS 11 and higher.
+     */
+    @available(tvOS 11.0, iOS 11.0, *)
+    @discardableResult
+    func padding(dirInsets: NSDirectionalEdgeInsets) -> StackView {
+        _paddingTop = Value(dirInsets.top)
+        _paddingStart = Value(dirInsets.leading)
+        _paddingBottom = Value(dirInsets.bottom)
+        _paddingEnd = Value(dirInsets.trailing)
+        return self
+    }
+
+    /**
+     Set all paddings to the specified value.
+     */
+    @discardableResult
+    public func padding(all value: CGFloat) -> StackView {
+        _paddingTop = Value(value)
+        _paddingBottom = _paddingTop
+        _paddingLeft = _paddingTop
+        _paddingRight = _paddingTop
+        return self
+    }
+
+    /**
+     Set the individually vertical paddings (top, bottom) and horizontal paddings (left, right, start, end).
+     */
+    @discardableResult func padding(_ vertical: CGFloat, _ horizontal: CGFloat) -> StackView {
+        paddingVertical(vertical)
+        paddingHorizontal(horizontal)
+        return self
+    }
+
+    /**
+     Set the individually top, horizontal paddings and bottom padding.
+     */
+    @discardableResult func padding(_ top: CGFloat, _ horizontal: CGFloat, _ bottom: CGFloat) -> StackView {
+        _paddingTop = Value(top)
+        paddingHorizontal(horizontal)
+        _paddingBottom = Value(bottom)
+        return self
+    }
+
+    /**
+     Set the individually top, left, bottom and right paddings.
+     */
+    @discardableResult
+    public func padding(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> StackView {
+        _paddingTop = Value(top)
+        _paddingLeft = Value(left)
+        _paddingBottom = Value(bottom)
+        _paddingRight = Value(right)
+        return self
     }
     
     //
@@ -206,16 +340,17 @@ public class StackView: UIView {
      */
     public func layout(mode: SLayoutMode = .fitContainer) {
         let container = Container(stackView: self)
+        let viewRect = Coordinates.getUntransformedViewRect(self)
         
         switch mode {
         case .fitContainer:
-            container.width = bounds.width
-            container.height = bounds.height
+            container.width = viewRect.width
+            container.height = viewRect.height
         case .adjustWidth:
             container.width = nil
-            container.height = bounds.height
+            container.height = viewRect.height
         case .adjustHeight:
-            container.width = bounds.width
+            container.width = viewRect.width
             container.height = nil
         }
         

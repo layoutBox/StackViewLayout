@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "StackViewLayout"
-  s.version      = "0.1.5"
+  s.version      = "0.1.6"
   s.summary      = "StackViewLayout is a UIStackView replacement that don't rely on auto layout"
   #s.description  = ""
 
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   }
   
   s.platform     = :ios, "8.0"
-  #s.tvos.deployment_target = '9.0'
+  s.tvos.deployment_target = '9.0'
 
   s.source       = { :git => "https://github.com/layoutBox/StackViewLayout.git", :tag => "#{s.version}" }
   s.source_files  = "Sources/**/*.swift"

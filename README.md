@@ -26,7 +26,7 @@ StackView can be used with Autolayout and Storyboards, but it was mainly designe
   
 
 ### Requirements
-* iOS 9.0+
+* iOS 9.0+ / tvOS 9.0+
 * Xcode 8.0+ / Xcode 9.0
 * Swift 3.0+ / Swift 4.0
 
