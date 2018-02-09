@@ -8,6 +8,6 @@
 
 import UIKit
 
-let withinRange: CGFloat = 0.001
-//let withinRange: CGFloat = 1.5
+//let withinRange: CGFloat = 0.001
+let withinRange: CGFloat = 1.5
 
