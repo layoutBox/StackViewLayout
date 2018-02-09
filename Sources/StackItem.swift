@@ -69,7 +69,24 @@ public protocol StackItem {
      */
     @discardableResult
     func markDirty() -> StackItem
-    
+
+    /**
+     This property controls dynamically if a StackView's item is included or not in the StackView layouting.
+     When an item is excluded, StackView won't layout the view. Default value is true.
+
+     This can be useful if you want to layout an item manually instead of using StackView layouting.
+     */
+    var isIncludedInLayout: Bool { get set }
+
+    /**
+     This property controls dynamically if a StackView's item is included or not in the StackView layouting.
+     When an item is excluded, StackView won't layout the view. Default value is true.
+
+     This can be useful if you want to layout an item manually instead of using StackView layouting.
+     */
+    @discardableResult
+    func isIncludedInLayout(_ included: Bool) -> StackItem
+
     //
     // MARK: Width, height and size
     //

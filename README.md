@@ -723,12 +723,30 @@ StackView's items are layouted only when an item's property is changed and when 
 In the case where a UILabel's text is updated, it is needed to mark the label as dirty.
 
 ```swift
-    // Update UILabel's text and mark the UILabel as dirty
-    label.text = "I love FlexLayout"
-    label.item.markDirty()    
+   // Update UILabel's text and mark the UILabel as dirty
+   label.text = "I love FlexLayout"
+   label.item.markDirty()    
 ```
 
 <br>
+
+<a name="isIncludedInLayout"></a>
+### isIncludedInLayout / isIncludedInLayout()
+- Method: **`isIncludedInLayout(: Bool)`** 
+- Property: **`isIncludedInLayout: Bool`** 
+
+* **`isIncludedInLayout: Bool`** / **`isIncludedInLayout(_ value: Bool)`**  
+This property controls dynamically if a StackView's item is included or not in the StackView layouting. When an item is excluded, StackView won't layout the view. Default value is true.
+
+This can be useful if you want to layout an item manually instead of using StackView layouting.
+
+###### Usage examples:
+```swift
+   label.item.isIncludedInLayout = false
+```
+
+<br>
+
 
 ### Nesting StackViews
 

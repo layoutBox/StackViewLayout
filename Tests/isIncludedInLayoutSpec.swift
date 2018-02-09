@@ -22,7 +22,7 @@ import Nimble
 import StackLayout
 import PinLayout
 
-class SubviewsSpec: QuickSpec {
+class isIncludedInLayoutSpec: QuickSpec {
     override func spec() {
         var viewController: UIViewController!
         
@@ -51,52 +51,69 @@ class SubviewsSpec: QuickSpec {
             label2.font = UIFont.systemFont(ofSize: 17)
             label2.backgroundColor = .green
             label2.numberOfLines = 0
-
+            
             view1 = BasicView(text: "View 1", color: .red)
 
-            label1.text = "Label 1 Label 1 Label 1 Label 1 "
-            label2.text = "Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 Label 2 "
-            view1.sizeThatFitsExpectedArea = 400 * 50
+            label1.text = "Label 1"
+            label2.text = "Label longuer"
+            view1.sizeThatFitsExpectedArea = 400 * 20
         }
         
         //
-        // Using addSubview()
+        // isIncludedInLayout()
         //
-        describe("StackLayout using addSubview") {
-            it("addSubview") {
-                stackView.justifyContent(.start).alignItems(.stretch).define({ (stack) in
-                    stackView.addSubview(label1)
-                    stackView.addSubview(label2)
-                    stackView.addSubview(view1)
+        describe("usage of isIncludedInLayout") {
+            it("isIncludedInLayout()") {
+                stackView.define({ (stack) in
+                    stackView.addItem(label1)
+                    stackView.addItem(label2).isIncludedInLayout(false)
+                    stackView.addItem(view1)
                 })
-
-                stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
+                stackView.pin.top(64).width(400).sizeToFit(.width)
                 stackView.layout()
 
-                // Match UIStackView
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 40.333), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 61), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 0), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20), within: withinRange))
             }
 
-            it("addSubview") {
+            it("isIncludedInLayout() after") {
                 stackView.define({ (stack) in
-                    stackView.addSubview(label1)
-                    stackView.addSubview(label2)
-                    stackView.addSubview(view1)
+                    stackView.addItem(label1)
+                    stackView.addItem(label2)
+                    stackView.addItem(view1)
                 })
 
-                label2.removeFromSuperview()
+                label2.item.isIncludedInLayout(false)
 
                 stackView.pin.top(64).width(400).sizeToFit(.width)
                 stackView.layout()
 
                 // Match FlexLayout
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 70.333), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 40.333), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 0), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 50), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20), within: withinRange))
+            }
+
+            it("isIncludedInLayout") {
+                stackView.define({ (stack) in
+                    stackView.addItem(label1)
+                    stackView.addItem(label2)
+                    stackView.addItem(view1)
+                })
+
+                label2.item.isIncludedInLayout = false
+                stackView.pin.top(64).width(400).sizeToFit(.width)
+                stackView.layout()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 40.333), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 0), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20), within: withinRange))
             }
         }
     }

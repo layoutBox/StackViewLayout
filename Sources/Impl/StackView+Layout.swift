@@ -153,9 +153,10 @@ extension StackView {
     
     private func measuresItemsAndMargins(container: Container) {
         subviews.forEach { (view) in
-            guard !view.isHidden else { return }
             guard let stackItem = view.item as? StackItemImpl else { return }
-            
+            guard !view.isHidden else { return }
+            guard stackItem.isIncludedInLayout else { return }
+
             let item = ItemInfo(stackItem, container: container)
             
             // Compute width & height

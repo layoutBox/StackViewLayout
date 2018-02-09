@@ -23,12 +23,18 @@ private var stackLayoutAssociatedObjectHandle = 72_399_888
 
 public extension UIView {
     public var item: StackItem {
-        if let stackItem = objc_getAssociatedObject(self, &stackLayoutAssociatedObjectHandle) as? StackItem {
-            return stackItem
-        } else {
-            let stackItem = StackItemImpl(view: self)
-             objc_setAssociatedObject(self, &stackLayoutAssociatedObjectHandle, stackItem, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            return stackItem
+        get {
+            if let stackItem = objc_getAssociatedObject(self, &stackLayoutAssociatedObjectHandle) as? StackItem {
+                return stackItem
+            } else {
+                let stackItem = StackItemImpl(view: self)
+                 objc_setAssociatedObject(self, &stackLayoutAssociatedObjectHandle, stackItem, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                return stackItem
+            }
+        }
+
+        set {
+            // NOP
         }
     }
 }

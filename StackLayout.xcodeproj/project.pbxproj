@@ -15,7 +15,7 @@
 		2423C77E1FD08B1500C794AE /* StackItemImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C77D1FD08B1500C794AE /* StackItemImpl.swift */; };
 		2423C7861FD0AA8000C794AE /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7851FD0AA8000C794AE /* Value.swift */; };
 		2423C7881FD0AD6700C794AE /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7871FD0AD6700C794AE /* Types.swift */; };
-		2423C7A31FD0B36900C794AE /* StackLayoutView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A21FD0B36900C794AE /* StackLayoutView+Layout.swift */; };
+		2423C7A31FD0B36900C794AE /* StackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A21FD0B36900C794AE /* StackView+Layout.swift */; };
 		2423C7A71FD0B64600C794AE /* UIView+StackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A61FD0B64600C794AE /* UIView+StackItem.swift */; };
 		2439036C1FDD67C70064F034 /* SizeThatFitsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2439036A1FDD67530064F034 /* SizeThatFitsSpec.swift */; };
 		243B12BC1FC393580072A9C3 /* Percent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243C620E1FC3834B0082C327 /* Percent.swift */; };
@@ -44,6 +44,7 @@
 		DFA4B965200A3ED800AF1BFF /* UnitTestsConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */; };
 		DFAF926F2016AC4B002013D3 /* PaddingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAF926D2016AC44002013D3 /* PaddingSpec.swift */; };
 		DFB506182024DEA00067A4DD /* AspectRatioSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB506162024DD310067A4DD /* AspectRatioSpec.swift */; };
+		DFE6FF21202D25AF007633A3 /* isIncludedInLayoutSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE6FF1F202D2402007633A3 /* isIncludedInLayoutSpec.swift */; };
 		DFEE3CFD202BE2CC004AEC4F /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2479AD7B1FFFBDD700F39774 /* StackView.swift */; };
 		DFEE3CFE202BE2D0004AEC4F /* StackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C77B1FD08AD600C794AE /* StackItem.swift */; };
 		DFEE3CFF202BE2D3004AEC4F /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7871FD0AD6700C794AE /* Types.swift */; };
@@ -51,7 +52,7 @@
 		DFEE3D01202BE2E9004AEC4F /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FA1480201AB88B002BFAD5 /* Container.swift */; };
 		DFEE3D02202BE2E9004AEC4F /* ItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241819C12002D3940092B369 /* ItemInfo.swift */; };
 		DFEE3D03202BE2E9004AEC4F /* StackItemImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C77D1FD08B1500C794AE /* StackItemImpl.swift */; };
-		DFEE3D04202BE2E9004AEC4F /* StackLayoutView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A21FD0B36900C794AE /* StackLayoutView+Layout.swift */; };
+		DFEE3D04202BE2E9004AEC4F /* StackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A21FD0B36900C794AE /* StackView+Layout.swift */; };
 		DFEE3D06202BE2E9004AEC4F /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7851FD0AA8000C794AE /* Value.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,7 +88,7 @@
 		2423C77D1FD08B1500C794AE /* StackItemImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StackItemImpl.swift; path = Impl/StackItemImpl.swift; sourceTree = "<group>"; };
 		2423C7851FD0AA8000C794AE /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Value.swift; path = Impl/Value.swift; sourceTree = "<group>"; };
 		2423C7871FD0AD6700C794AE /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
-		2423C7A21FD0B36900C794AE /* StackLayoutView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StackLayoutView+Layout.swift"; path = "Impl/StackLayoutView+Layout.swift"; sourceTree = "<group>"; };
+		2423C7A21FD0B36900C794AE /* StackView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StackView+Layout.swift"; path = "Impl/StackView+Layout.swift"; sourceTree = "<group>"; };
 		2423C7A61FD0B64600C794AE /* UIView+StackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+StackItem.swift"; sourceTree = "<group>"; };
 		2439036A1FDD67530064F034 /* SizeThatFitsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeThatFitsSpec.swift; sourceTree = "<group>"; };
 		243C620E1FC3834B0082C327 /* Percent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Percent.swift; path = Impl/Percent.swift; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 		DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestsConst.swift; sourceTree = "<group>"; };
 		DFAF926D2016AC44002013D3 /* PaddingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingSpec.swift; sourceTree = "<group>"; };
 		DFB506162024DD310067A4DD /* AspectRatioSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AspectRatioSpec.swift; sourceTree = "<group>"; };
+		DFE6FF1F202D2402007633A3 /* isIncludedInLayoutSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = isIncludedInLayoutSpec.swift; sourceTree = "<group>"; };
 		F91D3F965902CA40AF890854 /* Pods-StackLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayoutTests/Pods-StackLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,8 +221,8 @@
 				2469C5031E75DB7600073BEE /* RectNimbleMatcher.swift */,
 				240F88BF1F0C1ED900280FC8 /* AlignItemsColumnSpec.swift */,
 				DFB506162024DD310067A4DD /* AspectRatioSpec.swift */,
-				241819BE20028FDA0092B369 /* SubviewsSpec.swift */,
 				245B58041FE8BA4F00C0E8EA /* AlignItemsRowSpec.swift */,
+				DFE6FF1F202D2402007633A3 /* isIncludedInLayoutSpec.swift */,
 				2464A8721FD253DC007A92A8 /* JustifytemsColumnSpec.swift */,
 				24EC06D81FD633F500459C62 /* JustifytemsRowSpec.swift */,
 				24EC06E51FD7186700459C62 /* MarginsSpec.swift */,
@@ -229,11 +231,12 @@
 				24B3F7C91FE0165F00AC174B /* GrowSpec.swift */,
 				24496C2F1FE55F7D006F0E78 /* ShrinkColumnSpec.swift */,
 				24EB78231FEA098C00C979AA /* ShrinkRowSpec.swift */,
-				248F0C191FF919F2004CD8AC /* WidthHeightSizeSpec.swift */,
+				241819BE20028FDA0092B369 /* SubviewsSpec.swift */,
 				DF6D467C2013D2A40022C5D6 /* TransformSpec.swift */,
 				DF6D467B2013D2A40022C5D6 /* UIScrollViewSpec.swift */,
 				248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */,
 				DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */,
+				248F0C191FF919F2004CD8AC /* WidthHeightSizeSpec.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -241,10 +244,10 @@
 		DFA06B031E8B38B300B6D5E7 /* Impl */ = {
 			isa = PBXGroup;
 			children = (
+				2423C7A21FD0B36900C794AE /* StackView+Layout.swift */,
+				2423C77D1FD08B1500C794AE /* StackItemImpl.swift */,
 				24FA1480201AB88B002BFAD5 /* Container.swift */,
 				241819C12002D3940092B369 /* ItemInfo.swift */,
-				2423C77D1FD08B1500C794AE /* StackItemImpl.swift */,
-				2423C7A21FD0B36900C794AE /* StackLayoutView+Layout.swift */,
 				2423C7851FD0AA8000C794AE /* Value.swift */,
 				243C620E1FC3834B0082C327 /* Percent.swift */,
 				24BBE6341F50FA1D0091D5E9 /* UnitTests.swift */,
@@ -517,7 +520,7 @@
 				DFEE3D01202BE2E9004AEC4F /* Container.swift in Sources */,
 				DFEE3CFD202BE2CC004AEC4F /* StackView.swift in Sources */,
 				DFEE3D03202BE2E9004AEC4F /* StackItemImpl.swift in Sources */,
-				DFEE3D04202BE2E9004AEC4F /* StackLayoutView+Layout.swift in Sources */,
+				DFEE3D04202BE2E9004AEC4F /* StackView+Layout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,7 +531,7 @@
 				243C620F1FC3834B0082C327 /* Percent.swift in Sources */,
 				2423C77E1FD08B1500C794AE /* StackItemImpl.swift in Sources */,
 				2423C7881FD0AD6700C794AE /* Types.swift in Sources */,
-				2423C7A31FD0B36900C794AE /* StackLayoutView+Layout.swift in Sources */,
+				2423C7A31FD0B36900C794AE /* StackView+Layout.swift in Sources */,
 				2423C7A71FD0B64600C794AE /* UIView+StackItem.swift in Sources */,
 				245C1D9E1FEC4CB9007594F7 /* Coordinates.swift in Sources */,
 				241819C22002D3940092B369 /* ItemInfo.swift in Sources */,
@@ -561,6 +564,7 @@
 				DFB506182024DEA00067A4DD /* AspectRatioSpec.swift in Sources */,
 				DFAF926F2016AC4B002013D3 /* PaddingSpec.swift in Sources */,
 				DFA4B965200A3ED800AF1BFF /* UnitTestsConst.swift in Sources */,
+				DFE6FF21202D25AF007633A3 /* isIncludedInLayoutSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

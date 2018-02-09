@@ -77,6 +77,13 @@ class StackItemImpl: NSObject, StackItem {
         return self
     }
 
+    var isIncludedInLayout: Bool = true
+
+    @discardableResult
+    func isIncludedInLayout(_ included: Bool) -> StackItem {
+        isIncludedInLayout = included
+        return self
+    }
 
     //
     // width, height
