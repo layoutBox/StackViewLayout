@@ -23,9 +23,9 @@ enum PageType: Int {
     case intro
     case docExamples
     case autolayout
+    case collectionView
 //    case adjustToContainer
 //    case tableView
-//    case collectionView
 //    case form
 //    case relativePositions
 //    case multiRelativePositions
@@ -39,6 +39,7 @@ enum PageType: Int {
         case .intro:                      return "StackLayout's Intro"
         case .docExamples:                return "Doc Examples"
         case .autolayout:                 return "Autolayout"
+        case .collectionView:             return "UICollectionView with variable cell's height"
         case .unitTests:                  return "UnitTests"
         case .count:                      return ""
         }
@@ -49,6 +50,7 @@ enum PageType: Int {
         case .intro:            return IntroViewController(pageType: self)
         case .docExamples:      return DocExamplesViewController(pageType: self)
         case .autolayout:       return UIStoryboard.init(name: "Autolayout", bundle: nil).instantiateViewController(withIdentifier: "AutolayoutViewController")
+        case .collectionView:   return CollectionViewExampleViewController(pageType: self)
         case .unitTests:        return UnitTestsViewController(pageType: self)
         case .count:                      return UIViewController()
         }

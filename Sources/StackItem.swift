@@ -342,6 +342,22 @@ public protocol StackItem {
      */
     @discardableResult
     func margin(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> StackItem
+
+    //
+    // MARK: UIView Visual properties
+    //
+
+    /**
+     Set the item/view background color.
+     */
+    @discardableResult
+    func backgroundColor(_ color: UIColor) -> StackItem
+
+    /**
+     Set the item/view transparency `alpha`.
+     */
+    @discardableResult
+    func alpha(_ alpha: CGFloat) -> StackItem
 }
     
     

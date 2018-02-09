@@ -356,6 +356,28 @@ public class StackView: UIView {
         
         layoutItems(container: container)
     }
+
+    //
+    // MARK: UIView Visual properties
+    //
+
+    /**
+     Set the item/view background color.
+     */
+    @discardableResult
+    public func backgroundColor(_ color: UIColor) -> StackView {
+        backgroundColor = color
+        return self
+    }
+
+    /**
+     Set the item/view transparency `alpha`.
+     */
+    @discardableResult
+    public func alpha(_ value: CGFloat) -> StackView {
+        alpha = value
+        return self
+    }
     
     //
     // Show/hide items

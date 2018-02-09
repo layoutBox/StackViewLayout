@@ -13,88 +13,76 @@
 // Created by Luc Dion on 2017-10-31.
 
 import UIKit
-import PinLayout
+import StackViewLayout
 
 class HouseCell: UICollectionViewCell {
     static let reuseIdentifier = "HouseCell"
-    
-    fileprivate let headerView = UIView()
+
+    fileprivate let stackView = StackView()
     fileprivate let nameLabel = UILabel()
     fileprivate let mainImage = UIImageView()
-    
-    fileprivate let footerView = UIView()
     fileprivate let priceLabel = UILabel()
     fileprivate let distanceLabel = UILabel()
-    
+
     fileprivate let padding: CGFloat = 8
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         backgroundColor = .white
-    
-        // HEADER
-        headerView.backgroundColor = .stackLayoutColor
-        contentView.addSubview(headerView)
-        
+
         nameLabel.font = UIFont.systemFont(ofSize: 24)
         nameLabel.textColor = .white
-        headerView.addSubview(nameLabel)
 
-        /// IMAGE
         mainImage.backgroundColor = .black
         mainImage.contentMode = .scaleAspectFill
         mainImage.clipsToBounds = true
-        contentView.addSubview(mainImage)
-        
-        // FOOTER
-        footerView.backgroundColor = UIColor.stackLayoutColor.withAlphaComponent(0.2)
-        contentView.addSubview(footerView)
-        
-        footerView.addSubview(priceLabel)
 
         distanceLabel.textAlignment = .right
-        footerView.addSubview(distanceLabel)
+
+        let footerBackgroundColor = UIColor.stackLayoutColor.withAlphaComponent(0.2)
+
+        stackView.define { (stackView) in
+            stackView.addStackView().paddingHorizontal(padding).backgroundColor(.stackLayoutColor).define({ (stackView) in
+                stackView.addItem(nameLabel).grow(1)
+            })
+
+            stackView.addItem(mainImage).height(300)
+
+            stackView.addStackView().direction(.row).justifyContent(.spaceBetween).padding(6, padding, 6, padding)
+                .backgroundColor(footerBackgroundColor).define({ (stackView) in
+                stackView.addItem(priceLabel)
+                stackView.addItem(distanceLabel).grow(1)
+            })
+        }
+        contentView.addSubview(stackView)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func configure(house: House) {
         nameLabel.text = house.name
+        mainImage.download(url: house.mainImageURL)
         priceLabel.text = house.price
         distanceLabel.text = "\(house.distance) KM"
-        distanceLabel.textAlignment = .right
 
-        mainImage.download(url: house.mainImageURL)
-        mainImage.contentMode = .scaleAspectFill
-        
         setNeedsLayout()
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layout()
-    }
-    
-    private func layout() {
-        headerView.pin.top().horizontally().height(100)
-        nameLabel.pin.top().horizontally().margin(padding).sizeToFit(.width)
-        
-        mainImage.pin.below(of: nameLabel).horizontally().height(300).marginTop(padding)
-        
-        footerView.pin.below(of: mainImage).horizontally()
-        priceLabel.pin.top().horizontally().margin(6, padding).sizeToFit(.width)
-        distanceLabel.pin.top().after(of: priceLabel).right().margin(6, padding).sizeToFit(.width)
-        footerView.pin.height(max(priceLabel.frame.maxY, distanceLabel.frame.maxY) + 6)
-        
-        contentView.pin.height(footerView.frame.maxY)
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         contentView.pin.width(size.width)
         layout()
         return contentView.frame.size
+    }
+    private func layout() {
+        stackView.pin.top().horizontally().sizeToFit(.width)
+        contentView.pin.height(stackView.frame.height)
     }
 }

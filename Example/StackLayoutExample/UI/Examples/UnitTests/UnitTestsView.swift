@@ -156,11 +156,13 @@ class UnitTestsView: BaseView {
 
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
 
-        stackView.direction(.row).padding(5, 10, 15, 20).justifyContent(.start).alignItems(.stretch).define { (stack) in
-            stack.addItem(label1).aspectRatio(1 / 6).minHeight(20)
-            stack.addItem(label2).aspectRatio(1).maxHeight(40)
-            stack.addItem(view1).aspectRatio(5 / 6).shrink(1)
-        }
+        stackView.define({ (stackView) in
+            stackView.addItem(label1)
+            stackView.addItem(label2)
+            stackView.addItem(view1)
+        })
+
+        label2.item.isIncludedInLayout = false
 
         layout()
     }
@@ -194,18 +196,13 @@ class UnitTestsView: BaseView {
 
         rootFlexContainer.isHidden = true
 
-        rootFlexContainer.flex.padding(5, 10, 15, 20).direction(.row).justifyContent(.start).alignItems(.stretch).define({ (flex) in
-            flex.addItem(label1).aspectRatio(1 / 6).minHeight(20)
-            flex.addItem(label2).aspectRatio(1).maxHeight(40)
-            flex.addItem(view1).aspectRatio(5 / 6).shrink(1)
-            //            flex.addItem(label1).margin(5, 10, 20, 30)
-            //            flex.addItem(label2).margin(5, 10, 20, 30)
-            //            flex.addItem(view1).margin(5, 20, 20, 40)
-
-            //            flex.addItem(label1).marginLeft(10).marginRight(30)
-            //            flex.addItem(label2).marginLeft(10).marginRight(30)
-            //            flex.addItem(view1).marginLeft(20).marginRight(40)
+        rootFlexContainer.flex.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (flex) in
+            flex.addItem(label1)
+            flex.addItem(label2)
+            flex.addItem(view1)
         })
+
+//        label2.flex.isIncludedInLayout = false
 
         addSubview(rootFlexContainer)
     }
@@ -234,7 +231,6 @@ class UnitTestsView: BaseView {
         //        layoutView(view: rootFlexContainer)
         //        stackView.layout()
         //        rootFlexContainer.flex.layout(mode: .adjustWidth)
-
 
         print("// Match FlexLayout")
         printViewFrame(stackView, name: "stackView")

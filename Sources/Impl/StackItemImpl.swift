@@ -370,6 +370,18 @@ class StackItemImpl: NSObject, StackItem {
         marginRight = Value(right)
         return self
     }
+
+    @discardableResult
+    public func backgroundColor(_ color: UIColor) -> StackItem {
+        view.backgroundColor = color
+        return self
+    }
+
+    @discardableResult
+    public func alpha(_ alpha: CGFloat) -> StackItem {
+        view.alpha = alpha
+        return self
+    }
 }
     
 extension StackItemImpl {

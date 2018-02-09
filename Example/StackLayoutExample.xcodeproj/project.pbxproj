@@ -26,6 +26,9 @@
 		24F246141FA8D57100B6332E /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F246131FA8D57100B6332E /* UIImageView+Download.swift */; };
 		DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */; };
 		DF8B0314200BE042008FF4CA /* Autolayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF8B0313200BE042008FF4CA /* Autolayout.storyboard */; };
+		DFE6FF28202DC9F2007633A3 /* CollectionViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460E1FA8D4D100B6332E /* CollectionViewExampleViewController.swift */; };
+		DFE6FF29202DC9F5007633A3 /* CollectionViewExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460D1FA8D4D100B6332E /* CollectionViewExampleView.swift */; };
+		DFE6FF2A202DC9F8007633A3 /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460F1FA8D4D100B6332E /* HouseCell.swift */; };
 		DFEE3CCE202BDC24004AEC4F /* UnitTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24040D2A1FA3B39300682980 /* UnitTestsViewController.swift */; };
 		DFEE3CD2202BDC2E004AEC4F /* UnitTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24040D291FA3B39300682980 /* UnitTestsView.swift */; };
 		FC19F3AB71E0416A5DF3C997 /* Pods_StackLayoutExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BC1DFC5AD1ACBF99B5F0F2 /* Pods_StackLayoutExample.framework */; };
@@ -75,10 +78,6 @@
 		2439CC331E665BF6003326FB /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		2439CC341E665BF6003326FB /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		2439CC381E665C6B003326FB /* BasicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
-		2439CC3F1E665C6B003326FB /* MultiRelativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiRelativeView.swift; sourceTree = "<group>"; };
-		2439CC401E665C6B003326FB /* MultiRelativeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiRelativeViewController.swift; sourceTree = "<group>"; };
-		2439CC411E665C6B003326FB /* RelativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeView.swift; sourceTree = "<group>"; };
-		2439CC421E665C6B003326FB /* RelativeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeViewController.swift; sourceTree = "<group>"; };
 		246812FC1F8D013500462E53 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		247157931F87BD680003424F /* UIEdgeInsets+PinLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+PinLayout.swift"; sourceTree = "<group>"; };
 		2479AD7F2001737300F39774 /* BasicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
@@ -101,8 +100,6 @@
 		24CB999A1F29059B004EA7FB /* AdjustToContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustToContainerView.swift; sourceTree = "<group>"; };
 		24CB999B1F29059B004EA7FB /* AdjustToContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustToContainerViewController.swift; sourceTree = "<group>"; };
 		24CB999F1F290664004EA7FB /* ChoiceSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceSelectorView.swift; sourceTree = "<group>"; };
-		24D18D1B1F3DED0D008129EF /* IntroRTLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroRTLView.swift; sourceTree = "<group>"; };
-		24D18D1C1F3DED0D008129EF /* IntroRTLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroRTLViewController.swift; sourceTree = "<group>"; };
 		24DA374A1EF7F90600D1AB2F /* BaseFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFormView.swift; sourceTree = "<group>"; };
 		24EC06AD1FD2550300459C62 /* StackLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = StackLayout.xcodeproj; path = ../StackLayout.xcodeproj; sourceTree = "<group>"; };
 		24EC06E91FD87DD300459C62 /* DocExamplesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocExamplesView.swift; sourceTree = "<group>"; };
@@ -167,15 +164,12 @@
 			isa = PBXGroup;
 			children = (
 				DF8B0309200BDFA5008FF4CA /* Autolayout */,
+				24F2460C1FA8D4D100B6332E /* CollectionViewExample */,
 				24CB99991F290591004EA7FB /* AdjustToContainer */,
 				DF66F9D61E8493D400ADB8D5 /* AutoAdjustingSizeView */,
-				24F2460C1FA8D4D100B6332E /* CollectionViewExample */,
 				24EC06E81FD87DD300459C62 /* DocExamples */,
 				2497CFEA1EF40B8100DFD13B /* Form */,
 				24F75B581EE5642C008DB567 /* Intro */,
-				24D18D181F3DECD6008129EF /* IntroRTL */,
-				2439CC5F1E665F66003326FB /* MultiRelativeView */,
-				2439CC631E66606D003326FB /* RelativeView */,
 				24A9C1EF1EF0542500F2CF64 /* TableViewExample */,
 				24040D281FA3B39300682980 /* UnitTests */,
 			);
@@ -195,24 +189,6 @@
 				24F246131FA8D57100B6332E /* UIImageView+Download.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		2439CC5F1E665F66003326FB /* MultiRelativeView */ = {
-			isa = PBXGroup;
-			children = (
-				2439CC3F1E665C6B003326FB /* MultiRelativeView.swift */,
-				2439CC401E665C6B003326FB /* MultiRelativeViewController.swift */,
-			);
-			path = MultiRelativeView;
-			sourceTree = "<group>";
-		};
-		2439CC631E66606D003326FB /* RelativeView */ = {
-			isa = PBXGroup;
-			children = (
-				2439CC411E665C6B003326FB /* RelativeView.swift */,
-				2439CC421E665C6B003326FB /* RelativeViewController.swift */,
-			);
-			path = RelativeView;
 			sourceTree = "<group>";
 		};
 		2439CC661E666128003326FB /* Menu */ = {
@@ -307,15 +283,6 @@
 				24CB999F1F290664004EA7FB /* ChoiceSelectorView.swift */,
 			);
 			path = Subviews;
-			sourceTree = "<group>";
-		};
-		24D18D181F3DECD6008129EF /* IntroRTL */ = {
-			isa = PBXGroup;
-			children = (
-				24D18D1B1F3DED0D008129EF /* IntroRTLView.swift */,
-				24D18D1C1F3DED0D008129EF /* IntroRTLViewController.swift */,
-			);
-			path = IntroRTL;
 			sourceTree = "<group>";
 		};
 		24EC06AE1FD2550300459C62 /* Products */ = {
@@ -568,10 +535,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFE6FF29202DC9F5007633A3 /* CollectionViewExampleView.swift in Sources */,
 				24EC06EF1FD87DD300459C62 /* DocExamplesViewController.swift in Sources */,
 				24F246141FA8D57100B6332E /* UIImageView+Download.swift in Sources */,
 				DFEE3CCE202BDC24004AEC4F /* UnitTestsViewController.swift in Sources */,
 				24DA374B1EF7F90600D1AB2F /* BaseFormView.swift in Sources */,
+				DFE6FF28202DC9F2007633A3 /* CollectionViewExampleViewController.swift in Sources */,
 				247157941F87BD680003424F /* UIEdgeInsets+PinLayout.swift in Sources */,
 				2423C79F1FD0B00B00C794AE /* IntroViewController.swift in Sources */,
 				DFEE3CD2202BDC2E004AEC4F /* UnitTestsView.swift in Sources */,
@@ -582,6 +551,7 @@
 				2493268C1EEEEFF100BCB814 /* BaseViewController.swift in Sources */,
 				2439CC4B1E665C6B003326FB /* BasicView.swift in Sources */,
 				249EFE431E64FAFE00165E39 /* AppDelegate.swift in Sources */,
+				DFE6FF2A202DC9F8007633A3 /* HouseCell.swift in Sources */,
 				2439CC361E665BF6003326FB /* MenuViewController.swift in Sources */,
 				249326891EEEEE3D00BCB814 /* Stylesheet.swift in Sources */,
 				2423C79E1FD0B00B00C794AE /* IntroView.swift in Sources */,

@@ -20,7 +20,9 @@
 
 <br>
 
-Extremely Fast StackView without auto layout. Concise syntax, intuitive, readable & chainable. Stacks easily many views horizontally or vertically. Greatly inspired by CSS Flexbox.
+Fast StackView without auto layout. Concise syntax, intuitive, readable & chainable. Stacks easily many views horizontally or vertically. Greatly inspired by CSS Flexbox.
+
+Compare to UIStackView, StackView inherits from UIView, and layout all views added using `UIView.addSubviews` (no arrangedSubViews). This give you access to background color, transparency, round corners, transforms, ... 
 
 StackView can be used with Autolayout and Storyboards, but it was mainly designed for manual layout.
   
@@ -43,6 +45,7 @@ StackView can be used with Autolayout and Storyboards, but it was mainly designe
 	* [Items properties](#items_properties)
 		* [Adjusting item's width, height and size](#adjusting_size)
 		* [Margins](#margins)
+	* [Visual properties](#visual_properties)
 	* [Using with Autolayout and Storyboards](#autolayout)
 * [API Documentation](#api_documentation)
 * [Examples App](#examples_app)
@@ -56,7 +59,7 @@ StackView can be used with Autolayout and Storyboards, but it was mainly designe
 
 <br>
 
-### StackViewLayout + PinLayout + FlexLayout
+### StackViewLayout + PinLayout
 
 <a href="https://github.com/mirego/PinLayout"><img src="docs_markdown/images/flexlayout_plus_pinlayout_small.png" width="250"/></a>
 
@@ -728,6 +731,9 @@ In the case where a UILabel's text is updated, it is needed to mark the label as
    label.item.markDirty()    
 ```
 
+TODO: Add an example?
+
+
 <br>
 
 <a name="isIncludedInLayout"></a>
@@ -743,6 +749,27 @@ This can be useful if you want to layout an item manually instead of using Stack
 ###### Usage examples:
 ```swift
    label.item.isIncludedInLayout = false
+```
+
+<br>
+
+<a name="visual_properties"></a>
+### Visual properties 
+StackViewLayout also adds methods to set common UIView properties. These methods are available on StackView's instances and on items.
+
+**Methods:**
+
+* **`backgroundColor(_ color: UIColor)`**  
+Set the StackView or item's UIView background color. 
+* **`alpha(_ value: CGFloat)`**  
+Set the StackView or item's `alpha` property to adjust the transparency. 
+
+###### Usage examples:
+```swift
+  // Create a gray column StackView and add a black horizontal line separator 
+  stackView.addStackView().backgroundColor(.gray).define { (stackView) in
+      stackView.addItem(UIView()).height(1).backgroundColor(.black).alpha(0.7)
+  } 
 ```
 
 <br>
