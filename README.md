@@ -325,7 +325,7 @@ Here is the list methods to add or insert items to a StackView.
 **Methods:**
 
 * **`addItem(_: UIView) -> StackItem`**  
-This method adds an item (UIView) to a StackView. The item is added as the last item. Internally this method adds the UIView as a subview. Note that you can also use .
+This method adds an item (UIView) to a StackView. The item is added as the last item. Internally this method adds the UIView as a subview. Note that you can also use.
 * **`insertItem(_ view: UIView, at index: Int) -> StackItem`**  
 This method adds an item (UIView) at the specified index. Note that you can also use `insertSubview(_ view: UIView, at index: Int)`.
 * **`insertItem(_ view: UIView, before refItem: UIView) -> StackItem?`**  
@@ -349,16 +349,16 @@ TODO: Document addStackView()
 ### Removing items 
 - Applies to: `StackView`
 
-:pushpin: StackView layout all views in the `UIView.subviews` array. So it is also possible to remove items views using `removeFromSuperview()`.
-
 **Method:**
 
 * **`removeItem(_ view: UIView)`**  
-Removes the specified item from the StackView. Note that you can also use `removeFromSuperview()`.
+Removes the specified item from the StackView. You can also use the view's `UIView.removeFromSuperview()` method to achieve the exact same result. This method just exist to be consistent with `addItem(:UIView)`. 
 
 ###### Usage example:
 ```swift
   stackview.removeItem(descriptionLabel)
+  // Or, you can also use: 
+  descriptionLabel.removeFromSuperview()
 ```
 
 ### define()
@@ -482,7 +482,7 @@ Much better!
 - Default value: `start`
 - Method: **`justifyContent(_: JustifyContent)`** 
 
-The `justifyContent` property defines the alignment along the main-axis. It helps distribute extra free space leftover when either all items have reached their maximum size. For example, for a column StackView, `justifyContent` controls how items align vertically. 
+	The `justifyContent` property defines the alignment along the main-axis. It helps distribute extra free space leftover when either all items have reached their maximum size. For example, for a column StackView, `justifyContent` controls how items align vertically. 
 
 This property is similar to `UIStackView.distribution` (UIStackViewDistribution)
 
@@ -505,7 +505,7 @@ This property is similar to `UIStackView.distribution` (UIStackViewDistribution)
 
 TODO: Add an example!!!
 
-<br/>
+<br>
 
 <a name="alignItems"></a>
 ### alignItems 
@@ -577,6 +577,30 @@ Shrink is about proportions. If an item has a shrink of 3, and the rest have a s
 TODO: Add an example!!!
 
 <br>
+
+<a name="markDirty"></a>
+### markDirty() 
+- Method: **`markDirty()`** 
+- Applies to StackView and items
+
+StackView's items are layouted only when an item's property is changed and when the StackView size change. In the event that you want to force the StackView to update the layout of all its items, you can mark the StackView or any of it's item as dirty using `markDirty()`.
+
+Marking an item as dirty will propagates to the direct StackView and all other parents StackViews. So if you update multiple items, calling `markDirty()` only on one item or calling it on their StackView have the same effect, the StackView will be re-layouted. 
+          
+###### Usage examples:
+In the case where a UILabel's text is updated, it is needed to mark the label as dirty.
+
+```swift
+   // Update UILabel's text and mark the UILabel as dirty
+   label.text = "I love StackViewLayout"
+   label.item.markDirty()
+   
+   stackView.markDirty()
+```
+
+TODO: Add an example?
+
+<br/>
 
 <a name="adjusting_size"></a> 
 ### Adjusting item's width, height and size 
@@ -710,31 +734,21 @@ Set all margins to the specified value.
 <a name="aspect_ratio"></a>
 ### aspectRatio() 
 
-NOT IMPLEMENTED YET. COMING SOON.
+AspectRatio property solves the problem of knowing one dimension of an element and an aspect ratio, this is very common when it comes to images, videos, and other media types. AspectRatio accepts any floating point value > 0, the default is undefined.
 
-<br/>
+* AspectRatio is defined as the ratio between the width and the height of a node e.g. if an item has an aspect ratio of 2 then its width is twice the size of its height.
+* AspectRatio respects the Min and Max dimensions of an item.
+* AspectRatio has higher priority than `grow`.
+* If AspectRatio, Width, and Height are set then the cross dimension is overridden.
+* Call `aspectRatio(nil)` to reset the property.
 
-<a name="markDirty"></a>
-### markDirty() 
-- Method: **`markDirty()`** 
-
-StackView's items are layouted only when an item's property is changed and when the StackView size change. In the event that you want to force the StackView to update the layout of an item, you can mark it as dirty using `markDirty()`.
-
-:pushpin: Following an item's change, you may choose to re-layout the StackView, in that case you don't need to call `markDirty()` because StackView always re-layout all its items in its layout process. 
-     
+   
 ###### Usage examples:
-In the case where a UILabel's text is updated, it is needed to mark the label as dirty.
-
 ```swift
-   // Update UILabel's text and mark the UILabel as dirty
-   label.text = "I love FlexLayout"
-   label.item.markDirty()    
+  imageView.flex.aspectRatio(16/9)
 ```
 
-TODO: Add an example?
-
-
-<br>
+<br/>
 
 <a name="isIncludedInLayout"></a>
 ### isIncludedInLayout / isIncludedInLayout()

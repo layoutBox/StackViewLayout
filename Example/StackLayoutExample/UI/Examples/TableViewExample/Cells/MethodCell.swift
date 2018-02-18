@@ -18,31 +18,47 @@
 //  THE SOFTWARE.
 
 import UIKit
-import PinLayout
+import StackViewLayout
 
 class MethodCell: UITableViewCell {
     static let reuseIdentifier = "MethodCell"
     
+    fileprivate let stackView = StackView()
+
     fileprivate let iconImageView = UIImageView(image: UIImage(named: "method"))
     fileprivate let nameLabel = UILabel()
+    fileprivate let typeLabel = UILabel()
     fileprivate let descriptionLabel = UILabel()
-    fileprivate let margin: CGFloat = 10
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
         separatorInset = .zero
-        
-        contentView.addSubview(iconImageView)
-        
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
-        nameLabel.lineBreakMode = .byTruncatingTail
-        contentView.addSubview(nameLabel)
-        
-        descriptionLabel.font = UIFont.systemFont(ofSize: 12)
-        descriptionLabel.numberOfLines = 0
-        contentView.addSubview(descriptionLabel)
+
+        let margin: CGFloat = 10
+
+        // Column StackView
+        stackView.padding(all: 14).define { (stackView) in
+
+            // Row StackView
+            stackView.addStackView().direction(.row).define({ (stackView) in
+                stackView.addItem(iconImageView).size(30)
+
+                nameLabel.font = UIFont.boldSystemFont(ofSize: 14)
+                nameLabel.lineBreakMode = .byTruncatingTail
+                stackView.addItem(nameLabel).marginLeft(margin)
+            })
+
+            typeLabel.font = UIFont.boldSystemFont(ofSize: 14)
+            stackView.addItem(typeLabel).marginTop(margin)
+
+            descriptionLabel.font = UIFont.systemFont(ofSize: 12)
+            descriptionLabel.numberOfLines = 0
+            stackView.addItem(descriptionLabel).marginTop(margin)
+        }
+
+        contentView.addSubview(stackView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,6 +67,7 @@ class MethodCell: UITableViewCell {
     
     func configure(method: Method) {
         nameLabel.text = method.name
+        typeLabel.text = "▪︎ Apply to: \(method.type.text)"
         descriptionLabel.text = method.description
     }
     
@@ -60,9 +77,7 @@ class MethodCell: UITableViewCell {
     }
     
     fileprivate func layout() {
-        iconImageView.pin.top().left().size(30).margin(margin)
-        nameLabel.pin.right(of: iconImageView, aligned: .center).right().marginHorizontal(margin).sizeToFit(.width)
-        descriptionLabel.pin.below(of: [iconImageView, nameLabel]).left().right().margin(margin).sizeToFit(.width)
+        stackView.pin.top().horizontally().sizeToFit(.width)
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -72,7 +87,7 @@ class MethodCell: UITableViewCell {
         // 2) Layout the contentView's controls
         layout()
         
-        // 3) Returns a size that contains all controls
-        return CGSize(width: contentView.frame.width, height: descriptionLabel.frame.maxY + margin)
+        // 3) Returns the size of the StackView
+        return CGSize(width: contentView.frame.width, height: stackView.frame.maxY)
     }
 }

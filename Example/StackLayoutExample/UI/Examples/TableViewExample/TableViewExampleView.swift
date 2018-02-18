@@ -62,7 +62,7 @@ extension TableViewExampleView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MethodGroupHeader.reuseIdentifier) as! MethodGroupHeader
-        header.configure(title: "PinLayout few methods")
+        header.configure(title: "StackViewLayout few methods")
         return header
     }
     

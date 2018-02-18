@@ -23,9 +23,9 @@ enum PageType: Int {
     case intro
     case docExamples
     case autolayout
+    case tableView
     case collectionView
 //    case adjustToContainer
-//    case tableView
 //    case form
 //    case relativePositions
 //    case multiRelativePositions
@@ -39,6 +39,7 @@ enum PageType: Int {
         case .intro:                      return "StackLayout's Intro"
         case .docExamples:                return "Doc Examples"
         case .autolayout:                 return "Autolayout"
+        case .tableView:                  return "UITableView with variable cell's height"
         case .collectionView:             return "UICollectionView with variable cell's height"
         case .unitTests:                  return "UnitTests"
         case .count:                      return ""
@@ -50,6 +51,7 @@ enum PageType: Int {
         case .intro:            return IntroViewController(pageType: self)
         case .docExamples:      return DocExamplesViewController(pageType: self)
         case .autolayout:       return UIStoryboard.init(name: "Autolayout", bundle: nil).instantiateViewController(withIdentifier: "AutolayoutViewController")
+        case .tableView:        return TableViewExampleViewController(pageType: self)
         case .collectionView:   return CollectionViewExampleViewController(pageType: self)
         case .unitTests:        return UnitTestsViewController(pageType: self)
         case .count:                      return UIViewController()
@@ -78,7 +80,7 @@ class MenuViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-//        didSelect(pageType: .unitTests)
+        didSelect(pageType: .tableView)
     }
 }
 

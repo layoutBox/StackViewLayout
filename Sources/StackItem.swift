@@ -65,7 +65,7 @@ public protocol StackItem {
     /**
      StackView's items are layouted only when a item's property is changed and when the StackView size change.
      In the event that you want to force StackView to do a layout of an item, you can mark it as dirty
-     using `markDirty()`.
+     using `markDirty()`. `markDirty()` flag propagates to the direct StackView and all other parents StackViews.
      */
     @discardableResult
     func markDirty() -> StackItem

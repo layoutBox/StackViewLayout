@@ -18,18 +18,24 @@
 //  THE SOFTWARE.
 
 import UIKit
+import StackViewLayout
 
 class MethodGroupHeader: UITableViewHeaderFooterView {
     static let reuseIdentifier = "MethodGroupHeader"
     static let height: CGFloat = 50
-    
+
+    fileprivate let stackView = StackView()
     fileprivate let titleLabel = UILabel()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        
-        titleLabel.font = UIFont.systemFont(ofSize: 20)
-        contentView.addSubview(titleLabel)
+
+        stackView.padding(25, 10, 0, 10).define { (stackView) in
+            titleLabel.font = UIFont.systemFont(ofSize: 16)
+            stackView.addItem(titleLabel)
+        }
+
+        contentView.addSubview(stackView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,7 +48,6 @@ class MethodGroupHeader: UITableViewHeaderFooterView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        titleLabel.pin.left().right().vCenter().margin(10).sizeToFit(.width)
+        stackView.pin.all()
     }
 }

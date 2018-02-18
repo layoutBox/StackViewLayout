@@ -322,6 +322,11 @@ public class StackView: UIView {
     // Layout view
     //
 
+    /**
+     StackView's items are layouted only when a item's property is changed and when the StackView size change.
+     In the event that you want to force StackView to do a layout of its items, you can mark it as dirty
+     using `markDirty()`.
+     */
     public func markDirty() {
         setNeedsLayout()
 

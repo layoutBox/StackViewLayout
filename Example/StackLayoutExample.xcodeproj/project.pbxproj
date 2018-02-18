@@ -24,6 +24,10 @@
 		24EC06EE1FD87DD300459C62 /* DocExamplesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06E91FD87DD300459C62 /* DocExamplesView.swift */; };
 		24EC06EF1FD87DD300459C62 /* DocExamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06EA1FD87DD300459C62 /* DocExamplesViewController.swift */; };
 		24F246141FA8D57100B6332E /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F246131FA8D57100B6332E /* UIImageView+Download.swift */; };
+		DF426434202F1E3900C8DE73 /* TableViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A9C1F11EF0542F00F2CF64 /* TableViewExampleViewController.swift */; };
+		DF426435202F1E3C00C8DE73 /* TableViewExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A9C1F01EF0542F00F2CF64 /* TableViewExampleView.swift */; };
+		DF426436202F1E4000C8DE73 /* MethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A9C1F51EF054BF00F2CF64 /* MethodCell.swift */; };
+		DF426437202F1E4300C8DE73 /* MethodGroupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB99971F290540004EA7FB /* MethodGroupHeader.swift */; };
 		DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */; };
 		DF8B0314200BE042008FF4CA /* Autolayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF8B0313200BE042008FF4CA /* Autolayout.storyboard */; };
 		DFE6FF28202DC9F2007633A3 /* CollectionViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460E1FA8D4D100B6332E /* CollectionViewExampleViewController.swift */; };
@@ -84,8 +88,6 @@
 		249326881EEEEE3D00BCB814 /* Stylesheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stylesheet.swift; sourceTree = "<group>"; };
 		2493268B1EEEEFF100BCB814 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2493268D1EEEF02700BCB814 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		2497CFEB1EF40B9100DFD13B /* FormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
-		2497CFEC1EF40B9100DFD13B /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		249EFE3F1E64FAFE00165E39 /* StackLayoutExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StackLayoutExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		249EFE421E64FAFE00165E39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		249EFE491E64FAFE00165E39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -165,12 +167,11 @@
 			children = (
 				DF8B0309200BDFA5008FF4CA /* Autolayout */,
 				24F2460C1FA8D4D100B6332E /* CollectionViewExample */,
+				24F75B581EE5642C008DB567 /* Intro */,
+				24A9C1EF1EF0542500F2CF64 /* TableViewExample */,
 				24CB99991F290591004EA7FB /* AdjustToContainer */,
 				DF66F9D61E8493D400ADB8D5 /* AutoAdjustingSizeView */,
 				24EC06E81FD87DD300459C62 /* DocExamples */,
-				2497CFEA1EF40B8100DFD13B /* Form */,
-				24F75B581EE5642C008DB567 /* Intro */,
-				24A9C1EF1EF0542500F2CF64 /* TableViewExample */,
 				24040D281FA3B39300682980 /* UnitTests */,
 			);
 			path = Examples;
@@ -208,15 +209,6 @@
 				249EFE4B1E64FAFE00165E39 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2497CFEA1EF40B8100DFD13B /* Form */ = {
-			isa = PBXGroup;
-			children = (
-				2497CFEB1EF40B9100DFD13B /* FormView.swift */,
-				2497CFEC1EF40B9100DFD13B /* FormViewController.swift */,
-			);
-			path = Form;
 			sourceTree = "<group>";
 		};
 		249EFE361E64FAFE00165E39 = {
@@ -547,14 +539,18 @@
 				24EC06EE1FD87DD300459C62 /* DocExamplesView.swift in Sources */,
 				2479AD802001737300F39774 /* BasicButton.swift in Sources */,
 				DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */,
+				DF426436202F1E4000C8DE73 /* MethodCell.swift in Sources */,
 				2439CC351E665BF6003326FB /* MenuView.swift in Sources */,
 				2493268C1EEEEFF100BCB814 /* BaseViewController.swift in Sources */,
 				2439CC4B1E665C6B003326FB /* BasicView.swift in Sources */,
 				249EFE431E64FAFE00165E39 /* AppDelegate.swift in Sources */,
 				DFE6FF2A202DC9F8007633A3 /* HouseCell.swift in Sources */,
+				DF426437202F1E4300C8DE73 /* MethodGroupHeader.swift in Sources */,
+				DF426434202F1E3900C8DE73 /* TableViewExampleViewController.swift in Sources */,
 				2439CC361E665BF6003326FB /* MenuViewController.swift in Sources */,
 				249326891EEEEE3D00BCB814 /* Stylesheet.swift in Sources */,
 				2423C79E1FD0B00B00C794AE /* IntroView.swift in Sources */,
+				DF426435202F1E3C00C8DE73 /* TableViewExampleView.swift in Sources */,
 				2493268E1EEEF02700BCB814 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

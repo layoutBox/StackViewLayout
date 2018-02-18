@@ -285,7 +285,7 @@ class UnitTestsView: BaseView {
         let width = numberFormatter.string(from: NSNumber(value: Float(view.frame.size.width)))!
         let height = numberFormatter.string(from: NSNumber(value: Float(view.frame.size.height)))!
 
-        print("expect(\(name).frame).to(beCloseTo(CGRect(x: \(x), y: \(y), width: \(width), height: \(height)), within: withinRange))")
+        print("expect(\(name).frame).to(beCloseTo(CGRect`, within: withinRange))")
     }
 
     internal func didTapToggleDirection() {

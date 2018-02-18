@@ -70,7 +70,7 @@ class StackItemImpl: NSObject, StackItem {
     @discardableResult
     public func markDirty() -> StackItem {
         view.setNeedsLayout()
-        
+
         if let stackView = view.superview as? StackView {
             stackView.markDirty()
         }
