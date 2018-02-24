@@ -19,10 +19,10 @@
 
 import UIKit
 
-class BasicView: UIView {
+class BasicViewTest: UIView {
     fileprivate let label = UILabel()
     
-    init(text: String? = nil) {
+    init(text: String? = nil, color: UIColor) {
         super.init(frame: .zero)
 
         backgroundColor = UIColor(red: 0.58, green: 0.78, blue: 0.95, alpha: 1.00)
@@ -47,7 +47,22 @@ class BasicView: UIView {
         label.pin.center()
     }
     
+    var sizeThatFitsExpectedArea: CGFloat = 40 * 40
+    var sizeThatFitSizeOffset: CGFloat = 0
+    
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return CGSize(width: label.frame.width + 2 * 10, height: label.frame.height + 2 * 10)
+        var newSize = CGSize()
+        if size.width != CGFloat.greatestFiniteMagnitude {
+            newSize.width = size.width + sizeThatFitSizeOffset
+            newSize.height = sizeThatFitsExpectedArea / newSize.width
+        } else if size.height != CGFloat.greatestFiniteMagnitude {
+            newSize.height = size.height + sizeThatFitSizeOffset
+            newSize.width = sizeThatFitsExpectedArea / newSize.height
+        } else {
+            newSize.width = 40
+            newSize.height = sizeThatFitsExpectedArea / newSize.width
+        }
+        
+        return newSize
     }
 }

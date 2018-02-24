@@ -20,7 +20,7 @@
 
 <br>
 
-Fast StackView without auto layout. Concise syntax, intuitive, readable & chainable. Stacks easily many views horizontally or vertically. Greatly inspired by CSS Flexbox.
+Fast StackView, Concise syntax, intuitive, readable & chainable. Stacks easily many views horizontally or vertically. Greatly inspired by Flexbox.
 
 Compare to UIStackView, StackView inherits from UIView, and layout all views added using `UIView.addSubviews` (no arrangedSubViews). This give you access to background color, transparency, round corners, transforms, ... 
 
@@ -80,6 +80,14 @@ They all share a similar syntax and method names. Also...
 ## StackViewLayout Introduction examples 
 ###### Example 1:
 
+![](docs_markdown/images/flexlayout_all_animated.gif)
+
+![Alt Text](images/flexlayout_all_animated.gif)
+
+<!--![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)-->
+
+
+<img src="docs_markdown/images/flexlayout_all_animated.gif" width="160"/>
 
 ```swift
 fileprivate let stackView = StackView()
@@ -412,6 +420,7 @@ The `direction` property establishes the [main-axis](#axes), thus defining the d
 | **column** (default) 	| <img src="docs_markdown/images/direction-column.png" width="100"/>| Top to bottom |
 | **row** | <img src="docs_markdown/images/direction-row.png" width="190"/>| Same as text direction |
 
+:pushpin: IMPORTANT NOTE: StackViewLayout determine items width by calling each item's `sizeThatFits(:CGSize)` method with the **available width**. This is particularly important to understand when using the `.row` direction, because in this direction there's a good chance that items will overflow their StackView. In these situations you'll have to use item's [`shrink`](#shrink) property to fit items inside their StackView.
 
 ###### Usage examples:
 ```swift
@@ -459,7 +468,7 @@ Not really the expected result, right?! Two issues:
 	1. Set the `alignItems` property to `.start`. See [`alignItems`](#alignItems).  
 	2. Adjust the StackView's height to match its items. See [Adjusting size to match its items](#adjust_size_to_items).
 
-2. Buttons overflow the StackView: The reason for this is that the size of the three buttons + margins are wider than the specified StackView's width (300 pixels). To contain buttons inside the StackView, we can increase the StackView's width OR we must allow at least one item to shrink if there is not enough space. By default item don't shrink. To enable this we must set the item's `shrink` property. We want that all buttons shrink equitably, so we set each button the same `shrink` property. See [`shrink`](#shrink) for more details.  
+2. Buttons overflow the StackView: The reason for this is that the size of the three buttons + margins are wider than the specified StackView's width (300 pixels). To contain buttons inside the StackView, we can increase the StackView's width OR we must allow items to shrink if there is not enough available space. By default item don't shrink. To enable this we must set the item's `shrink` property. We want that all buttons shrink equitably, so we set each button the same `shrink` property. See [`shrink`](#shrink) for more details.  
 
 ```swift
    stackView.direction(.row).alignItems(.start).define { (stack) in

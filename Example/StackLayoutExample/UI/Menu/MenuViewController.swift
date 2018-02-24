@@ -78,10 +78,10 @@ class MenuViewController: BaseViewController {
         mainView.delegate = self
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        didSelect(pageType: .tableView)
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(true)
+//        didSelect(pageType: .docExamples)
+//    }
 }
 
 // MARK: MenuViewDelegate
