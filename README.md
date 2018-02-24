@@ -22,10 +22,17 @@
 
 Fast StackView, Concise syntax, intuitive, readable & chainable. Stacks easily many views horizontally or vertically. Greatly inspired by Flexbox.
 
-Compare to UIStackView, StackView inherits from UIView, and layout all views added using `UIView.addSubviews` (no arrangedSubViews). This give you access to background color, transparency, round corners, transforms, ... 
 
-StackView can be used with Autolayout and Storyboards, but it was mainly designed for manual layout.
-  
+### Features
+* StackView can be used with **manual layout**, **Autolayout** and **Storyboards/XIB**.
+* **Compare to UIStackView, StackView is a real UIView**, it layout all sub-views from `UIView.subviews`, no `UIStackView.arrangedSubviews`. This give you access to **backgroundColor**, **transparency**, **round corners**, **animations**, **transforms**, ... 
+* StackView's items can be layouted using one of the **48 positions**.  
+<img src="docs_markdown/images/stackview_all_animated.gif" width="120"/>
+* **Margins** can be applied on each item individually, giving you full control.
+* **Width**, **height**, **min/max width** and **min/max height** can be applied on each items.
+* An **aspect ratio** can applied on items, particularly useful for images.
+* **Paddings** can be applied to the StackView.
+
 
 ### Requirements
 * iOS 9.0+ / tvOS 9.0+
@@ -80,14 +87,6 @@ They all share a similar syntax and method names. Also...
 ## StackViewLayout Introduction examples 
 ###### Example 1:
 
-![](docs_markdown/images/flexlayout_all_animated.gif)
-
-![Alt Text](images/flexlayout_all_animated.gif)
-
-<!--![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)-->
-
-
-<img src="docs_markdown/images/flexlayout_all_animated.gif" width="160"/>
 
 ```swift
 fileprivate let stackView = StackView()
@@ -96,7 +95,6 @@ init() {
    super.init(frame: .zero)
    
    addSubview(stackView)
-   ...
 
    ...
 }
@@ -105,9 +103,7 @@ override func layoutSubviews() {
     super.layoutSubviews() 
 
     // 1) Layout the StackView. This example use PinLayout for that purpose, but it could be done 
-    //    also by setting the StackView's frame:
-    //       stackView.frame = CGRect(x: 0, y: 64, 
-    //                                width: frame.width, height: frame.height - 64)
+    //    also by setting the StackView's frame or using autolayout.
     stackView.pin.all().marginTop(64)
 }
 ``` 
@@ -125,9 +121,9 @@ override func layoutSubviews() {
 * StackViewLayout share the same exact API as [FlexLayout](https://github.com/layoutBox/FlexLayout). But its usage is easier in most situations. 
 * StackViewLayout is incredibly fast compared to UIStackView. See [Performance](#performance).
 * Fine items spacing adjustment using margins. 
-* Not too intrusive. StackViewLayout only adds one property to existing iOS classes: `UIView.item`.
+* Not intrusive. StackViewLayout only adds one property to existing iOS classes: `UIView.item`.
 * Method's name match [PinLayout](https://github.com/mirego/PinLayout) and [FlexLayout](https://github.com/layoutBox/FlexLayout).
-* StackView inherits from UIView, so it supports all visual tweaks, including backgroundColor, layer borders. Which is not the case for UIStackView.
+* StackView inherits from UIView, so it supports all visual tweaks, including backgroundColor, layer borders, round corners, animations, .... Which is not the case for UIStackView.
 * StackView doesn't have an internal list of items (as [`UIStackView.arrangedSubviews`](https://developer.apple.com/documentation/uikit/uistackview/1616232-arrangedsubviews)), it simply layout all views from its `UIView.subviews` array. 
 
 <br>
