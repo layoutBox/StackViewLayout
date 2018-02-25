@@ -19,9 +19,9 @@
 
 import UIKit
 
-class AutoAdjustingSizeViewController: BaseViewController {
-    fileprivate var mainView: AutoAdjustingSizeView {
-        return self.view as! AutoAdjustingSizeView
+class LayoutModesViewController: BaseViewController {
+    fileprivate var mainView: LayoutModesView {
+        return self.view as! LayoutModesView
     }
 
     init(pageType: PageType) {
@@ -35,6 +35,6 @@ class AutoAdjustingSizeViewController: BaseViewController {
     }
     
     override func loadView() {
-        view = AutoAdjustingSizeView()
+        view = LayoutModesView()
     }
 }

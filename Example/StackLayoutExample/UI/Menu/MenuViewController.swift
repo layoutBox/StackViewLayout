@@ -20,41 +20,34 @@
 import UIKit
 
 enum PageType: Int {
+    case layoutModes
     case intro
-    case docExamples
     case autolayout
     case tableView
     case collectionView
-//    case adjustToContainer
-//    case form
-//    case relativePositions
-//    case multiRelativePositions
-//    case autoAdjustingSize
-    case unitTests
 
     case count
     
     var text: String {
         switch self {
+        case .layoutModes:                return "Layout Modes"
         case .intro:                      return "StackLayout's Intro"
-        case .docExamples:                return "Doc Examples"
         case .autolayout:                 return "Autolayout"
         case .tableView:                  return "UITableView with variable cell's height"
         case .collectionView:             return "UICollectionView with variable cell's height"
-        case .unitTests:                  return "UnitTests"
         case .count:                      return ""
         }
     }
 
     var viewController: UIViewController {
         switch self {
+        case .layoutModes:      return LayoutModesViewController(pageType: self)
         case .intro:            return IntroViewController(pageType: self)
-        case .docExamples:      return DocExamplesViewController(pageType: self)
         case .autolayout:       return UIStoryboard.init(name: "Autolayout", bundle: nil).instantiateViewController(withIdentifier: "AutolayoutViewController")
         case .tableView:        return TableViewExampleViewController(pageType: self)
         case .collectionView:   return CollectionViewExampleViewController(pageType: self)
-        case .unitTests:        return UnitTestsViewController(pageType: self)
-        case .count:                      return UIViewController()
+//        case .unitTests:        return UnitTestsViewController(pageType: self)
+        case .count:            return UIViewController()
         }
     }
 }

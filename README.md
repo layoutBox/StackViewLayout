@@ -876,6 +876,11 @@ The [**complete StackViewLayout API is available here**](https://layoutBox.githu
 
 NOT IMPLEMENTED YET. COMING SOON.
 
+* Layout Modes: Display all StackView's layout modes (direction, justifyContent, alignItems)
+* CollectionViewExample
+* TableViewExample
+* Autolayout
+
 <br>
 
 
