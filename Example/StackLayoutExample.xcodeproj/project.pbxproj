@@ -34,8 +34,6 @@
 		DFE6FF28202DC9F2007633A3 /* CollectionViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460E1FA8D4D100B6332E /* CollectionViewExampleViewController.swift */; };
 		DFE6FF29202DC9F5007633A3 /* CollectionViewExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460D1FA8D4D100B6332E /* CollectionViewExampleView.swift */; };
 		DFE6FF2A202DC9F8007633A3 /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460F1FA8D4D100B6332E /* HouseCell.swift */; };
-		DFEE3CCE202BDC24004AEC4F /* UnitTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24040D2A1FA3B39300682980 /* UnitTestsViewController.swift */; };
-		DFEE3CD2202BDC2E004AEC4F /* UnitTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24040D291FA3B39300682980 /* UnitTestsView.swift */; };
 		FC19F3AB71E0416A5DF3C997 /* Pods_StackLayoutExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10BC1DFC5AD1ACBF99B5F0F2 /* Pods_StackLayoutExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,8 +76,6 @@
 
 /* Begin PBXFileReference section */
 		10BC1DFC5AD1ACBF99B5F0F2 /* Pods_StackLayoutExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackLayoutExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		24040D291FA3B39300682980 /* UnitTestsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitTestsView.swift; sourceTree = "<group>"; };
-		24040D2A1FA3B39300682980 /* UnitTestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitTestsViewController.swift; sourceTree = "<group>"; };
 		2439CC331E665BF6003326FB /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		2439CC341E665BF6003326FB /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		2439CC381E665C6B003326FB /* BasicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
@@ -140,15 +136,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		24040D281FA3B39300682980 /* UnitTests */ = {
-			isa = PBXGroup;
-			children = (
-				24040D291FA3B39300682980 /* UnitTestsView.swift */,
-				24040D2A1FA3B39300682980 /* UnitTestsViewController.swift */,
-			);
-			path = UnitTests;
-			sourceTree = "<group>";
-		};
 		2439CC321E665BE3003326FB /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,7 +154,6 @@
 				24F75B581EE5642C008DB567 /* Intro */,
 				24EC06E81FD87DD300459C62 /* LayoutModes */,
 				24A9C1EF1EF0542500F2CF64 /* TableViewExample */,
-				24040D281FA3B39300682980 /* UnitTests */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -441,7 +427,6 @@
 				"${BUILT_PRODUCTS_DIR}/FlexLayout/FlexLayout.framework",
 				"${PODS_ROOT}/Reveal-SDK/RevealServer-10/iOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/StackViewLayout/StackViewLayout.framework",
-				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -449,7 +434,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlexLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealServer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StackViewLayout.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -499,12 +483,10 @@
 				DFE6FF29202DC9F5007633A3 /* CollectionViewExampleView.swift in Sources */,
 				24EC06EF1FD87DD300459C62 /* LayoutModesViewController.swift in Sources */,
 				24F246141FA8D57100B6332E /* UIImageView+Download.swift in Sources */,
-				DFEE3CCE202BDC24004AEC4F /* UnitTestsViewController.swift in Sources */,
 				24DA374B1EF7F90600D1AB2F /* BaseFormView.swift in Sources */,
 				DFE6FF28202DC9F2007633A3 /* CollectionViewExampleViewController.swift in Sources */,
 				247157941F87BD680003424F /* UIEdgeInsets+PinLayout.swift in Sources */,
 				2423C79F1FD0B00B00C794AE /* IntroViewController.swift in Sources */,
-				DFEE3CD2202BDC2E004AEC4F /* UnitTestsView.swift in Sources */,
 				24EC06EE1FD87DD300459C62 /* LayoutModesView.swift in Sources */,
 				2479AD802001737300F39774 /* BasicButton.swift in Sources */,
 				DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */,
