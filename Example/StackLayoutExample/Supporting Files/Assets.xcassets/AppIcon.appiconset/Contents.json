@@ -126,13 +126,13 @@
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "Icon-App-83.5x83.5@2x.png",
+      "filename" : "Icon-App-76x76@3x.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "Icon-App-1024.png",
+      "filename" : "ItunesArtwork.png",
       "scale" : "1x"
     }
   ],

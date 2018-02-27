@@ -23,12 +23,45 @@ import StackViewLayout
 
 class IntroView: BaseView {
 
-    fileprivate let logo = UIImageView(image: UIImage(named: "PinLayout-logo"))
-    fileprivate let textLabel = UILabel()
-    fileprivate let separatorView = UIView()
+    fileprivate let stackView = StackView()
 
     override init() {
         super.init()
+
+        let button1 = createButton(imageName: "share_1")
+        let button2 = createButton(imageName: "share_2")
+        let button3 = createButton(imageName: "share_3")
+        let button4 = createButton(imageName: "share_4")
+
+        let button5 = createButton(imageName: "share_5")
+        let button6 = createButton(imageName: "share_6")
+        let button7 = createButton(imageName: "share_7")
+        let button8 = createButton(imageName: "share_8")
+
+        var imageRatio: CGFloat? = nil
+        if let imageSize = button1.image(for: .normal)?.size {
+            imageRatio = imageSize.width / imageSize.height
+        }
+
+        //stackView.define { (stackView) in
+            stackView.addStackView().direction(.row).justifyContent(.spaceBetween).define { (stackView) in
+                stackView.addItem(button1).shrink(1).aspectRatio(imageRatio)
+                stackView.addItem(button2)/*.marginLeft(10)*/.shrink(1).aspectRatio(imageRatio)
+                stackView.addItem(button3)/*.marginLeft(10)*/.shrink(1).aspectRatio(imageRatio)
+                stackView.addItem(button4)/*.marginLeft(10)*/.shrink(1).aspectRatio(imageRatio)
+            }
+
+//            stackView.addStackView().direction(.row).justifyContent(.spaceBetween).define { (stackView) in
+//                stackView.addItem(button5).shrink(1)//.aspectRatio(imageRatio)
+//                stackView.addItem(button6).marginLeft(10).shrink(1)//.aspectRatio(imageRatio)
+//                stackView.addItem(button7).marginLeft(10).shrink(1)//.aspectRatio(imageRatio)
+//                stackView.addItem(button8).marginLeft(10).shrink(1)//.aspectRatio(imageRatio)
+//            }.item.marginTop(10)
+        //}
+        addSubview(stackView)
+
+        stackView.layer.borderColor = UIColor.lightGray.cgColor
+        stackView.layer.borderWidth = 1 / 3
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,5 +70,14 @@ class IntroView: BaseView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        stackView.pin.top(safeArea.top).left().width(120).sizeToFit(.width)
+    }
+
+    fileprivate func createButton(imageName: String) -> UIButton {
+        let button = UIButton()
+        button.setImage(UIImage(named: imageName), for: .normal)
+
+        return button
     }
 }

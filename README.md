@@ -85,8 +85,106 @@ They all share a similar syntax and method names. Also...
  
 <a name="intro_usage_example"></a>
 ## StackViewLayout Introduction examples 
-###### Example 1:
 
+### Example: Display 4 buttons in a row
+**You**: I would like to display 4 buttons horizontally using a StackView. These buttons contains an image. 
+**Answer**: Easy, just adds these buttons (items) using either `addItem(:UIView)` or `addSubviews`. StackView layout all views from its `UIView.subviews` array. And set the direction to `.row` using [`direction(:Direction)`](#direction)
+
+##### Variation 1: Row using `direction(.row)`
+
+```swift
+  stackView.direction(.row).define { (stackView) in
+     stackView.addItem(button1)  // or stackView.addSubviews(button1)
+     stackView.addItem(button2)  // or stackView.addSubviews(button2)
+     stackView.addItem(button3)  // or stackView.addSubviews(button3)
+     stackView.addItem(button4)  // or stackView.addSubviews(button4)
+  }
+``` 
+
+Result: 
+
+<img src="docs_markdown/images/examples/stackview_intro.png" width="400"/>
+
+**You**: Nice, but how can we add some margins between items?  
+**Answer**: You can set item's margin using [margins methods](#margins).
+
+##### Variation 2: Add margins
+
+```swift
+  stackView.direction(.row).define { (stackView) in
+     stackView.addItem(button1)
+     stackView.addItem(button2).marginLeft(10)
+     stackView.addItem(button3).marginLeft(10)
+     stackView.addItem(button4).marginLeft(10)
+  }
+``` 
+
+Result: 
+
+<img src="docs_markdown/images/examples/stackview_intro_margin.png" width="400"/>
+
+**You**: Good, but how can we distribute the remaining space around items?  
+**Answer**: You can use StackView's method [`justifyContent(:)`](#justifyContent) to distribute extra free space.
+
+##### Variation 3: Distribute space using `justifyContent(.spaceBetween)`
+
+```swift
+  stackView.direction(.row).justifyContent(.spaceBetween).define { (stackView) in
+     stackView.addItem(button1)
+     stackView.addItem(button2).marginLeft(10)
+     stackView.addItem(button3).marginLeft(10)
+     stackView.addItem(button4).marginLeft(10)
+  }
+``` 
+
+Result: 
+
+<img src="docs_markdown/images/examples/stackview_intro_justifyContent.png" width="400"/>
+
+**You**: But what if the available screen width available is too narrow to display the 4 buttons?  
+
+Result: 
+
+<img src="docs_markdown/images/examples/stackview_intro_narrow.png" width="270"/>
+
+**You**: Oups, buttons overflow on each other, what can we do to fix it?  
+**Answer**: You need to specify which items should shrink and in which ratio using [`shrink(:CGFloat)`](#shrink). Here we want all buttons to shrink equally, so we use the same shrink factor on all items.
+
+```swift
+  stackView.direction(.row).justifyContent(.spaceBetween).define { (stackView) in
+     stackView.addItem(button1).shrink(1)
+     stackView.addItem(button2).marginLeft(10).shrink(1)
+     stackView.addItem(button3).marginLeft(10).shrink(1)
+     stackView.addItem(button4).marginLeft(10).shrink(1)
+  }
+``` 
+
+Result: 
+
+<img src="docs_markdown/images/examples/stackview_intro_shrink.png" width="270"/>
+
+**You**: Ahh, much better, but buttons aspect ratio is not right, how can we fix that?  
+**Answer**: You can specify the aspectRatio for each items using [aspectRatio methods](#aspect_ratio).
+
+```swift
+  stackView.direction(.row).justifyContent(.spaceBetween).define { (stackView) in
+     stackView.addItem(button1).shrink(1).aspectRatio(imageRatio)
+     stackView.addItem(button2).marginLeft(10).shrink(1).aspectRatio(imageRatio)
+     stackView.addItem(button3).marginLeft(10).shrink(1).aspectRatio(imageRatio)
+     stackView.addItem(button4).marginLeft(10).shrink(1).aspectRatio(imageRatio)
+  }
+``` 
+
+Result: 
+
+<img src="docs_markdown/images/examples/stackview_intro_aspectRatio.png" width="270"/>
+
+**You**: Perfect! Now suppose I want a second row of buttons.
+**Answer**: 
+
+**You**: Perfect! Now we have buttons that layout correctly on any screen size!
+
+Complete source code:
 
 ```swift
 fileprivate let stackView = StackView()
@@ -94,17 +192,21 @@ fileprivate let stackView = StackView()
 init() {
    super.init(frame: .zero)
    
+   stackView.direction(.row).justifyContent(.spaceBetween).define { (stackView) in
+      stackView.addItem(button1).shrink(1).aspectRatio(imageRatio)
+      stackView.addItem(button2).marginLeft(10).shrink(1).aspectRatio(imageRatio)
+      stackView.addItem(button3).marginLeft(10).shrink(1).aspectRatio(imageRatio)
+      stackView.addItem(button4).marginLeft(10).shrink(1).aspectRatio(imageRatio)
+   }
    addSubview(stackView)
-
-   ...
 }
 
 override func layoutSubviews() {
     super.layoutSubviews() 
 
-    // 1) Layout the StackView. This example use PinLayout for that purpose, but it could be done 
+    // Layout the StackView. This example use PinLayout for that purpose, but it could be done 
     //    also by setting the StackView's frame or using autolayout.
-    stackView.pin.all().marginTop(64)
+    stackView.pin.top(safeArea.top).horizontally(10).sizeToFit(.width)
 }
 ``` 
 
@@ -737,7 +839,7 @@ Set all margins to the specified value.
 <br>
 
 <a name="aspect_ratio"></a>
-### aspectRatio() 
+### aspectRatio(:CGFloat?)) / aspectRatio(of: UIView) / aspectRatio()
 
 AspectRatio property solves the problem of knowing one dimension of an element and an aspect ratio, this is very common when it comes to images, videos, and other media types. AspectRatio accepts any floating point value > 0, the default is undefined.
 
@@ -746,6 +848,14 @@ AspectRatio property solves the problem of knowing one dimension of an element a
 * AspectRatio has higher priority than `grow`.
 * If AspectRatio, Width, and Height are set then the cross dimension is overridden.
 * Call `aspectRatio(nil)` to reset the property.
+
+**Methods:**
+
+* **`aspectRatio(: CGFloat)`**:  
+Set the item's aspect ratio using a CGFloat. AspectRatio is defined as the ratio between the width and the height (width / height). 
+
+* **`aspectRatio()`**:  
+If the layouted view is an UIImageView, this method will set the aspectRatio using the UIImageView's image dimension. For other types of views, this method as no impact.
 
    
 ###### Usage examples:

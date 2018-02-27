@@ -188,23 +188,12 @@ class StackItemImpl: NSObject, StackItem {
     }
 
     @discardableResult
-    func aspectRatio(of view: UIView) -> StackItem {
-        _aspectRatio = view.bounds.width / view.bounds.height
-        return self
-    }
-
-    @discardableResult
     func aspectRatio() -> StackItem {
         if let imageView = view as? UIImageView {
             if let imageSize = imageView.image?.size {
                 _aspectRatio = imageSize.width / imageSize.height
-            } else {
-//                warnWontBeApplied("the layouted UIImageView's image hasn't been set", context)
             }
-        } else {
-//            warnWontBeApplied("the layouted must be an UIImageView() to use the aspectRatio() method without parameter.", context)
-        }
-
+        } 
         return self
     }
     

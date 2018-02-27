@@ -31,7 +31,7 @@ enum PageType: Int {
     var text: String {
         switch self {
         case .layoutModes:                return "Layout Modes"
-        case .intro:                      return "StackLayout's Intro"
+        case .intro:                      return "StackLayout's Intro Example"
         case .autolayout:                 return "Autolayout"
         case .tableView:                  return "UITableView with variable cell's height"
         case .collectionView:             return "UICollectionView with variable cell's height"
@@ -71,10 +71,10 @@ class MenuViewController: BaseViewController {
         mainView.delegate = self
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(true)
-//        didSelect(pageType: .docExamples)
-//    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        didSelect(pageType: .intro)
+    }
 }
 
 // MARK: MenuViewDelegate

@@ -194,19 +194,6 @@ public protocol StackItem {
     func aspectRatio(_ value: CGFloat?) -> StackItem
 
     /**
-     Set the view aspect ratio using another UIView's aspect ratio.
-
-     AspectRatio is applied only if a single dimension (either width or height) can be determined,
-     in that case the aspect ratio will be used to compute the other dimension.
-
-     * AspectRatio is defined as the ratio between the width and the height (width / height).
-     * AspectRatio respects the min (minWidth/minHeight) and the max (maxWidth/maxHeight)
-     dimensions of an item.
-     */
-    @discardableResult
-    func aspectRatio(of view: UIView) -> StackItem
-
-    /**
      If the layouted view is an UIImageView, this method will set the aspectRatio using
      the UIImageView's image dimension.
 
