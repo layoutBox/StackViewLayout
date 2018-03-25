@@ -106,7 +106,7 @@ class LayoutModesView: BaseView {
         return button
     }
 
-    internal func didTapToggleDirection() {
+    @objc fileprivate func didTapToggleDirection() {
         switch stackView.getDirection() {
         case .column: stackView.direction(.row)
         case .row:    stackView.direction(.column)
@@ -115,7 +115,7 @@ class LayoutModesView: BaseView {
         applyChange()
     }
     
-    internal func didTapToggleJustify() {
+    @objc fileprivate func didTapToggleJustify() {
         switch stackView.getJustifyContent() {
         case .start:        stackView.justifyContent(.center)
         case .center:       stackView.justifyContent(.end)
@@ -128,7 +128,7 @@ class LayoutModesView: BaseView {
         applyChange()
     }
     
-    internal func didTapToggleAlignItems() {
+    @objc fileprivate func didTapToggleAlignItems() {
         switch stackView.getAlignItems() {
         case .stretch: stackView.alignItems(.start)
         case .start:   stackView.alignItems(.center)

@@ -17,6 +17,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+
+var debug = false
+var isSizeThatFits = false
+
 import Foundation
 
 #if os(iOS) || os(tvOS)
@@ -37,28 +41,58 @@ extension StackView {
         super.layoutSubviews()
         
         let container = Container(stackView: self)
-        layoutItems(container: container)
+        layoutItems(container: container, sizeThatFits: false)
     }
     
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
         let container = Container(stackView: self, size: size)
-        return layoutItems(container: container)
+        return layoutItems(container: container, sizeThatFits: true)
+    }
+
+    func display(type: String, itemInfo: ItemInfo) {
+        //            container.items.forEach({ (itemInfo) in
+        print("   \(type):")
+        print("        mainAxisLength:  \(itemInfo.mainAxisLength)")
+        print("        crossAxisLength: \(itemInfo.crossAxisLength)")
+        print("        measureType:     \(itemInfo.measureType)")
+        print("        width:           \(itemInfo.width)")
+        print("        height:          \(itemInfo.height)")
+
     }
     
     @discardableResult
-    internal func layoutItems(container: Container) -> CGSize {
+    internal func layoutItems(container: Container, sizeThatFits: Bool) -> CGSize {
         let containerMainAxisLength = container.mainAxisLength
         let containerCrossAxisLength = container.crossAxisLength
 
         guard containerMainAxisLength != nil || containerCrossAxisLength != nil else { return .zero }
         guard (containerMainAxisLength ?? 0) > 0 || (containerCrossAxisLength ?? 0) > 0 else { return .zero }
 
+        isSizeThatFits = sizeThatFits
+        debug = subviews.count > 1
+
+        if debug {
+            if isSizeThatFits {
+                print("sizeThatFits")
+            } else {
+                print("Layout")
+            }
+        }
+
         // Measures stack's items and add them in the Container.items array.
         measuresItemsAndMargins(container: container)
-        
+
+        if debug, let itemInfo = container.items.first {
+            display(type: "AFTER measuresItemsAndMargins", itemInfo: itemInfo)
+        }
+
         adjustItemsSizeToContainer(container: container)
 
-        return layoutItemsIn(container: container)
+        if debug, let itemInfo = container.items.first {
+            display(type: "AFTER adjustItemsSizeToContainer", itemInfo: itemInfo)
+        }
+
+        return layoutItemsIn(container: container, sizeThatFits: sizeThatFits)
     }
     
     private func measuresItemsAndMargins(container: Container) {
@@ -143,10 +177,14 @@ extension StackView {
         }
     }
 
-    fileprivate func layoutItemsIn(container: Container) -> CGSize {
+
+
+    fileprivate func layoutItemsIn(container: Container, sizeThatFits: Bool) -> CGSize {
         var mainAxisOffset = container.mainAxisStartPadding
         let containerMainAxisLength = container.mainAxisLength
         let containerCrossAxisLength = container.crossAxisLength
+
+        var itemIndex = 0
 
 //        guard containerMainAxisLength != nil || containerCrossAxisLength != nil else { return .zero }
 //        guard (containerMainAxisLength ?? 0) > 0 || (containerCrossAxisLength ?? 0) > 0 else { return .zero }
@@ -159,8 +197,8 @@ extension StackView {
 
         let mainAxisTotalItemsLength = container.mainAxisTotalItemsLength
 
-        if let mainAxisLength = containerMainAxisLength,
-            let containerMainAxisInnner = container.mainAxisInnerLength {
+        if let mainAxisLength = containerMainAxisLength, let containerMainAxisInnner = container.mainAxisInnerLength,
+            containerMainAxisInnner < mainAxisLength {
             switch justifyContent {
             case .start:
             break // nop
@@ -216,8 +254,8 @@ extension StackView {
                 }
             }
 
-            itemCrossAxisLength = item.applyMinMax(toCrossAxisLength: itemCrossAxisLength)
             itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemMainAxisLength)
+            itemCrossAxisLength = item.applyMinMax(toCrossAxisLength: itemCrossAxisLength)
 
             let viewFrame  = direction == .column ? CGRect(x: crossAxisPos, y: mainAxisOffset, width: itemCrossAxisLength, height: itemMainAxisLength) :
                 CGRect(x: mainAxisOffset, y: crossAxisPos, width: itemMainAxisLength, height: itemCrossAxisLength)
@@ -235,6 +273,13 @@ extension StackView {
                 maxX = mainAxisOffset
                 maxY = max(itemViewRect.maxY + crossAxisEndMargin, maxY)
             }
+
+            if debug {
+                print("   Item \(itemIndex): \(itemViewRect)")
+            }
+            itemIndex += 1
+
+
         }
 
         maxX += container.paddingRight

@@ -314,11 +314,23 @@ class ItemInfo {
 
     private func applyAspectRatio(_ aspectRatio: CGFloat, adjustWidth: Bool) {
         if adjustWidth {
-            width = height! * aspectRatio
+            let adjustedHeight = height!//.roundUsingDisplayScale()
+            height = adjustedHeight
+            width = (adjustedHeight * aspectRatio).ceilUsingDisplayScale()
         } else {
-            height = width! / aspectRatio
+            let adjustedWidth = width!//.roundUsingDisplayScale()
+            width = adjustedWidth
+            height = (adjustedWidth / aspectRatio).ceilUsingDisplayScale()
         }
     }
+
+//    private func applyAspectRatio(_ aspectRatio: CGFloat, adjustWidth: Bool) {
+//        if adjustWidth {
+//            width = height! * aspectRatio
+//        } else {
+//            height = width! / aspectRatio
+//        }
+//    }
 
     private func adjustWidthToAspectRatioAndContainer(width: CGFloat) -> CGFloat {
         guard direction == .row else { return width }

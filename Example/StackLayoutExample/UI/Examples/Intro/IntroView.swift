@@ -33,10 +33,10 @@ class IntroView: BaseView {
         let button3 = createButton(imageName: "share_3")
         let button4 = createButton(imageName: "share_4")
 
-        let button5 = createButton(imageName: "share_5")
-        let button6 = createButton(imageName: "share_6")
-        let button7 = createButton(imageName: "share_7")
-        let button8 = createButton(imageName: "share_8")
+//        let button5 = createButton(imageName: "share_5")
+//        let button6 = createButton(imageName: "share_6")
+//        let button7 = createButton(imageName: "share_7")
+//        let button8 = createButton(imageName: "share_8")
 
         var imageRatio: CGFloat? = nil
         if let imageSize = button1.image(for: .normal)?.size {
@@ -45,10 +45,24 @@ class IntroView: BaseView {
 
         //stackView.define { (stackView) in
             stackView.addStackView().direction(.row).justifyContent(.spaceBetween).define { (stackView) in
-                stackView.addItem(button1).shrink(1).aspectRatio(imageRatio)
-                stackView.addItem(button2)/*.marginLeft(10)*/.shrink(1).aspectRatio(imageRatio)
-                stackView.addItem(button3)/*.marginLeft(10)*/.shrink(1).aspectRatio(imageRatio)
-                stackView.addItem(button4)/*.marginLeft(10)*/.shrink(1).aspectRatio(imageRatio)
+                stackView.addItem(button1)
+                    .shrink(1)
+                    .aspectRatio(imageRatio)
+
+                stackView.addItem(button2)
+                    .shrink(1)
+                    .aspectRatio(imageRatio)
+                    .marginLeft(10)
+
+                stackView.addItem(button3)
+                    .shrink(1)
+                    .aspectRatio(imageRatio)
+                    .marginLeft(10)
+
+                stackView.addItem(button4)
+                    .shrink(1)
+                    .aspectRatio(imageRatio)
+                    .marginLeft(10)
             }
 
 //            stackView.addStackView().direction(.row).justifyContent(.spaceBetween).define { (stackView) in

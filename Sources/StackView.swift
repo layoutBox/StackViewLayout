@@ -71,6 +71,7 @@ public class StackView: UIView {
 
     @discardableResult
     public func addItem(_ view: UIView) -> StackItem {
+        view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         markDirty()
         
@@ -79,6 +80,7 @@ public class StackView: UIView {
     
     @discardableResult
     public func insertItem(_ view: UIView, at index: Int) -> StackItem {
+        view.translatesAutoresizingMaskIntoConstraints = false
         insertSubview(view, at: index)
         markDirty()
         
@@ -87,6 +89,7 @@ public class StackView: UIView {
     
     @discardableResult
     public func insertItem(_ view: UIView, before refItem: UIView) -> StackItem? {
+        view.translatesAutoresizingMaskIntoConstraints = false
         insertSubview(view, aboveSubview: refItem)
         markDirty()
         
@@ -95,6 +98,7 @@ public class StackView: UIView {
     
     @discardableResult
     public func insertItem(_ view: UIView, after refItem: UIView) -> StackItem? {
+        view.translatesAutoresizingMaskIntoConstraints = false
         insertSubview(view, belowSubview: refItem)
         markDirty()
         
@@ -359,7 +363,7 @@ public class StackView: UIView {
             container.height = nil
         }
         
-        layoutItems(container: container)
+        layoutItems(container: container, sizeThatFits: false)
     }
 
     //
