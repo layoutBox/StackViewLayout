@@ -1025,7 +1025,7 @@ class AspectRatioSpec: QuickSpec {
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 200), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 181.667, height: 181.667), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 381.667, width: 181.667, height: 218.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 381.667, width: 182, height: 218.333), within: withinRange))
             }
 
             it("aspectRatio + shrink") {

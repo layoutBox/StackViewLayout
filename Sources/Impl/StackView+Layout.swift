@@ -197,8 +197,8 @@ extension StackView {
 
         let mainAxisTotalItemsLength = container.mainAxisTotalItemsLength
 
-        if let mainAxisLength = containerMainAxisLength, let containerMainAxisInnner = container.mainAxisInnerLength,
-            containerMainAxisInnner < mainAxisLength {
+        if let mainAxisLength = containerMainAxisLength,
+            let containerMainAxisInnner = container.mainAxisInnerLength {
             switch justifyContent {
             case .start:
             break // nop
@@ -254,8 +254,8 @@ extension StackView {
                 }
             }
 
-            itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemMainAxisLength)
             itemCrossAxisLength = item.applyMinMax(toCrossAxisLength: itemCrossAxisLength)
+            itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemMainAxisLength)
 
             let viewFrame  = direction == .column ? CGRect(x: crossAxisPos, y: mainAxisOffset, width: itemCrossAxisLength, height: itemMainAxisLength) :
                 CGRect(x: mainAxisOffset, y: crossAxisPos, width: itemMainAxisLength, height: itemCrossAxisLength)

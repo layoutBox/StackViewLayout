@@ -24,12 +24,29 @@ class ItemInfo {
     var view: UIView
     var stackItem: StackItemImpl
     var container: Container
-    
-    var width: CGFloat?
+
+    fileprivate var _width: CGFloat?
+    var width: CGFloat? {
+        get {
+            return _width
+        }
+        set {
+            _width = newValue?.roundUsingDisplayScale()
+        }
+    }
+
     var minWidth: CGFloat?
     var maxWidth: CGFloat?
 
-    var height: CGFloat?
+    fileprivate var _height: CGFloat?
+    var height: CGFloat? {
+        get {
+            return _height
+        }
+        set {
+            _height = newValue?.roundUsingDisplayScale()
+        }
+    }
     var minHeight: CGFloat?
     var maxHeight: CGFloat?
     
@@ -314,23 +331,11 @@ class ItemInfo {
 
     private func applyAspectRatio(_ aspectRatio: CGFloat, adjustWidth: Bool) {
         if adjustWidth {
-            let adjustedHeight = height!//.roundUsingDisplayScale()
-            height = adjustedHeight
-            width = (adjustedHeight * aspectRatio).ceilUsingDisplayScale()
+            width = (height! * aspectRatio)
         } else {
-            let adjustedWidth = width!//.roundUsingDisplayScale()
-            width = adjustedWidth
-            height = (adjustedWidth / aspectRatio).ceilUsingDisplayScale()
+            height = (width! / aspectRatio)
         }
     }
-
-//    private func applyAspectRatio(_ aspectRatio: CGFloat, adjustWidth: Bool) {
-//        if adjustWidth {
-//            width = height! * aspectRatio
-//        } else {
-//            height = width! / aspectRatio
-//        }
-//    }
 
     private func adjustWidthToAspectRatioAndContainer(width: CGFloat) -> CGFloat {
         guard direction == .row else { return width }
