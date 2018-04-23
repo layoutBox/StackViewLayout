@@ -305,7 +305,6 @@
 				249EFE3C1E64FAFE00165E39 /* Frameworks */,
 				249EFE3D1E64FAFE00165E39 /* Resources */,
 				5D3C4568AFC08267110D9971 /* [CP] Embed Pods Frameworks */,
-				CCCCC7EE5AE16BA960D7DB4F /* [CP] Copy Pods Resources */,
 				24E6547E1E68F88D00A72A8B /* Run Swiftlint */,
 				2468130D1F8D013600462E53 /* Embed App Extensions */,
 			);
@@ -432,21 +431,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-StackLayoutExample/Pods-StackLayoutExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CCCCC7EE5AE16BA960D7DB4F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-StackLayoutExample/Pods-StackLayoutExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DDE1EE639E8C959FEBC41FDC /* [CP] Check Pods Manifest.lock */ = {
