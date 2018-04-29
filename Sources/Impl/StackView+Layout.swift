@@ -52,11 +52,11 @@ extension StackView {
     func display(type: String, itemInfo: ItemInfo) {
         //            container.items.forEach({ (itemInfo) in
         print("   \(type):")
-        print("        mainAxisLength:  \(itemInfo.mainAxisLength)")
+        print("        mainAxisLength:  \(String(describing: itemInfo.mainAxisLength))")
         print("        crossAxisLength: \(itemInfo.crossAxisLength)")
-        print("        measureType:     \(itemInfo.measureType)")
-        print("        width:           \(itemInfo.width)")
-        print("        height:          \(itemInfo.height)")
+        print("        measureType:     \(String(describing: itemInfo.measureType))")
+        print("        width:           \(String(describing: itemInfo.width))")
+        print("        height:          \(String(describing: itemInfo.height))")
 
     }
     
@@ -122,30 +122,48 @@ extension StackView {
         var previousLength: CGFloat?
         var lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
         let delta = Coordinates.onePixelLength + 0.001
+        var nbIteration = 0 // TEMP
 
         if lengthDiff > delta {
             // Grow
             var growFactorTotal: CGFloat = 0
+
             repeat {
-                let itemsGrowFactors = container.itemsGrowFactors()
-                growFactorTotal = itemsGrowFactors.reduce(0, +)
+//                if nbIteration > 1 { // TEMP
+//                    assertionFailure()
+//                }
+                let growableItems = container.growableItems()
+                growFactorTotal = growableItems.reduce(0, { (result, item) -> CGFloat in
+                    return result + item.growFactor()
+                })
 
                 if growFactorTotal > 0 {
                     let factorLength = lengthDiff / growFactorTotal
 
-                    for (index, item) in container.items.enumerated() {
-                        guard let itemMainAxisLength = item.mainAxisLength else { continue }
-                        let growFactor = itemsGrowFactors[index]
-                        
+                    growableItems.forEach { (item) in
+                        guard let itemMainAxisLength = item.mainAxisLength else { return }
+                        let growFactor = item.growFactor()
+
                         if growFactor > 0 {
                             item.grow(mainAxisLength: itemMainAxisLength + growFactor * factorLength)
                         }
                     }
-                    
+
+//                    for (index, item) in growableItems.enumerated() {
+//                        guard let itemMainAxisLength = item.mainAxisLength else { continue }
+//                        let growFactor = item.growFactor()
+//
+//                        if growFactor > 0 {
+//                            item.grow(mainAxisLength: itemMainAxisLength + growFactor * factorLength)
+//                        }
+//                    }
+
                     container.updateMainAxisTotalLength()
 
                     previousLength = lengthDiff
                     lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
+
+                    nbIteration += 1 // TEMP
                 }
             } while (growFactorTotal > 0) && (lengthDiff > delta) && (previousLength != lengthDiff)
             
@@ -154,24 +172,41 @@ extension StackView {
             var shrinkFactorTotal: CGFloat = 0
 
             repeat {
-                let itemsShrinkFactors = container.itemsShrinkFactors()
-                shrinkFactorTotal = itemsShrinkFactors.reduce(0, +)
+                if nbIteration > 1 { // TEMP
+                    assertionFailure()
+                }
+
+                let shrinkableItems = container.shrinkableItems()
+                shrinkFactorTotal = shrinkableItems.reduce(0, { (result, item) -> CGFloat in
+                    return result + item.shrinkFactor()
+                })
+//                shrinkFactorTotal = shrinkableItems.reduce(0, +)
 
                 if shrinkFactorTotal > 0 {
                     let factorLength = lengthDiff / shrinkFactorTotal
 
-                    for (index, item) in container.items.enumerated() {
-                        guard let itemMainAxisLength = item.mainAxisLength else { continue }
-                        let shrinkFactor = itemsShrinkFactors[index]
-                        
+                    shrinkableItems.forEach { (item) in
+                        guard let itemMainAxisLength = item.mainAxisLength else { return }
+                        let shrinkFactor = item.shrinkFactor()
+
                         if shrinkFactor > 0 {
                             item.shrink(mainAxisLength: itemMainAxisLength + shrinkFactor * factorLength)
                         }
                     }
+//                    for (index, item) in container.items.enumerated() {
+//                        guard let itemMainAxisLength = item.mainAxisLength else { continue }
+//                        let shrinkFactor = shrinkableItems[index]
+//
+//                        if shrinkFactor > 0 {
+//                            item.shrink(mainAxisLength: itemMainAxisLength + shrinkFactor * factorLength)
+//                        }
+//                    }
                     container.updateMainAxisTotalLength()
 
                     previousLength = lengthDiff
                     lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
+
+                    nbIteration += 1 // TEMP
                 }
             } while (shrinkFactorTotal > 0) && (lengthDiff < -delta) && (previousLength != lengthDiff)
         }
