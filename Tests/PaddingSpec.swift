@@ -193,9 +193,9 @@ class PaddingSpec: QuickSpec {
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 261.667, width: 330, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 282, width: 330, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.333, width: 310, height: 25.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 262, width: 330, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 282.333, width: 330, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.667, width: 310, height: 25.667), within: withinRange))
             }
             
             it("padding(5, 10, 15, 20) + center + start") {
@@ -1017,7 +1017,7 @@ class PaddingSpec: QuickSpec {
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 261.667, width: 53.667, height: 20.333), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 262, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 282, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.333, width: 310, height: 25.667), within: withinRange))
             }
@@ -1037,7 +1037,6 @@ class PaddingSpec: QuickSpec {
                 expect(label1.frame).to(beCloseTo(CGRect(x: 158.333, y: 261.667, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 133, y: 282, width: 104, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.333, width: 310, height: 25.667), within: withinRange))
-
             }
             
             it("padding(5, 10, 15, 20) + center + end") {

@@ -141,16 +141,10 @@ class Container {
     
     func growableItems() -> [ItemInfo] {
         return items.filter({ $0.growFactor() > 0 /*&& mainAxisLength == nil*/ })
-//        return items.map({ (itemInfo) -> CGFloat in
-//            return itemInfo.growFactor()
-//        })
     }
     
     func shrinkableItems() -> [ItemInfo] {
         return items.filter({ $0.shrinkFactor() > 0 /*&& mainAxisLength == nil*/ })
-//        return items.map({ (itemInfo) -> CGFloat in
-//            return itemInfo.shrinkFactor()
-//        })
     }
 }
 

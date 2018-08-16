@@ -25,7 +25,7 @@ class ItemInfo {
     var stackItem: StackItemImpl
     var container: Container
 
-    fileprivate var _width: CGFloat?
+    private var _width: CGFloat?
     var width: CGFloat? {
         get {
             return _width
@@ -38,7 +38,7 @@ class ItemInfo {
     var minWidth: CGFloat?
     var maxWidth: CGFloat?
 
-    fileprivate var _height: CGFloat?
+    private var _height: CGFloat?
     var height: CGFloat? {
         get {
             return _height

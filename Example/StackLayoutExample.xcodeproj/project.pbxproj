@@ -31,6 +31,8 @@
 		DF540436203E6A8500D5F271 /* BasicViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF540430203D168500D5F271 /* BasicViewTest.swift */; };
 		DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */; };
 		DF8B0314200BE042008FF4CA /* Autolayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF8B0313200BE042008FF4CA /* Autolayout.storyboard */; };
+		DFA10DC02095EF4C00489681 /* UnitTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA10DBF2095EF4C00489681 /* UnitTestsView.swift */; };
+		DFA10DC22095EF6200489681 /* UnitTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA10DC12095EF6200489681 /* UnitTestsViewController.swift */; };
 		DFE6FF28202DC9F2007633A3 /* CollectionViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460E1FA8D4D100B6332E /* CollectionViewExampleViewController.swift */; };
 		DFE6FF29202DC9F5007633A3 /* CollectionViewExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460D1FA8D4D100B6332E /* CollectionViewExampleView.swift */; };
 		DFE6FF2A202DC9F8007633A3 /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460F1FA8D4D100B6332E /* HouseCell.swift */; };
@@ -109,6 +111,8 @@
 		DF540430203D168500D5F271 /* BasicViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicViewTest.swift; sourceTree = "<group>"; };
 		DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutolayoutViewController.swift; sourceTree = "<group>"; };
 		DF8B0313200BE042008FF4CA /* Autolayout.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Autolayout.storyboard; sourceTree = "<group>"; };
+		DFA10DBF2095EF4C00489681 /* UnitTestsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnitTestsView.swift; path = StackLayoutExample/UI/Examples/UnitTests/UnitTestsView.swift; sourceTree = SOURCE_ROOT; };
+		DFA10DC12095EF6200489681 /* UnitTestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnitTestsViewController.swift; path = StackLayoutExample/UI/Examples/UnitTests/UnitTestsViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,7 @@
 				24F75B581EE5642C008DB567 /* Intro */,
 				24EC06E81FD87DD300459C62 /* LayoutModes */,
 				24A9C1EF1EF0542500F2CF64 /* TableViewExample */,
+				DFA10DBE2095EF3800489681 /* UnitTests */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -284,6 +289,15 @@
 			path = Autolayout;
 			sourceTree = "<group>";
 		};
+		DFA10DBE2095EF3800489681 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				DFA10DBF2095EF4C00489681 /* UnitTestsView.swift */,
+				DFA10DC12095EF6200489681 /* UnitTestsViewController.swift */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
 		F143180314A617EFD07C5709 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,7 +338,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Mirego;
 				TargetAttributes = {
 					249EFE3E1E64FAFE00165E39 = {
@@ -448,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -476,9 +490,11 @@
 				249EFE431E64FAFE00165E39 /* AppDelegate.swift in Sources */,
 				DFE6FF2A202DC9F8007633A3 /* HouseCell.swift in Sources */,
 				DF426437202F1E4300C8DE73 /* MethodGroupHeader.swift in Sources */,
+				DFA10DC02095EF4C00489681 /* UnitTestsView.swift in Sources */,
 				DF426434202F1E3900C8DE73 /* TableViewExampleViewController.swift in Sources */,
 				2439CC361E665BF6003326FB /* MenuViewController.swift in Sources */,
 				249326891EEEEE3D00BCB814 /* Stylesheet.swift in Sources */,
+				DFA10DC22095EF6200489681 /* UnitTestsViewController.swift in Sources */,
 				2423C79E1FD0B00B00C794AE /* IntroView.swift in Sources */,
 				DF426435202F1E3C00C8DE73 /* TableViewExampleView.swift in Sources */,
 				2493268E1EEEF02700BCB814 /* BaseView.swift in Sources */,
@@ -513,6 +529,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -520,6 +537,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -569,6 +587,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -576,6 +595,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
