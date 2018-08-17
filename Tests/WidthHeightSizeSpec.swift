@@ -400,8 +400,7 @@ class WidthHeightSizeSpec: QuickSpec {
                 expect(view1.frame).to(beCloseTo(CGRect(x: 122.667, y: 0, width: 277.333, height: 40.667), within: withinRange))
             }
         }
-        
-        
+
         //
         // HEIGHT
         //
@@ -597,7 +596,6 @@ class WidthHeightSizeSpec: QuickSpec {
                 expect(view1.frame).to(beCloseTo(CGRect(x: 150, y: 0, width: 250, height: 100), within: withinRange))
             }
         }
-        
         
         //
         // SIZE
@@ -839,7 +837,6 @@ class WidthHeightSizeSpec: QuickSpec {
                 expect(view1.frame).to(beCloseTo(CGRect(x: 120, y: 0, width: 280, height: 280), within: withinRange))
             }
         }
-
 
         //
         // aspectRatio

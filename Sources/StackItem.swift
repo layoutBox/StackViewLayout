@@ -347,5 +347,4 @@ public protocol StackItem {
     func alpha(_ alpha: CGFloat) -> StackItem
 }
     
-    
 #endif

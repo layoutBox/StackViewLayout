@@ -112,7 +112,7 @@ class SizeThatFitsSpec: QuickSpec {
             }
             
             it("justifyContent(.start).alignItems(.stretch)") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define{ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.marginEnd(10)
                     label2.item.marginEnd(25%)
                     
@@ -395,7 +395,6 @@ class SizeThatFitsSpec: QuickSpec {
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 104, height: 77), within: withinRange))
             }
         }
-        
         
         //
         // ROW: Adjust the width based on the height

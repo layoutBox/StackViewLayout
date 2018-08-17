@@ -65,7 +65,7 @@ class isIncludedInLayoutSpec: QuickSpec {
         //
         describe("usage of isIncludedInLayout") {
             it("isIncludedInLayout()") {
-                stackView.define({ (stack) in
+                stackView.define({ (_) in
                     stackView.addItem(label1)
                     stackView.addItem(label2).isIncludedInLayout(false)
                     stackView.addItem(view1)
@@ -82,7 +82,7 @@ class isIncludedInLayoutSpec: QuickSpec {
             }
 
             it("isIncludedInLayout() after") {
-                stackView.define({ (stack) in
+                stackView.define({ (_) in
                     stackView.addItem(label1)
                     stackView.addItem(label2)
                     stackView.addItem(view1)
@@ -102,7 +102,7 @@ class isIncludedInLayoutSpec: QuickSpec {
             }
 
             it("isIncludedInLayout") {
-                stackView.define({ (stack) in
+                stackView.define({ (_) in
                     stackView.addItem(label1)
                     stackView.addItem(label2)
                     stackView.addItem(view1)

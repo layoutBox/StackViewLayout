@@ -65,7 +65,7 @@ class SubviewsSpec: QuickSpec {
         //
         describe("StackLayout using addSubview") {
             it("addSubview") {
-                stackView.justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.justifyContent(.start).alignItems(.stretch).define({ (_) in
                     stackView.addSubview(label1)
                     stackView.addSubview(label2)
                     stackView.addSubview(view1)
@@ -82,7 +82,7 @@ class SubviewsSpec: QuickSpec {
             }
 
             it("addSubview") {
-                stackView.define({ (stack) in
+                stackView.define({ (_) in
                     stackView.addSubview(label1)
                     stackView.addSubview(label2)
                     stackView.addSubview(view1)

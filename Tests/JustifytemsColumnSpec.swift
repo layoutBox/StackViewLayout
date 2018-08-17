@@ -48,7 +48,6 @@ class JustifytemsColumnSpec: QuickSpec {
             label1.text = "Label 1"
             label1.numberOfLines = 1
             
-            
             label2 = UILabel()
             label2.font = UIFont.systemFont(ofSize: 17)
             label2.backgroundColor = .green

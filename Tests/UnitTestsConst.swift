@@ -10,4 +10,3 @@ import UIKit
 
 //let withinRange: CGFloat = 1.5
 let withinRange: CGFloat = 0.1    // The range can be only 0.1 pixels while running unit tests on a iPhone Plus
-

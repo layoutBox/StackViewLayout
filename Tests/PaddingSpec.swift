@@ -1123,7 +1123,6 @@ class PaddingSpec: QuickSpec {
                 expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 559.333, width: 310, height: 25.667), within: withinRange))
             }
 
-
             it("padding(5, 10, 15, 20) + end + start") {
                 stackView.direction(.column).padding(5, 10, 15, 20).justifyContent(.end).alignItems(.start).define { (stack) in
                     stack.addItem(label1).marginLeft(10).marginRight(30)
@@ -1314,8 +1313,6 @@ class PaddingSpec: QuickSpec {
                 expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 100.667, width: 310, height: 25.667), within: withinRange))
             }
         }
-
-
 
         //
         // 1. colums + paddings
@@ -2977,7 +2974,6 @@ class PaddingSpec: QuickSpec {
                 expect(view1.frame).to(beCloseTo(CGRect(x: 130, y: 5, width: 250, height: 100), within: withinRange))
             }
         }
-
 
         //
         // SIZE

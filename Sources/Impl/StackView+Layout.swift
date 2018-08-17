@@ -17,7 +17,6 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
 var debug = false
 var isSizeThatFits = false
 
@@ -27,12 +26,12 @@ import Foundation
 import UIKit
     
 extension StackView {
-    // TODO: Tests StackView using autolayout
+    // TODO_: Tests StackView using autolayout
     public override var intrinsicContentSize: CGSize {
         return sizeThatFits(CGSize(width: frame.width, height: .greatestFiniteMagnitude))
     }
 
-    // TODO: Tests StackView using autolayout
+    // TODO_: Tests StackView using autolayout
     public override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {
         return super.systemLayoutSizeFitting(targetSize)
     }
@@ -212,8 +211,6 @@ extension StackView {
         }
     }
 
-
-
     fileprivate func layoutItemsIn(container: Container, sizeThatFits: Bool) -> CGSize {
         var mainAxisOffset = container.mainAxisStartPadding
         let containerMainAxisLength = container.mainAxisLength
@@ -292,7 +289,7 @@ extension StackView {
             itemCrossAxisLength = item.applyMinMax(toCrossAxisLength: itemCrossAxisLength)
             itemMainAxisLength = item.applyMinMax(toMainAxisLength: itemMainAxisLength)
 
-            let viewFrame  = direction == .column ? CGRect(x: crossAxisPos, y: mainAxisOffset, width: itemCrossAxisLength, height: itemMainAxisLength) :
+            let viewFrame = direction == .column ? CGRect(x: crossAxisPos, y: mainAxisOffset, width: itemCrossAxisLength, height: itemMainAxisLength) :
                 CGRect(x: mainAxisOffset, y: crossAxisPos, width: itemMainAxisLength, height: itemCrossAxisLength)
 
             let itemViewRect = Coordinates.adjustRectToDisplayScale(viewFrame)

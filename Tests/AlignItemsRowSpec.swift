@@ -22,7 +22,6 @@ import Nimble
 import StackLayout
 import PinLayout
 
-
 class AlignItemsRowSpec: QuickSpec {
     override func spec() {
         var viewController: UIViewController!
