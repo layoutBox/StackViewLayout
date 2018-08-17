@@ -32,7 +32,8 @@ class SubviewsSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(3)
+            _setUnitTestDisplayScale(displayScale: 3)
+            _pinlayoutSetUnitTest(displayScale: 3)
         }
 
         beforeEach {
@@ -89,7 +90,8 @@ class SubviewsSpec: QuickSpec {
 
                 label2.removeFromSuperview()
 
-                stackView.pin.top(64).width(400).sizeToFit(.width)
+                let size = stackView.sizeThatFits(CGSize(width: 400, height: CGFloat.greatestFiniteMagnitude))
+                stackView.frame = CGRect(x: 0, y: 64, width: size.width, height: size.height)
                 stackView.layout()
 
                 // Match FlexLayout

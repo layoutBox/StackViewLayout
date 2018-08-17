@@ -119,7 +119,6 @@
 		6BD49253AF7327F24DA0757C /* Pods_StackLayoutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackLayoutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F957AA928728CEF94281E9 /* Pods-StackLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayout.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayout/Pods-StackLayout.release.xcconfig"; sourceTree = "<group>"; };
 		DF6D467B2013D2A40022C5D6 /* UIScrollViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewSpec.swift; sourceTree = "<group>"; };
-		DF6D467C2013D2A40022C5D6 /* TransformSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformSpec.swift; sourceTree = "<group>"; };
 		DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestsConst.swift; sourceTree = "<group>"; };
 		DFAF926D2016AC44002013D3 /* PaddingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingSpec.swift; sourceTree = "<group>"; };
 		DFB506162024DD310067A4DD /* AspectRatioSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AspectRatioSpec.swift; sourceTree = "<group>"; };
@@ -229,7 +228,6 @@
 				24496C2F1FE55F7D006F0E78 /* ShrinkColumnSpec.swift */,
 				24EB78231FEA098C00C979AA /* ShrinkRowSpec.swift */,
 				241819BE20028FDA0092B369 /* SubviewsSpec.swift */,
-				DF6D467C2013D2A40022C5D6 /* TransformSpec.swift */,
 				DF6D467B2013D2A40022C5D6 /* UIScrollViewSpec.swift */,
 				248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */,
 				DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */,
@@ -445,7 +443,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C13A14974C1425B4B67ECF64 /* [CP] Check Pods Manifest.lock */ = {
@@ -463,7 +461,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -755,7 +753,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F91D3F965902CA40AF890854 /* Pods-StackLayoutTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 4Q596JWQC5;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -770,7 +768,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 412B4051A772AA0C17EBCD82 /* Pods-StackLayoutTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 4Q596JWQC5;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;

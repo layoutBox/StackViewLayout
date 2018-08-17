@@ -313,8 +313,6 @@ extension StackView {
                 print("   Item \(itemIndex): \(itemViewRect)")
             }
             itemIndex += 1
-
-
         }
 
         maxX += container.paddingRight

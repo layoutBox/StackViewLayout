@@ -33,7 +33,8 @@ class GrowSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(3)
+            _setUnitTestDisplayScale(displayScale: 3)
+            _pinlayoutSetUnitTest(displayScale: 3)
         }
 
         beforeEach {

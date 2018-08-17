@@ -28,6 +28,6 @@ target 'StackLayoutExample' do
   pod 'FlexLayout'  
 
   # Debug only
-  pod 'Reveal-SDK', '~> 10', :configurations => ['Debug']
+  pod 'Reveal-SDK', '~> 17', :configurations => ['Debug']
   pod 'SwiftLint'
 end
