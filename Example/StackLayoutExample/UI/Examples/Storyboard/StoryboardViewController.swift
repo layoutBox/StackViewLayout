@@ -1,14 +1,7 @@
-//
-//  AutolayoutViewController.swift
-//  StackLayoutExample
-//
-//  Created by Luc Dion on 2018-01-14.
-//  Copyright (c) 2018 Mirego. All rights reserved.
-//
 import UIKit
 import StackViewLayout
 
-class AutolayoutViewController: UIViewController {
+class StoryboardViewController: UIViewController {
     @IBOutlet private weak var stackView: StackView!
     @IBOutlet private weak var imageView: UIImageView!
 
@@ -24,7 +17,7 @@ class AutolayoutViewController: UIViewController {
         super.viewDidLoad()
 
         // Customize the StackView and its items
-        stackView.justifyContent(.spaceAround).alignItems(.center).define { (_) in
+        stackView.justifyContent(.spaceAround).alignItems(.center).padding(10).define { (_) in
             imageView.item.aspectRatio().width(100).shrink(1)
         }
     }

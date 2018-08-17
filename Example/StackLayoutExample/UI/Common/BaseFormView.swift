@@ -46,12 +46,7 @@ class BaseFormView: BaseView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        formScrollView.pin.top().left().bottom().right().margin(safeArea)
-    }
-    
-    override func safeAreaDidChange() {
-        super.safeAreaDidChange()
-        formScrollView.contentOffset = CGPoint(x: 0, y: safeArea.top)
+        formScrollView.pin.all(pin.safeArea)
     }
     
     @objc

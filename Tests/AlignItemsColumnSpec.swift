@@ -71,7 +71,7 @@ class AlignItemsColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 })
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match UIStackView
                 // Match FlexLayout
@@ -88,7 +88,7 @@ class AlignItemsColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 })
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match UIStackView
                 // Match FlexLayout
@@ -105,7 +105,7 @@ class AlignItemsColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 })
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match UIStackView
                 // Match FlexLayout
@@ -122,7 +122,7 @@ class AlignItemsColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 })
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match UIStackView
                 // Match FlexLayout
@@ -146,7 +146,7 @@ class AlignItemsColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 })
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match UIStackView
                 // Match FlexLayout
@@ -165,7 +165,7 @@ class AlignItemsColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 })
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match UIStackView
                 // Match FlexLayout
@@ -184,7 +184,7 @@ class AlignItemsColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 })
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match UIStackView
                 // Match FlexLayout
@@ -203,7 +203,7 @@ class AlignItemsColumnSpec: QuickSpec {
                     stack.addItem(view1)
                 })
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match UIStackView
                 // Match FlexLayout

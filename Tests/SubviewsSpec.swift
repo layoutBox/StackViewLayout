@@ -72,7 +72,7 @@ class SubviewsSpec: QuickSpec {
                 })
 
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match UIStackView
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -92,7 +92,7 @@ class SubviewsSpec: QuickSpec {
 
                 let size = stackView.sizeThatFits(CGSize(width: 400, height: CGFloat.greatestFiniteMagnitude))
                 stackView.frame = CGRect(x: 0, y: 64, width: size.width, height: size.height)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 70.333), within: withinRange))

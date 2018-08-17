@@ -391,24 +391,6 @@ Result: The StackView height as been adjusted to contain all its items.
 
 <br/>
 
-<a name="layout_method"></a>
-### layout() method 
-Setting a UIView's frame doesn't layout the view immediately. The layout is postponed. To force the layout of a UIView immediately you must call `UIView.layoutIfNeeded()`.
-
-StackView expose a `layout` method to also force a layout immediately.
-
-* **`layout(mode: SLayoutMode)`**  
-The method layout the StackView's items using the current frame's size or by automatically adjusting the width or the height to match its items.
-
-	**mode:**
-	* **.fitContainer**: This is the default mode when no parameter is specified. Items are layouted **inside** the StackView (width and height).
-	* **.adjustHeight**: In this mode, items are layouted **using only the StackView's width**. The container's height will be adjusted to fit its items.
-	* **.adjustWidth**: In this mode, items are layouted **using only the StackView's height**. The StackView width will be adjusted to fit its items.
-
-TODO: Does this method is really required?
-
-<br/>
-
 <a name="managing_items"></a>
 ## 2. Managing StackView's items 
 

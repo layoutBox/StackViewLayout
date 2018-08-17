@@ -39,7 +39,7 @@ struct Method {
     let description: String
 }
 
-class TableViewExampleViewController: BaseViewController {
+class TableViewExampleViewController: UIViewController {
     fileprivate var mainView: TableViewExampleView {
         return self.view as! TableViewExampleView
     }

@@ -130,7 +130,7 @@ class ShrinkColumnSpec: QuickSpec {
                 }
                 
                 stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))

@@ -69,7 +69,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -85,7 +85,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -101,7 +101,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -117,7 +117,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -133,7 +133,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -149,7 +149,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -167,7 +167,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -183,7 +183,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -199,7 +199,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -215,7 +215,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -231,7 +231,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 20.333), within: withinRange))
@@ -246,7 +246,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 22.667, y: 0, width: 53.667, height: 20.333), within: withinRange))
@@ -263,7 +263,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 290, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 290, width: 104.0, height: 20.333), within: withinRange))
@@ -277,7 +277,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 45.667, y: 290, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 99.333, y: 290, width: 104.0, height: 20.333), within: withinRange))
@@ -291,7 +291,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 91.0, y: 290, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 144.667, y: 290, width: 104.0, height: 20.333), within: withinRange))
@@ -305,7 +305,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -321,7 +321,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 290, width: 53.667, height: 20.333), within: withinRange))
@@ -336,7 +336,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 22.667, y: 290, width: 53.667, height: 20.333), within: withinRange))
@@ -353,7 +353,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 579.667, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 579.667, width: 104.0, height: 20.333), within: withinRange))
@@ -367,7 +367,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 45.667, y: 579.667, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 99.333, y: 579.667, width: 104.0, height: 20.333), within: withinRange))
@@ -381,7 +381,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 91.0, y: 579.667, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 144.667, y: 579.667, width: 104.0, height: 20.333), within: withinRange))
@@ -395,7 +395,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -411,7 +411,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 579.667, width: 53.667, height: 20.333), within: withinRange))
@@ -426,7 +426,7 @@ class JustifytemsRowSpec: QuickSpec {
                     stack.addItem(label3)
                 }
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 22.667, y: 579.667, width: 53.667, height: 20.333), within: withinRange))
@@ -444,7 +444,7 @@ class JustifytemsRowSpec: QuickSpec {
                 }
                 
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0.0, width: 104.0, height: 20.333), within: withinRange))
@@ -459,7 +459,7 @@ class JustifytemsRowSpec: QuickSpec {
                 }
                 
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -476,7 +476,7 @@ class JustifytemsRowSpec: QuickSpec {
                 }
                 
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -493,7 +493,7 @@ class JustifytemsRowSpec: QuickSpec {
                 }
                 
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -510,7 +510,7 @@ class JustifytemsRowSpec: QuickSpec {
                 }
                 
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))

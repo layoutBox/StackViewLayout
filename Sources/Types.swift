@@ -76,15 +76,3 @@ public enum SAlignSelf {
     /// The element is positioned at the baseline of the container
     //        case baseline
 }
-
-/**
- Defines how the `layout(mode:)` method layout its flex items.
- */
-public enum SLayoutMode {
-    /// This is the default mode when no parameter is specified. Items are layouted **inside** the StackView size (width and height).
-    case fitContainer
-    /// In this mode, Items are layouted **using only the StackView width**. The StackView height will be adjusted to fit the flexbox's Items
-    case adjustHeight
-    /// In this mode, Items are layouted **using only the StackView height**. The StackView width will be adjusted to fit the flexbox's Items
-    case adjustWidth
-}

@@ -56,6 +56,30 @@ class SizeThatFitsSpec: QuickSpec {
             view1 = BasicView(text: "View 1", color: .red)
             view1.sizeThatFitsExpectedArea = 400 * 20
         }
+
+        describe("the behaviour of sizeThatFits") {
+            it("should not change view's frame") {
+                label1.frame = .zero
+                label2.frame = .zero
+                view1.frame = .zero
+                stackView.frame = .zero
+
+                stackView.direction(.column).define { (stack) in
+                    stack.addItem(label1).size(100)
+                    stack.addItem(label2).size(50)
+                    stack.addItem(view1).size(200)
+                }
+
+                let size = stackView.sizeThatFits(CGSize(width: 400, height: CGFloat.greatestFiniteMagnitude))
+
+                expect(size).to(beCloseTo(CGSize(width: 200, height: 350), within: withinRange))
+
+                expect(stackView.frame).to(equal(CGRect.zero))
+                expect(label1.frame).to(equal(CGRect.zero))
+                expect(label2.frame).to(equal(CGRect.zero))
+                expect(view1.frame).to(equal(CGRect.zero))
+            }
+        }
         
         //
         // COLUMN: Adjust the height based on a fixed width
@@ -69,6 +93,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
@@ -401,12 +426,12 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.height(400).sizeToFit(.height)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 104, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 104, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 104, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 104, height: 77), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 104, height: 400), within: withinRange))
             }
         }
         
@@ -527,7 +552,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 20.333), within: withinRange))

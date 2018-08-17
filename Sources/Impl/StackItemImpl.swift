@@ -22,6 +22,13 @@ import Foundation
 #if os(iOS) || os(tvOS)
 import UIKit
 
+enum MeasureType {
+    case sizeThatFitsWidth
+    case sizeThatFitsHeight
+    case aspectRatio
+}
+
+
 class StackItemImpl: NSObject, StackItem {
     internal let view: UIView
 
@@ -44,7 +51,9 @@ class StackItemImpl: NSObject, StackItem {
     
     internal var grow: CGFloat?
     internal var shrink: CGFloat?
-    
+
+    internal var measureType: MeasureType?
+
     var alignSelf: SAlignSelf?
     var isHidden = false
     

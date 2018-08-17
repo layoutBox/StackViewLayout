@@ -71,13 +71,30 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 5, width: 370, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 10, y: 25.333, width: 370, height: 20.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 10, y: 45.667, width: 370, height: 21.667), within: withinRange))
+            }
+
+            it("padding(10)") {
+                stackView.direction(.column).padding(10).justifyContent(.start).alignItems(.stretch).define { (stack) in
+                    stack.addItem(label1)
+                    stack.addItem(label2)
+                    stack.addItem(view1)
+                }
+
+                stackView.pin.width(400).height(600)
+                stackView.layoutIfNeeded()
+
+                // Match FlexLayout
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 10, width: 380, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 10, y: 30.333, width: 380, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 10, y: 50.667, width: 380, height: 21), within: withinRange))
             }
             
             it("padding(5, 10, 15, 20) + start + start") {
@@ -88,7 +105,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -105,7 +122,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -122,7 +139,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -139,7 +156,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -156,7 +173,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -173,7 +190,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -190,7 +207,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -207,7 +224,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -224,7 +241,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -241,7 +258,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -258,7 +275,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -275,7 +292,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -292,7 +309,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -309,7 +326,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -326,7 +343,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -343,7 +360,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -360,7 +377,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -377,7 +394,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -394,7 +411,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -411,7 +428,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -428,7 +445,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -445,7 +462,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -462,7 +479,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -479,7 +496,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -496,7 +513,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 // Match FlexLayout
@@ -514,7 +531,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -531,7 +548,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -548,7 +565,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -567,7 +584,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -584,7 +601,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -601,7 +618,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -618,7 +635,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -635,7 +652,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -652,7 +669,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -669,7 +686,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -686,7 +703,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -703,7 +720,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -720,7 +737,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -737,7 +754,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -754,7 +771,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -771,7 +788,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -788,7 +805,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -805,7 +822,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -822,7 +839,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -839,7 +856,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -856,7 +873,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -873,7 +890,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -890,7 +907,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 161.333), within: withinRange))
@@ -907,7 +924,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -924,7 +941,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -946,7 +963,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -963,7 +980,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -980,7 +997,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -997,7 +1014,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1014,7 +1031,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1031,7 +1048,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1048,7 +1065,7 @@ class PaddingSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1064,7 +1081,7 @@ class PaddingSpec: QuickSpec {
                     stack.addItem(view1).marginLeft(20).marginRight(40)
                 }
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1081,7 +1098,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1097,7 +1114,7 @@ class PaddingSpec: QuickSpec {
                     stack.addItem(view1).marginLeft(20).marginRight(40)
                 }
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1114,7 +1131,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1131,7 +1148,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1148,7 +1165,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1165,7 +1182,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1182,7 +1199,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1199,7 +1216,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1216,7 +1233,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1235,7 +1252,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 161.333), within: withinRange))
@@ -1252,7 +1269,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 161.333), within: withinRange))
@@ -1269,7 +1286,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 161.333), within: withinRange))
@@ -1286,7 +1303,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 161.333), within: withinRange))
@@ -1304,7 +1321,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 161.333), within: withinRange))
@@ -1326,7 +1343,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1343,7 +1360,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1360,7 +1377,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1377,7 +1394,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1394,7 +1411,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1411,7 +1428,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1428,7 +1445,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1445,7 +1462,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1462,7 +1479,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1479,7 +1496,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1496,7 +1513,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1513,7 +1530,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1530,7 +1547,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1547,7 +1564,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1564,7 +1581,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1581,7 +1598,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1598,7 +1615,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1615,7 +1632,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1632,7 +1649,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1649,7 +1666,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1666,7 +1683,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1683,7 +1700,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1700,7 +1717,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1717,7 +1734,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1734,7 +1751,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1751,7 +1768,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 // Match FlexLayout
@@ -1769,7 +1786,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1786,7 +1803,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1803,7 +1820,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1822,7 +1839,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -1839,7 +1856,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -1856,7 +1873,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -1873,7 +1890,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -1890,7 +1907,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -1907,7 +1924,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -1924,7 +1941,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -1941,7 +1958,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -1958,7 +1975,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -1975,7 +1992,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -1992,7 +2009,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -2009,7 +2026,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -2026,7 +2043,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -2043,7 +2060,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -2060,7 +2077,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -2077,7 +2094,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -2094,7 +2111,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -2111,7 +2128,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -2128,7 +2145,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -2145,7 +2162,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 161.333), within: withinRange))
@@ -2162,7 +2179,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -2179,7 +2196,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Don't Match FlexLayout because FlexLayout don't support spaceEvenly
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 82.333), within: withinRange))
@@ -2201,7 +2218,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2218,7 +2235,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2235,7 +2252,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2252,7 +2269,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2269,7 +2286,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2286,7 +2303,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2303,7 +2320,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2319,7 +2336,7 @@ class PaddingSpec: QuickSpec {
                     stack.addItem(view1).shrink(1).marginLeft(20).marginRight(40)
                 }
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2336,7 +2353,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2352,7 +2369,7 @@ class PaddingSpec: QuickSpec {
                     stack.addItem(view1).shrink(1).marginLeft(20).marginRight(40)
                 }
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2369,7 +2386,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2386,7 +2403,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2403,7 +2420,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2420,7 +2437,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2437,7 +2454,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2454,7 +2471,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2471,7 +2488,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).height(600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -2490,7 +2507,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 155.667), within: withinRange))
@@ -2507,7 +2524,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 155.667), within: withinRange))
@@ -2524,7 +2541,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 155.667), within: withinRange))
@@ -2541,7 +2558,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 155.667), within: withinRange))
@@ -2558,7 +2575,7 @@ class PaddingSpec: QuickSpec {
                 }
 
                 stackView.pin.width(400).sizeToFit(.width)
-                stackView.layout()
+                stackView.layoutIfNeeded()
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 155.667), within: withinRange))

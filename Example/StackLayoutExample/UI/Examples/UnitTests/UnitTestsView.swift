@@ -137,17 +137,21 @@ class UnitTestsView: BaseView {
         
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
 
-        stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
-            label1.item.shrink(1)
-            label2.item.shrink(10)
-            view1.item.shrink(1)
-
+        stackView.define { (stack) in
             stack.addItem(label1)
             stack.addItem(label2)
             stack.addItem(view1)
         }
 
-//        layout()
+//        stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
+//            label1.item.shrink(1)
+//            label2.item.shrink(10)
+//            view1.item.shrink(1)
+//
+//            stack.addItem(label1)
+//            stack.addItem(label2)
+//            stack.addItem(view1)
+//        }
     }
     
     func setupFlex() {
@@ -179,11 +183,17 @@ class UnitTestsView: BaseView {
         
         rootFlexContainer.isHidden = true
 
-        rootFlexContainer.flex.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (flex) in
-            label1.flex.shrink(1)
-            label2.flex.shrink(10)
-            view1.flex.shrink(1)
+//        rootFlexContainer.flex.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (flex) in
+//            label1.flex.shrink(1)
+//            label2.flex.shrink(10)
+//            view1.flex.shrink(1)
+//
+//            flex.addItem(label1)
+//            flex.addItem(label2)
+//            flex.addItem(view1)
+//        })
 
+        rootFlexContainer.flex.define({ (flex) in
             flex.addItem(label1)
             flex.addItem(label2)
             flex.addItem(view1)
@@ -199,7 +209,7 @@ class UnitTestsView: BaseView {
 //            view.pin.top(64).width(400).height(600)
 //            view.pin.top(64).width(400).height(600)
 //            view.pin.top(64).width(400).sizeToFit(.width)
-            view.pin.top(64).height(200).sizeToFit(.height)
+            view.pin.top(64).height(400).sizeToFit(.height)
 
 //            let size = view.flex.sizeThatFits(size: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 200))
         }
@@ -210,7 +220,7 @@ class UnitTestsView: BaseView {
         layoutView(view: stackView)
         layoutView(view: rootFlexContainer)
 
-        stackView.layout()
+        stackView.layoutIfNeeded()
         
         rootFlexContainer.flex.layout(mode: .adjustWidth)
 //        rootFlexContainer.flex.layout(mode: .adjustHeight)

@@ -33,45 +33,32 @@ class IntroView: BaseView {
         let button3 = createButton(imageName: "share_3")
         let button4 = createButton(imageName: "share_4")
 
-//        let button5 = createButton(imageName: "share_5")
-//        let button6 = createButton(imageName: "share_6")
-//        let button7 = createButton(imageName: "share_7")
-//        let button8 = createButton(imageName: "share_8")
+        let button5 = createButton(imageName: "share_5")
+        let button6 = createButton(imageName: "share_6")
+        let button7 = createButton(imageName: "share_7")
+        let button8 = createButton(imageName: "share_8")
 
         var imageRatio: CGFloat?
         if let imageSize = button1.image(for: .normal)?.size {
             imageRatio = imageSize.width / imageSize.height
         }
 
-        //stackView.define { (stackView) in
+        stackView.define { (stackView) in
             stackView.addStackView().direction(.row).justifyContent(.spaceBetween).define { (stackView) in
-                stackView.addItem(button1)
-                    .shrink(1)
-                    .aspectRatio(imageRatio)
-
-                stackView.addItem(button2)
-                    .shrink(1)
-                    .aspectRatio(imageRatio)
-                    .marginLeft(10)
-
-                stackView.addItem(button3)
-                    .shrink(1)
-                    .aspectRatio(imageRatio)
-                    .marginLeft(10)
-
-                stackView.addItem(button4)
-                    .shrink(1)
-                    .aspectRatio(imageRatio)
-                    .marginLeft(10)
+                stackView.addItem(button1).shrink(1).aspectRatio(imageRatio)
+                stackView.addItem(button2).shrink(1).aspectRatio(imageRatio).marginLeft(10)
+                stackView.addItem(button3).shrink(1).aspectRatio(imageRatio).marginLeft(10)
+                stackView.addItem(button4).shrink(1).aspectRatio(imageRatio).marginLeft(10)
             }
 
-//            stackView.addStackView().direction(.row).justifyContent(.spaceBetween).define { (stackView) in
-//                stackView.addItem(button5).shrink(1)//.aspectRatio(imageRatio)
-//                stackView.addItem(button6).marginLeft(10).shrink(1)//.aspectRatio(imageRatio)
-//                stackView.addItem(button7).marginLeft(10).shrink(1)//.aspectRatio(imageRatio)
-//                stackView.addItem(button8).marginLeft(10).shrink(1)//.aspectRatio(imageRatio)
-//            }.item.marginTop(10)
-        //}
+            stackView.addStackView().direction(.row).justifyContent(.spaceBetween).define { (stackView) in
+                stackView.addItem(button5).shrink(1)//.aspectRatio(imageRatio)
+                stackView.addItem(button6).marginLeft(10).shrink(1)//.aspectRatio(imageRatio)
+                stackView.addItem(button7).marginLeft(10).shrink(1)//.aspectRatio(imageRatio)
+                stackView.addItem(button8).marginLeft(10).shrink(1)//.aspectRatio(imageRatio)
+            }.item.marginTop(10)
+        }
+
         addSubview(stackView)
 
         stackView.layer.borderColor = UIColor.lightGray.cgColor
@@ -85,7 +72,12 @@ class IntroView: BaseView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        stackView.pin.top(safeArea.top).left().width(120).sizeToFit(.width)
+        stackView.pin.top(pin.safeArea).horizontally(20).sizeToFit(.width)
+
+        // OR using manual layout
+
+        //let size = stackView.sizeThatFits(CGSize(width: frame.width - 2 * 20, height: .greatestFiniteMagnitude))
+        //stackView.frame = CGRect(x: 20, y: pin.safeArea.top, width: size.width, height: size.height)
     }
 
     fileprivate func createButton(imageName: String) -> UIButton {

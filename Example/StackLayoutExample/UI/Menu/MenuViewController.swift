@@ -22,7 +22,7 @@ import UIKit
 enum PageType: Int {
     case layoutModes
     case intro
-    case autolayout
+    case storyboard
     case tableView
     case collectionView
 
@@ -31,8 +31,8 @@ enum PageType: Int {
     var text: String {
         switch self {
         case .layoutModes:                return "Layout Modes"
-        case .intro:                      return "StackLayout's Intro Example"
-        case .autolayout:                 return "Autolayout"
+        case .intro:                      return "Intro Example"
+        case .storyboard:                 return "Storyboard example"
         case .tableView:                  return "UITableView with variable cell's height"
         case .collectionView:             return "UICollectionView with variable cell's height"
         case .count:                      return ""
@@ -42,8 +42,9 @@ enum PageType: Int {
     var viewController: UIViewController {
         switch self {
         case .layoutModes:      return LayoutModesViewController(pageType: self)
-        case .intro:            return UnitTestsViewController(pageType: self)
-        case .autolayout:       return UIStoryboard(name: "Autolayout", bundle: nil).instantiateViewController(withIdentifier: "AutolayoutViewController")
+        case .intro:            return IntroViewController(pageType: self)
+        //case .intro:            return UnitTestsViewController(pageType: self)
+        case .storyboard:       return UIStoryboard(name: "Storyboard", bundle: nil).instantiateViewController(withIdentifier: "StoryboardViewController")
         case .tableView:        return TableViewExampleViewController(pageType: self)
         case .collectionView:   return CollectionViewExampleViewController(pageType: self)
         case .count:            return UIViewController()
@@ -51,7 +52,7 @@ enum PageType: Int {
     }
 }
 
-class MenuViewController: BaseViewController {
+class MenuViewController: UIViewController {
     fileprivate var mainView: MenuView {
         return self.view as! MenuView
     }
@@ -72,7 +73,7 @@ class MenuViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        didSelect(pageType: .intro)
+//        didSelect(pageType: .intro)
     }
 }
 

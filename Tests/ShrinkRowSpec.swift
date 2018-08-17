@@ -335,7 +335,6 @@ class ShrinkRowSpec: QuickSpec {
                 }
                 
                 stackView.pin.height(200).sizeToFit(.height)
-//                stackView.layout()
                 stackView.layoutIfNeeded()
 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 197.667, height: 200), within: withinRange))

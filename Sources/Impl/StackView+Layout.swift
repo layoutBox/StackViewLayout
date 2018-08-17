@@ -28,28 +28,6 @@ enum LayoutMode {
 }
 
 extension StackView {
-    // TODO_: Tests StackView using autolayout
-    public override var intrinsicContentSize: CGSize {
-        return sizeThatFits(CGSize(width: frame.width, height: .greatestFiniteMagnitude))
-    }
-
-    // TODO_: Tests StackView using autolayout
-    public override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {
-        return sizeThatFits(targetSize)
-    }
-    
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        let container = Container(stackView: self)
-        layoutItems(container: container, mode: .layouting)
-    }
-    
-    public override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let container = Container(stackView: self, size: size)
-        return layoutItems(container: container, mode: .measuring)
-    }
-
     @discardableResult
     internal func layoutItems(container: Container, mode: LayoutMode) -> CGSize {
         let containerMainAxisLength = container.mainAxisLength
@@ -73,15 +51,11 @@ extension StackView {
             guard !view.isHidden else { return }
             guard stackItem.isIncludedInLayout else { return }
 
-            let item = ItemInfo(stackItem, container: container)
+            let item = ItemInfo(stackItem, container: container, mode: mode)
             
             // Compute width & height
             item.measureItem(initialMeasure: true)
             
-            // Compute item main-axis margins.
-            item.mainAxisStartMargin = stackItem.mainAxisStartMargin(container: container)
-            item.mainAxisEndMargin = stackItem.mainAxisEndMargin(container: container)
-
             container.items.append(item)
         }
         
@@ -238,9 +212,9 @@ extension StackView {
 
             let itemViewRect = Coordinates.adjustRectToDisplayScale(viewFrame)
 
-            //if mode == .layouting {
+            if mode == .layouting {
                 Coordinates.setUntransformedViewRect(item.view, toRect: itemViewRect)
-            //}
+            }
 
             mainAxisOffset = direction == .column ? itemViewRect.maxY :  itemViewRect.maxX
             mainAxisOffset += item.mainAxisEndMargin

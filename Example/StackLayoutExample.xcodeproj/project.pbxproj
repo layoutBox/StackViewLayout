@@ -15,7 +15,6 @@
 		247157941F87BD680003424F /* UIEdgeInsets+PinLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247157931F87BD680003424F /* UIEdgeInsets+PinLayout.swift */; };
 		2479AD802001737300F39774 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2479AD7F2001737300F39774 /* BasicButton.swift */; };
 		249326891EEEEE3D00BCB814 /* Stylesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249326881EEEEE3D00BCB814 /* Stylesheet.swift */; };
-		2493268C1EEEEFF100BCB814 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493268B1EEEEFF100BCB814 /* BaseViewController.swift */; };
 		2493268E1EEEF02700BCB814 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2493268D1EEEF02700BCB814 /* BaseView.swift */; };
 		249EFE431E64FAFE00165E39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249EFE421E64FAFE00165E39 /* AppDelegate.swift */; };
 		249EFE4A1E64FAFE00165E39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 249EFE491E64FAFE00165E39 /* Assets.xcassets */; };
@@ -29,8 +28,8 @@
 		DF426436202F1E4000C8DE73 /* MethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A9C1F51EF054BF00F2CF64 /* MethodCell.swift */; };
 		DF426437202F1E4300C8DE73 /* MethodGroupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CB99971F290540004EA7FB /* MethodGroupHeader.swift */; };
 		DF540436203E6A8500D5F271 /* BasicViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF540430203D168500D5F271 /* BasicViewTest.swift */; };
-		DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */; };
-		DF8B0314200BE042008FF4CA /* Autolayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF8B0313200BE042008FF4CA /* Autolayout.storyboard */; };
+		DF8B0312200BE028008FF4CA /* StoryboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0310200BE028008FF4CA /* StoryboardViewController.swift */; };
+		DF8B0314200BE042008FF4CA /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF8B0313200BE042008FF4CA /* Storyboard.storyboard */; };
 		DFA10DC02095EF4C00489681 /* UnitTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA10DBF2095EF4C00489681 /* UnitTestsView.swift */; };
 		DFA10DC22095EF6200489681 /* UnitTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA10DC12095EF6200489681 /* UnitTestsViewController.swift */; };
 		DFE6FF28202DC9F2007633A3 /* CollectionViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460E1FA8D4D100B6332E /* CollectionViewExampleViewController.swift */; };
@@ -85,7 +84,6 @@
 		247157931F87BD680003424F /* UIEdgeInsets+PinLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+PinLayout.swift"; sourceTree = "<group>"; };
 		2479AD7F2001737300F39774 /* BasicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		249326881EEEEE3D00BCB814 /* Stylesheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stylesheet.swift; sourceTree = "<group>"; };
-		2493268B1EEEEFF100BCB814 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2493268D1EEEF02700BCB814 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		249EFE3F1E64FAFE00165E39 /* StackLayoutExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StackLayoutExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		249EFE421E64FAFE00165E39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,8 +107,8 @@
 		6C5CD8EA1E5BB0E5D392D540 /* Pods-StackLayoutExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutExample.release.xcconfig"; path = "../Pods/Target Support Files/Pods-StackLayoutExample/Pods-StackLayoutExample.release.xcconfig"; sourceTree = "<group>"; };
 		75A95B71B3F3BC52EEC8208B /* Pods-StackLayoutExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutExample.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-StackLayoutExample/Pods-StackLayoutExample.debug.xcconfig"; sourceTree = "<group>"; };
 		DF540430203D168500D5F271 /* BasicViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicViewTest.swift; sourceTree = "<group>"; };
-		DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutolayoutViewController.swift; sourceTree = "<group>"; };
-		DF8B0313200BE042008FF4CA /* Autolayout.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Autolayout.storyboard; sourceTree = "<group>"; };
+		DF8B0310200BE028008FF4CA /* StoryboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardViewController.swift; sourceTree = "<group>"; };
+		DF8B0313200BE042008FF4CA /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		DFA10DBF2095EF4C00489681 /* UnitTestsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnitTestsView.swift; path = StackLayoutExample/UI/Examples/UnitTests/UnitTestsView.swift; sourceTree = SOURCE_ROOT; };
 		DFA10DC12095EF6200489681 /* UnitTestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnitTestsViewController.swift; path = StackLayoutExample/UI/Examples/UnitTests/UnitTestsViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -149,10 +147,10 @@
 		2439CC371E665C5E003326FB /* Examples */ = {
 			isa = PBXGroup;
 			children = (
-				DF8B0309200BDFA5008FF4CA /* Autolayout */,
-				24F2460C1FA8D4D100B6332E /* CollectionViewExample */,
-				24F75B581EE5642C008DB567 /* Intro */,
 				24EC06E81FD87DD300459C62 /* LayoutModes */,
+				24F75B581EE5642C008DB567 /* Intro */,
+				DF8B0309200BDFA5008FF4CA /* Storyboard */,
+				24F2460C1FA8D4D100B6332E /* CollectionViewExample */,
 				24A9C1EF1EF0542500F2CF64 /* TableViewExample */,
 				DFA10DBE2095EF3800489681 /* UnitTests */,
 			);
@@ -164,7 +162,6 @@
 			children = (
 				24DA374A1EF7F90600D1AB2F /* BaseFormView.swift */,
 				2493268D1EEEF02700BCB814 /* BaseView.swift */,
-				2493268B1EEEEFF100BCB814 /* BaseViewController.swift */,
 				2439CC381E665C6B003326FB /* BasicView.swift */,
 				DF540430203D168500D5F271 /* BasicViewTest.swift */,
 				2479AD7F2001737300F39774 /* BasicButton.swift */,
@@ -280,13 +277,13 @@
 			path = Intro;
 			sourceTree = "<group>";
 		};
-		DF8B0309200BDFA5008FF4CA /* Autolayout */ = {
+		DF8B0309200BDFA5008FF4CA /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */,
-				DF8B0313200BE042008FF4CA /* Autolayout.storyboard */,
+				DF8B0310200BE028008FF4CA /* StoryboardViewController.swift */,
+				DF8B0313200BE042008FF4CA /* Storyboard.storyboard */,
 			);
-			path = Autolayout;
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		DFA10DBE2095EF3800489681 /* UnitTests */ = {
@@ -402,7 +399,7 @@
 			files = (
 				249EFE4D1E64FAFE00165E39 /* LaunchScreen.storyboard in Resources */,
 				249EFE4A1E64FAFE00165E39 /* Assets.xcassets in Resources */,
-				DF8B0314200BE042008FF4CA /* Autolayout.storyboard in Resources */,
+				DF8B0314200BE042008FF4CA /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,11 +478,10 @@
 				2423C79F1FD0B00B00C794AE /* IntroViewController.swift in Sources */,
 				24EC06EE1FD87DD300459C62 /* LayoutModesView.swift in Sources */,
 				2479AD802001737300F39774 /* BasicButton.swift in Sources */,
-				DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */,
+				DF8B0312200BE028008FF4CA /* StoryboardViewController.swift in Sources */,
 				DF426436202F1E4000C8DE73 /* MethodCell.swift in Sources */,
 				DF540436203E6A8500D5F271 /* BasicViewTest.swift in Sources */,
 				2439CC351E665BF6003326FB /* MenuView.swift in Sources */,
-				2493268C1EEEEFF100BCB814 /* BaseViewController.swift in Sources */,
 				2439CC4B1E665C6B003326FB /* BasicView.swift in Sources */,
 				249EFE431E64FAFE00165E39 /* AppDelegate.swift in Sources */,
 				DFE6FF2A202DC9F8007633A3 /* HouseCell.swift in Sources */,

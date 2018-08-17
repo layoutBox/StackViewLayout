@@ -19,7 +19,7 @@
 
 import UIKit
 
-class LayoutModesViewController: BaseViewController {
+class LayoutModesViewController: UIViewController {
     fileprivate var mainView: LayoutModesView {
         return self.view as! LayoutModesView
     }

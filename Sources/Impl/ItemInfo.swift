@@ -87,33 +87,43 @@ class ItemInfo {
         }
     }
     
-    var mainAxisStartMargin: CGFloat = 0
-    var mainAxisEndMargin: CGFloat = 0
+    let mainAxisStartMargin: CGFloat
+    let mainAxisEndMargin: CGFloat
     
     var basis: CGFloat {
         return mainAxisLength ?? 1
+    }
+
+    var measureType: MeasureType? {
+        get {
+            return stackItem.measureType
+        }
+        set {
+            stackItem.measureType = newValue
+        }
     }
     
     private var direction: SDirection {
         return container.direction
     }
-
-    enum MeasureType {
-        case sizeThatFits
-        case aspectRatio
-    }
-    var measureType: MeasureType?
     
-    init(_ stackItem: StackItemImpl, container: Container) {
+    init(_ stackItem: StackItemImpl, container: Container, mode: LayoutMode) {
         self.stackItem = stackItem
         self.view = stackItem.view
         self.container = container
 
-        self.minWidth = stackItem.minWidth?.resolveWidth(container: container)
-        self.maxWidth = stackItem.maxWidth?.resolveWidth(container: container)
+        minWidth = stackItem.minWidth?.resolveWidth(container: container)
+        maxWidth = stackItem.maxWidth?.resolveWidth(container: container)
 
-        self.minHeight = stackItem.minHeight?.resolveHeight(container: container)
-        self.maxHeight = stackItem.maxHeight?.resolveHeight(container: container)
+        minHeight = stackItem.minHeight?.resolveHeight(container: container)
+        maxHeight = stackItem.maxHeight?.resolveHeight(container: container)
+
+        mainAxisStartMargin = stackItem.mainAxisStartMargin(container: container)
+        mainAxisEndMargin = stackItem.mainAxisEndMargin(container: container)
+
+        if mode == .measuring {
+            measureType = nil
+        }
 
         resetToStackItemProperties()
     }
@@ -155,7 +165,7 @@ class ItemInfo {
         var isMeasured = false
 
         if initialMeasure && stackItem._aspectRatio != nil {
-            // AspectRatio has a high priority, apply it first if the with or the height is defined
+            // AspectRatio has a higher priority, apply it first if the width or the height is defined
             if stackItem.width != nil {
                 applyAspectRatioIfNeeded(.adjustHeight)
                 measureType = .aspectRatio
@@ -183,10 +193,12 @@ class ItemInfo {
             } else if let itemHeight = height {
                 fitHeight = itemHeight
                 applyMargins = false
-            } else if let containerInnerWidth = container.innerWidth {
+            } else if let containerInnerWidth = container.innerWidth, measureType == nil || measureType == .sizeThatFitsWidth {
                 fitWidth = containerInnerWidth
-            } else if let containerHeight = container.innerHeight {
+                measureType = .sizeThatFitsWidth
+            } else if let containerHeight = container.innerHeight, measureType == nil || measureType == .sizeThatFitsHeight {
                 fitHeight = containerHeight
+                measureType = .sizeThatFitsHeight
             }
 
             // Measure the view using sizeThatFits(:CGSize)
