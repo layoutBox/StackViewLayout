@@ -3,13 +3,11 @@ platform :ios, "9.0"
 
 workspace 'StackViewLayout.xcworkspace'
 
-target 'StackViewLayout' do
-  project 'StackViewLayout.xcodeproj'
+#target 'StackViewLayout-iOS' do
+#  project 'StackViewLayout.xcodeproj'
+#end
 
-  pod 'PinLayout'  
-end
-
-target 'StackViewLayoutTests' do
+target 'StackViewLayoutTests-iOS' do
   project 'StackViewLayout.xcodeproj'
   pod 'PinLayout'
 

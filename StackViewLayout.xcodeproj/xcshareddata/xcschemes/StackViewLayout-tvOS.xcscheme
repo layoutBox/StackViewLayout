@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "244DF2F71EF46C500090508B"
-               BuildableName = "StackViewLayoutTVOS.framework"
-               BlueprintName = "StackViewLayoutTVOS"
+               BuildableName = "StackViewLayout.framework"
+               BlueprintName = "StackViewLayout-tvOS"
                ReferencedContainer = "container:StackViewLayout.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "244DF2F71EF46C500090508B"
-            BuildableName = "StackViewLayoutTVOS.framework"
-            BlueprintName = "StackViewLayoutTVOS"
+            BuildableName = "StackViewLayout.framework"
+            BlueprintName = "StackViewLayout-tvOS"
             ReferencedContainer = "container:StackViewLayout.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "244DF2F71EF46C500090508B"
-            BuildableName = "StackViewLayoutTVOS.framework"
-            BlueprintName = "StackViewLayoutTVOS"
+            BuildableName = "StackViewLayout.framework"
+            BlueprintName = "StackViewLayout-tvOS"
             ReferencedContainer = "container:StackViewLayout.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

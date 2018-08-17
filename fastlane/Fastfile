@@ -33,24 +33,24 @@ platform :ios do
     #)
 
     xcodebuild(
-      workspace: "StackLayout.xcworkspace",
-      scheme: "StackLayout",
+      workspace: "StackViewLayout.xcworkspace",
+      scheme: "StackViewLayout-iOS",
       configuration: "Debug",
       build: true,
       clean: true
     )
 
     #xcodebuild(
-    #  workspace: "StackLayout.xcworkspace",
-    #  scheme: "StackLayoutTVOS",
+    #  workspace: "StackViewLayout.xcworkspace",
+    #  scheme: "StackViewLayout-tvOS",
     #  configuration: "Debug",
     #  build: true,
     #  clean: true
     #)
 
     xcodebuild(
-      workspace: "StackLayout.xcworkspace",
-      scheme: "StackLayoutExample",
+      workspace: "StackViewLayout.xcworkspace",
+      scheme: "StackViewLayoutExample",
       configuration: "Debug",
       build: true,
       clean: true,
@@ -59,9 +59,15 @@ platform :ios do
   end
 
   lane :tests do
-    scan(scheme: "StackLayout", 
-         workspace: "StackLayout.xcworkspace",
-         devices: ["iPhone 8 Plus", "iPhone 7 Plus"])
+    scan(scheme: "StackViewLayoutExample", 
+        workspace: "StackViewLayout.xcworkspace",
+        devices: [
+          "iPad Air (11.4)",
+          "iPhone X (11.4)",
+          "iPhone 8 (10.2)",
+          "iPhone 8 Plus"
+        ]
+    )
   end
 
   lane :doc do 
@@ -76,12 +82,12 @@ platform :ios do
 
   lane :deploy do
     ensure_git_branch
-    version = version_bump_podspec(path: "StackLayoutView.podspec")
-    git_commit(path: ["./StackLayoutView.podspec"], message: "Bumped to version #{version}")
+    version = version_bump_podspec(path: "StackViewLayout.podspec")
+    git_commit(path: ["./StackViewLayout.podspec"], message: "Bumped to version #{version}")
     push_to_git_remote(remote_branch: 'master', force: false, tags: true)
     changelog = changelog_from_git_commits
     github_release = set_github_release(
-      repository_name: "layoutBox/StackLayout",
+      repository_name: "layoutBox/StackViewLayout",
       api_token: ENV['GITHUB_TOKEN'],
       name: version,
       tag_name: version,

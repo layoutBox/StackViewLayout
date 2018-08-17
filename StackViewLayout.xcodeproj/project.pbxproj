@@ -37,6 +37,7 @@
 		24EC06DA1FD6345400459C62 /* JustifytemsRowSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06D81FD633F500459C62 /* JustifytemsRowSpec.swift */; };
 		24EC06E71FD7186E00459C62 /* MarginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06E51FD7186700459C62 /* MarginsSpec.swift */; };
 		24FA1481201AB88C002BFAD5 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FA1480201AB88B002BFAD5 /* Container.swift */; };
+		328AF2949D055CA0A78B05EB /* Pods_StackViewLayoutTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B4F689F9089892E24E384B8 /* Pods_StackViewLayoutTests_iOS.framework */; };
 		824AA36DA94A9E0CA32AC66E /* Pods_StackViewLayoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99B5D7404156D906C3C299A /* Pods_StackViewLayoutTests.framework */; };
 		DFA4B965200A3ED800AF1BFF /* UnitTestsConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */; };
 		DFAF926F2016AC4B002013D3 /* PaddingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAF926D2016AC44002013D3 /* PaddingSpec.swift */; };
@@ -51,7 +52,6 @@
 		DFEE3D03202BE2E9004AEC4F /* StackItemImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C77D1FD08B1500C794AE /* StackItemImpl.swift */; };
 		DFEE3D04202BE2E9004AEC4F /* StackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A21FD0B36900C794AE /* StackView+Layout.swift */; };
 		DFEE3D06202BE2E9004AEC4F /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7851FD0AA8000C794AE /* Value.swift */; };
-		F5AC702F5647162E8C43EFAB /* Pods_StackViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22237FA4C450EE2EF3095B22 /* Pods_StackViewLayout.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		072C4AB9E1D48421AC17B94C /* Pods_StackViewLayout_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackViewLayout_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		144303E5200662A28FC92F65 /* Pods-StackLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayout.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayout/Pods-StackLayout.debug.xcconfig"; sourceTree = "<group>"; };
 		22237FA4C450EE2EF3095B22 /* Pods_StackViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		240F88BF1F0C1ED900280FC8 /* AlignItemsColumnSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignItemsColumnSpec.swift; sourceTree = "<group>"; };
@@ -91,7 +92,7 @@
 		2439036A1FDD67530064F034 /* SizeThatFitsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeThatFitsSpec.swift; sourceTree = "<group>"; };
 		243C620E1FC3834B0082C327 /* Percent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Percent.swift; path = Impl/Percent.swift; sourceTree = "<group>"; };
 		24496C2F1FE55F7D006F0E78 /* ShrinkColumnSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShrinkColumnSpec.swift; sourceTree = "<group>"; };
-		244DF2F81EF46C500090508B /* StackViewLayoutTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackViewLayoutTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		244DF2F81EF46C500090508B /* StackViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		245B58041FE8BA4F00C0E8EA /* AlignItemsRowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignItemsRowSpec.swift; sourceTree = "<group>"; };
 		245C1D9D1FEC4CB9007594F7 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Coordinates.swift; path = Impl/Coordinates.swift; sourceTree = "<group>"; };
 		2464A8721FD253DC007A92A8 /* JustifytemsColumnSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustifytemsColumnSpec.swift; sourceTree = "<group>"; };
@@ -105,7 +106,7 @@
 		248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		248F0C191FF919F2004CD8AC /* WidthHeightSizeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidthHeightSizeSpec.swift; sourceTree = "<group>"; };
 		249EFE7A1E64FB4C00165E39 /* StackViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		249EFE831E64FB4C00165E39 /* StackViewLayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StackViewLayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		249EFE831E64FB4C00165E39 /* StackViewLayoutTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "StackViewLayoutTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		249EFE8A1E64FB4C00165E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24B3F7C91FE0165F00AC174B /* GrowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrowSpec.swift; sourceTree = "<group>"; };
 		24EB78231FEA098C00C979AA /* ShrinkRowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShrinkRowSpec.swift; sourceTree = "<group>"; };
@@ -116,9 +117,12 @@
 		412B4051A772AA0C17EBCD82 /* Pods-StackLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayoutTests/Pods-StackLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
 		495BECA46082734098CCE556 /* Pods-StackViewLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayoutTests/Pods-StackViewLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
 		561BC8B0591ACB691B563927 /* Pods-PinLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinLayoutTests/Pods-PinLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
+		5B4F689F9089892E24E384B8 /* Pods_StackViewLayoutTests_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackViewLayoutTests_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F3493E308B5D1BB971D1D2D /* Pods-StackViewLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayoutTests/Pods-StackViewLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
 		6070E55EDEAA3DC58C0B4CDD /* Pods-PinLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinLayoutTests/Pods-PinLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6F1A2A1CBCDDB981B74FCD64 /* Pods-StackViewLayoutTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayoutTests-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayoutTests-iOS/Pods-StackViewLayoutTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		72F957AA928728CEF94281E9 /* Pods-StackLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayout.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayout/Pods-StackLayout.release.xcconfig"; sourceTree = "<group>"; };
+		B47D08E3F50B5B9F4E6A7AEA /* Pods-StackViewLayoutTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayoutTests-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayoutTests-iOS/Pods-StackViewLayoutTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CC330888013650F3DBC42D01 /* Pods-StackViewLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayout.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayout/Pods-StackViewLayout.release.xcconfig"; sourceTree = "<group>"; };
 		DF6D467B2013D2A40022C5D6 /* UIScrollViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewSpec.swift; sourceTree = "<group>"; };
 		DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestsConst.swift; sourceTree = "<group>"; };
@@ -141,7 +145,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5AC702F5647162E8C43EFAB /* Pods_StackViewLayout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +154,7 @@
 			files = (
 				249EFE841E64FB4C00165E39 /* StackViewLayout.framework in Frameworks */,
 				824AA36DA94A9E0CA32AC66E /* Pods_StackViewLayoutTests.framework in Frameworks */,
+				328AF2949D055CA0A78B05EB /* Pods_StackViewLayoutTests_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +166,8 @@
 			children = (
 				22237FA4C450EE2EF3095B22 /* Pods_StackViewLayout.framework */,
 				F99B5D7404156D906C3C299A /* Pods_StackViewLayoutTests.framework */,
+				072C4AB9E1D48421AC17B94C /* Pods_StackViewLayout_iOS.framework */,
+				5B4F689F9089892E24E384B8 /* Pods_StackViewLayoutTests_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -192,8 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				249EFE7A1E64FB4C00165E39 /* StackViewLayout.framework */,
-				249EFE831E64FB4C00165E39 /* StackViewLayoutTests.xctest */,
-				244DF2F81EF46C500090508B /* StackViewLayoutTVOS.framework */,
+				249EFE831E64FB4C00165E39 /* StackViewLayoutTests-iOS.xctest */,
+				244DF2F81EF46C500090508B /* StackViewLayout.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -265,6 +271,8 @@
 				CC330888013650F3DBC42D01 /* Pods-StackViewLayout.release.xcconfig */,
 				495BECA46082734098CCE556 /* Pods-StackViewLayoutTests.debug.xcconfig */,
 				5F3493E308B5D1BB971D1D2D /* Pods-StackViewLayoutTests.release.xcconfig */,
+				6F1A2A1CBCDDB981B74FCD64 /* Pods-StackViewLayoutTests-iOS.debug.xcconfig */,
+				B47D08E3F50B5B9F4E6A7AEA /* Pods-StackViewLayoutTests-iOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -291,9 +299,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		244DF2F71EF46C500090508B /* StackViewLayoutTVOS */ = {
+		244DF2F71EF46C500090508B /* StackViewLayout-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 244DF2FF1EF46C500090508B /* Build configuration list for PBXNativeTarget "StackViewLayoutTVOS" */;
+			buildConfigurationList = 244DF2FF1EF46C500090508B /* Build configuration list for PBXNativeTarget "StackViewLayout-tvOS" */;
 			buildPhases = (
 				244DF2F51EF46C500090508B /* Headers */,
 				244DF2F31EF46C500090508B /* Sources */,
@@ -304,16 +312,15 @@
 			);
 			dependencies = (
 			);
-			name = StackViewLayoutTVOS;
+			name = "StackViewLayout-tvOS";
 			productName = PinLayoutTVOS;
-			productReference = 244DF2F81EF46C500090508B /* StackViewLayoutTVOS.framework */;
+			productReference = 244DF2F81EF46C500090508B /* StackViewLayout.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		249EFE791E64FB4C00165E39 /* StackViewLayout */ = {
+		249EFE791E64FB4C00165E39 /* StackViewLayout-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 249EFE8E1E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayout" */;
+			buildConfigurationList = 249EFE8E1E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayout-iOS" */;
 			buildPhases = (
-				97C3A0955161858C5E6AF351 /* [CP] Check Pods Manifest.lock */,
 				249EFE771E64FB4C00165E39 /* Headers */,
 				249EFE751E64FB4C00165E39 /* Sources */,
 				249EFE761E64FB4C00165E39 /* Frameworks */,
@@ -322,14 +329,14 @@
 			);
 			dependencies = (
 			);
-			name = StackViewLayout;
+			name = "StackViewLayout-iOS";
 			productName = PinLayout;
 			productReference = 249EFE7A1E64FB4C00165E39 /* StackViewLayout.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		249EFE821E64FB4C00165E39 /* StackViewLayoutTests */ = {
+		249EFE821E64FB4C00165E39 /* StackViewLayoutTests-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 249EFE911E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayoutTests" */;
+			buildConfigurationList = 249EFE911E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayoutTests-iOS" */;
 			buildPhases = (
 				C13A14974C1425B4B67ECF64 /* [CP] Check Pods Manifest.lock */,
 				249EFE7F1E64FB4C00165E39 /* Sources */,
@@ -343,9 +350,9 @@
 			dependencies = (
 				249EFE861E64FB4C00165E39 /* PBXTargetDependency */,
 			);
-			name = StackViewLayoutTests;
+			name = "StackViewLayoutTests-iOS";
 			productName = PinLayoutTests;
-			productReference = 249EFE831E64FB4C00165E39 /* StackViewLayoutTests.xctest */;
+			productReference = 249EFE831E64FB4C00165E39 /* StackViewLayoutTests-iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -388,9 +395,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				249EFE791E64FB4C00165E39 /* StackViewLayout */,
-				249EFE821E64FB4C00165E39 /* StackViewLayoutTests */,
-				244DF2F71EF46C500090508B /* StackViewLayoutTVOS */,
+				249EFE791E64FB4C00165E39 /* StackViewLayout-iOS */,
+				244DF2F71EF46C500090508B /* StackViewLayout-tvOS */,
+				249EFE821E64FB4C00165E39 /* StackViewLayoutTests-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -419,38 +426,20 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-StackViewLayoutTests/Pods-StackViewLayoutTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/PinLayout/PinLayout.framework",
+				"${SRCROOT}/Pods/Target Support Files/Pods-StackViewLayoutTests-iOS/Pods-StackViewLayoutTests-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/PinLayout/PinLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StackViewLayoutTests/Pods-StackViewLayoutTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		97C3A0955161858C5E6AF351 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-StackViewLayout-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StackViewLayoutTests-iOS/Pods-StackViewLayoutTests-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C13A14974C1425B4B67ECF64 /* [CP] Check Pods Manifest.lock */ = {
@@ -464,7 +453,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-StackViewLayoutTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-StackViewLayoutTests-iOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -540,7 +529,7 @@
 /* Begin PBXTargetDependency section */
 		249EFE861E64FB4C00165E39 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 249EFE791E64FB4C00165E39 /* StackViewLayout */;
+			target = 249EFE791E64FB4C00165E39 /* StackViewLayout-iOS */;
 			targetProxy = 249EFE851E64FB4C00165E39 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -560,7 +549,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.layoutBox.StackLayoutTVOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = StackViewLayout;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -584,7 +573,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.layoutBox.StackLayoutTVOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = StackViewLayout;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
@@ -715,7 +704,6 @@
 		};
 		249EFE8F1E64FB4C00165E39 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 335FCF5D7C9B3966D5048E6E /* Pods-StackViewLayout.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -728,7 +716,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.layoutBox.StackLayout;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = StackViewLayout;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -738,7 +726,6 @@
 		};
 		249EFE901E64FB4C00165E39 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC330888013650F3DBC42D01 /* Pods-StackViewLayout.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -751,7 +738,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.layoutBox.StackLayout;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = StackViewLayout;
 				SKIP_INSTALL = YES;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -760,7 +747,7 @@
 		};
 		249EFE921E64FB4C00165E39 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 495BECA46082734098CCE556 /* Pods-StackViewLayoutTests.debug.xcconfig */;
+			baseConfigurationReference = 6F1A2A1CBCDDB981B74FCD64 /* Pods-StackViewLayoutTests-iOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 4Q596JWQC5;
@@ -776,7 +763,7 @@
 		};
 		249EFE931E64FB4C00165E39 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F3493E308B5D1BB971D1D2D /* Pods-StackViewLayoutTests.release.xcconfig */;
+			baseConfigurationReference = B47D08E3F50B5B9F4E6A7AEA /* Pods-StackViewLayoutTests-iOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 4Q596JWQC5;
@@ -793,7 +780,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		244DF2FF1EF46C500090508B /* Build configuration list for PBXNativeTarget "StackViewLayoutTVOS" */ = {
+		244DF2FF1EF46C500090508B /* Build configuration list for PBXNativeTarget "StackViewLayout-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				244DF2FD1EF46C500090508B /* Debug */,
@@ -811,7 +798,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		249EFE8E1E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayout" */ = {
+		249EFE8E1E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayout-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				249EFE8F1E64FB4C00165E39 /* Debug */,
@@ -820,7 +807,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		249EFE911E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayoutTests" */ = {
+		249EFE911E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayoutTests-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				249EFE921E64FB4C00165E39 /* Debug */,
