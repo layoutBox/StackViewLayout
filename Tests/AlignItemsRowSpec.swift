@@ -22,7 +22,6 @@ import Nimble
 import StackLayout
 import PinLayout
 
-
 class AlignItemsRowSpec: QuickSpec {
     override func spec() {
         var viewController: UIViewController!
@@ -33,7 +32,8 @@ class AlignItemsRowSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(3)
+            _setUnitTestDisplayScale(displayScale: 3)
+            _pinlayoutSetUnitTest(scale: 3)
         }
         
         beforeEach {

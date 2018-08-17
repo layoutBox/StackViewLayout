@@ -32,7 +32,8 @@ class JustifytemsColumnSpec: QuickSpec {
         var label3: UILabel!
         
         beforeSuite {
-            _setUnitTestDisplayScale(3)
+            _setUnitTestDisplayScale(displayScale: 3)
+            _pinlayoutSetUnitTest(scale: 3)
         }
 
         beforeEach {
@@ -46,7 +47,6 @@ class JustifytemsColumnSpec: QuickSpec {
             label1.backgroundColor = .red
             label1.text = "Label 1"
             label1.numberOfLines = 1
-            
             
             label2 = UILabel()
             label2.font = UIFont.systemFont(ofSize: 17)

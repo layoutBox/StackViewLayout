@@ -31,6 +31,8 @@
 		DF540436203E6A8500D5F271 /* BasicViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF540430203D168500D5F271 /* BasicViewTest.swift */; };
 		DF8B0312200BE028008FF4CA /* AutolayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */; };
 		DF8B0314200BE042008FF4CA /* Autolayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF8B0313200BE042008FF4CA /* Autolayout.storyboard */; };
+		DFA10DC02095EF4C00489681 /* UnitTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA10DBF2095EF4C00489681 /* UnitTestsView.swift */; };
+		DFA10DC22095EF6200489681 /* UnitTestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA10DC12095EF6200489681 /* UnitTestsViewController.swift */; };
 		DFE6FF28202DC9F2007633A3 /* CollectionViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460E1FA8D4D100B6332E /* CollectionViewExampleViewController.swift */; };
 		DFE6FF29202DC9F5007633A3 /* CollectionViewExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460D1FA8D4D100B6332E /* CollectionViewExampleView.swift */; };
 		DFE6FF2A202DC9F8007633A3 /* HouseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2460F1FA8D4D100B6332E /* HouseCell.swift */; };
@@ -106,12 +108,11 @@
 		24F75B5A1EE5644E008DB567 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		6C5CD8EA1E5BB0E5D392D540 /* Pods-StackLayoutExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutExample.release.xcconfig"; path = "../Pods/Target Support Files/Pods-StackLayoutExample/Pods-StackLayoutExample.release.xcconfig"; sourceTree = "<group>"; };
 		75A95B71B3F3BC52EEC8208B /* Pods-StackLayoutExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutExample.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-StackLayoutExample/Pods-StackLayoutExample.debug.xcconfig"; sourceTree = "<group>"; };
-		A35A00E6536E49A548E763E6 /* Pods-PinLayoutSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinLayoutSample.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-PinLayoutSample/Pods-PinLayoutSample.debug.xcconfig"; sourceTree = "<group>"; };
-		AAD69688AA2A3F0994F3074E /* Pods_PinLayoutSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinLayoutSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C589624E868FCB20F7C10918 /* Pods-PinLayoutSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinLayoutSample.release.xcconfig"; path = "../Pods/Target Support Files/Pods-PinLayoutSample/Pods-PinLayoutSample.release.xcconfig"; sourceTree = "<group>"; };
 		DF540430203D168500D5F271 /* BasicViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicViewTest.swift; sourceTree = "<group>"; };
 		DF8B0310200BE028008FF4CA /* AutolayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutolayoutViewController.swift; sourceTree = "<group>"; };
 		DF8B0313200BE042008FF4CA /* Autolayout.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Autolayout.storyboard; sourceTree = "<group>"; };
+		DFA10DBF2095EF4C00489681 /* UnitTestsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnitTestsView.swift; path = StackLayoutExample/UI/Examples/UnitTests/UnitTestsView.swift; sourceTree = SOURCE_ROOT; };
+		DFA10DC12095EF6200489681 /* UnitTestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnitTestsViewController.swift; path = StackLayoutExample/UI/Examples/UnitTests/UnitTestsViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +130,6 @@
 		160FB83905049FCEDD18DC8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AAD69688AA2A3F0994F3074E /* Pods_PinLayoutSample.framework */,
 				246812FC1F8D013500462E53 /* NotificationCenter.framework */,
 				10BC1DFC5AD1ACBF99B5F0F2 /* Pods_StackLayoutExample.framework */,
 			);
@@ -154,6 +154,7 @@
 				24F75B581EE5642C008DB567 /* Intro */,
 				24EC06E81FD87DD300459C62 /* LayoutModes */,
 				24A9C1EF1EF0542500F2CF64 /* TableViewExample */,
+				DFA10DBE2095EF3800489681 /* UnitTests */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -288,11 +289,18 @@
 			path = Autolayout;
 			sourceTree = "<group>";
 		};
+		DFA10DBE2095EF3800489681 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				DFA10DBF2095EF4C00489681 /* UnitTestsView.swift */,
+				DFA10DC12095EF6200489681 /* UnitTestsViewController.swift */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
 		F143180314A617EFD07C5709 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A35A00E6536E49A548E763E6 /* Pods-PinLayoutSample.debug.xcconfig */,
-				C589624E868FCB20F7C10918 /* Pods-PinLayoutSample.release.xcconfig */,
 				75A95B71B3F3BC52EEC8208B /* Pods-StackLayoutExample.debug.xcconfig */,
 				6C5CD8EA1E5BB0E5D392D540 /* Pods-StackLayoutExample.release.xcconfig */,
 			);
@@ -311,7 +319,6 @@
 				249EFE3C1E64FAFE00165E39 /* Frameworks */,
 				249EFE3D1E64FAFE00165E39 /* Resources */,
 				5D3C4568AFC08267110D9971 /* [CP] Embed Pods Frameworks */,
-				CCCCC7EE5AE16BA960D7DB4F /* [CP] Copy Pods Resources */,
 				24E6547E1E68F88D00A72A8B /* Run Swiftlint */,
 				2468130D1F8D013600462E53 /* Embed App Extensions */,
 			);
@@ -331,7 +338,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Mirego;
 				TargetAttributes = {
 					249EFE3E1E64FAFE00165E39 = {
@@ -425,7 +432,7 @@
 				"${SRCROOT}/../Pods/Target Support Files/Pods-StackLayoutExample/Pods-StackLayoutExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PinLayout/PinLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/FlexLayout/FlexLayout.framework",
-				"${PODS_ROOT}/Reveal-SDK/RevealServer-10/iOS/RevealServer.framework",
+				"${PODS_ROOT}/Reveal-SDK/RevealServer-17/iOS/RevealServer.framework",
 				"${BUILT_PRODUCTS_DIR}/StackViewLayout/StackViewLayout.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -438,21 +445,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-StackLayoutExample/Pods-StackLayoutExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CCCCC7EE5AE16BA960D7DB4F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-StackLayoutExample/Pods-StackLayoutExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DDE1EE639E8C959FEBC41FDC /* [CP] Check Pods Manifest.lock */ = {
@@ -498,9 +490,11 @@
 				249EFE431E64FAFE00165E39 /* AppDelegate.swift in Sources */,
 				DFE6FF2A202DC9F8007633A3 /* HouseCell.swift in Sources */,
 				DF426437202F1E4300C8DE73 /* MethodGroupHeader.swift in Sources */,
+				DFA10DC02095EF4C00489681 /* UnitTestsView.swift in Sources */,
 				DF426434202F1E3900C8DE73 /* TableViewExampleViewController.swift in Sources */,
 				2439CC361E665BF6003326FB /* MenuViewController.swift in Sources */,
 				249326891EEEEE3D00BCB814 /* Stylesheet.swift in Sources */,
+				DFA10DC22095EF6200489681 /* UnitTestsViewController.swift in Sources */,
 				2423C79E1FD0B00B00C794AE /* IntroView.swift in Sources */,
 				DF426435202F1E3C00C8DE73 /* TableViewExampleView.swift in Sources */,
 				2493268E1EEEF02700BCB814 /* BaseView.swift in Sources */,
@@ -535,6 +529,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -542,6 +537,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -591,6 +587,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -598,6 +595,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -631,6 +629,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 75A95B71B3F3BC52EEC8208B /* Pods-StackLayoutExample.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -640,7 +639,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -648,6 +647,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6C5CD8EA1E5BB0E5D392D540 /* Pods-StackLayoutExample.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -656,7 +656,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.layoutBox.StackLayoutExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

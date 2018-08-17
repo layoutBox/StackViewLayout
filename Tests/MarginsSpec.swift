@@ -32,7 +32,8 @@ class MarginsSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(3)
+            _setUnitTestDisplayScale(displayScale: 3)
+            _pinlayoutSetUnitTest(scale: 3)
         }
 
         beforeEach {
@@ -67,7 +68,7 @@ class MarginsSpec: QuickSpec {
         //
         describe("margins") {
             it("marginLeft()") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (stackView) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.marginLeft(10)
                     label2.item.marginLeft(25%)
                 })
@@ -92,7 +93,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginStart()") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (stackView) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.marginStart(10)
                     label2.item.marginStart(25%)
                 })
@@ -273,7 +274,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginLeft() + marginRight())") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.center).define({ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.center).define({ (_) in
                     label1.item.marginLeft(10).marginRight(20)
                     label2.item.marginLeft(10%).marginRight(50%)
                     view1.item.marginLeft(10)
@@ -288,7 +289,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginLeft() + marginRight())") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.center).define({ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.center).define({ (_) in
                     label1.item.marginLeft(10).marginRight(20)
                     label2.item.marginLeft(10%).marginRight(50%)
                     view1.item.marginLeft(10).marginRight(200)
@@ -308,7 +309,7 @@ class MarginsSpec: QuickSpec {
         //
         describe("colums + horizontal margins") {
             it("marginLeft()") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.end).define({ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.end).define({ (_) in
                     label1.item.marginLeft(10)
                     label2.item.marginLeft(25%)
                     view1.item.marginLeft(100)
@@ -370,7 +371,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginLeft() + marginRight()") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.end).define({ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.end).define({ (_) in
                     label1.item.marginLeft(10).marginRight(200)
                     view1.item.marginLeft(10).marginRight(200)
                 })
@@ -383,7 +384,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("should reduce the width of items due to large margins") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.start).define({ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.start).define({ (_) in
                     label1.item.marginLeft(10).marginRight(340)
                     label2.item.marginLeft(10%).marginRight(75%)
                     view1.item.marginLeft(10).marginRight(200)
@@ -402,7 +403,7 @@ class MarginsSpec: QuickSpec {
         //
         describe("colums + vertical margins") {
             it("justifyContent(.start) + marginTop() + marginBottom()") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.marginTop(10).marginBottom(20)
                     label2.item.marginTop(10).marginBottom(20)
                     view1.item.marginTop(30).marginBottom(40)
@@ -471,7 +472,7 @@ class MarginsSpec: QuickSpec {
         //
         describe("margins") {
             it("marginTop()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.marginTop(10)
                     label2.item.marginTop(25%)
                     view1.item.marginTop(50%)
@@ -488,7 +489,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginBottom()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.marginBottom(10)
                     label2.item.marginBottom(25%)
                     view1.item.marginBottom(50%).shrink(1)
@@ -503,7 +504,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginTop() + marginBottom()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.marginTop(10).marginBottom(20)
                     label2.item.marginTop(10%).marginBottom(20%)
                     view1.item.marginTop(20%).marginBottom(10%).shrink(1)
@@ -523,7 +524,7 @@ class MarginsSpec: QuickSpec {
         //
         describe("margins") {
             it("marginTop()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (_) in
                     label1.item.marginTop(10)
                     label2.item.marginTop(10%)
                     view1.item.marginTop(20%)
@@ -538,7 +539,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginTop()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (_) in
                     label1.item.marginTop(10)
                     label2.item.marginTop(10%)
                     view1.item.marginTop(20%).shrink(1)
@@ -553,7 +554,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginBottom() + The label2 height will reduces to respect its margins!") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (_) in
                     label1.item.marginTop(10).marginBottom(20)
                     label2.item.marginTop(40).marginBottom(40)
                     view1.item.marginTop(20%).marginBottom(10%).shrink(1)
@@ -570,7 +571,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginBottom()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (_) in
                     label1.item.marginBottom(10)
                     label2.item.marginBottom(10%)
                     view1.item.marginBottom(20%).shrink(1)
@@ -586,7 +587,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginTop() + marginBottom()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (_) in
                     label1.item.marginTop(10).marginBottom(20)
                     label2.item.marginTop(10%).marginBottom(20%)
                     view1.item.marginTop(20%).marginBottom(10%).shrink(1)
@@ -606,7 +607,7 @@ class MarginsSpec: QuickSpec {
         //
         describe("margins") {
             it("marginTop()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.center).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.center).define({ (_) in
                     label1.item.marginTop(10)
                     label2.item.marginTop(20)
                     view1.item.marginTop(30)
@@ -621,7 +622,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginBottom()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.center).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.center).define({ (_) in
                     label1.item.marginBottom(10)
                     label2.item.marginBottom(25%)
                     view1.item.marginTop(20).marginBottom(100)
@@ -637,7 +638,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginTop() + marginBottom())") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.center).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.center).define({ (_) in
                     // top margin cancel the bottom margin if they have the same value
                     label1.item.marginTop(10).marginBottom(10)
                     label2.item.marginTop(20).marginBottom(20)
@@ -654,7 +655,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginTop() + marginBottom())") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (_) in
                     label1.item.marginTop(10).marginBottom(340)
                     label2.item.marginTop(10%)
                     view1.item.marginTop(10).marginBottom(200)
@@ -670,7 +671,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginTop() + marginBottom())") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.start).define({ (_) in
                     label1.text = "Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1 Label 1"
                     label1.item.marginTop(10).marginBottom(340)
                     label2.item.marginTop(10%)
@@ -692,7 +693,7 @@ class MarginsSpec: QuickSpec {
         //
         describe("rows + horizontal margins") {
             it("marginTop()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.end).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.end).define({ (_) in
                     label1.item.marginTop(10)
                     label2.item.marginTop(25%)
                     view1.item.marginTop(100)
@@ -708,7 +709,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginBottom()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.end).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.end).define({ (_) in
                     label1.item.marginBottom(10)
                     label2.item.marginBottom(25%)
                     view1.item.marginTop(20).marginBottom(100)
@@ -724,7 +725,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginStart()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.end).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.end).define({ (_) in
                     label1.item.marginStart(10)
                     label2.item.marginStart(25%)
                     view1.item.marginStart(20).marginBottom(100)
@@ -740,7 +741,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginEnd()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.end).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.end).define({ (_) in
                     label1.item.marginEnd(10)
                     label2.item.marginEnd(25%)
                     view1.item.marginTop(20).marginEnd(100)
@@ -756,7 +757,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginTop() + marginBottom()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.end).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.end).define({ (_) in
                     label1.item.marginTop(10).marginBottom(200)
                     label2.item.marginTop(10%).marginBottom(50%)
                     view1.item.marginTop(10).marginBottom(200)
@@ -777,7 +778,7 @@ class MarginsSpec: QuickSpec {
         //
         describe("rows + horizontal margins") {
             it("justifyContent(.start) + marginTop() + marginBottom()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.marginLeft(10).marginRight(20)
                     label2.item.marginLeft(10).marginRight(20)
                     view1.item.marginLeft(30).marginRight(40)
@@ -793,7 +794,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("justifyContent(.start) + marginLeft() + marginRight()") {
-                stackView.direction(.row).justifyContent(.end).alignItems(.end).define({ (stack) in
+                stackView.direction(.row).justifyContent(.end).alignItems(.end).define({ (_) in
                     label1.item.marginLeft(10).marginRight(20)
                     label2.item.marginLeft(10).marginRight(20)
                     view1.item.marginLeft(30).marginRight(40).shrink(1)
@@ -809,7 +810,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("justifyContent(.end) + marginLeft() + marginRight()") {
-                stackView.direction(.row).justifyContent(.end).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.end).alignItems(.stretch).define({ (_) in
                     label1.item.marginLeft(10).marginRight(20)
                     label2.item.marginLeft(10).marginRight(20)
                     view1.item.marginLeft(30).marginRight(40)
@@ -825,7 +826,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("justifyContent(.end) + marginLeft() + marginRight()") {
-                stackView.direction(.row).justifyContent(.end).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.end).alignItems(.stretch).define({ (_) in
                     label1.item.marginLeft(10).marginRight(20)
                     label2.item.marginLeft(10).marginRight(20)
                     view1.item.marginLeft(30).marginRight(40).shrink(1)
@@ -841,7 +842,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("justifyContent(.center) + marginLeft() + marginRight()") {
-                stackView.direction(.row).justifyContent(.center).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.center).alignItems(.stretch).define({ (_) in
                     label1.item.marginLeft(10).marginRight(20)
                     label2.item.marginLeft(10).marginRight(20)
                     view1.item.marginLeft(30).marginRight(40).shrink(1)
@@ -857,7 +858,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("justifyContent(.center) + marginLeft() + marginRight()") {
-                stackView.direction(.row).justifyContent(.center).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.center).alignItems(.stretch).define({ (_) in
                     label1.item.marginRight(20)
                     label2.item.marginLeft(10).marginRight(20)
                     view1.item.marginLeft(30).shrink(1)
@@ -878,7 +879,7 @@ class MarginsSpec: QuickSpec {
         //
         describe("Other margins methos") {
             it("marginHorizontal()") {
-                stackView.direction(.column).justifyContent(.center).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.column).justifyContent(.center).alignItems(.stretch).define({ (_) in
                     label1.item.marginHorizontal(10)
                     label2.item.marginLeft(10).marginRight(10)
                     view1.item.marginHorizontal(10%)
@@ -894,7 +895,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginHorizontal()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.marginHorizontal(10)
                     label2.item.marginLeft(10).marginRight(10)
                     view1.item.marginHorizontal(10%)
@@ -909,7 +910,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginVertical()") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.marginVertical(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginVertical(10%)
@@ -925,7 +926,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("marginVertical()") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.marginVertical(10)
                     label2.item.marginTop(10).marginBottom(10)
                     view1.item.marginVertical(10%)
@@ -941,7 +942,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("margin() + column") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.margin(10)
                     label2.item.margin(20)
                     view1.item.margin(10%)
@@ -955,7 +956,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("margin() + row") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.margin(10)
                     label2.item.margin(20)
                     view1.item.margin(10%)
@@ -971,7 +972,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("margin() + row") {
-                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.margin(10)
                     label2.item.margin(20)
                     view1.item.margin(10).shrink(1)
@@ -987,7 +988,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("margin(UIEdgeInsets) + margin(NSDirectionalInsets") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.margin(UIEdgeInsets(top: 10, left: 20, bottom: 30, right: 40))
                     if #available(iOS 11.0, *) {
                         label2.item.margin(NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 30, trailing: 40))
@@ -1006,7 +1007,7 @@ class MarginsSpec: QuickSpec {
             }
             
             it("margin(...) + margin(...") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define({ (_) in
                     label1.item.margin(10, 20)
                     label2.item.margin(10, 20, 30)
                 })

@@ -32,7 +32,8 @@ class PaddingSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(3)
+            _setUnitTestDisplayScale(displayScale: 3)
+            _pinlayoutSetUnitTest(scale: 3)
         }
 
         beforeEach {
@@ -193,9 +194,9 @@ class PaddingSpec: QuickSpec {
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 261.667, width: 330, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 282, width: 330, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.333, width: 310, height: 25.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 262, width: 330, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 282.333, width: 330, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.667, width: 310, height: 25.667), within: withinRange))
             }
             
             it("padding(5, 10, 15, 20) + center + start") {
@@ -1017,9 +1018,9 @@ class PaddingSpec: QuickSpec {
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 261.667, width: 53.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 282, width: 104, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.333, width: 310, height: 25.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 262, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 282.333, width: 104, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.667, width: 310, height: 25.667), within: withinRange))
             }
             
             it("padding(5, 10, 15, 20) + margins + center + center") {
@@ -1034,10 +1035,9 @@ class PaddingSpec: QuickSpec {
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 158.333, y: 261.667, width: 53.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 133, y: 282, width: 104, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.333, width: 310, height: 25.667), within: withinRange))
-
+                expect(label1.frame).to(beCloseTo(CGRect(x: 158.333, y: 262, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 133, y: 282.333, width: 104, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.666, width: 310, height: 25.667), within: withinRange))
             }
             
             it("padding(5, 10, 15, 20) + center + end") {
@@ -1052,9 +1052,9 @@ class PaddingSpec: QuickSpec {
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 296.333, y: 261.667, width: 53.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 246, y: 282, width: 104, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.333, width: 310, height: 25.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 296.333, y: 262, width: 53.667, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 246, y: 282.333, width: 104, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.667, width: 310, height: 25.667), within: withinRange))
             }
 
             it("padding(5, 10, 15, 20) + margins + end + start") {
@@ -1123,7 +1123,6 @@ class PaddingSpec: QuickSpec {
                 expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 559.333, width: 310, height: 25.667), within: withinRange))
             }
 
-
             it("padding(5, 10, 15, 20) + end + start") {
                 stackView.direction(.column).padding(5, 10, 15, 20).justifyContent(.end).alignItems(.start).define { (stack) in
                     stack.addItem(label1).marginLeft(10).marginRight(30)
@@ -1154,8 +1153,8 @@ class PaddingSpec: QuickSpec {
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 5, width: 53.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 282, width: 104, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 559, width: 310, height: 25.667), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 282.333, width: 104, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 559.666, width: 310, height: 25.667), within: withinRange))
             }
 
             it("padding(5, 10, 15, 20) + magins + spaceBetween + stretch") {
@@ -1315,8 +1314,6 @@ class PaddingSpec: QuickSpec {
             }
         }
 
-
-
         //
         // 1. colums + paddings
         //
@@ -1452,9 +1449,9 @@ class PaddingSpec: QuickSpec {
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 261.667, width: 330, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 282, width: 330, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.333, width: 310, height: 25.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 20, y: 262, width: 330, height: 20.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 282.333, width: 330, height: 20.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 30, y: 302.667, width: 310, height: 25.667), within: withinRange))
             }
 
             it("padding(5, 10, 15, 20) + center + start") {
@@ -2978,7 +2975,6 @@ class PaddingSpec: QuickSpec {
             }
         }
 
-
         //
         // SIZE
         //
@@ -3386,7 +3382,7 @@ class PaddingSpec: QuickSpec {
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 5, width: 370, height: 185), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 10, y: 190, width: 179.667, height: 179.667), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 10, y: 369.667, width: 179.667, height: 215.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 10, y: 369.667, width: 179.333, height: 215.333), within: withinRange))
             }
 
             it("aspectRatio + shrink") {
@@ -3866,7 +3862,7 @@ class PaddingSpec: QuickSpec {
                 //  -label1 is smaller with Flexlayout
                 //  -view1 is wider with Flexlayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 644), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 5, width: 61, height: 365.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 5, width: 61, height: 366), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 71, y: 5, width: 104, height: 624), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 175, y: 5, width: 205, height: 624), within: withinRange))
             }

@@ -32,7 +32,8 @@ class JustifytemsRowSpec: QuickSpec {
         var label3: UILabel!
         
         beforeSuite {
-            _setUnitTestDisplayScale(3)
+            _setUnitTestDisplayScale(displayScale: 3)
+            _pinlayoutSetUnitTest(scale: 3)
         }
 
         beforeEach {

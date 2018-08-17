@@ -25,11 +25,12 @@ platform :ios do
   lane :build do
     install
 
-    swiftlint(
-      mode: :lint, 
-      config_file: ".swiftlint.yml",
-      executable: "Pods/SwiftLint/swiftlint"
-    )
+    #swiftlint(
+    #  mode: :lint, 
+    #  config_file: ".swiftlint.yml",
+    #  executable: "Pods/SwiftLint/swiftlint",
+    #  ignore_exit_status: true
+    #)
 
     xcodebuild(
       workspace: "StackLayout.xcworkspace",
@@ -60,7 +61,7 @@ platform :ios do
   lane :tests do
     scan(scheme: "StackLayout", 
          workspace: "StackLayout.xcworkspace",
-         devices: ["iPhone 8", "iPhone 7 Plus"])
+         devices: ["iPhone 8 Plus", "iPhone 7 Plus"])
   end
 
   lane :doc do 

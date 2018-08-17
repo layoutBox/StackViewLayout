@@ -32,7 +32,8 @@ class SizeThatFitsSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(3)
+            _setUnitTestDisplayScale(displayScale: 3)
+            _pinlayoutSetUnitTest(scale: 3)
         }
 
         beforeEach {
@@ -111,7 +112,7 @@ class SizeThatFitsSpec: QuickSpec {
             }
             
             it("justifyContent(.start).alignItems(.stretch)") {
-                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define{ (stack) in
+                stackView.direction(.column).justifyContent(.start).alignItems(.stretch).define { (stack) in
                     label1.item.marginEnd(10)
                     label2.item.marginEnd(25%)
                     
@@ -194,7 +195,9 @@ class SizeThatFitsSpec: QuickSpec {
                     stack.addItem(view1)
                 }
                 
-                stackView.pin.top(64).width(400).sizeToFit(.width)
+                let size = stackView.sizeThatFits(CGSize(width: 400, height: CGFloat.greatestFiniteMagnitude))
+                stackView.frame = CGRect(x: 0, y: 64, width: size.width, height: size.height)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
@@ -392,7 +395,6 @@ class SizeThatFitsSpec: QuickSpec {
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 104, height: 77), within: withinRange))
             }
         }
-        
         
         //
         // ROW: Adjust the width based on the height

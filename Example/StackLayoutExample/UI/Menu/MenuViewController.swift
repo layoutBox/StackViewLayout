@@ -43,10 +43,9 @@ enum PageType: Int {
         switch self {
         case .layoutModes:      return LayoutModesViewController(pageType: self)
         case .intro:            return IntroViewController(pageType: self)
-        case .autolayout:       return UIStoryboard.init(name: "Autolayout", bundle: nil).instantiateViewController(withIdentifier: "AutolayoutViewController")
+        case .autolayout:       return UIStoryboard(name: "Autolayout", bundle: nil).instantiateViewController(withIdentifier: "AutolayoutViewController")
         case .tableView:        return TableViewExampleViewController(pageType: self)
         case .collectionView:   return CollectionViewExampleViewController(pageType: self)
-//        case .unitTests:        return UnitTestsViewController(pageType: self)
         case .count:            return UIViewController()
         }
     }
@@ -73,7 +72,7 @@ class MenuViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        didSelect(pageType: .intro)
+//        didSelect(pageType: .intro)
     }
 }
 

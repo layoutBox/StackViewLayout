@@ -32,7 +32,8 @@ class SubviewsSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(3)
+            _setUnitTestDisplayScale(displayScale: 3)
+            _pinlayoutSetUnitTest(scale: 3)
         }
 
         beforeEach {
@@ -64,7 +65,7 @@ class SubviewsSpec: QuickSpec {
         //
         describe("StackLayout using addSubview") {
             it("addSubview") {
-                stackView.justifyContent(.start).alignItems(.stretch).define({ (stack) in
+                stackView.justifyContent(.start).alignItems(.stretch).define({ (_) in
                     stackView.addSubview(label1)
                     stackView.addSubview(label2)
                     stackView.addSubview(view1)
@@ -81,7 +82,7 @@ class SubviewsSpec: QuickSpec {
             }
 
             it("addSubview") {
-                stackView.define({ (stack) in
+                stackView.define({ (_) in
                     stackView.addSubview(label1)
                     stackView.addSubview(label2)
                     stackView.addSubview(view1)
@@ -89,7 +90,8 @@ class SubviewsSpec: QuickSpec {
 
                 label2.removeFromSuperview()
 
-                stackView.pin.top(64).width(400).sizeToFit(.width)
+                let size = stackView.sizeThatFits(CGSize(width: 400, height: CGFloat.greatestFiniteMagnitude))
+                stackView.frame = CGRect(x: 0, y: 64, width: size.width, height: size.height)
                 stackView.layout()
 
                 // Match FlexLayout

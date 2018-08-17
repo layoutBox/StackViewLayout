@@ -1,4 +1,3 @@
-
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -24,12 +23,29 @@ class ItemInfo {
     var view: UIView
     var stackItem: StackItemImpl
     var container: Container
-    
-    var width: CGFloat?
+
+    private var _width: CGFloat?
+    var width: CGFloat? {
+        get {
+            return _width
+        }
+        set {
+            _width = newValue?.roundUsingDisplayScale()
+        }
+    }
+
     var minWidth: CGFloat?
     var maxWidth: CGFloat?
 
-    var height: CGFloat?
+    private var _height: CGFloat?
+    var height: CGFloat? {
+        get {
+            return _height
+        }
+        set {
+            _height = newValue?.roundUsingDisplayScale()
+        }
+    }
     var minHeight: CGFloat?
     var maxHeight: CGFloat?
     
@@ -314,9 +330,9 @@ class ItemInfo {
 
     private func applyAspectRatio(_ aspectRatio: CGFloat, adjustWidth: Bool) {
         if adjustWidth {
-            width = height! * aspectRatio
+            width = (height! * aspectRatio)
         } else {
-            height = width! / aspectRatio
+            height = (width! / aspectRatio)
         }
     }
 
@@ -425,7 +441,7 @@ class ItemInfo {
     }
 
     func applyWidthMin(_ width: CGFloat) -> CGFloat {
-        if let minWidth = minWidth, width < minWidth  {
+        if let minWidth = minWidth, width < minWidth {
             return minWidth
         } else {
             return width

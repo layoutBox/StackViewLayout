@@ -19,6 +19,7 @@
 
 import Quick
 import Nimble
+import PinLayout
 import StackLayout
 
 class ShrinkColumnSpec: QuickSpec {
@@ -31,7 +32,8 @@ class ShrinkColumnSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(3)
+            _setUnitTestDisplayScale(displayScale: 3)
+            _pinlayoutSetUnitTest(scale: 3)
         }
 
         beforeEach {

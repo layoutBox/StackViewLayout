@@ -168,14 +168,14 @@ class StackItemImpl: NSObject, StackItem {
     }
     
     @discardableResult
-    func size(_ sideLength: CGFloat?) -> StackItem{
+    func size(_ sideLength: CGFloat?) -> StackItem {
         width = Value(sideLength)
         height = Value(sideLength)
         return self
     }
     
     @discardableResult
-    func size(_ percent: SPercent) -> StackItem{
+    func size(_ percent: SPercent) -> StackItem {
         width = Value(percent)
         height = Value(percent)
         return self
