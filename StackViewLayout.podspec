@@ -6,15 +6,15 @@
 #  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
 #
 
-Pod::Spec.new do |s|
-  s.name         = "StackViewLayout"
-  s.version      = "0.1.6"
-  s.summary      = "StackViewLayout is a UIStackView replacement that don't rely on auto layout"
-  #s.description  = ""
+Pod::Spec.new do |spec|
+  spec.name         = "StackViewLayout"
+  spec.version      = "0.1.6"
+  spec.summary      = "StackViewLayout is a UIStackView replacement that don't rely on auto layout"
+  #spec.description  = ""
 
-  s.homepage     = "https://github.com/layoutBox/StackViewLayout/"
-  s.license      = "MIT license"
-  s.author       = { 
+  spec.homepage     = "https://github.com/layoutBox/StackViewLayout/"
+  spec.license      = "MIT license"
+  spec.author       = { 
     "Luc Dion" => "luc_dion@yahoo.com"
   }
   
@@ -24,6 +24,6 @@ Pod::Spec.new do |s|
   spec.tvos.deployment_target = '9.0'
   spec.tvos.frameworks        = 'Foundation', 'CoreGraphics', 'UIKit'
 
-  s.source       = { :git => "https://github.com/layoutBox/StackViewLayout.git", :tag => "#{s.version}" }
-  s.source_files  = "Sources/**/*.swift"
+  spec.source       = { :git => "https://github.com/layoutBox/StackViewLayout.git", :tag => "#{spec.version}" }
+  spec.source_files  = "Sources/**/*.swift"
 end
