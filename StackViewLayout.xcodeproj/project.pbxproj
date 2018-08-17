@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1219A842BBAEAD0FA8213A94 /* Pods_StackLayoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD49253AF7327F24DA0757C /* Pods_StackLayoutTests.framework */; };
 		240F88C11F0C1F5000280FC8 /* AlignItemsColumnSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F88BF1F0C1ED900280FC8 /* AlignItemsColumnSpec.swift */; };
 		241819C02002900F0092B369 /* SubviewsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241819BE20028FDA0092B369 /* SubviewsSpec.swift */; };
 		241819C22002D3940092B369 /* ItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241819C12002D3940092B369 /* ItemInfo.swift */; };
@@ -31,14 +30,14 @@
 		2479AD7C1FFFBDD800F39774 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2479AD7B1FFFBDD700F39774 /* StackView.swift */; };
 		248E4C771F7A88D200C0E7F7 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */; };
 		248F0C1F1FF92238004CD8AC /* WidthHeightSizeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248F0C191FF919F2004CD8AC /* WidthHeightSizeSpec.swift */; };
-		249EFE841E64FB4C00165E39 /* StackLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249EFE7A1E64FB4C00165E39 /* StackLayout.framework */; };
+		249EFE841E64FB4C00165E39 /* StackViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 249EFE7A1E64FB4C00165E39 /* StackViewLayout.framework */; };
 		24B3F7CE1FE1544100AC174B /* GrowSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3F7C91FE0165F00AC174B /* GrowSpec.swift */; };
 		24EB78251FEA0E5800C979AA /* ShrinkRowSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EB78231FEA098C00C979AA /* ShrinkRowSpec.swift */; };
 		24EC06AC1FD254F700459C62 /* JustifytemsColumnSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2464A8721FD253DC007A92A8 /* JustifytemsColumnSpec.swift */; };
 		24EC06DA1FD6345400459C62 /* JustifytemsRowSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06D81FD633F500459C62 /* JustifytemsRowSpec.swift */; };
 		24EC06E71FD7186E00459C62 /* MarginsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC06E51FD7186700459C62 /* MarginsSpec.swift */; };
 		24FA1481201AB88C002BFAD5 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FA1480201AB88B002BFAD5 /* Container.swift */; };
-		3B86EED5331AA27C418C2AF5 /* Pods_StackLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2409E90E6CFDA14D9CF84D98 /* Pods_StackLayout.framework */; };
+		824AA36DA94A9E0CA32AC66E /* Pods_StackViewLayoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99B5D7404156D906C3C299A /* Pods_StackViewLayoutTests.framework */; };
 		DFA4B965200A3ED800AF1BFF /* UnitTestsConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */; };
 		DFAF926F2016AC4B002013D3 /* PaddingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAF926D2016AC44002013D3 /* PaddingSpec.swift */; };
 		DFB506182024DEA00067A4DD /* AspectRatioSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB506162024DD310067A4DD /* AspectRatioSpec.swift */; };
@@ -52,6 +51,7 @@
 		DFEE3D03202BE2E9004AEC4F /* StackItemImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C77D1FD08B1500C794AE /* StackItemImpl.swift */; };
 		DFEE3D04202BE2E9004AEC4F /* StackView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7A21FD0B36900C794AE /* StackView+Layout.swift */; };
 		DFEE3D06202BE2E9004AEC4F /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423C7851FD0AA8000C794AE /* Value.swift */; };
+		F5AC702F5647162E8C43EFAB /* Pods_StackViewLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22237FA4C450EE2EF3095B22 /* Pods_StackViewLayout.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +78,7 @@
 
 /* Begin PBXFileReference section */
 		144303E5200662A28FC92F65 /* Pods-StackLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayout.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayout/Pods-StackLayout.debug.xcconfig"; sourceTree = "<group>"; };
-		2409E90E6CFDA14D9CF84D98 /* Pods_StackLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22237FA4C450EE2EF3095B22 /* Pods_StackViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		240F88BF1F0C1ED900280FC8 /* AlignItemsColumnSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignItemsColumnSpec.swift; sourceTree = "<group>"; };
 		241819BE20028FDA0092B369 /* SubviewsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubviewsSpec.swift; sourceTree = "<group>"; };
 		241819C12002D3940092B369 /* ItemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ItemInfo.swift; path = Impl/ItemInfo.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		2439036A1FDD67530064F034 /* SizeThatFitsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeThatFitsSpec.swift; sourceTree = "<group>"; };
 		243C620E1FC3834B0082C327 /* Percent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Percent.swift; path = Impl/Percent.swift; sourceTree = "<group>"; };
 		24496C2F1FE55F7D006F0E78 /* ShrinkColumnSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShrinkColumnSpec.swift; sourceTree = "<group>"; };
-		244DF2F81EF46C500090508B /* StackLayoutTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackLayoutTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		244DF2F81EF46C500090508B /* StackViewLayoutTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackViewLayoutTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		245B58041FE8BA4F00C0E8EA /* AlignItemsRowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignItemsRowSpec.swift; sourceTree = "<group>"; };
 		245C1D9D1FEC4CB9007594F7 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Coordinates.swift; path = Impl/Coordinates.swift; sourceTree = "<group>"; };
 		2464A8721FD253DC007A92A8 /* JustifytemsColumnSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustifytemsColumnSpec.swift; sourceTree = "<group>"; };
@@ -104,26 +104,29 @@
 		2479AD7B1FFFBDD700F39774 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		248E4C751F7A88CF00C0E7F7 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		248F0C191FF919F2004CD8AC /* WidthHeightSizeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidthHeightSizeSpec.swift; sourceTree = "<group>"; };
-		249EFE7A1E64FB4C00165E39 /* StackLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		249EFE831E64FB4C00165E39 /* StackLayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StackLayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		249EFE7A1E64FB4C00165E39 /* StackViewLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StackViewLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		249EFE831E64FB4C00165E39 /* StackViewLayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StackViewLayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		249EFE8A1E64FB4C00165E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24B3F7C91FE0165F00AC174B /* GrowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrowSpec.swift; sourceTree = "<group>"; };
 		24EB78231FEA098C00C979AA /* ShrinkRowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShrinkRowSpec.swift; sourceTree = "<group>"; };
 		24EC06D81FD633F500459C62 /* JustifytemsRowSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JustifytemsRowSpec.swift; sourceTree = "<group>"; };
 		24EC06E51FD7186700459C62 /* MarginsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarginsSpec.swift; sourceTree = "<group>"; };
 		24FA1480201AB88B002BFAD5 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Container.swift; path = Impl/Container.swift; sourceTree = "<group>"; };
+		335FCF5D7C9B3966D5048E6E /* Pods-StackViewLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayout.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayout/Pods-StackViewLayout.debug.xcconfig"; sourceTree = "<group>"; };
 		412B4051A772AA0C17EBCD82 /* Pods-StackLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayoutTests/Pods-StackLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
-		45CE7ABE76F48416DE57DF55 /* Pods_PinLayoutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinLayoutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		495BECA46082734098CCE556 /* Pods-StackViewLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayoutTests/Pods-StackViewLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
 		561BC8B0591ACB691B563927 /* Pods-PinLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinLayoutTests/Pods-PinLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
+		5F3493E308B5D1BB971D1D2D /* Pods-StackViewLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayoutTests/Pods-StackViewLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
 		6070E55EDEAA3DC58C0B4CDD /* Pods-PinLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinLayoutTests/Pods-PinLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6BD49253AF7327F24DA0757C /* Pods_StackLayoutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackLayoutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F957AA928728CEF94281E9 /* Pods-StackLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayout.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayout/Pods-StackLayout.release.xcconfig"; sourceTree = "<group>"; };
+		CC330888013650F3DBC42D01 /* Pods-StackViewLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayout.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayout/Pods-StackViewLayout.release.xcconfig"; sourceTree = "<group>"; };
 		DF6D467B2013D2A40022C5D6 /* UIScrollViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewSpec.swift; sourceTree = "<group>"; };
 		DFA4B963200A3ECE00AF1BFF /* UnitTestsConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestsConst.swift; sourceTree = "<group>"; };
 		DFAF926D2016AC44002013D3 /* PaddingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingSpec.swift; sourceTree = "<group>"; };
 		DFB506162024DD310067A4DD /* AspectRatioSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AspectRatioSpec.swift; sourceTree = "<group>"; };
 		DFE6FF1F202D2402007633A3 /* isIncludedInLayoutSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = isIncludedInLayoutSpec.swift; sourceTree = "<group>"; };
 		F91D3F965902CA40AF890854 /* Pods-StackLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayoutTests/Pods-StackLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F99B5D7404156D906C3C299A /* Pods_StackViewLayoutTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackViewLayoutTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B86EED5331AA27C418C2AF5 /* Pods_StackLayout.framework in Frameworks */,
+				F5AC702F5647162E8C43EFAB /* Pods_StackViewLayout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +149,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				249EFE841E64FB4C00165E39 /* StackLayout.framework in Frameworks */,
-				1219A842BBAEAD0FA8213A94 /* Pods_StackLayoutTests.framework in Frameworks */,
+				249EFE841E64FB4C00165E39 /* StackViewLayout.framework in Frameworks */,
+				824AA36DA94A9E0CA32AC66E /* Pods_StackViewLayoutTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,9 +160,8 @@
 		138A1F602470415292B7194B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				45CE7ABE76F48416DE57DF55 /* Pods_PinLayoutTests.framework */,
-				6BD49253AF7327F24DA0757C /* Pods_StackLayoutTests.framework */,
-				2409E90E6CFDA14D9CF84D98 /* Pods_StackLayout.framework */,
+				22237FA4C450EE2EF3095B22 /* Pods_StackViewLayout.framework */,
+				F99B5D7404156D906C3C299A /* Pods_StackViewLayoutTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -189,9 +191,9 @@
 		249EFE7B1E64FB4C00165E39 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				249EFE7A1E64FB4C00165E39 /* StackLayout.framework */,
-				249EFE831E64FB4C00165E39 /* StackLayoutTests.xctest */,
-				244DF2F81EF46C500090508B /* StackLayoutTVOS.framework */,
+				249EFE7A1E64FB4C00165E39 /* StackViewLayout.framework */,
+				249EFE831E64FB4C00165E39 /* StackViewLayoutTests.xctest */,
+				244DF2F81EF46C500090508B /* StackViewLayoutTVOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,6 +261,10 @@
 				412B4051A772AA0C17EBCD82 /* Pods-StackLayoutTests.release.xcconfig */,
 				144303E5200662A28FC92F65 /* Pods-StackLayout.debug.xcconfig */,
 				72F957AA928728CEF94281E9 /* Pods-StackLayout.release.xcconfig */,
+				335FCF5D7C9B3966D5048E6E /* Pods-StackViewLayout.debug.xcconfig */,
+				CC330888013650F3DBC42D01 /* Pods-StackViewLayout.release.xcconfig */,
+				495BECA46082734098CCE556 /* Pods-StackViewLayoutTests.debug.xcconfig */,
+				5F3493E308B5D1BB971D1D2D /* Pods-StackViewLayoutTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -285,9 +291,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		244DF2F71EF46C500090508B /* StackLayoutTVOS */ = {
+		244DF2F71EF46C500090508B /* StackViewLayoutTVOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 244DF2FF1EF46C500090508B /* Build configuration list for PBXNativeTarget "StackLayoutTVOS" */;
+			buildConfigurationList = 244DF2FF1EF46C500090508B /* Build configuration list for PBXNativeTarget "StackViewLayoutTVOS" */;
 			buildPhases = (
 				244DF2F51EF46C500090508B /* Headers */,
 				244DF2F31EF46C500090508B /* Sources */,
@@ -298,14 +304,14 @@
 			);
 			dependencies = (
 			);
-			name = StackLayoutTVOS;
+			name = StackViewLayoutTVOS;
 			productName = PinLayoutTVOS;
-			productReference = 244DF2F81EF46C500090508B /* StackLayoutTVOS.framework */;
+			productReference = 244DF2F81EF46C500090508B /* StackViewLayoutTVOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		249EFE791E64FB4C00165E39 /* StackLayout */ = {
+		249EFE791E64FB4C00165E39 /* StackViewLayout */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 249EFE8E1E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackLayout" */;
+			buildConfigurationList = 249EFE8E1E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayout" */;
 			buildPhases = (
 				97C3A0955161858C5E6AF351 /* [CP] Check Pods Manifest.lock */,
 				249EFE771E64FB4C00165E39 /* Headers */,
@@ -316,14 +322,14 @@
 			);
 			dependencies = (
 			);
-			name = StackLayout;
+			name = StackViewLayout;
 			productName = PinLayout;
-			productReference = 249EFE7A1E64FB4C00165E39 /* StackLayout.framework */;
+			productReference = 249EFE7A1E64FB4C00165E39 /* StackViewLayout.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		249EFE821E64FB4C00165E39 /* StackLayoutTests */ = {
+		249EFE821E64FB4C00165E39 /* StackViewLayoutTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 249EFE911E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackLayoutTests" */;
+			buildConfigurationList = 249EFE911E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayoutTests" */;
 			buildPhases = (
 				C13A14974C1425B4B67ECF64 /* [CP] Check Pods Manifest.lock */,
 				249EFE7F1E64FB4C00165E39 /* Sources */,
@@ -337,9 +343,9 @@
 			dependencies = (
 				249EFE861E64FB4C00165E39 /* PBXTargetDependency */,
 			);
-			name = StackLayoutTests;
+			name = StackViewLayoutTests;
 			productName = PinLayoutTests;
-			productReference = 249EFE831E64FB4C00165E39 /* StackLayoutTests.xctest */;
+			productReference = 249EFE831E64FB4C00165E39 /* StackViewLayoutTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -370,7 +376,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 249EFE741E64FB4C00165E39 /* Build configuration list for PBXProject "StackLayout" */;
+			buildConfigurationList = 249EFE741E64FB4C00165E39 /* Build configuration list for PBXProject "StackViewLayout" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -382,9 +388,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				249EFE791E64FB4C00165E39 /* StackLayout */,
-				249EFE821E64FB4C00165E39 /* StackLayoutTests */,
-				244DF2F71EF46C500090508B /* StackLayoutTVOS */,
+				249EFE791E64FB4C00165E39 /* StackViewLayout */,
+				249EFE821E64FB4C00165E39 /* StackViewLayoutTests */,
+				244DF2F71EF46C500090508B /* StackViewLayoutTVOS */,
 			);
 		};
 /* End PBXProject section */
@@ -413,7 +419,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-StackLayoutTests/Pods-StackLayoutTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-StackViewLayoutTests/Pods-StackViewLayoutTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PinLayout/PinLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -426,7 +432,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StackLayoutTests/Pods-StackLayoutTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StackViewLayoutTests/Pods-StackViewLayoutTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		97C3A0955161858C5E6AF351 /* [CP] Check Pods Manifest.lock */ = {
@@ -440,7 +446,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-StackLayout-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-StackViewLayout-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -458,7 +464,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-StackLayoutTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-StackViewLayoutTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -534,7 +540,7 @@
 /* Begin PBXTargetDependency section */
 		249EFE861E64FB4C00165E39 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 249EFE791E64FB4C00165E39 /* StackLayout */;
+			target = 249EFE791E64FB4C00165E39 /* StackViewLayout */;
 			targetProxy = 249EFE851E64FB4C00165E39 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -709,7 +715,7 @@
 		};
 		249EFE8F1E64FB4C00165E39 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 144303E5200662A28FC92F65 /* Pods-StackLayout.debug.xcconfig */;
+			baseConfigurationReference = 335FCF5D7C9B3966D5048E6E /* Pods-StackViewLayout.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -732,7 +738,7 @@
 		};
 		249EFE901E64FB4C00165E39 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72F957AA928728CEF94281E9 /* Pods-StackLayout.release.xcconfig */;
+			baseConfigurationReference = CC330888013650F3DBC42D01 /* Pods-StackViewLayout.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -754,7 +760,7 @@
 		};
 		249EFE921E64FB4C00165E39 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F91D3F965902CA40AF890854 /* Pods-StackLayoutTests.debug.xcconfig */;
+			baseConfigurationReference = 495BECA46082734098CCE556 /* Pods-StackViewLayoutTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 4Q596JWQC5;
@@ -770,7 +776,7 @@
 		};
 		249EFE931E64FB4C00165E39 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 412B4051A772AA0C17EBCD82 /* Pods-StackLayoutTests.release.xcconfig */;
+			baseConfigurationReference = 5F3493E308B5D1BB971D1D2D /* Pods-StackViewLayoutTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 4Q596JWQC5;
@@ -787,7 +793,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		244DF2FF1EF46C500090508B /* Build configuration list for PBXNativeTarget "StackLayoutTVOS" */ = {
+		244DF2FF1EF46C500090508B /* Build configuration list for PBXNativeTarget "StackViewLayoutTVOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				244DF2FD1EF46C500090508B /* Debug */,
@@ -796,7 +802,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		249EFE741E64FB4C00165E39 /* Build configuration list for PBXProject "StackLayout" */ = {
+		249EFE741E64FB4C00165E39 /* Build configuration list for PBXProject "StackViewLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				249EFE8C1E64FB4C00165E39 /* Debug */,
@@ -805,7 +811,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		249EFE8E1E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackLayout" */ = {
+		249EFE8E1E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				249EFE8F1E64FB4C00165E39 /* Debug */,
@@ -814,7 +820,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		249EFE911E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackLayoutTests" */ = {
+		249EFE911E64FB4C00165E39 /* Build configuration list for PBXNativeTarget "StackViewLayoutTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				249EFE921E64FB4C00165E39 /* Debug */,

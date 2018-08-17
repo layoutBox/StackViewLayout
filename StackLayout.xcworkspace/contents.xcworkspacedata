@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:StackLayout.xcodeproj">
+      location = "group:/Users/lucdion/Dropbox (Personal)/devluc2/StackViewLayout/StackViewLayout.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Example/StackLayoutExample.xcodeproj">
+      location = "group:/Users/lucdion/Dropbox (Personal)/devluc2/StackViewLayout/Example/StackViewLayoutExample.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

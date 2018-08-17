@@ -59,7 +59,9 @@ class MenuViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        title = "StackLayout Examples"
+        title = "StackViewLayout Examples"
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 
     required init(coder aDecoder: NSCoder) {

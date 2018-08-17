@@ -45,7 +45,7 @@ class UnitTestsView: BaseView {
     var label1: UILabel!
     var label2: UILabel!
     var label3: UILabel!
-    let view1 = BasicViewTest(text: "StackLayout", color: UIColor.red)
+    let view1 = BasicViewTest(text: "StackViewLayout", color: UIColor.red)
     
     override init() {
         super.init()

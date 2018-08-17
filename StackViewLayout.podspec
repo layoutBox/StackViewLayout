@@ -13,13 +13,16 @@ Pod::Spec.new do |s|
   #s.description  = ""
 
   s.homepage     = "https://github.com/layoutBox/StackViewLayout/"
-  s.license      = "BSD 3-clause"
+  s.license      = "MIT license"
   s.author       = { 
     "Luc Dion" => "luc_dion@yahoo.com"
   }
   
-  s.platform     = :ios, "8.0"
-  s.tvos.deployment_target = '9.0'
+  spec.ios.deployment_target  = '8.0'
+  spec.ios.frameworks         = 'Foundation', 'CoreGraphics', 'UIKit'
+  
+  spec.tvos.deployment_target = '9.0'
+  spec.tvos.frameworks        = 'Foundation', 'CoreGraphics', 'UIKit'
 
   s.source       = { :git => "https://github.com/layoutBox/StackViewLayout.git", :tag => "#{s.version}" }
   s.source_files  = "Sources/**/*.swift"

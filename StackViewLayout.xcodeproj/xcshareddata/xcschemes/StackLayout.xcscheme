@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "249EFE791E64FB4C00165E39"
-               BuildableName = "StackLayout.framework"
-               BlueprintName = "StackLayout"
-               ReferencedContainer = "container:StackLayout.xcodeproj">
+               BuildableName = "StackViewLayout.framework"
+               BlueprintName = "StackViewLayout"
+               ReferencedContainer = "container:StackViewLayout.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "249EFE821E64FB4C00165E39"
-               BuildableName = "StackLayoutTests.xctest"
-               BlueprintName = "StackLayoutTests"
-               ReferencedContainer = "container:StackLayout.xcodeproj">
+               BuildableName = "StackViewLayoutTests.xctest"
+               BlueprintName = "StackViewLayoutTests"
+               ReferencedContainer = "container:StackViewLayout.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,9 +44,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "249EFE791E64FB4C00165E39"
-            BuildableName = "StackLayout.framework"
-            BlueprintName = "StackLayout"
-            ReferencedContainer = "container:StackLayout.xcodeproj">
+            BuildableName = "StackViewLayout.framework"
+            BlueprintName = "StackViewLayout"
+            ReferencedContainer = "container:StackViewLayout.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "249EFE791E64FB4C00165E39"
-            BuildableName = "StackLayout.framework"
-            BlueprintName = "StackLayout"
-            ReferencedContainer = "container:StackLayout.xcodeproj">
+            BuildableName = "StackViewLayout.framework"
+            BlueprintName = "StackViewLayout"
+            ReferencedContainer = "container:StackViewLayout.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -84,9 +84,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "249EFE791E64FB4C00165E39"
-            BuildableName = "StackLayout.framework"
-            BlueprintName = "StackLayout"
-            ReferencedContainer = "container:StackLayout.xcodeproj">
+            BuildableName = "StackViewLayout.framework"
+            BlueprintName = "StackViewLayout"
+            ReferencedContainer = "container:StackViewLayout.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
