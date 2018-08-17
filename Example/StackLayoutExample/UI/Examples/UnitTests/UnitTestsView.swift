@@ -51,7 +51,7 @@ class UnitTestsView: BaseView {
         super.init()
 
         _setUnitTestDisplayScale(displayScale: 3)
-        _pinlayoutSetUnitTest(displayScale: 3)
+        _pinlayoutSetUnitTest(scale: 3)
         
         rootFlexContainer.layer.borderColor = UIColor.green.cgColor
         rootFlexContainer.layer.borderWidth = 1

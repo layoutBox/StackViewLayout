@@ -38,7 +38,7 @@ class IntroView: BaseView {
 //        let button7 = createButton(imageName: "share_7")
 //        let button8 = createButton(imageName: "share_8")
 
-        var imageRatio: CGFloat? = nil
+        var imageRatio: CGFloat?
         if let imageSize = button1.image(for: .normal)?.size {
             imageRatio = imageSize.width / imageSize.height
         }

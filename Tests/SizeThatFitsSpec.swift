@@ -33,7 +33,7 @@ class SizeThatFitsSpec: QuickSpec {
         
         beforeSuite {
             _setUnitTestDisplayScale(displayScale: 3)
-            _pinlayoutSetUnitTest(displayScale: 3)
+            _pinlayoutSetUnitTest(scale: 3)
         }
 
         beforeEach {
