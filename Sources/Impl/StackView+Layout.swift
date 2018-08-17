@@ -17,14 +17,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-var debug = false
-var isSizeThatFits = false
-
 import Foundation
 
 #if os(iOS) || os(tvOS)
 import UIKit
-    
+
+enum LayoutMode {
+    case layouting
+    case measuring
+}
+
 extension StackView {
     // TODO_: Tests StackView using autolayout
     public override var intrinsicContentSize: CGSize {
@@ -33,68 +35,39 @@ extension StackView {
 
     // TODO_: Tests StackView using autolayout
     public override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {
-        return super.systemLayoutSizeFitting(targetSize)
+        return sizeThatFits(targetSize)
     }
     
     public override func layoutSubviews() {
         super.layoutSubviews()
         
         let container = Container(stackView: self)
-        layoutItems(container: container, sizeThatFits: false)
+        layoutItems(container: container, mode: .layouting)
     }
     
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
         let container = Container(stackView: self, size: size)
-        return layoutItems(container: container, sizeThatFits: true)
+        return layoutItems(container: container, mode: .measuring)
     }
 
-    func display(type: String, itemInfo: ItemInfo) {
-        //            container.items.forEach({ (itemInfo) in
-        print("   \(type):")
-        print("        mainAxisLength:  \(String(describing: itemInfo.mainAxisLength))")
-        print("        crossAxisLength: \(itemInfo.crossAxisLength)")
-        print("        measureType:     \(String(describing: itemInfo.measureType))")
-        print("        width:           \(String(describing: itemInfo.width))")
-        print("        height:          \(String(describing: itemInfo.height))")
-
-    }
-    
     @discardableResult
-    internal func layoutItems(container: Container, sizeThatFits: Bool) -> CGSize {
+    internal func layoutItems(container: Container, mode: LayoutMode) -> CGSize {
         let containerMainAxisLength = container.mainAxisLength
         let containerCrossAxisLength = container.crossAxisLength
 
         guard containerMainAxisLength != nil || containerCrossAxisLength != nil else { return .zero }
         guard (containerMainAxisLength ?? 0) > 0 || (containerCrossAxisLength ?? 0) > 0 else { return .zero }
 
-        isSizeThatFits = sizeThatFits
-        debug = subviews.count > 1
-
-        if debug {
-            if isSizeThatFits {
-                print("sizeThatFits")
-            } else {
-                print("Layout")
-            }
-        }
-
         // Measures stack's items and add them in the Container.items array.
-        measuresItemsAndMargins(container: container)
+        measuresItemsAndMargins(container: container, mode: mode)
 
-        if debug, let itemInfo = container.items.first {
-            display(type: "AFTER measuresItemsAndMargins", itemInfo: itemInfo)
-        }
-
+        // Adjust items to match the container, applying shrink and grow factors.
         adjustItemsSizeToContainer(container: container)
 
-        if debug, let itemInfo = container.items.first {
-            display(type: "AFTER adjustItemsSizeToContainer", itemInfo: itemInfo)
-        }
-
-        return layoutItemsIn(container: container, sizeThatFits: sizeThatFits)
+        return layoutItemsIn(container: container, mode: mode)
     }
     
-    private func measuresItemsAndMargins(container: Container) {
+    private func measuresItemsAndMargins(container: Container, mode: LayoutMode) {
         subviews.forEach { (view) in
             guard let stackItem = view.item as? StackItemImpl else { return }
             guard !view.isHidden else { return }
@@ -121,20 +94,17 @@ extension StackView {
         var previousLength: CGFloat?
         var lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
         let delta = Coordinates.onePixelLength + 0.001
-        var nbIteration = 0 // TEMP
+        var nbIterations = 0
 
         if lengthDiff > delta {
             // Grow
             var growFactorTotal: CGFloat = 0
 
             repeat {
-//                if nbIteration > 1 { // TEMP
-//                    assertionFailure()
-//                }
+                assert(nbIterations <= 2)
+
                 let growableItems = container.growableItems()
-                growFactorTotal = growableItems.reduce(0, { (result, item) -> CGFloat in
-                    return result + item.growFactor()
-                })
+                growFactorTotal = growableItems.reduce(0, { $0 + $1.growFactor() })
 
                 if growFactorTotal > 0 {
                     let factorLength = lengthDiff / growFactorTotal
@@ -148,22 +118,13 @@ extension StackView {
                         }
                     }
 
-//                    for (index, item) in growableItems.enumerated() {
-//                        guard let itemMainAxisLength = item.mainAxisLength else { continue }
-//                        let growFactor = item.growFactor()
-//
-//                        if growFactor > 0 {
-//                            item.grow(mainAxisLength: itemMainAxisLength + growFactor * factorLength)
-//                        }
-//                    }
-
                     container.updateMainAxisTotalLength()
 
                     previousLength = lengthDiff
                     lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
-
-                    nbIteration += 1 // TEMP
                 }
+
+                nbIterations += 1
             } while (growFactorTotal > 0) && (lengthDiff > delta) && (previousLength != lengthDiff)
             
         } else if lengthDiff < -delta {
@@ -171,15 +132,10 @@ extension StackView {
             var shrinkFactorTotal: CGFloat = 0
 
             repeat {
-                if nbIteration > 1 { // TEMP
-                    assertionFailure()
-                }
+                assert(nbIterations <= 2)
 
                 let shrinkableItems = container.shrinkableItems()
-                shrinkFactorTotal = shrinkableItems.reduce(0, { (result, item) -> CGFloat in
-                    return result + item.shrinkFactor()
-                })
-//                shrinkFactorTotal = shrinkableItems.reduce(0, +)
+                shrinkFactorTotal = shrinkableItems.reduce(0, { $0 + $1.shrinkFactor() })
 
                 if shrinkFactorTotal > 0 {
                     let factorLength = lengthDiff / shrinkFactorTotal
@@ -192,34 +148,22 @@ extension StackView {
                             item.shrink(mainAxisLength: itemMainAxisLength + shrinkFactor * factorLength)
                         }
                     }
-//                    for (index, item) in container.items.enumerated() {
-//                        guard let itemMainAxisLength = item.mainAxisLength else { continue }
-//                        let shrinkFactor = shrinkableItems[index]
-//
-//                        if shrinkFactor > 0 {
-//                            item.shrink(mainAxisLength: itemMainAxisLength + shrinkFactor * factorLength)
-//                        }
-//                    }
+
                     container.updateMainAxisTotalLength()
 
                     previousLength = lengthDiff
                     lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
-
-                    nbIteration += 1 // TEMP
                 }
+
+                nbIterations += 1
             } while (shrinkFactorTotal > 0) && (lengthDiff < -delta) && (previousLength != lengthDiff)
         }
     }
 
-    fileprivate func layoutItemsIn(container: Container, sizeThatFits: Bool) -> CGSize {
+    fileprivate func layoutItemsIn(container: Container, mode: LayoutMode) -> CGSize {
         var mainAxisOffset = container.mainAxisStartPadding
         let containerMainAxisLength = container.mainAxisLength
         let containerCrossAxisLength = container.crossAxisLength
-
-        var itemIndex = 0
-
-//        guard containerMainAxisLength != nil || containerCrossAxisLength != nil else { return .zero }
-//        guard (containerMainAxisLength ?? 0) > 0 || (containerCrossAxisLength ?? 0) > 0 else { return .zero }
 
         var startEndSpacing: CGFloat = 0
         var betweenSpacing: CGFloat = 0
@@ -293,7 +237,10 @@ extension StackView {
                 CGRect(x: mainAxisOffset, y: crossAxisPos, width: itemMainAxisLength, height: itemCrossAxisLength)
 
             let itemViewRect = Coordinates.adjustRectToDisplayScale(viewFrame)
-            Coordinates.setUntransformedViewRect(item.view, toRect: itemViewRect)
+
+            //if mode == .layouting {
+                Coordinates.setUntransformedViewRect(item.view, toRect: itemViewRect)
+            //}
 
             mainAxisOffset = direction == .column ? itemViewRect.maxY :  itemViewRect.maxX
             mainAxisOffset += item.mainAxisEndMargin
@@ -305,17 +252,22 @@ extension StackView {
                 maxX = mainAxisOffset
                 maxY = max(itemViewRect.maxY + crossAxisEndMargin, maxY)
             }
-
-            if debug {
-                print("   Item \(itemIndex): \(itemViewRect)")
-            }
-            itemIndex += 1
         }
 
         maxX += container.paddingRight
         maxY += container.paddingBottom
 
         return CGSize(width: maxX, height: maxY)
+    }
+
+    func display(type: String, itemInfo: ItemInfo) {
+        //container.items.forEach({ (itemInfo) in
+        print("   \(type):")
+        print("        mainAxisLength:  \(String(describing: itemInfo.mainAxisLength))")
+        print("        crossAxisLength: \(itemInfo.crossAxisLength)")
+        print("        measureType:     \(String(describing: itemInfo.measureType))")
+        print("        width:           \(String(describing: itemInfo.width))")
+        print("        height:          \(String(describing: itemInfo.height))")
     }
 }
 

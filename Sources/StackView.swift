@@ -363,7 +363,7 @@ public class StackView: UIView {
             container.height = nil
         }
         
-        layoutItems(container: container, sizeThatFits: false)
+        layoutItems(container: container, mode: .layouting)
     }
 
     //

@@ -33,7 +33,7 @@ class GrowSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(displayScale: 3)
+            _setUnitTestDisplayScale(scale: 3)
             _pinlayoutSetUnitTest(scale: 3)
         }
 
@@ -289,6 +289,7 @@ class GrowSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
@@ -541,6 +542,7 @@ class GrowSpec: QuickSpec {
                 }
                 
                 stackView.pin.height(200).sizeToFit(.height)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 309, height: 200), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 200), within: withinRange))
@@ -560,6 +562,7 @@ class GrowSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 20.333), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 61.333, height: 20.333), within: withinRange))

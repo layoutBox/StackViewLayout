@@ -50,7 +50,7 @@ class UnitTestsView: BaseView {
     override init() {
         super.init()
 
-        _setUnitTestDisplayScale(displayScale: 3)
+        _setUnitTestDisplayScale(scale: 3)
         _pinlayoutSetUnitTest(scale: 3)
         
         rootFlexContainer.layer.borderColor = UIColor.green.cgColor
@@ -137,15 +137,17 @@ class UnitTestsView: BaseView {
         
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
 
-        stackView.direction(.row).justifyContent(.start).alignItems(.center).define({ (stack) in
-            label2.item.alignSelf(.auto)
+        stackView.direction(.row).justifyContent(.start).alignItems(.stretch).define { (stack) in
+            label1.item.shrink(1)
+            label2.item.shrink(10)
+            view1.item.shrink(1)
 
             stack.addItem(label1)
             stack.addItem(label2)
             stack.addItem(view1)
-        })
+        }
 
-        layout()
+//        layout()
     }
     
     func setupFlex() {
@@ -176,9 +178,11 @@ class UnitTestsView: BaseView {
 //        label3.text = "Label very very very much longuer"
         
         rootFlexContainer.isHidden = true
-        
-        rootFlexContainer.flex.direction(.row).justifyContent(.start).alignItems(.center).define({ (flex) in
-            label2.item.alignSelf(.auto)
+
+        rootFlexContainer.flex.direction(.row).justifyContent(.start).alignItems(.stretch).define({ (flex) in
+            label1.flex.shrink(1)
+            label2.flex.shrink(10)
+            view1.flex.shrink(1)
 
             flex.addItem(label1)
             flex.addItem(label2)
@@ -192,10 +196,12 @@ class UnitTestsView: BaseView {
         func layoutView(view: UIView) {
 //            view.pin.top(64).left().width(400).height(100)
 //            view.pin.top(64).left().width(400).height(90)
-            view.pin.top(64).width(400).height(600)
+//            view.pin.top(64).width(400).height(600)
 //            view.pin.top(64).width(400).height(600)
 //            view.pin.top(64).width(400).sizeToFit(.width)
-//            view.pin.top(64).height(200).sizeToFit(.height)
+            view.pin.top(64).height(200).sizeToFit(.height)
+
+//            let size = view.flex.sizeThatFits(size: CGSize(width: CGFloat.greatestFiniteMagnitude, height: 200))
         }
 
 //        stackView.pin.top(64).left().width(200).height(180)
@@ -203,12 +209,13 @@ class UnitTestsView: BaseView {
 //        stackView.pin.top(80).left().height(400).sizeToFit(.height)
         layoutView(view: stackView)
         layoutView(view: rootFlexContainer)
+
         stackView.layout()
         
-//        rootFlexContainer.flex.layout(mode: .adjustWidth)
+        rootFlexContainer.flex.layout(mode: .adjustWidth)
 //        rootFlexContainer.flex.layout(mode: .adjustHeight)
-        rootFlexContainer.flex.layout()
-        
+//        rootFlexContainer.flex.layout()
+
         print("// Match FlexLayout")
         printViewFrame(stackView, name: "stackView")
         printViewFrame(label1, name: "label1")

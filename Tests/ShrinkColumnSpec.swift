@@ -32,7 +32,7 @@ class ShrinkColumnSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(displayScale: 3)
+            _setUnitTestDisplayScale(scale: 3)
             _pinlayoutSetUnitTest(scale: 3)
         }
 
@@ -339,6 +339,7 @@ class ShrinkColumnSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 131.333), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))

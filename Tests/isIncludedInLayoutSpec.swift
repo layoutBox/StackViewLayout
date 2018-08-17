@@ -32,7 +32,7 @@ class isIncludedInLayoutSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(displayScale: 3)
+            _setUnitTestDisplayScale(scale: 3)
             _pinlayoutSetUnitTest(scale: 3)
         }
 

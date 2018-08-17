@@ -32,7 +32,7 @@ class SizeThatFitsSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(displayScale: 3)
+            _setUnitTestDisplayScale(scale: 3)
             _pinlayoutSetUnitTest(scale: 3)
         }
 
@@ -104,6 +104,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 390, height: 20.333), within: withinRange))
@@ -122,6 +123,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 390, height: 20.333), within: withinRange))
@@ -139,6 +141,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 370, height: 20.333), within: withinRange))
@@ -158,6 +161,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 400, height: 20.333), within: withinRange))
@@ -177,6 +181,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 53.667, height: 20.333), within: withinRange))
@@ -218,6 +223,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 346.333, y: 40, width: 53.667, height: 20.333), within: withinRange))
@@ -237,6 +243,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 53.667, height: 20.333), within: withinRange))
@@ -256,6 +263,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 53.667, height: 20.333), within: withinRange))
@@ -275,6 +283,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
@@ -295,6 +304,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 400, height: 20.333), within: withinRange))
@@ -314,6 +324,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 400, height: 20.333), within: withinRange))
@@ -333,6 +344,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 400, height: 20.333), within: withinRange))
@@ -352,6 +364,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 40, width: 400, height: 20.333), within: withinRange))
@@ -367,6 +380,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.width(400).sizeToFit(.width)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
@@ -412,6 +426,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.height(400).sizeToFit(.height)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 53.667, height: 20.333), within: withinRange))
@@ -431,6 +446,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.height(400).sizeToFit(.height)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 379.667, width: 53.667, height: 20.333), within: withinRange))
@@ -450,6 +466,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.height(400).sizeToFit(.height)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 53.667, height: 400), within: withinRange))
@@ -469,6 +486,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
                 
                 stackView.pin.height(400).sizeToFit(.height)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 307.667, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 53.667, height: 400), within: withinRange))
@@ -488,6 +506,7 @@ class SizeThatFitsSpec: QuickSpec {
                 }
             
                 stackView.pin.height(400).sizeToFit(.height)
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 257.667, height: 400), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 400), within: withinRange))

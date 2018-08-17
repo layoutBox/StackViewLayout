@@ -22,8 +22,8 @@ import Foundation
 #if os(iOS) || os(tvOS)
 import UIKit
 
-public func _setUnitTestDisplayScale(displayScale: CGFloat) {
-    Coordinates.displayScale = displayScale
+public func _setUnitTestDisplayScale(scale: CGFloat) {
+    Coordinates.displayScale = scale
 }
 
 class Coordinates {
