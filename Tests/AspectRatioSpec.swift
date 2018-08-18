@@ -19,9 +19,9 @@
 
 import Quick
 import Nimble
-import StackLayout
 import PinLayout
 import UIKit
+import StackViewLayout
 
 class AspectRatioSpec: QuickSpec {
     override func spec() {

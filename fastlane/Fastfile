@@ -59,14 +59,14 @@ platform :ios do
   end
 
   lane :tests do
-    scan(scheme: "StackViewLayoutExample", 
-        workspace: "StackViewLayout.xcworkspace",
-        devices: [
-          "iPad Air (11.4)",
-          "iPhone X (11.4)",
-          "iPhone 8 (10.2)",
-          "iPhone 8 Plus"
-        ]
+    scan(
+      workspace: "StackViewLayout.xcworkspace",  
+      scheme: "StackViewLayoutExample", 
+      devices: [
+        "iPhone X (11.4)",
+        "iPhone 8 (10.4)",
+        "iPhone 8 Plus (11.4)"
+      ]
     )
   end
 
@@ -75,9 +75,9 @@ platform :ios do
   end
 
   lane :travis do
-    build
+    #build
     tests
-    pod_lib_lint(allow_warnings: true, verbose: false)
+    #pod_lib_lint(allow_warnings: true, verbose: false)
   end
 
   lane :deploy do

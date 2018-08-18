@@ -20,7 +20,7 @@
 import Quick
 import Nimble
 import PinLayout
-import StackLayout
+import StackViewLayout
 
 class ShrinkColumnSpec: QuickSpec {
     override func spec() {

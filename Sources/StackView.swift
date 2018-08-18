@@ -255,7 +255,7 @@ public class StackView: UIView {
      This method is particularly useful to set all paddings using iOS 11 `UIView.safeAreaInsets`.
      */
     @discardableResult
-    public func padding(_ insets: UIEdgeInsets) -> StackView {
+    public func padding(insets: UIEdgeInsets) -> StackView {
         _paddingTop = Value(insets.top)
         _paddingLeft = Value(insets.left)
         _paddingBottom = Value(insets.bottom)
@@ -271,7 +271,7 @@ public class StackView: UIView {
      */
     @available(tvOS 11.0, iOS 11.0, *)
     @discardableResult
-    func padding(_ dirInsets: NSDirectionalEdgeInsets) -> StackView {
+    func padding(dirInsets: NSDirectionalEdgeInsets) -> StackView {
         _paddingTop = Value(dirInsets.top)
         _paddingStart = Value(dirInsets.leading)
         _paddingBottom = Value(dirInsets.bottom)

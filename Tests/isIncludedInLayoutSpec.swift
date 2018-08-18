@@ -19,8 +19,8 @@
 
 import Quick
 import Nimble
-import StackLayout
 import PinLayout
+import StackViewLayout
 
 class isIncludedInLayoutSpec: QuickSpec {
     override func spec() {

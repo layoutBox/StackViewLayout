@@ -19,8 +19,8 @@
 
 import Quick
 import Nimble
-import StackLayout
 import PinLayout
+import StackViewLayout
 
 class JustifytemsRowSpec: QuickSpec {
     override func spec() {

@@ -77,7 +77,6 @@
 
 /* Begin PBXFileReference section */
 		072C4AB9E1D48421AC17B94C /* Pods_StackViewLayout_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackViewLayout_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		144303E5200662A28FC92F65 /* Pods-StackLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayout.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayout/Pods-StackLayout.debug.xcconfig"; sourceTree = "<group>"; };
 		240F88BF1F0C1ED900280FC8 /* AlignItemsColumnSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignItemsColumnSpec.swift; sourceTree = "<group>"; };
 		241819BE20028FDA0092B369 /* SubviewsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubviewsSpec.swift; sourceTree = "<group>"; };
 		241819C12002D3940092B369 /* ItemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ItemInfo.swift; path = Impl/ItemInfo.swift; sourceTree = "<group>"; };
@@ -112,14 +111,10 @@
 		24EC06E51FD7186700459C62 /* MarginsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarginsSpec.swift; sourceTree = "<group>"; };
 		24FA1480201AB88B002BFAD5 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Container.swift; path = Impl/Container.swift; sourceTree = "<group>"; };
 		335FCF5D7C9B3966D5048E6E /* Pods-StackViewLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayout.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayout/Pods-StackViewLayout.debug.xcconfig"; sourceTree = "<group>"; };
-		412B4051A772AA0C17EBCD82 /* Pods-StackLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayoutTests/Pods-StackLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
 		495BECA46082734098CCE556 /* Pods-StackViewLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayoutTests/Pods-StackViewLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
-		561BC8B0591ACB691B563927 /* Pods-PinLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PinLayoutTests/Pods-PinLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
 		5B4F689F9089892E24E384B8 /* Pods_StackViewLayoutTests_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StackViewLayoutTests_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F3493E308B5D1BB971D1D2D /* Pods-StackViewLayoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayoutTests/Pods-StackViewLayoutTests.release.xcconfig"; sourceTree = "<group>"; };
-		6070E55EDEAA3DC58C0B4CDD /* Pods-PinLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PinLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PinLayoutTests/Pods-PinLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6F1A2A1CBCDDB981B74FCD64 /* Pods-StackViewLayoutTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayoutTests-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayoutTests-iOS/Pods-StackViewLayoutTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		72F957AA928728CEF94281E9 /* Pods-StackLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayout.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayout/Pods-StackLayout.release.xcconfig"; sourceTree = "<group>"; };
 		B47D08E3F50B5B9F4E6A7AEA /* Pods-StackViewLayoutTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayoutTests-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayoutTests-iOS/Pods-StackViewLayoutTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		CC330888013650F3DBC42D01 /* Pods-StackViewLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackViewLayout.release.xcconfig"; path = "Pods/Target Support Files/Pods-StackViewLayout/Pods-StackViewLayout.release.xcconfig"; sourceTree = "<group>"; };
 		DF6D467B2013D2A40022C5D6 /* UIScrollViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewSpec.swift; sourceTree = "<group>"; };
@@ -127,7 +122,6 @@
 		DFAF926D2016AC44002013D3 /* PaddingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingSpec.swift; sourceTree = "<group>"; };
 		DFB506162024DD310067A4DD /* AspectRatioSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AspectRatioSpec.swift; sourceTree = "<group>"; };
 		DFE6FF1F202D2402007633A3 /* isIncludedInLayoutSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = isIncludedInLayoutSpec.swift; sourceTree = "<group>"; };
-		F91D3F965902CA40AF890854 /* Pods-StackLayoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackLayoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StackLayoutTests/Pods-StackLayoutTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,12 +249,6 @@
 		E2EE9A188294BFBC07C19DF6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6070E55EDEAA3DC58C0B4CDD /* Pods-PinLayoutTests.debug.xcconfig */,
-				561BC8B0591ACB691B563927 /* Pods-PinLayoutTests.release.xcconfig */,
-				F91D3F965902CA40AF890854 /* Pods-StackLayoutTests.debug.xcconfig */,
-				412B4051A772AA0C17EBCD82 /* Pods-StackLayoutTests.release.xcconfig */,
-				144303E5200662A28FC92F65 /* Pods-StackLayout.debug.xcconfig */,
-				72F957AA928728CEF94281E9 /* Pods-StackLayout.release.xcconfig */,
 				335FCF5D7C9B3966D5048E6E /* Pods-StackViewLayout.debug.xcconfig */,
 				CC330888013650F3DBC42D01 /* Pods-StackViewLayout.release.xcconfig */,
 				495BECA46082734098CCE556 /* Pods-StackViewLayoutTests.debug.xcconfig */,
@@ -362,6 +350,7 @@
 					244DF2F71EF46C500090508B = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 4Q596JWQC5;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
 					249EFE791E64FB4C00165E39 = {
@@ -547,7 +536,8 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -571,7 +561,8 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "appletvsimulator appletvos";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};

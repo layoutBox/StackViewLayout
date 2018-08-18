@@ -19,7 +19,7 @@
 
 import Quick
 import Nimble
-import StackLayout
+import StackViewLayout
 
 class WidthHeightSizeSpec: QuickSpec {
     override func spec() {
