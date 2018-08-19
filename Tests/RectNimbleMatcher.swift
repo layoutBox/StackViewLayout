@@ -45,3 +45,21 @@ public func beCloseTo(_ expectedValue: CGRect, within delta: CGFloat = 0.00001) 
         return .doesNotMatch
     }
 }
+
+public func beCloseTo(_ expectedValue: CGSize, within delta: CGFloat = 0.00001) -> Predicate<CGSize> {
+    let errorMessage = "be close to <\(stringify(expectedValue))> (each within \(stringify(delta)))"
+    return Predicate.simple(errorMessage) { actualExpression in
+        if let actual = try actualExpression.evaluate() {
+            if fabs(actual.width - expectedValue.width) > delta {
+                return .doesNotMatch
+            }
+
+            if fabs(actual.height - expectedValue.height) > delta {
+                return .doesNotMatch
+            }
+
+            return .matches
+        }
+        return .doesNotMatch
+    }
+}

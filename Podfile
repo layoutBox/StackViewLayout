@@ -1,24 +1,22 @@
 use_frameworks!
 platform :ios, "9.0"
 
-workspace 'StackLayout.xcworkspace'
+workspace 'StackViewLayout.xcworkspace'
 
-target 'StackLayout' do
-  project 'StackLayout.xcodeproj'
+#target 'StackViewLayout-iOS' do
+#  project 'StackViewLayout.xcodeproj'
+#end
 
-  pod 'PinLayout'  
-end
-
-target 'StackLayoutTests' do
-  project 'StackLayout.xcodeproj'
+target 'StackViewLayoutTests-iOS' do
+  project 'StackViewLayout.xcodeproj'
   pod 'PinLayout'
 
   pod 'Quick'
   pod 'Nimble', :inhibit_warnings => true
 end
 
-target 'StackLayoutExample' do
-  project 'Example/StackLayoutExample.xcodeproj'
+target 'StackViewLayoutExample' do
+  project 'Example/StackViewLayoutExample.xcodeproj'
 
   pod 'StackViewLayout', :path => './'
   pod 'PinLayout'

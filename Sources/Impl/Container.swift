@@ -91,8 +91,8 @@ class Container {
 
     convenience init(stackView: StackView, size: CGSize) {
         self.init(stackView)
-        width = size.width == CGFloat.greatestFiniteMagnitude ? nil : size.width
-        height = size.height == CGFloat.greatestFiniteMagnitude ? nil : size.height
+        width = (size.width == .greatestFiniteMagnitude || size.width == .nan) ? nil : size.width
+        height = (size.height == .greatestFiniteMagnitude || size.height == .nan) ? nil : size.height
 
         initializeInnerSize()
     }
@@ -140,11 +140,11 @@ class Container {
     }
     
     func growableItems() -> [ItemInfo] {
-        return items.filter({ $0.growFactor() > 0 /*&& mainAxisLength == nil*/ })
+        return items.filter({ $0.growFactor() > 0 })
     }
     
     func shrinkableItems() -> [ItemInfo] {
-        return items.filter({ $0.shrinkFactor() > 0 /*&& mainAxisLength == nil*/ })
+        return items.filter({ $0.shrinkFactor() > 0 })
     }
 }
 

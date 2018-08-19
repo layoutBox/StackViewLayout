@@ -19,8 +19,8 @@
 
 import Quick
 import Nimble
-import StackLayout
 import PinLayout
+import StackViewLayout
 
 class MarginsSpec: QuickSpec {
     override func spec() {
@@ -32,7 +32,7 @@ class MarginsSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(displayScale: 3)
+            _setUnitTestDisplayScale(scale: 3)
             _pinlayoutSetUnitTest(scale: 3)
         }
 
@@ -72,7 +72,7 @@ class MarginsSpec: QuickSpec {
                     label1.item.marginLeft(10)
                     label2.item.marginLeft(25%)
                 })
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10.0, y: 0.0, width: 390.0, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 100.0, y: 20.333, width: 300.0, height: 20.333), within: withinRange))
@@ -86,7 +86,7 @@ class MarginsSpec: QuickSpec {
                 label1.item.marginRight(10)
                 label2.item.marginRight(25%)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 390.0, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.333, width: 300.0, height: 20.333), within: withinRange))
@@ -98,7 +98,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.marginStart(25%)
                 })
 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10.0, y: 0.0, width: 390.0, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 100.0, y: 20.333, width: 300.0, height: 20.333), within: withinRange))
@@ -112,7 +112,7 @@ class MarginsSpec: QuickSpec {
                 label1.item.marginEnd(10)
                 label2.item.marginEnd(25%)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 390.0, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.333, width: 300.0, height: 20.333), within: withinRange))
@@ -125,7 +125,7 @@ class MarginsSpec: QuickSpec {
                 
                 label1.item.marginLeft(10).marginRight(20)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10.0, y: 0.0, width: 370.0, height: 20.333), within: withinRange))
             }
@@ -143,7 +143,7 @@ class MarginsSpec: QuickSpec {
                 label1.item.marginLeft(10)
                 label2.item.marginLeft(25%)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10.0, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 100.0, y: 20.333, width: 104.0, height: 20.333), within: withinRange))
@@ -157,7 +157,7 @@ class MarginsSpec: QuickSpec {
                 label1.item.marginRight(10)
                 label2.item.marginRight(25%)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.333, width: 104.0, height: 20.333), within: withinRange))
@@ -171,7 +171,7 @@ class MarginsSpec: QuickSpec {
                 label1.item.marginStart(10)
                 label2.item.marginStart(25%)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10.0, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 100.0, y: 20.333, width: 104.0, height: 20.333), within: withinRange))
@@ -185,7 +185,7 @@ class MarginsSpec: QuickSpec {
                 label1.item.marginEnd(10)
                 label2.item.marginEnd(25%)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0.0, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0.0, y: 20.333, width: 104.0, height: 20.333), within: withinRange))
@@ -198,7 +198,7 @@ class MarginsSpec: QuickSpec {
                 
                 label1.item.marginLeft(10).marginRight(20)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10.0, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
             }
@@ -217,7 +217,7 @@ class MarginsSpec: QuickSpec {
                 label2.item.marginLeft(20)
                 view1.item.marginLeft(30)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 178.333, y: 0, width: 53.667, height: 20.333), within: withinRange))
@@ -234,7 +234,7 @@ class MarginsSpec: QuickSpec {
                 label2.item.marginRight(25%)
                 view1.item.marginLeft(20).marginRight(100)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 168.333, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 98.0, y: 20.333, width: 104.0, height: 20.333), within: withinRange))
@@ -250,7 +250,7 @@ class MarginsSpec: QuickSpec {
                 label2.item.marginStart(25%)
                 view1.item.marginStart(20).marginRight(100)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 178.333, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 198.0, y: 20.333, width: 104.0, height: 20.333), within: withinRange))
@@ -266,7 +266,7 @@ class MarginsSpec: QuickSpec {
                 label2.item.marginEnd(25%)
                 view1.item.marginLeft(20).marginEnd(100)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 168.333, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 98.0, y: 20.333, width: 104.0, height: 20.333), within: withinRange))
@@ -280,7 +280,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginLeft(10)
                 })
             
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 168.333, y: 0, width: 53.667, height: 20.333), within: withinRange))
@@ -295,7 +295,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginLeft(10).marginRight(200)
                 })
             
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 168.333, y: 0, width: 53.667, height: 20.333), within: withinRange))
@@ -314,7 +314,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.marginLeft(25%)
                     view1.item.marginLeft(100)
                 })
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 346.333, y: 0, width: 53.667, height: 20.333), within: withinRange))
@@ -331,7 +331,7 @@ class MarginsSpec: QuickSpec {
                 label2.item.marginRight(25%)
                 view1.item.marginLeft(20).marginRight(100)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 336.333, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 196.0, y: 20.333, width: 104.0, height: 20.333), within: withinRange))
@@ -347,7 +347,7 @@ class MarginsSpec: QuickSpec {
                 label2.item.marginStart(25%)
                 view1.item.marginStart(20).marginRight(100)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 346.333, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 296.0, y: 20.333, width: 104.0, height: 20.333), within: withinRange))
@@ -363,7 +363,7 @@ class MarginsSpec: QuickSpec {
                 label2.item.marginEnd(25%)
                 view1.item.marginLeft(20).marginEnd(100)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 336.333, y: 0.0, width: 53.667, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 196.0, y: 20.333, width: 104.0, height: 20.333), within: withinRange))
@@ -375,7 +375,7 @@ class MarginsSpec: QuickSpec {
                     label1.item.marginLeft(10).marginRight(200)
                     view1.item.marginLeft(10).marginRight(200)
                 })
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 146.333, y: 0, width: 53.667, height: 20.333), within: withinRange))
@@ -389,7 +389,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.marginLeft(10%).marginRight(75%)
                     view1.item.marginLeft(10).marginRight(200)
                 })
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 50, height: 20.333), within: withinRange))
@@ -408,7 +408,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.marginTop(10).marginBottom(20)
                     view1.item.marginTop(30).marginBottom(40)
                 })
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 10, width: 400, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 60.333, width: 400, height: 20.333), within: withinRange))
@@ -424,7 +424,7 @@ class MarginsSpec: QuickSpec {
                 label2.item.marginTop(10).marginBottom(20)
                 view1.item.marginTop(30).marginBottom(40)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(label1.frame).to(beCloseTo(CGRect(x: 346.333, y: 419.333, width: 53.667, height: 20.333), within: withinRange))
@@ -441,7 +441,7 @@ class MarginsSpec: QuickSpec {
                 label2.item.marginTop(10).marginBottom(20)
                 view1.item.marginTop(30).marginBottom(40)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 419.333, width: 400, height: 20.333), within: withinRange))
@@ -458,7 +458,7 @@ class MarginsSpec: QuickSpec {
                 label2.item.marginTop(10).marginBottom(20)
                 view1.item.marginTop(30).marginBottom(40)
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 214.667, width: 400, height: 20.333), within: withinRange))
@@ -479,7 +479,7 @@ class MarginsSpec: QuickSpec {
                 })
                 
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -494,7 +494,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.marginBottom(25%)
                     view1.item.marginBottom(50%).shrink(1)
                 })
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -509,7 +509,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.marginTop(10%).marginBottom(20%)
                     view1.item.marginTop(20%).marginBottom(10%).shrink(1)
                 })
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -529,7 +529,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.marginTop(10%)
                     view1.item.marginTop(20%)
                 })
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -544,7 +544,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.marginTop(10%)
                     view1.item.marginTop(20%).shrink(1)
                 })
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -561,7 +561,7 @@ class MarginsSpec: QuickSpec {
                 })
                 
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 90)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 90), within: withinRange))
@@ -577,7 +577,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginBottom(20%).shrink(1)
                 })
                 stackView.pin.top(64).width(400).height(200)
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 200), within: withinRange))
@@ -592,7 +592,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.marginTop(10%).marginBottom(20%)
                     view1.item.marginTop(20%).marginBottom(10%).shrink(1)
                 })
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -612,7 +612,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.marginTop(20)
                     view1.item.marginTop(30)
                 })
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -628,7 +628,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginTop(20).marginBottom(100)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -645,7 +645,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginTop(30).marginBottom(30)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -661,7 +661,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginTop(10).marginBottom(200)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -678,7 +678,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginTop(10).marginBottom(200)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -699,7 +699,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginTop(100)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -715,7 +715,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginTop(20).marginBottom(100)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -731,7 +731,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginStart(20).marginBottom(100)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -747,7 +747,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginTop(20).marginEnd(100)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -763,7 +763,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginTop(10).marginBottom(200)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout (except vertical %)
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -784,7 +784,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginLeft(30).marginRight(40)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -800,7 +800,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginLeft(30).marginRight(40).shrink(1)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -816,7 +816,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginLeft(30).marginRight(40)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -832,7 +832,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginLeft(30).marginRight(40).shrink(1)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -848,7 +848,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginLeft(30).marginRight(40).shrink(1)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -864,7 +864,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginLeft(30).shrink(1)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -885,7 +885,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginHorizontal(10%)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -901,7 +901,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginHorizontal(10%)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 0, width: 53.667, height: 600), within: withinRange))
@@ -916,7 +916,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginVertical(10%)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout (except vertical margin %)
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -932,7 +932,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.marginVertical(10%)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout (except vertical margin %)
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -948,7 +948,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.margin(10%)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 expect(label1.frame).to(beCloseTo(CGRect(x: 10, y: 10, width: 380, height: 20.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 20, y: 60.333, width: 360, height: 20.333), within: withinRange))
@@ -962,7 +962,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.margin(10%)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout (except vertical margin %)
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -978,7 +978,7 @@ class MarginsSpec: QuickSpec {
                     view1.item.margin(10).shrink(1)
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -997,7 +997,7 @@ class MarginsSpec: QuickSpec {
                     }
                 })
                 
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
@@ -1012,7 +1012,7 @@ class MarginsSpec: QuickSpec {
                     label2.item.margin(10, 20, 30)
                 })
                     
-                stackView.layout()
+                stackView.layoutIfNeeded()
                 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))

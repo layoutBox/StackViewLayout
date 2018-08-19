@@ -51,16 +51,8 @@ class LayoutModesView: BaseView {
         super.layoutSubviews()
 
         // Position the two StackViews using PinLayout
-        buttonsStackView.pin.bottom().horizontally().sizeToFit(.width)
-        stackView.pin.top().above(of: buttonsStackView).horizontally().margin(safeArea)
-    }
-
-    override func safeAreaDidChange() {
-        buttonsStackView.padding(5, 5, safeArea.bottom, 5)
-    }
-
-    override func safeAreaInsetsDidChange() {
-        super.safeAreaInsetsDidChange()
+        buttonsStackView.pin.bottom().horizontally().margin(pin.safeArea).sizeToFit(.width)
+        stackView.pin.top().horizontally().above(of: buttonsStackView).margin(pin.safeArea)
     }
 
     fileprivate func createButtonsBar() {
@@ -143,7 +135,7 @@ class LayoutModesView: BaseView {
         updateLabels()
 
         UIView.animate(withDuration: 0.3) {
-            self.stackView.layout()
+            self.stackView.layoutIfNeeded()
         }
     }
 

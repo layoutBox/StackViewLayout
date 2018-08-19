@@ -255,7 +255,7 @@ public class StackView: UIView {
      This method is particularly useful to set all paddings using iOS 11 `UIView.safeAreaInsets`.
      */
     @discardableResult
-    public func padding(_ insets: UIEdgeInsets) -> StackView {
+    public func padding(insets: UIEdgeInsets) -> StackView {
         _paddingTop = Value(insets.top)
         _paddingLeft = Value(insets.left)
         _paddingBottom = Value(insets.bottom)
@@ -283,7 +283,7 @@ public class StackView: UIView {
      Set all paddings to the specified value.
      */
     @discardableResult
-    public func padding(all value: CGFloat) -> StackView {
+    public func padding(_ value: CGFloat) -> StackView {
         _paddingTop = Value(value)
         _paddingBottom = _paddingTop
         _paddingLeft = _paddingTop
@@ -340,32 +340,6 @@ public class StackView: UIView {
         }
     }
     
-    /**
-     The method layout the StackView's items using the current frame's size
-     or by automatically adjusting the width or the height to match
-     its items.
-     
-     - Parameter mode: specify the layout mode (LayoutMode).
-     */
-    public func layout(mode: SLayoutMode = .fitContainer) {
-        let container = Container(stackView: self)
-        let viewRect = Coordinates.getUntransformedViewRect(self)
-        
-        switch mode {
-        case .fitContainer:
-            container.width = viewRect.width
-            container.height = viewRect.height
-        case .adjustWidth:
-            container.width = nil
-            container.height = viewRect.height
-        case .adjustHeight:
-            container.width = viewRect.width
-            container.height = nil
-        }
-        
-        layoutItems(container: container, sizeThatFits: false)
-    }
-
     //
     // MARK: UIView Visual properties
     //
@@ -437,6 +411,29 @@ public class StackView: UIView {
 //        setNeedsLayout()
 //        layoutIfNeeded()
 //    }
+
+    // TODO_: Tests StackView using autolayout
+    public override var intrinsicContentSize: CGSize {
+        return sizeThatFits(CGSize(width: frame.width, height: .greatestFiniteMagnitude))
+    }
+
+    // TODO_: Tests StackView using autolayout
+    public override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {
+        return sizeThatFits(targetSize)
+    }
+
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+
+        let container = Container(stackView: self)
+        layoutItems(container: container, mode: .layouting)
+    }
+
+    public override func sizeThatFits(_ size: CGSize) -> CGSize {
+        let container = Container(stackView: self, size: size)
+
+        return layoutItems(container: container, mode: .measuring)
+    }
 }
     
 #endif

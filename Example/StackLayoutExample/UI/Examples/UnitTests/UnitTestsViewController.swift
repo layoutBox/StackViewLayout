@@ -19,7 +19,7 @@
 
 import UIKit
 
-class UnitTestsViewController: BaseViewController {
+class UnitTestsViewController: UIViewController {
     fileprivate var mainView: UnitTestsView {
         return self.view as! UnitTestsView
     }

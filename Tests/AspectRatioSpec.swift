@@ -19,9 +19,9 @@
 
 import Quick
 import Nimble
-import StackLayout
 import PinLayout
 import UIKit
+import StackViewLayout
 
 class AspectRatioSpec: QuickSpec {
     override func spec() {
@@ -33,7 +33,7 @@ class AspectRatioSpec: QuickSpec {
         var view1: BasicView!
         
         beforeSuite {
-            _setUnitTestDisplayScale(displayScale: 3)
+            _setUnitTestDisplayScale(scale: 3)
             _pinlayoutSetUnitTest(scale: 3)
         }
 

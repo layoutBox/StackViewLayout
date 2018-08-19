@@ -39,7 +39,7 @@ class MethodCell: UITableViewCell {
         let margin: CGFloat = 10
 
         // Column StackView
-        stackView.padding(all: 14).define { (stackView) in
+        stackView.padding(14).define { (stackView) in
 
             // Row StackView
             stackView.addStackView().direction(.row).define({ (stackView) in
