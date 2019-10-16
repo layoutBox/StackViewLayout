@@ -168,7 +168,7 @@ extension StackView {
         }
 
         for (index, item) in container.items.enumerated() {
-            let stackItem = item.stackItem
+            guard let stackItem = item.stackItem else { continue }
             //
             // Handle main-axis position
             if index == 0 {
@@ -212,8 +212,8 @@ extension StackView {
 
             let itemViewRect = Coordinates.adjustRectToDisplayScale(viewFrame)
 
-            if mode == .layouting {
-                Coordinates.setUntransformedViewRect(item.view, toRect: itemViewRect)
+            if mode == .layouting, let itemView = item.view {
+                Coordinates.setUntransformedViewRect(itemView, toRect: itemViewRect)
             }
 
             mainAxisOffset = direction == .column ? itemViewRect.maxY :  itemViewRect.maxX

@@ -21,7 +21,7 @@
 import UIKit
 
 class Container {
-    fileprivate let stackView: StackView
+    fileprivate weak var stackView: StackView?
     var width: CGFloat?
     var height: CGFloat?
     var innerWidth: CGFloat?
@@ -29,11 +29,11 @@ class Container {
     var items: [ItemInfo] = []
 
     var direction: SDirection {
-        return stackView.direction
+        return stackView?.direction ?? .column
     }
 
     var alignItems: SAlignItems {
-        return stackView.alignItems
+        return stackView?.alignItems ?? .stretch
     }
 
     var mainAxisLength: CGFloat? {
@@ -98,6 +98,7 @@ class Container {
     }
 
     fileprivate func initializeInnerSize() {
+        guard let stackView = stackView else { return }
         if let paddingLeft = stackView._paddingLeft?.resolveWidth(container: self) {
             self.paddingLeft = paddingLeft
         }

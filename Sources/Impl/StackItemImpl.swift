@@ -30,7 +30,7 @@ enum MeasureType {
 
 
 class StackItemImpl: NSObject, StackItem {
-    internal let view: UIView
+    internal weak var view: UIView?
 
     internal var width: Value?
     internal var minWidth: Value?
@@ -78,9 +78,9 @@ class StackItemImpl: NSObject, StackItem {
     
     @discardableResult
     public func markDirty() -> StackItem {
-        view.setNeedsLayout()
+        view?.setNeedsLayout()
 
-        if let stackView = view.superview as? StackView {
+        if let stackView = view?.superview as? StackView {
             stackView.markDirty()
         }
         return self
@@ -371,13 +371,13 @@ class StackItemImpl: NSObject, StackItem {
 
     @discardableResult
     public func backgroundColor(_ color: UIColor) -> StackItem {
-        view.backgroundColor = color
+        view?.backgroundColor = color
         return self
     }
 
     @discardableResult
     public func alpha(_ alpha: CGFloat) -> StackItem {
-        view.alpha = alpha
+        view?.alpha = alpha
         return self
     }
 }
