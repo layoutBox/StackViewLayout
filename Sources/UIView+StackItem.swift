@@ -22,7 +22,7 @@ import UIKit
 private var stackLayoutAssociatedObjectHandle = 72_399_888
 
 public extension UIView {
-    public var item: StackItem {
+    var item: StackItem {
         get {
             if let stackItem = objc_getAssociatedObject(self, &stackLayoutAssociatedObjectHandle) as? StackItem {
                 return stackItem

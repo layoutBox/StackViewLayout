@@ -291,8 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				DFF82ACE2127628000E822E5 /* StackViewLayout.framework */,
-				DFF82AD02127628000E822E5 /* StackViewLayoutTests.xctest */,
-				DFF82AD22127628000E822E5 /* StackViewLayoutTVOS.framework */,
+				DFF82AD22127628000E822E5 /* StackViewLayout.framework */,
+				DFF82AD02127628000E822E5 /* StackViewLayoutTests-iOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -339,7 +339,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = Mirego;
 				TargetAttributes = {
 					249EFE3E1E64FAFE00165E39 = {
@@ -350,7 +350,7 @@
 			};
 			buildConfigurationList = 249EFE3A1E64FAFE00165E39 /* Build configuration list for PBXProject "StackViewLayoutExample" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -380,17 +380,17 @@
 			remoteRef = DFF82ACD2127628000E822E5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DFF82AD02127628000E822E5 /* StackViewLayoutTests.xctest */ = {
+		DFF82AD02127628000E822E5 /* StackViewLayoutTests-iOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = StackViewLayoutTests.xctest;
+			path = "StackViewLayoutTests-iOS.xctest";
 			remoteRef = DFF82ACF2127628000E822E5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		DFF82AD22127628000E822E5 /* StackViewLayoutTVOS.framework */ = {
+		DFF82AD22127628000E822E5 /* StackViewLayout.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = StackViewLayoutTVOS.framework;
+			path = StackViewLayout.framework;
 			remoteRef = DFF82AD12127628000E822E5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

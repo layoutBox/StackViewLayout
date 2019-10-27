@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "StackViewLayout"
-  spec.version      = "0.1.6"
+  spec.version      = "0.1.7"
   spec.summary      = "StackViewLayout is a UIStackView replacement that don't rely on auto layout"
   #spec.description  = ""
 
