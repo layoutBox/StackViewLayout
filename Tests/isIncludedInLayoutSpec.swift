@@ -75,10 +75,10 @@ class isIncludedInLayoutSpec: QuickSpec {
                 stackView.layoutIfNeeded()
 
                 // Match FlexLayout
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 40.333), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 40.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.667), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 0), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 20.667, width: 400, height: 20), within: withinRange))
             }
 
             it("isIncludedInLayout() after") {
@@ -95,10 +95,10 @@ class isIncludedInLayoutSpec: QuickSpec {
                 stackView.layoutIfNeeded()
 
                 // Match FlexLayout
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 40.333), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 40.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.667), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 0), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 20.667, width: 400, height: 20), within: withinRange))
             }
 
             it("isIncludedInLayout") {
@@ -114,10 +114,10 @@ class isIncludedInLayoutSpec: QuickSpec {
                 stackView.layoutIfNeeded()
 
                 // Match FlexLayout
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 40.333), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 40.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.667), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 0), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 20.667, width: 400, height: 20), within: withinRange))
             }
         }
     }

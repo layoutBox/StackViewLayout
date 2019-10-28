@@ -75,7 +75,7 @@ class JustifytemsRowSpec: QuickSpec {
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 600), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 600), within: withinRange))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 151.333, height: 600), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 151.667, height: 600), within: withinRange))
             }
             
             it("justify(.center)") {

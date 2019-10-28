@@ -80,8 +80,8 @@ class GrowSpec: QuickSpec {
                 stackView.pin.width(400).height(600)
                 stackView.layoutIfNeeded()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 559.667), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 559.667, width: 400, height: 20.333), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 559.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 559.333, width: 400, height: 20.667), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 580, width: 400, height: 20), within: withinRange))
             }
             
@@ -96,8 +96,8 @@ class GrowSpec: QuickSpec {
                 stackView.pin.width(400).height(600)
                 stackView.layoutIfNeeded()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 559.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.667), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.667, width: 400, height: 559.333), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 580, width: 400, height: 20), within: withinRange))
             }
             
@@ -133,9 +133,9 @@ class GrowSpec: QuickSpec {
                 stackView.pin.width(400).height(600)
                 stackView.layoutIfNeeded()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 200), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200, width: 400, height: 200), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 400, width: 400, height: 199.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 200.333), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 200.333, width: 400, height: 200.333), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 400.666, width: 400, height: 199.667), within: withinRange))
             }
             
             it("3 items with grow") {
@@ -152,9 +152,9 @@ class GrowSpec: QuickSpec {
                 stackView.pin.width(400).height(600)
                 stackView.layoutIfNeeded()
                 
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 65.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 65.333, width: 400, height: 469.667), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 535, width: 400, height: 65), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 65.667), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 65.667, width: 400, height: 469.667), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 535.333, width: 400, height: 65), within: withinRange))
             }
             
             it("grow + maxHeight") {
@@ -253,8 +253,8 @@ class GrowSpec: QuickSpec {
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 300), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 300, width: 400, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 320.333, width: 400, height: 320), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 300, width: 400, height: 20.667), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 320.667, width: 400, height: 320), within: withinRange))
             }
             
             it("grow + minHeight") {
@@ -274,7 +274,7 @@ class GrowSpec: QuickSpec {
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 105.333), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 105.333, width: 400, height: 190), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 295.333, width: 400, height: 305), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 295.333, width: 400, height: 304.667), within: withinRange))
             }
             
             it("should not apply grow since the stack will adjust its height") {
@@ -291,10 +291,10 @@ class GrowSpec: QuickSpec {
                 stackView.pin.width(400).sizeToFit(.width)
                 stackView.layoutIfNeeded()
                 
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 60.667), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 40.667, width: 400, height: 20), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 61.333), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.667), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.667, width: 400, height: 20.667), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 41.333, width: 400, height: 20), within: withinRange))
             }
         }
         
@@ -331,9 +331,9 @@ class GrowSpec: QuickSpec {
                 stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 144.667, height: 600), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 144.667, y: 0, width: 104, height: 600), within: withinRange))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 248.667, y: 0, width: 151.333, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 144.333, height: 600), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 144.333, y: 0, width: 104, height: 600), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 248.333, y: 0, width: 151.666, height: 600), within: withinRange))
             }
             
             it("1 item with grow") {
@@ -366,8 +366,8 @@ class GrowSpec: QuickSpec {
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 600), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 195, height: 600), within: withinRange))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 248.667, y: 0, width: 151.333, height: 600), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 194.667, height: 600), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 248.333, y: 0, width: 151.667, height: 600), within: withinRange))
             }
             
             it("2 items with grow") {
@@ -384,9 +384,9 @@ class GrowSpec: QuickSpec {
                 stackView.layoutIfNeeded()
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 99.333, height: 600), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 99.333, y: 0, width: 149.667, height: 600), within: withinRange))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 249, y: 0, width: 151.333, height: 600), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 99, height: 600), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 99.0, y: 0, width: 149.333, height: 600), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 248.333, y: 0, width: 151.667, height: 600), within: withinRange))
             }
             
             it("3 items with grow") {
@@ -426,7 +426,7 @@ class GrowSpec: QuickSpec {
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 84, height: 600), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 84, y: 0, width: 134.333, height: 600), within: withinRange))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 218.333, y: 0, width: 181.667, height: 600), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 218.333, y: 0, width: 182, height: 600), within: withinRange))
             }
             
             it("3 items with grow") {
@@ -445,8 +445,8 @@ class GrowSpec: QuickSpec {
                 
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 61.333, height: 600), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 61.333, y: 0, width: 180, height: 600), within: withinRange))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 241.333, y: 0, width: 159, height: 600), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 61.333, y: 0, width: 179.667, height: 600), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 241.0, y: 0, width: 159.333, height: 600), within: withinRange))
             }
             
             it("grow + maxWidth") {
@@ -506,7 +506,7 @@ class GrowSpec: QuickSpec {
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 150, height: 600), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 150, y: 0, width: 104, height: 600), within: withinRange))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 254, y: 0, width: 151.333, height: 600), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 254, y: 0, width: 151.667, height: 600), within: withinRange))
             }
             
             it("grow + minWidth + overflow") {
@@ -544,10 +544,10 @@ class GrowSpec: QuickSpec {
                 stackView.pin.height(200).sizeToFit(.height)
                 stackView.layoutIfNeeded()
                 
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 309, height: 200), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 309.333, height: 200), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 200), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 200), within: withinRange))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 151.333, height: 200), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 151.667, height: 200), within: withinRange))
             }
             
             it("should not apply grow since the stack will adjust its height") {
@@ -564,10 +564,10 @@ class GrowSpec: QuickSpec {
                 stackView.pin.width(400).sizeToFit(.width)
                 stackView.layoutIfNeeded()
                 
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 20.333), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 61.333, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 61.333, y: 0, width: 180, height: 20.333), within: withinRange))
-                expect(label3.frame).to(beCloseTo(CGRect(x: 241.333, y: 0, width: 159, height: 20.333), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 20.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 61.333, height: 20.667), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 61.333, y: 0, width: 179.667, height: 20.667), within: withinRange))
+                expect(label3.frame).to(beCloseTo(CGRect(x: 241.0, y: 0, width: 159.333, height: 20.667), within: withinRange))
             }
         }
     }

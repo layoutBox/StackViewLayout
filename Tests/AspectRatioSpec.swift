@@ -281,9 +281,9 @@ class AspectRatioSpec: QuickSpec {
 
                 // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 179.667, y: 0, width: 40.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 190, y: 20.333, width: 20.333, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 191.667, y: 40.667, width: 16.667, height: 20), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 179.333, y: 0, width: 41.333, height: 20.667), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 189.667, y: 20.667, width: 20.667, height: 20.667), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 191.667, y: 41.333, width: 16.667, height: 20), within: withinRange))
             }
 
             it("aspectRatio + shrink") {
@@ -331,11 +331,9 @@ class AspectRatioSpec: QuickSpec {
                 stackView.layoutIfNeeded()
 
                 // Match FlexLayout
-
-                // 103.5, mais devrait être 103.667!
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 101.667, height: 400), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 40.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 101.667, height: 20.333), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 103.333, height: 400), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 41.333, height: 20.667), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.667, width: 103.33, height: 20.667), within: withinRange))
             }
 
             it("aspectRatio + width/height/size") {
