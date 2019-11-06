@@ -71,15 +71,15 @@ class Coordinates {
 
 extension CGFloat {
     func roundUsingDisplayScale() -> CGFloat {
-        return CGFloat(CGFloat(self * Coordinates.displayScale).rounded(.toNearestOrAwayFromZero)) / Coordinates.displayScale
+        return (self * Coordinates.displayScale).rounded(.toNearestOrAwayFromZero) / Coordinates.displayScale
     }
 
     func ceilUsingDisplayScale() -> CGFloat {
-        return CGFloat(CGFloat(self * Coordinates.displayScale).rounded(.up)) / Coordinates.displayScale
+        return (self * Coordinates.displayScale).rounded(.up) / Coordinates.displayScale
     }
 
     func floorUsingDisplayScale() -> CGFloat {
-        return CGFloat(CGFloat(self * Coordinates.displayScale).rounded(.down)) / Coordinates.displayScale
+        return (self * Coordinates.displayScale).rounded(.down) / Coordinates.displayScale
     }
 }
 
