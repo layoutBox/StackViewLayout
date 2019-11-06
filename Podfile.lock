@@ -1,11 +1,11 @@
 PODS:
-  - FlexLayout (1.3.16)
+  - FlexLayout (1.3.17)
   - Nimble (8.0.4)
-  - PinLayout (1.8.12)
+  - PinLayout (1.8.13)
   - Quick (2.2.0)
   - Reveal-SDK (17)
   - StackViewLayout (0.1.7)
-  - SwiftLint (0.35.0)
+  - SwiftLint (0.36.0)
 
 DEPENDENCIES:
   - FlexLayout
@@ -17,7 +17,7 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - FlexLayout
     - Nimble
     - PinLayout
@@ -30,14 +30,14 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  FlexLayout: 2c9f7724c5218eb2f23c734dc4343141815a1681
+  FlexLayout: 257b6763526bc957d2abc2b77a05760b86ca0e21
   Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
-  PinLayout: 7710deec29658edf16811b27a89a90a0eddd0d9e
+  PinLayout: e41a50260a76508b7a7fcee8955c76639adc69bc
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   Reveal-SDK: a6df49f47319bd19a110c960c498af32df72c0af
-  StackViewLayout: aa9a245d8b67e217371b97d5c7997127302437ad
-  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
+  StackViewLayout: cbb69c38cb664b754b109330fa05f7db6ad27711
+  SwiftLint: fc9859e4e1752340664851f667bb1898b9c90114
 
 PODFILE CHECKSUM: 9f62de9411b96c9e751ed838c5d3551f496171bc
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.3
