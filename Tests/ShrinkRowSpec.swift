@@ -77,11 +77,10 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: size.width, height: size.height)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
-                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 504, height: 20.333), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 104, height: 20.333), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 104, y: 0, width: 504, height: 20.333), within: withinRange))
+                expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 504, height: 20.667), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 20.667), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 104, height: 20.667), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 104, y: 0, width: 504, height: 20.667), within: withinRange))
             }
             
             it("1 item with shrink + adjust height") {
@@ -96,7 +95,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: size.width, height: size.height)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 33), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 33), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 33), within: withinRange))
@@ -114,7 +112,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 600), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 104, height: 600), within: withinRange))
@@ -132,7 +129,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 600), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 600), within: withinRange))
@@ -150,7 +146,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 600), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 0, height: 600), within: withinRange))
@@ -170,7 +165,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 600), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 0, height: 600), within: withinRange))
@@ -190,7 +184,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 35, height: 600), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 35, y: 0, width: 104, height: 600), within: withinRange))
@@ -211,7 +204,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.pin.top(64).width(200).height(180)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 30, height: 180), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 30, y: 0, width: 58, height: 180), within: withinRange))
@@ -232,7 +224,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.pin.top(64).width(200).height(180)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 42.333, height: 180), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 42.333, y: 0, width: 0, height: 180), within: withinRange))
@@ -253,7 +244,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.pin.top(64).width(250).height(180)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 250, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 51.667, height: 180), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 51.667, y: 0, width: 63.667, height: 180), within: withinRange))
@@ -274,7 +264,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.pin.top(64).width(200).height(180)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 52.667, height: 180), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 52.667, y: 0, width: 49, height: 180), within: withinRange))
@@ -295,7 +284,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
                 stackView.layoutIfNeeded()
                 
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 150, height: 180), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 150, y: 0, width: 0, height: 180), within: withinRange))
@@ -316,7 +304,6 @@ class ShrinkRowSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 200, height: 180)
                 stackView.layoutIfNeeded()
              
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 200, height: 180), within: withinRange))
                 expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 200, height: 180), within: withinRange))
                 expect(label2.frame).to(beCloseTo(CGRect(x: 200, y: 0, width: 0, height: 180), within: withinRange))
@@ -361,8 +348,8 @@ class ShrinkRowSpec: QuickSpec {
                 //      that view1 doesn't respect its sizeThatFits() returned value!
                 // Match FlexLayout: The view1 overflow the row's width. No shrink factor.
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 30), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 20.333), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 20.667), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 20.667), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 400, height: 20), within: withinRange))
             }
             
@@ -384,10 +371,9 @@ class ShrinkRowSpec: QuickSpec {
                 
                 // Match mostly UIStackView which shrink the view1's width WITHOUT adjusting the view1's height. The result is
                 //      that view1 doesn't respect its sizeThatFits() returned value!
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 30), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 20.333), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 53.667, height: 20.667), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 53.667, y: 0, width: 104, height: 20.667), within: withinRange))
                 expect(view1.frame).to(beCloseTo(CGRect(x: 157.667, y: 0, width: 242.333, height: 30), within: withinRange))
             }
         }
