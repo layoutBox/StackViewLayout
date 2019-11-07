@@ -151,7 +151,7 @@ extension StackView {
             let containerMainAxisInnner = container.mainAxisInnerLength {
             switch justifyContent {
             case .start:
-            break // nop
+                break // nop
             case .center:
                 mainAxisOffset = container.mainAxisStartPadding + (containerMainAxisInnner - mainAxisTotalItemsLength) / 2
             case .end:
