@@ -63,9 +63,10 @@ platform :ios do
       workspace: "StackViewLayout.xcworkspace",  
       scheme: "StackViewLayoutExample", 
       devices: [
-        "iPhone X (11.4)",
-        "iPhone 8 (10.4)",
-        "iPhone 8 Plus (11.4)"
+        "iPhone X (13.2)",
+        "iPhone 8 (12.1)",
+        "iPhone 8 (10.3)",
+        "iPhone 8 Plus (13.2)"
       ]
     )
   end

@@ -24,6 +24,7 @@ import UIKit
 
 public func _setUnitTestDisplayScale(scale: CGFloat) {
     Coordinates.displayScale = scale
+    Coordinates.onePixelLength = 1 / scale
 }
 
 class Coordinates {
@@ -71,15 +72,15 @@ class Coordinates {
 
 extension CGFloat {
     func roundUsingDisplayScale() -> CGFloat {
-        return CGFloat(roundf(Float(self * Coordinates.displayScale))) / Coordinates.displayScale
+        return (self * Coordinates.displayScale).rounded(.toNearestOrAwayFromZero) / Coordinates.displayScale
     }
 
     func ceilUsingDisplayScale() -> CGFloat {
-        return CGFloat(ceilf(Float(self * Coordinates.displayScale))) / Coordinates.displayScale
+        return (self * Coordinates.displayScale).rounded(.up) / Coordinates.displayScale
     }
 
     func floorUsingDisplayScale() -> CGFloat {
-        return CGFloat(floorf(Float(self * Coordinates.displayScale))) / Coordinates.displayScale
+        return (self * Coordinates.displayScale).rounded(.down) / Coordinates.displayScale
     }
 }
 

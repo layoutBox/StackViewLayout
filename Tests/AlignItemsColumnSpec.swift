@@ -73,12 +73,10 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
 
-                // Match UIStackView
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 400, height: 61), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 400, height: 20.666), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.6663, width: 400, height: 61), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.666, width: 400, height: 50), within: withinRange))
             }
             
             it("align(.start)") {
@@ -90,12 +88,10 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match UIStackView
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 231.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 361.333, height: 61), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 231.667, height: 20.666), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.666, width: 361.666, height: 61), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.666, width: 400, height: 50), within: withinRange))
             }
             
             it("align(.center)") {
@@ -107,12 +103,10 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match UIStackView
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 19.333, y: 20.333, width: 361.333, height: 61), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.666), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 19.0, y: 20.666, width: 361.666, height: 61), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.666, width: 400, height: 50), within: withinRange))
             }
             
             it("align(.end)") {
@@ -124,12 +118,10 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match UIStackView
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 168.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 38.667, y: 20.333, width: 361.333, height: 61), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 168.333, y: 0, width: 231.667, height: 20.666), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 38.333, y: 20.666, width: 361.666, height: 61), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.666, width: 400, height: 50), within: withinRange))
             }
         }
         
@@ -148,12 +140,10 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match UIStackView
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 19.333, y: 20.333, width: 361.333, height: 61), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.666), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 19.0, y: 20.666, width: 361.666, height: 61), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.666, width: 400, height: 50), within: withinRange))
             }
             
             it("alignSelf(.start)") {
@@ -167,12 +157,10 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match UIStackView
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.333, width: 361.333, height: 61), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.666), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 0, y: 20.666, width: 361.666, height: 61), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.666, width: 400, height: 50), within: withinRange))
             }
             
             it("alignSelf(.center)") {
@@ -186,12 +174,10 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match UIStackView
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 231.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 19.333, y: 20.333, width: 361.333, height: 61), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 0, y: 0, width: 231.667, height: 20.666), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 19.0, y: 20.666, width: 361.666, height: 61), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.666, width: 400, height: 50), within: withinRange))
             }
             
             it("alignSelf(.end)") {
@@ -205,12 +191,10 @@ class AlignItemsColumnSpec: QuickSpec {
                 stackView.frame = CGRect(x: 0, y: 64, width: 400, height: 600)
                 stackView.layoutIfNeeded()
                 
-                // Match UIStackView
-                // Match FlexLayout
                 expect(stackView.frame).to(beCloseTo(CGRect(x: 0, y: 64, width: 400, height: 600), within: withinRange))
-                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.333), within: withinRange))
-                expect(label2.frame).to(beCloseTo(CGRect(x: 38.666, y: 20.333, width: 361.333, height: 61), within: withinRange))
-                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.333, width: 400, height: 50), within: withinRange))
+                expect(label1.frame).to(beCloseTo(CGRect(x: 84.333, y: 0, width: 231.667, height: 20.666), within: withinRange))
+                expect(label2.frame).to(beCloseTo(CGRect(x: 38.333, y: 20.666, width: 361.666, height: 61), within: withinRange))
+                expect(view1.frame).to(beCloseTo(CGRect(x: 0, y: 81.666, width: 400, height: 50), within: withinRange))
             }
         }
     }
