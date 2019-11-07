@@ -24,6 +24,7 @@ import UIKit
 
 public func _setUnitTestDisplayScale(scale: CGFloat) {
     Coordinates.displayScale = scale
+    Coordinates.onePixelLength = 1 / scale
 }
 
 class Coordinates {

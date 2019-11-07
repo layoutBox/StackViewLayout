@@ -1,19 +1,16 @@
 language: objective-c
 osx_image: xcode11.2
 
-# env:
-#   matrix:
-    # - SCHEME=StackLayout       SDK=iphonesimulator11.1
+cache:
+  - bundler
+  - cocoapods
 
-before_install:
-#  - brew outdated xctool || brew upgrade xctool;
-  - gem install xcpretty-travis-formatter;
-  - gem install cocoapods --no-document --quiet;
-#  - pod repo update --silent;
+install:
+  - bundle install # --deployment # to cache vendor/bundle
   - pod install --repo-update;
 
 script:
-  - set -o pipefail && bundle exec fastlane travis
+  - sh build-ci.sh /tmp/StackViewLayout
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -J 'StackLayout' -J 'StackLayoutTests'

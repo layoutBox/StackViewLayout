@@ -25,6 +25,11 @@ echo "StackViewLayoutExample"           &&
 echo "==============================="  &&
 time xcodebuild build -workspace StackViewLayout.xcworkspace -scheme StackViewLayoutExample \
    -derivedDataPath $DERIVED_DATA -sdk iphonesimulator13.2 \
+   -destination 'platform=iOS Simulator,name=iPhone 8,OS=13.2'  \
+   | xcpretty  &&
+
+time xcodebuild build -workspace StackViewLayout.xcworkspace -scheme StackViewLayoutExample \
+   -derivedDataPath $DERIVED_DATA -sdk iphonesimulator13.2 \
    -destination 'platform=iOS Simulator,name=iPhone 7,OS=11.4'  \
    | xcpretty  &&
 
@@ -46,18 +51,18 @@ time  xcodebuild build test -workspace StackViewLayout.xcworkspace -scheme Stack
    -destination 'platform=iOS Simulator,name=iPhone 8,OS=13.2' \
    | xcpretty  &&
 
-echo "===============================" 
-echo "tvOS unit test"                   
-echo "===============================" 
-time  xcodebuild build test -workspace StackViewLayout.xcworkspace -scheme StackViewLayout-tvOS \
-   -derivedDataPath $DERIVED_DATA -sdk appletvsimulator13.2 \
-   -destination 'platform=tvOS Simulator,name=Apple TV 4K,OS=12.2' \
-   | xcpretty 
+# echo "===============================" &&
+# echo "tvOS unit test"                  && 
+# echo "===============================" &&
+# time  xcodebuild build test -workspace StackViewLayout.xcworkspace -scheme StackViewLayout-tvOS \
+#    -derivedDataPath $DERIVED_DATA -sdk appletvsimulator13.2 \
+#    -destination 'platform=tvOS Simulator,name=Apple TV 4K,OS=13.2' \
+#    | xcpretty &&
 
-time  xcodebuild build test -workspace StackViewLayout.xcworkspace -scheme StackViewLayout-tvOS \
-   -derivedDataPath $DERIVED_DATA -sdk appletvsimulator13.2 \
-   -destination 'platform=tvOS Simulator,name=Apple TV 4K,OS=13.2' \
-   | xcpretty 
+# time  xcodebuild build test -workspace StackViewLayout.xcworkspace -scheme StackViewLayout-tvOS \
+#    -derivedDataPath $DERIVED_DATA -sdk appletvsimulator13.2 \
+#    -destination 'platform=tvOS Simulator,name=Apple TV 4K,OS=13.2' \
+#    | xcpretty &&
 
 # echo "===============================" 
 # echo "macOS unit test"                 

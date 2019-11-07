@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DF8345402373A99A00A34F5E"
+               BuildableName = "StackViewLayoutTests-tvOS.xctest"
+               BlueprintName = "StackViewLayoutTests-tvOS"
+               ReferencedContainer = "container:StackViewLayout.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
