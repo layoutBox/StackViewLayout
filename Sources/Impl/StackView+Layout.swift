@@ -168,7 +168,7 @@ extension StackView {
         }
 
         for (index, item) in container.items.enumerated() {
-            guard let stackItem = item.stackItem else { continue }
+            let stackItem = item.stackItem// else { continue }
             //
             // Handle main-axis position
             if index == 0 {

@@ -21,9 +21,11 @@ import UIKit
 
 class BasicView: UIView {
     fileprivate let label = UILabel()
+    static var intanceCount = 0
     
     init(text: String? = nil) {
         super.init(frame: .zero)
+        BasicView.intanceCount += 1
 
         backgroundColor = UIColor(red: 0.58, green: 0.78, blue: 0.95, alpha: 1.00)
         layer.borderColor = UIColor(red: 0.37, green: 0.67, blue: 0.94, alpha: 1.00).cgColor
@@ -40,6 +42,11 @@ class BasicView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    deinit {
+       BasicView.intanceCount -= 1
+       print("Deinit BasicView intanceCount:\(BasicView.intanceCount)")
+   }
     
     override func layoutSubviews() {
         super.layoutSubviews()

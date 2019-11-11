@@ -21,8 +21,9 @@ import UIKit
 
 class ItemInfo {
     weak var view: UIView?
-    weak var stackItem: StackItemImpl?
+    var stackItem: StackItemImpl
     weak var container: Container?
+    static var intanceCount = 0;
 
     private var _width: CGFloat?
     var width: CGFloat? {
@@ -96,10 +97,10 @@ class ItemInfo {
 
     var measureType: MeasureType? {
         get {
-            return stackItem?.measureType
+            return stackItem.measureType
         }
         set {
-            stackItem?.measureType = newValue
+            stackItem.measureType = newValue
         }
     }
     
@@ -108,6 +109,7 @@ class ItemInfo {
     }
     
     init(_ stackItem: StackItemImpl, container: Container, mode: LayoutMode) {
+        ItemInfo.intanceCount += 1
         self.stackItem = stackItem
         self.view = stackItem.view
         self.container = container
@@ -127,20 +129,25 @@ class ItemInfo {
 
         resetToStackItemProperties()
     }
+    
+    deinit {
+           ItemInfo.intanceCount -= 1
+           print("Deinit ItemInfo intanceCount:\(ItemInfo.intanceCount)");
+       }
 
     func isWidthDefined() -> Bool {
-        return stackItem?.width != nil || minWidth != nil
+        return stackItem.width != nil || minWidth != nil
     }
 
     func isHeightDefined() -> Bool {
-        return stackItem?.height != nil || minHeight != nil
+        return stackItem.height != nil || minHeight != nil
     }
 
     func isCrossAxisFlexible() -> Bool {
         if direction == .column {
-            return stackItem?.width == nil
+            return stackItem.width == nil
         } else {
-            return stackItem?.height == nil
+            return stackItem.height == nil
         }
     }
 
@@ -149,7 +156,7 @@ class ItemInfo {
     }
 
     func resetToStackItemProperties() {
-        guard let stackItem = stackItem, let container = container else { return }
+        guard let container = container else { return }
         self.width = stackItem.width?.resolveWidth(container: container)
         if let minWidth = minWidth, let width = width, width < minWidth {
             self.width = minWidth
@@ -162,7 +169,7 @@ class ItemInfo {
     }
     
     func measureItem(initialMeasure: Bool) {
-        guard let view = view, let stackItem = stackItem, let container = container else { return }
+        guard let view = view, let container = container else { return }
         let stretchedCrossAxisLength = resolveStretchedCrossAxisLength()
         var isMeasured = false
 
@@ -252,7 +259,7 @@ class ItemInfo {
     }
 
     private func resolveStretchedCrossAxisLength() -> CGFloat? {
-        guard let stackItem = stackItem, let container = container else { return nil }
+        guard let container = container else { return nil }
         if stackItem.resolveStackItemAlign(stackAlignItems: container.alignItems) == .stretch, let containerCrossAxisInnerLength = container.crossAxisInnerLength {
             if isCrossAxisFlexible() {
                 var crossAxisLength = stackItem.applyMargins(toCrossAxisLength: containerCrossAxisInnerLength, container: container)
@@ -265,7 +272,7 @@ class ItemInfo {
     }
 
     private func measureAterGrowShrink() {
-        if stackItem?._aspectRatio != nil {
+        if stackItem._aspectRatio != nil {
             applyAspectRatioIfNeeded(.adjustCrossAxis)
             applySizeMinMax()
         } else {
@@ -281,7 +288,7 @@ class ItemInfo {
     }
 
     private func applyAspectRatioIfNeeded(_ adjustType: AdjustType) {
-        guard let stackItem = stackItem, let container = container else { return }
+        guard let container = container else { return }
         if let aspectRatio = stackItem._aspectRatio {
             let adjustWidth: Bool
 
@@ -323,7 +330,7 @@ class ItemInfo {
     }
 
     private func hasReachedMaxAspectRatio() -> Bool {
-        guard stackItem?._aspectRatio != nil, let stackItem = stackItem, let container = container else { return false }
+        guard stackItem._aspectRatio != nil, let container = container else { return false }
 
         if direction == .column {
             if var availableWidth = container.innerWidth {
@@ -353,7 +360,7 @@ class ItemInfo {
     }
 
     private func adjustWidthToAspectRatioAndContainer(width: CGFloat) -> CGFloat {
-        guard direction == .row, let stackItem = stackItem, let container = container else { return width }
+        guard direction == .row, let container = container else { return width }
         guard let aspectRatio = stackItem._aspectRatio else { return width }
         guard let availableHeight = container.innerHeight else { return width }
 
@@ -368,7 +375,7 @@ class ItemInfo {
     }
 
     private func adjustHeightToAspectRatioAndContainer(height: CGFloat) -> CGFloat {
-        guard direction == .column, let stackItem = stackItem, let container = container else { return height }
+        guard direction == .column, let container = container else { return height }
         guard let aspectRatio = stackItem._aspectRatio else { return height }
         guard let availableWidth = container.innerWidth else { return height }
 
@@ -389,7 +396,7 @@ class ItemInfo {
             return 0
         } else if hasReachedMaxAspectRatio() {
             return 0
-        } else if let growFactor = stackItem?.grow {
+        } else if let growFactor = stackItem.grow {
             return growFactor
         } else {
             return 0
@@ -407,7 +414,7 @@ class ItemInfo {
 
         if let mainAxisMinLength = mainAxisMinLength, mainAxisLength <= mainAxisMinLength {
             return 0
-        } else if let shrink = stackItem?.shrink {
+        } else if let shrink = stackItem.shrink {
             return shrink * basis
         } else {
             return 0
