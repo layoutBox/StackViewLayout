@@ -33,6 +33,7 @@ class LayoutModesView: BaseView {
         super.init()
 
         stackView.direction(.column).define { (stack) in
+            stack.spacing(4) // only for .distribution
             stack.addItem(BasicView(text: "View 1"))
             stack.addItem(BasicView(text: "View 2"))
             stack.addItem(BasicView(text: "View 3"))
@@ -114,7 +115,8 @@ class LayoutModesView: BaseView {
         case .end:          stackView.justifyContent(.spaceBetween)
         case .spaceBetween: stackView.justifyContent(.spaceAround)
         case .spaceAround:  stackView.justifyContent(.spaceEvenly)
-        case .spaceEvenly:  stackView.justifyContent(.start)
+        case .spaceEvenly:  stackView.justifyContent(.distribution)
+        case .distribution: stackView.justifyContent(.start)
         }
         
         applyChange()
@@ -152,6 +154,7 @@ class LayoutModesView: BaseView {
         case .spaceBetween: justifyLabel.text = ".spaceBetween"
         case .spaceAround:  justifyLabel.text = ".spaceAround"
         case .spaceEvenly:  justifyLabel.text = ".spaceEvenly"
+        case .distribution: justifyLabel.text = ".distribution"
         }
 
         switch stackView.getAlignItems() {
@@ -161,6 +164,7 @@ class LayoutModesView: BaseView {
         case .end:     alignItemsLabel.text = ".end"
         }
 
+        justifyLabel.sizeToFit()
         buttonsStackView.markDirty()
     }
 }

@@ -20,9 +20,9 @@
 import UIKit
 
 class ItemInfo {
-    var view: UIView
-    var stackItem: StackItemImpl
-    var container: Container
+    unowned let view: UIView
+    unowned let stackItem: StackItemImpl
+    unowned let container: Container
 
     private var _width: CGFloat?
     var width: CGFloat? {

@@ -21,7 +21,7 @@
 import UIKit
 
 class Container {
-    fileprivate let stackView: StackView
+    unowned fileprivate let stackView: StackView
     var width: CGFloat?
     var height: CGFloat?
     var innerWidth: CGFloat?
@@ -74,6 +74,8 @@ class Container {
     }
     
     var mainAxisTotalItemsLength: CGFloat = 0
+    
+    var mainAxisTotalItemsMargin: CGFloat = 0
     
     init(_ stackView: StackView) {
         self.stackView = stackView
@@ -128,6 +130,7 @@ class Container {
         
         items.forEach({ (item) in
             mainAxisTotalItemsLength += item.mainAxisStartMargin
+            mainAxisTotalItemsMargin += item.mainAxisStartMargin
             
             if direction == .column {
                 mainAxisTotalItemsLength += (item.height != nil ? item.height! : 0)
@@ -136,6 +139,7 @@ class Container {
             }
             
             mainAxisTotalItemsLength += item.mainAxisEndMargin
+            mainAxisTotalItemsMargin += item.mainAxisEndMargin
         })
     }
     
