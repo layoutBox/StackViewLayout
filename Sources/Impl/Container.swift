@@ -21,7 +21,7 @@
 import UIKit
 
 class Container {
-    fileprivate let stackView: StackView
+    unowned fileprivate let stackView: StackView
     var width: CGFloat?
     var height: CGFloat?
     var innerWidth: CGFloat?

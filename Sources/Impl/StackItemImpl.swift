@@ -30,7 +30,7 @@ enum MeasureType {
 
 
 class StackItemImpl: NSObject, StackItem {
-    internal let view: UIView
+    unowned internal let view: UIView
 
     internal var width: Value?
     internal var minWidth: Value?
