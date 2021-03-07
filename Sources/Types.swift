@@ -47,6 +47,8 @@ public enum SJustifyContent {
     case spaceAround
     /// Items are positioned with space before, between, and after items
     case spaceEvenly
+    /// Items are adjusted to same length in main axis, with space and margin between them
+    case distribution
 }
 
 /**
