@@ -12,8 +12,8 @@ target 'StackViewLayoutTests-iOS' do
   platform :ios, "9.0"
   pod 'PinLayout'
 
-  pod 'Quick', '2.1.0'
-  pod 'Nimble', '8.0.2', :inhibit_warnings => true
+  pod 'Quick'
+  pod 'Nimble', :inhibit_warnings => true
 end
 
 target 'StackViewLayoutTests-tvOS' do
@@ -21,8 +21,8 @@ target 'StackViewLayoutTests-tvOS' do
   platform :tvos, "9.0"
   pod 'PinLayout'
 
-  pod 'Quick', '2.1.0'
-  pod 'Nimble', '8.0.2', :inhibit_warnings => true
+  pod 'Quick'
+  pod 'Nimble', :inhibit_warnings => true
 end
 
 target 'StackViewLayoutExample' do
@@ -34,7 +34,7 @@ target 'StackViewLayoutExample' do
   pod 'FlexLayout'  
 
   # Debug only
-  pod 'Reveal-SDK', '~> 17', :configurations => ['Debug']
+  # pod 'Reveal-SDK', '~> 17', :configurations => ['Debug']
   pod 'SwiftLint'
 end
 
