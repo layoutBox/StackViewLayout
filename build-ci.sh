@@ -8,13 +8,13 @@ echo "==============================="
 echo "iOS build & unit test"           
 echo "===============================" 
 time xcodebuild clean build test -workspace StackViewLayout.xcworkspace -scheme StackViewLayout-iOS \
-   -sdk iphonesimulator15.2 -destination 'platform=iOS Simulator,name=iPhone 7,OS=11.4'  \
+   -sdk iphonesimulator15.2 -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'  \
    -configuration "Release" \
    -derivedDataPath $DERIVED_DATA \
    | xcpretty 
     
 time xcodebuild build test -workspace StackViewLayout.xcworkspace -scheme StackViewLayout-iOS \
-   -sdk iphonesimulator15.2 -destination 'platform=iOS Simulator,name=iPhone 7,OS=11.4'  \
+   -sdk iphonesimulator15.2 -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'  \
    -configuration "Debug" \
    -derivedDataPath $DERIVED_DATA \
    | xcpretty 
@@ -42,7 +42,7 @@ time xcodebuild build -workspace StackViewLayout.xcworkspace -scheme StackViewLa
 
 time xcodebuild build -workspace StackViewLayout.xcworkspace -scheme StackViewLayoutExample \
    -sdk iphonesimulator15.2 \
-   -destination 'platform=iOS Simulator,name=iPhone 7,OS=11.4'  \
+   -destination 'platform=iOS Simulator,name=iPhone 8,OS=15.2'  \
    -configuration "Release" \
    -derivedDataPath $DERIVED_DATA \
    | xcpretty 
