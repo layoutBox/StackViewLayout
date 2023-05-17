@@ -27,7 +27,7 @@ Fast StackView, Concise syntax, intuitive, readable & chainable. Stacks easily m
 * StackView can be used with **manual layout**, **Autolayout** and **Storyboards/XIB**.
 * **Compare to UIStackView, StackView is a real UIView**, it layout all sub-views from `UIView.subviews`, no `UIStackView.arrangedSubviews`. This give you access to **backgroundColor**, **transparency**, **round corners**, **animations**, **transforms**, ... 
 * StackView's items can be layouted using one of the **48 positions**.  
-<img src="docs_markdown/images/stackview_all_animated.gif" width="120"/>
+  <img src="docs_markdown/images/stackview_all_animated.gif" width="120"/>
 * **Margins** can be applied on each item individually, giving you full control.
 * **Width**, **height**, **min/max width** and **min/max height** can be applied on each items.
 * An **aspect ratio** can applied on items, particularly useful for images.
