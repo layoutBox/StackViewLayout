@@ -64,6 +64,20 @@ extension StackView {
     
     private func adjustItemsSizeToContainer(container: Container) {
         guard let mainAxisInnerLength = container.mainAxisInnerLength else { return }
+        
+        if self.justifyContent == .distribution {
+            let count = CGFloat(container.items.count)
+            let gap = max(count - 1, 0) * (_spacing?.value ?? 0) + container.mainAxisTotalItemsMargin
+            let len = (mainAxisInnerLength - gap) / count
+            for item in container.items {
+                if self.direction == .column {
+                    item.height = len
+                } else {
+                    item.width = len
+                }
+            }
+            return
+        }
 
         var previousLength: CGFloat?
         var lengthDiff = mainAxisInnerLength - container.mainAxisTotalItemsLength
@@ -164,6 +178,8 @@ extension StackView {
             case .spaceEvenly:
                 betweenSpacing = (containerMainAxisInnner - mainAxisTotalItemsLength) / CGFloat(container.items.count + 1)
                 startEndSpacing = betweenSpacing
+            case .distribution:
+                betweenSpacing = _spacing?.value ?? 0
             }
         }
 

@@ -300,6 +300,7 @@ class UnitTestsView: BaseView {
         case .spaceBetween: stackView.justifyContent(.spaceAround)
         case .spaceAround:  stackView.justifyContent(.spaceEvenly)
         case .spaceEvenly:  stackView.justifyContent(.start)
+        case .distribution: stackView.justifyContent(.distribution)
         }
         
         setNeedsLayout()

@@ -33,6 +33,8 @@ public class StackView: UIView {
     internal var _paddingBottom: Value?
     internal var _paddingRight: Value?
     internal var _paddingEnd: Value?
+    
+    internal var _spacing: Value?
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -320,6 +322,25 @@ public class StackView: UIView {
         _paddingBottom = Value(bottom)
         _paddingRight = Value(right)
         return self
+    }
+    
+    //
+    // MARK: Spacing
+    //
+    
+    /**
+     The `spacing` property only for justify .distribution in the StackView.
+     
+     - Parameter value: Default value is 0
+     */
+    @discardableResult
+    public func spacing(_ spacing: CGFloat) -> StackView {
+        _spacing = Value(spacing)
+        return self
+    }
+    
+    public func getSpacing() -> CGFloat {
+        return _spacing?.value ?? 0
     }
     
     //
